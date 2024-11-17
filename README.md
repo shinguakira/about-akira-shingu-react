@@ -3,6 +3,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 [日本語のREADMEはこちら](./README.ja.md)
 
 Portfolio Website Repository
+![Screenshot](./public/images/pages/home.png)
 
 ## Getting Started
 

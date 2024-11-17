@@ -3,8 +3,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 [English README](./README.md)
 
 ポートフォリオWebsite
-
-
+![Screenshot](./public/images/pages/home.png)
 ## Getting Started
 
 First, run the development server:

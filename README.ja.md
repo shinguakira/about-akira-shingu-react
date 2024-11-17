@@ -1,8 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[日本語のREADMEはこちら](./README.ja.md)
+[English README](./README.md)
 
-Portfolio Website Repository
+ポートフォリオWebsite
+
 
 ## Getting Started
 

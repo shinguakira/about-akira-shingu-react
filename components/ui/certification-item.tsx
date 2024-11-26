@@ -13,7 +13,7 @@ interface CertificationItemProps {
 
 const CertificationItem = ({ id,name,organization="unknown", date="",verifyLink,className = "" }: CertificationItemProps) => {
   return (
-    <div key={id} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col">
+    <div key={id} className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden flex flex-col">
               <div className="p-6">
                 <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
                   <span className="text-blue-500" aria-hidden="true">🏆</span>

@@ -215,7 +215,7 @@ export default function CertificationsPage() {
     ]
   
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="h-auto container mx-auto px-4 py-8 bg-slate-100">
         <header className="mb-10 text-center">
           <h1 className="text-4xl font-bold mb-2">My Certifications</h1>
           <p className="text-xl text-gray-600">Showcasing my professional achievements and expertise</p>

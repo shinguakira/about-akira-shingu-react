@@ -7,7 +7,7 @@ import profilePic from "public/images/profile/developer-pic-1.png";
 export default function Home() {
   return (
     <>
-      <div className="flex w-full items-center justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <Image src={profilePic} alt="alt" className="h-auto w-full" />
         </div>

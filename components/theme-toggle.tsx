@@ -16,8 +16,8 @@ export default function ThemeToggle() {
             onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
         >
             {resolvedTheme === 'dark' ? (
-                <label className="size-4 text-orange-300" />
-            ) : (<label className="size-4 text-blue-950" />)
+                <label className="text-white-300">Dark</label>
+            ) : (<label className="text-black-950">Light</label>)
             }
         </Button>
     )

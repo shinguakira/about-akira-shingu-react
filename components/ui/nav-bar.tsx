@@ -4,17 +4,23 @@ import React from "react";
 import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import {
+  CredlyIcon,
   DribbbleIcon,
+  GithubIcon,
   LinkedInIcon,
   PinterestIcon,
+  QiitaIcon,
   TwitterIcon,
 } from "./icons";
+import ThemeToggle from "../theme-toggle";
 
 interface CustomLinkProps {
   href: string; // link to the page
   title: string; // label for the link
   className?: string; // custom styles for the link
 }
+
+const iconSize = "w-6 h-6";
 
 const CustomLink: React.FC<CustomLinkProps> = ({
   href,
@@ -40,8 +46,8 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   return (
-    <header className="relative z-10 flex w-full items-center justify-between px-32 py-8 font-medium">
-      <nav>
+    <header className="fixed top-0 flex w-full items-center justify-between px-32 py-8 font-medium">
+      <nav className="flex justify-between items-center px-32 py-8 font-medium">
         <CustomLink href="/" title="Home" className="mr-4" />
         <CustomLink href="/about" title="About" className="mr-4" />
         <CustomLink href="/certifications" title="Certifications" className="mr-4" />
@@ -51,18 +57,19 @@ const NavBar = () => {
       </nav>
       <Logo />
       <nav className="item-center flex flex-wrap justify-center">
-        <Link href="/" target="_blank" className="mr-4">
-          <TwitterIcon className="" />
+        <Link href="https://www.credly.com/users/username.aff80586" target="_blank" className="mr-4">
+          <CredlyIcon className={iconSize} />
+        </Link>
+        <Link href="https://www.linkedin.com/in/akira-shingu-2238a6320/" target="_blank" className="mr-4">
+          <LinkedInIcon className={iconSize} />
+        </Link>
+        <Link href="https://qiita.com/ShinguAkira" target="_blank" className="mr-4">
+          <QiitaIcon className={iconSize} />
         </Link>
         <Link href="/" target="_blank" className="mr-4">
-          <LinkedInIcon className="" />
+          <GithubIcon className={iconSize} />
         </Link>
-        <Link href="/" target="_blank" className="mr-4">
-          <PinterestIcon className="" />
-        </Link>
-        <Link href="/" target="_blank" className="mr-4">
-          <DribbbleIcon className="" />
-        </Link>
+        <ThemeToggle />
       </nav>
     </header>
   );

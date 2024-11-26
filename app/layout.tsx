@@ -34,8 +34,8 @@ export default function RootLayout({
       >
         <Providers>
           {/* <Headers /> */}
-          <NavBar />
-          <main className="text-dark flex min-h-screen w-full grow items-center">
+          <NavBar/>
+          <main className="text-dark flex min-h-screen w-full grow items-center pt-20">
             {children}
           </main>
           <Footer />

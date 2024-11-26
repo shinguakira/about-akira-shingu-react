@@ -41,11 +41,9 @@ export const TwitterIcon = ({ className, ...rest }: IconProps) => (
 export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
     viewBox="0 0 256 256"
     {...rest}
-    className={`h-auto w-full ${className}`}
+    className={`${className}`}
   >
     <path fill="none" d="M0 0h256v256H0z" />
     <g fill="none">
@@ -57,6 +55,14 @@ export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
       />
     </g>
   </svg>
+);
+
+export const QiitaIcon = ({ className, ...rest }: IconProps) => (
+  <img
+          src="https://logo.clearbit.com/qiita.com" // Replace with the actual path to the Qiita logo
+          alt="Qiita"
+          className={`${className}`}
+        />
 );
 
 export const PinterestIcon = ({ className, ...rest }: IconProps) => (
@@ -96,6 +102,14 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
     />
   </svg>
 );
+
+export const CredlyIcon = ({ className, ...rest }: IconProps) => (
+  <>
+  <img className={`bg-orange-50 ${className}`} src="https://unpkg.com/simple-icons@latest/icons/credly.svg"></img>
+  </>
+);
+
+
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (
   <svg

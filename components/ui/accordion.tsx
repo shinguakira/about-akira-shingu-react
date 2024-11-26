@@ -65,9 +65,9 @@ const Accordion = () => {
       case 'large':
         return 'md:col-span-2 md:row-span-2';
       case 'medium':
-        return 'md:col-span-2 md:row-span-1';
+        return 'md:col-span-2 md:row-span-2';
       default:
-        return 'md:col-span-1 md:row-span-1';
+        return 'md:col-span-2 md:row-span-2';
     }
   };
 
@@ -87,7 +87,7 @@ const Accordion = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto py-16 px-4">
+    <div className="max-w-6xl mx-auto px-4">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-6">FAQ</h1>
         <div className="flex justify-center items-center gap-2">
@@ -133,7 +133,7 @@ const Accordion = () => {
                   </kbd>
                 </div>
               </div>
-              <div className="max-h-[60vh] overflow-y-auto">
+              <div className=" max-w-6xl">
                 {filteredFaqs.map((faq, index) => (
                   <div
                     key={faq.id}
@@ -173,26 +173,26 @@ const Accordion = () => {
       )}
 
       {/* Masonry Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-6 auto-rows-min">
+      <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-1 gap-6 auto-rows-min">
         {faqs.map((faq) => (
           <div
             key={faq.id}
             className={`${getSizeClass(faq.size)} transition-all duration-300`}
           >
             <div 
-              className={`h-full p-6 rounded-xl transition-all duration-300 cursor-pointer 
+              className={` p-6 rounded-xl transition-all duration-300 cursor-pointer 
                 ${expandedId === faq.id 
                   ? 'bg-blue-50 border-blue-200 shadow-lg' 
                   : 'bg-white border-gray-200 hover:border-blue-200 hover:shadow-md'
                 } border`}
               onClick={() => setExpandedId(expandedId === faq.id ? null : faq.id)}
             >
-              <div className="flex flex-col h-full">
-                <div className="flex items-start justify-between mb-2">
+              <div className="flex flex-col">
+                <div className="flex  justify-between mb-2">
                   <div>
-                    <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 mb-2">
+                    {/* <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600 mb-2">
                       {faq.category}
-                    </span>
+                    </span> */}
                     <h3 className={`font-medium ${
                       expandedId === faq.id ? 'text-blue-700' : 'text-gray-900'
                     }`}>

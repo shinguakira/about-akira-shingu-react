@@ -2,9 +2,10 @@ type SkillItemProps = {
     name: string
     category: string
     years: string
+    proficyency?: string // onBusiness or self-study
 }
 
-const SkillItem:React.FC<SkillItemProps> = ({ name, category, years}) => {
+const SkillItem:React.FC<SkillItemProps> = ({ name, category, years,proficyency}) => {
     return(
         <>
         <div key={name} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -17,6 +18,9 @@ const SkillItem:React.FC<SkillItemProps> = ({ name, category, years}) => {
                 <div>
                   <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 dark:text-blue-200 dark:bg-blue-800">
                     Proficiency
+                  </span>
+                  <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-gray-200 dark:text-blue-200 dark:bg-green-800">
+                    {proficyency}
                   </span>
                 </div>
                 <div className="text-right">
@@ -39,3 +43,4 @@ const SkillItem:React.FC<SkillItemProps> = ({ name, category, years}) => {
 }
 
 export default SkillItem
+export type {SkillItemProps}

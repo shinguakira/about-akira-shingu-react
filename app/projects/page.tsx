@@ -1,10 +1,9 @@
-import CommingSoon from '@/components/ui/comming-soon'
-import WorkHistory from '@/components/ui/work-history'
+import ProjectItem from '@/components/ui/project-item'
 import React from 'react'
 
 const Project=() => {
   return (
-    <CommingSoon label="Project"/>
+    <ProjectItem/>
   )
 }
 

@@ -28,17 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ja" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           {/* <Headers /> */}
-          <NavBar/>
+          <NavBar />
           <main className="text-dark flex min-h-screen w-full grow items-center pt-20">
             {children}
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

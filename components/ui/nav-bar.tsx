@@ -46,24 +46,40 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   return (
-    <header className="fixed top-0 flex w-full items-center justify-between px-32 py-8 font-medium">
-      <nav className="flex justify-between items-center px-32 py-8 font-medium">
+    <header className="fixed top-0 flex w-full py-8 font-medium">
+      <nav className="flex w-full py-8 font-medium">
         <CustomLink href="/" title="Home" className="mr-4" />
         <CustomLink href="/about" title="About" className="mr-4" />
-        <CustomLink href="/certifications" title="Certifications" className="mr-4" />
+        <CustomLink
+          href="/certifications"
+          title="Certifications"
+          className="mr-4"
+        />
         <CustomLink href="/projects" title="Projects" className="mr-4" />
         <CustomLink href="/articles" title="Articles" className="mr-4" />
         <CustomLink href="/faq" title="FAQ" className="mr-4" />
       </nav>
-      <Logo />
-      <nav className="item-center flex flex-wrap justify-center">
-        <Link href="https://www.credly.com/users/username.aff80586" target="_blank" className="mr-4">
+      <nav className="flex w-full flex-wrap justify-end">
+        {/* <Logo /> */}
+        <Link
+          href="https://www.credly.com/users/username.aff80586"
+          target="_blank"
+          className="mr-4"
+        >
           <CredlyIcon className={iconSize} />
         </Link>
-        <Link href="https://www.linkedin.com/in/akira-shingu-2238a6320/" target="_blank" className="mr-4">
+        <Link
+          href="https://www.linkedin.com/in/akira-shingu-2238a6320/"
+          target="_blank"
+          className="mr-4"
+        >
           <LinkedInIcon className={iconSize} />
         </Link>
-        <Link href="https://qiita.com/ShinguAkira" target="_blank" className="mr-4">
+        <Link
+          href="https://qiita.com/ShinguAkira"
+          target="_blank"
+          className="mr-4"
+        >
           <QiitaIcon className={iconSize} />
         </Link>
         <Link href="/" target="_blank" className="mr-4">

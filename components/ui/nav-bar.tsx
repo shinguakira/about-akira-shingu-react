@@ -82,7 +82,11 @@ const NavBar = () => {
         >
           <QiitaIcon className={iconSize} />
         </Link>
-        <Link href="/" target="_blank" className="mr-4">
+        <Link
+          href="https://github.com/shinguakira"
+          target="_blank"
+          className="mr-4"
+        >
           <GithubIcon className={iconSize} />
         </Link>
         <ThemeToggle />

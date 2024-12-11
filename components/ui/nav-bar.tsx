@@ -46,8 +46,8 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   return (
-    <header className="fixed top-0 flex w-full py-8 font-medium">
-      <nav className="flex w-full py-8 font-medium">
+    <header className="flexpy-8 fixed top-0 justify-between font-medium">
+      <nav className="mx-auto flex py-8 font-medium">
         <CustomLink href="/" title="Home" className="mr-4" />
         <CustomLink href="/about" title="About" className="mr-4" />
         <CustomLink
@@ -55,37 +55,31 @@ const NavBar = () => {
           title="Certifications"
           className="mr-4"
         />
-        <CustomLink href="/projects" title="Projects" className="mr-4" />
-        <CustomLink href="/articles" title="Articles" className="mr-4" />
-        <CustomLink href="/faq" title="FAQ" className="mr-4" />
-      </nav>
-      <nav className="flex w-full flex-wrap justify-end">
+        <CustomLink href="/projects" title="Projects" className="" />
+        <CustomLink href="/articles" title="Articles" className="" />
+        <CustomLink href="/faq" title="FAQ" className="" />
         {/* <Logo /> */}
         <Link
           href="https://www.credly.com/users/username.aff80586"
           target="_blank"
-          className="mr-4"
+          className=""
         >
           <CredlyIcon className={iconSize} />
         </Link>
         <Link
           href="https://www.linkedin.com/in/akira-shingu-2238a6320/"
           target="_blank"
-          className="mr-4"
+          className=""
         >
           <LinkedInIcon className={iconSize} />
         </Link>
-        <Link
-          href="https://qiita.com/ShinguAkira"
-          target="_blank"
-          className="mr-4"
-        >
+        <Link href="https://qiita.com/ShinguAkira" target="_blank" className="">
           <QiitaIcon className={iconSize} />
         </Link>
         <Link
           href="https://github.com/shinguakira"
           target="_blank"
-          className="mr-4"
+          className=""
         >
           <GithubIcon className={iconSize} />
         </Link>

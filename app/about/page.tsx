@@ -1,5 +1,5 @@
 import SkillSet from "@/components/ui/skill-set";
-import StrongPoint from "@/components/ui/strong-point";
+// import StrongPoint from "@/components/ui/strong-point";
 import WorkHistory from "@/components/ui/work-history";
 import React from "react";
 
@@ -19,7 +19,7 @@ const About = () => {
             <SkillSet />
           </div>
           <WorkHistory />
-          <StrongPoint />
+          {/* <StrongPoint /> */}
         </div>
       </div>
     </>

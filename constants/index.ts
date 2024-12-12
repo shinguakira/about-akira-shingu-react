@@ -109,8 +109,3 @@ export const receptionInnovationSkillSet: string[] = [
 // ];
 // Creadly link for certifications object should be defined as env variable
 export const creadlyLink = "https://www.credly.com/users/username.aff80586";
-
-const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオサイトの画像
-const tokyoGasPic = "/images/projects/tokyo-gas2.png"; // 東京ガスの画像
-const chatGptColonePic = "/images/projects/chat-gpt-clone.png"; // ChatGPT クローンの画像
-const chatBot3dPic = "/images/projects/3d-chatbot.png"; // 3Dチャットボットの画像

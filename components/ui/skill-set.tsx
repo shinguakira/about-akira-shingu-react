@@ -4,7 +4,7 @@ import { useState } from "react";
 import SkillCategory from "./skill-category";
 import SkillItem from "./skill-item";
 import { SkillItemProps } from "./skill-item";
-import { skills, otherSkills } from "@/constants";
+import { skills, otherSkills } from "@/constants/skill";
 
 const SkillSet = () => {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(

@@ -1,17 +1,22 @@
 import { Project } from "@/components/ui/project-item";
-import chatBot3dPic from "@/assets/images/chatbot3d.png";
-import chatGptColonePic from "@/assets/images/chatgpt-clone.png";
-import tokyoGasPic from "@/assets/images/tokyo-gas.png";
-import tmpPic from "@/assets/images/developer-pic-1.png";
 import { receptionInnovationSkillSet } from "@/constants";
+
+const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオサイトの画像
+const tokyoGasPic = "/images/projects/tokyo-gas2.png"; // 東京ガスの画像
+const chatGptColonePic = "/images/projects/chat-gpt-clone.png"; // ChatGPT クローンの画像
+const chatBot3dPic = "/images/projects/3d-chatbot.png"; // 3Dチャットボットの画像
 
 // object for projects
 export const projects: Project[] = [
   {
     id: "1",
     title: "開発予定を考えているアプリ",
-    description:
-      "[Youtube動画のadvanced検索],[採用サイト間のプロフィール自動入力(データ連携)],[現在いる最寄り駅の飲食店情報リスト表示アプリ],[画像認識を使用した何か],[Visual Studioのプロジェクトファイル変換アプリ]",
+    description: `[Youtube動画のadvanced検索]
+[採用サイト間のプロフィール自動入力(データ連携)]
+[現在いる最寄り駅の飲食店情報リスト表示アプリ]
+[画像認識を使用した何か]
+[Visual Studioのプロジェクトファイル変換アプリ]
+[タイピングアプリ]`,
     image: "",
     technologies: ["React", "Typescript"],
     githubUrl: "",
@@ -20,8 +25,9 @@ export const projects: Project[] = [
   {
     id: "2",
     title: "パワハラ訓練3Dチャットボット",
-    description:
-      "パワハラ気質の上司になりきったチャットボットと会話ができるアプリ「開発中」※開発者は考案者ではありません。",
+    description: `(開発中)パワハラ気質の上司になりきったチャットボットと会話ができるアプリ「開発中」※開発者は考案者ではありません。
+会話の内容は、OpenAIのGPT-4を使用しています。
+他のリポジトリをfolkして、要件に合うようにカスタマイズしています。`,
     image: `${chatBot3dPic}`,
     technologies: [
       "React",

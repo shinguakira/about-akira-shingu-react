@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
-import { projects } from "@/constants";
+import { projects } from "@/constants/project";
 import profilePic from "public/images/profile/developer-pic-1.png";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
@@ -41,7 +41,9 @@ const ProjectPage = () => {
                 <h2 className="mb-2 text-2xl font-bold text-gray-900">
                   {project.title}
                 </h2>
-                <pre className="mb-4 text-gray-600">{project.description}</pre>
+                <pre className="mb-4 w-full whitespace-pre-wrap text-gray-600">
+                  {project.description}
+                </pre>
                 <div className="mb-4">
                   <h3 className="mb-2 text-lg font-semibold text-gray-900">
                     Technologies:

@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Command, Search, X } from "lucide-react";
 import Faq from "../../app/faq/page";
-import { faqs } from "@/constants";
+import { faqs } from "@/constants/faq";
 
 type Faq = {
   id: number;

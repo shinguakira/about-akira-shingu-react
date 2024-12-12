@@ -41,7 +41,7 @@ const ProjectPage = () => {
                 <h2 className="mb-2 text-2xl font-bold text-gray-900">
                   {project.title}
                 </h2>
-                <p className="mb-4 text-gray-600">{project.description}</p>
+                <pre className="mb-4 text-gray-600">{project.description}</pre>
                 <div className="mb-4">
                   <h3 className="mb-2 text-lg font-semibold text-gray-900">
                     Technologies:

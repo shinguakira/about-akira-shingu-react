@@ -46,18 +46,22 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   return (
-    <header className="flexpy-8 fixed top-0 justify-between font-medium">
-      <nav className="mx-auto flex py-8 font-medium">
-        <CustomLink href="/" title="Home" className="mr-4" />
-        <CustomLink href="/about" title="About" className="mr-4" />
-        <CustomLink
-          href="/certifications"
-          title="Certifications"
-          className="mr-4"
-        />
-        <CustomLink href="/projects" title="Projects" className="" />
-        <CustomLink href="/articles" title="Articles" className="" />
-        <CustomLink href="/faq" title="FAQ" className="" />
+    <header className="fixed top-0 flex w-full justify-between py-8 font-medium">
+      <nav className="xs:text-xs mx-auto flex w-full justify-between py-8 text-base font-medium">
+        <div className="xs:text-xs ml-4 space-x-4">
+          <CustomLink href="/" title="Home" className="" />
+          <CustomLink href="/about" title="About" className="" />
+          <CustomLink
+            href="/certifications"
+            title="Certifications"
+            className=""
+          />
+          <CustomLink href="/projects" title="Projects" className="" />
+          <CustomLink href="/articles" title="Articles" className="" />
+          <CustomLink href="/faq" title="FAQ" className="" />
+        </div>
+      </nav>
+      <nav className="flex flex-wrap justify-end">
         {/* <Logo /> */}
         <Link
           href="https://www.credly.com/users/username.aff80586"

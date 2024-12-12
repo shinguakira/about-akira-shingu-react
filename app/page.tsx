@@ -31,8 +31,8 @@ export default function Home() {
               className="flex items-center rounded-lg border-transparent bg-black p-3 px-6 text-sm font-semibold text-white hover:border-black"
               download={true}
             >
-              <LinkArrow className="ml-2 w-6" />
-              履歴書をダウンロード
+              <LinkArrow className="ml-2 w-12" />
+              履歴書
             </Link>
             <Link
               href="https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link"
@@ -40,8 +40,8 @@ export default function Home() {
               className="flex items-center rounded-lg border-transparent bg-black p-3 px-6 text-lg font-semibold text-white hover:border-black"
               download={true}
             >
-              <LinkArrow className="ml-2 w-6" />
-              職務履歴書をダウンロード
+              <LinkArrow className="ml-2 w-12" />
+              職務履歴書
             </Link>
             <Link
               href={emailAddress}

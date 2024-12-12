@@ -1,5 +1,5 @@
 import CertificationItem from "@/components/ui/certification-item";
-import { certifications } from "@/constants";
+import { certifications } from "@/constants/certification";
 
 export default function CertificationsPage() {
   return (

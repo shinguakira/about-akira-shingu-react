@@ -26,6 +26,9 @@ export default function Home() {
             articles, shgowcasing my expertise in React and web development.
           </p>
           <div className="mx-auto flex items-center self-start">
+            <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
+              Download→
+            </label>
             <DownLoadLink
               href="https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link"
               label="履歴書"

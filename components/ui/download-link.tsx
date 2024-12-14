@@ -21,13 +21,13 @@ const DownLoadLink: React.FC<DownLoadLinkProps> = memo(
       <Link
         href={href}
         target={target}
-        className={`${className} inline-flex items-center rounded-lg border-transparent bg-black p-1 px-1 text-sm font-semibold text-white hover:border-black`}
+        className={`${className} flex items-center rounded-lg border-transparent bg-black px-1 text-sm font-semibold text-white hover:border-black`}
         download={download}
       >
         {/* TODO may should separate className variables.
         because style of Link and one of LinkArrow should be different */}
-        <LinkArrow className={`ml-2 ${className}`} />
-        {label}
+        <LinkArrow className={`ml-2 w-auto ${className}`} />
+        <span>{label}</span>
       </Link>
     );
   }

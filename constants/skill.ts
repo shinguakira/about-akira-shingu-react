@@ -178,6 +178,12 @@ export const otherSkills: SkillItemProps[] = [
     proficyency: onBusiness,
   },
   {
+    name: "StackBlitz(React)",
+    years: selfStudy,
+    category: "Others",
+    proficyency: selfStudy,
+  },
+  {
     name: "Visual Stadio(C,C++,C#)",
     years: "8 months",
     category: "Others",

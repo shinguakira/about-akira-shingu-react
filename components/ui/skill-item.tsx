@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type SkillItemProps = {
   name: string;
   category: string;
@@ -54,5 +56,5 @@ const SkillItem: React.FC<SkillItemProps> = ({
   );
 };
 
-export default SkillItem;
+export default memo(SkillItem);
 export type { SkillItemProps };

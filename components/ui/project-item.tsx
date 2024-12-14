@@ -7,7 +7,7 @@ import { projects } from "@/constants/project";
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
 type Project = {
-  id: string;
+  // id: string; exclude id for maintainability
   title: string;
   description: string;
   image: string;
@@ -24,9 +24,9 @@ const ProjectPage = () => {
           My Projects
         </h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project: Project, index: number) => (
             <div
-              key={project.id}
+              key={index}
               className="overflow-hidden rounded-lg bg-white shadow-lg"
             >
               <Image

@@ -10,7 +10,6 @@ const onDevelopingPic = "/images/projects/onDeveloping.jpg"; // 開発中の画�
 // object for projects
 export const projects: Project[] = [
   {
-    id: "1",
     title: "開発予定を考えているアプリ",
     description: `[Youtube動画のadvanced検索]
 [採用サイト間のプロフィール自動入力(データ連携)]
@@ -24,7 +23,6 @@ export const projects: Project[] = [
     liveUrl: "",
   },
   {
-    id: "2",
     title: "パワハラ訓練3Dチャットボット",
     description: `(開発中)パワハラ気質の上司になりきったチャットボットと会話ができるアプリ「開発中」※開発者は考案者ではありません。
 会話の内容は、OpenAIのGPT-4を使用しています。
@@ -44,7 +42,6 @@ export const projects: Project[] = [
     liveUrl: "https://3d-chatbot-power.vercel.app/",
   },
   {
-    id: "3",
     title: "東京ガスWebサイト",
     description:
       "東京ガスの一部Website、お客さま情報変更、申込書送付 1月に名義変更を行う画面リリース予定",
@@ -54,7 +51,6 @@ export const projects: Project[] = [
     liveUrl: "https://reception.tokyo-gas.co.jp/mskmsy/mtg?mskmsySyriKbn=10",
   },
   {
-    id: "4",
     title: "ChatGPT クローン",
     description: "フロントVite,React,バックExpress.js使用のChatGPTクローン",
     image: `${chatGptColonePic}`,
@@ -63,7 +59,6 @@ export const projects: Project[] = [
     liveUrl: "",
   },
   {
-    id: "5",
     title: "ポートフォリオWebサイト",
     description: "経歴、職務経歴等の情報を記載",
     image: `${tmpPic}?height=400&width=600`,

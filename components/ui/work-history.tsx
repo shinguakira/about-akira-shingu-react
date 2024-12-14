@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp, Building2, Calendar } from "lucide-react";
 import { workExperiences } from "@/constants/work-experience";
 
 type WorkExperience = {
-  id: number;
+  // id: number; exclude id for maintainability
   company: string; // comapny name
   projectOverview: string; // project name
   period: string; // period
@@ -31,9 +31,9 @@ const WorkHistory = () => {
           My Work History
         </h1>
         <div className="space-y-6">
-          {workExperiences.map((experience) => (
+          {workExperiences.map((experience: WorkExperience, index: number) => (
             <div
-              key={experience.id}
+              key={index}
               className="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg"
             >
               <div className="px-4 py-5 sm:px-6">
@@ -42,11 +42,11 @@ const WorkHistory = () => {
                     {experience.projectOverview}
                   </h3>
                   <button
-                    onClick={() => toggleExpand(experience.id)}
+                    onClick={() => toggleExpand(index)}
                     className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                    aria-expanded={expandedId === experience.id}
+                    aria-expanded={expandedId === index}
                   >
-                    {expandedId === experience.id ? (
+                    {expandedId === index ? (
                       <ChevronUp className="h-5 w-5" />
                     ) : (
                       <ChevronDown className="h-5 w-5" />
@@ -77,7 +77,7 @@ const WorkHistory = () => {
                       {experience.period}
                     </dd>
                   </div>
-                  {expandedId === experience.id && (
+                  {expandedId === index && (
                     <>
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">

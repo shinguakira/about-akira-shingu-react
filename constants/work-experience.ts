@@ -4,7 +4,6 @@ import { receptionInnovationSkillSet, VOCSkillSet } from "@/constants";
 // object for work experience
 export const workExperiences: WorkExperience[] = [
   {
-    id: 1,
     company: "CurrentCompany()",
     projectOverview: "お客さま情報検索、取得、特定APIの改修",
     period: "2024年10月 - 2024年1月(予定)",
@@ -22,7 +21,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: [],
   },
   {
-    id: 2,
     company: "CurrentCompany()",
     projectOverview: "お客さま情報検索、取得、特定APIの改修",
     period: "2024年10月 - 2024年1月(予定)",
@@ -57,7 +55,6 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    id: 3,
     company: "CurrentCompany()",
     projectOverview: "お客さまの声のシステム追加改修",
     period: "2024年10月 - 2024年11月(20日)",
@@ -71,7 +68,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: VOCSkillSet,
   },
   {
-    id: 4,
     company: "CurrentCompany()",
     projectOverview: "受付革新プロジェクト",
     period: "2024年5月 - 2024年1月(予定)",
@@ -89,7 +85,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: receptionInnovationSkillSet,
   },
   {
-    id: 5,
     company: "CurrentCompany()",
     projectOverview: "お客さまの声システムの改修リプレイス",
     period: "2024年1月 - 2024年4月(4か月)",
@@ -107,7 +102,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: VOCSkillSet,
   },
   {
-    id: 6,
     company: "CompanyA(東日本技術研究所)",
     projectOverview: "空港の電力監視制御システム MISE の改造",
     period: "2023年6月 - 2023年12月(6か月)",
@@ -138,7 +132,6 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    id: 7,
     company: "CompanyA(東日本技術研究所)",
     projectOverview: "PLC通信TCP/IPプログラム",
     period: "2023年4月 - 2023年6月(2ヶ月)",
@@ -161,7 +154,6 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    id: 8,
     company: "ホテルテラスザスクエア日立",
     projectOverview: "フロント(アルバイト)",
     period: "約1年",
@@ -179,7 +171,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: [""],
   },
   {
-    id: 9,
     company: "iMobilePhoneX(アルバイト)",
     projectOverview: "英語日本語翻訳(アルバイト)",
     period: "2019- 約1年",
@@ -196,7 +187,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: [""],
   },
   {
-    id: 10,
     company: "Freelancer.com(フリーランス)",
     projectOverview: "翻訳フリーランス",
     period: "2019- ",
@@ -208,7 +198,6 @@ export const workExperiences: WorkExperience[] = [
     technologies: [""],
   },
   {
-    id: 11,
     company: "家庭教師(アルバイト)",
     projectOverview: "数学、英語中心の家庭教師",
     period: "2019 -",

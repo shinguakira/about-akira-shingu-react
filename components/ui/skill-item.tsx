@@ -25,7 +25,7 @@ const SkillItem: React.FC<SkillItemProps> = ({
         <div className="relative pt-1">
           <div className="mb-2 flex items-center justify-between">
             <div>
-              <span className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:inline-block">
+              <span className="py-1 text-sm font-medium text-gray-500 dark:text-gray-400 sm:inline-block">
                 {category}
               </span>
               <span className="inline-block rounded-full bg-blue-200 px-2 py-1 text-xs font-semibold uppercase text-blue-600 dark:bg-blue-800 dark:text-blue-200">

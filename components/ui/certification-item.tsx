@@ -31,27 +31,34 @@ const CertificationItem = ({
           {name}
         </h2>
         <span className="mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          {organization}
+          {organization ? organization : "Unknown"}
         </span>
         <p className="mt-2 flex items-center text-sm text-gray-600 dark:text-gray-50">
           <span className="mr-1" aria-hidden="true">
             📅
           </span>
           <span className="sr-only">Issued on</span>
-          {new Date(date).toLocaleDateString()}
+          {new Date(date).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+          })}
         </p>
       </div>
       <div className="mt-auto px-6 py-4">
         <Link
-          href={verifyLink}
+          href={verifyLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center rounded bg-blue-500 px-4 py-2 text-center font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+          className={`flex w-full items-center justify-center rounded px-4 py-2 text-center font-bold text-white transition duration-300 ease-in-out ${
+            verifyLink
+              ? "bg-blue-500 hover:bg-blue-600"
+              : "pointer-events-none cursor-not-allowed bg-gray-400"
+          }`}
         >
           <span className="mr-2" aria-hidden="true">
             🔗
           </span>
-          View / Verify
+          {verifyLink ? "View / Verify" : "Not Available"}
         </Link>
       </div>
     </div>

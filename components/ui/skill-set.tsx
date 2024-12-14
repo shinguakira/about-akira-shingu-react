@@ -62,7 +62,7 @@ const SkillSet = () => {
           />
         ))}
       </div>
-      <h3 className="mb-8 text-center text-3xl text-blue-900 underline dark:text-white">
+      <h3 className="mb-8 w-full text-center text-3xl text-blue-900 underline dark:text-white">
         Skills
       </h3>
       <div className="mx-auto grid grid-cols-3 gap-6 md:grid-cols-4 lg:grid-cols-4">
@@ -78,7 +78,7 @@ const SkillSet = () => {
       </div>
       {/* display only filtered OtherSkill exist */}
       {filteredOtherSkills.length > 0 && (
-        <h3 className="mb-8 text-center text-3xl text-green-700 underline dark:text-gray-500">
+        <h3 className="mb-8 w-full text-center text-3xl text-green-700 underline dark:text-gray-500">
           Other Skills
         </h3>
       )}

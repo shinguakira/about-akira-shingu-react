@@ -18,7 +18,7 @@ const SkillItem: React.FC<SkillItemProps> = ({
         className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
       >
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="inline-block text-xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
             {name}
           </h3>
         </div>

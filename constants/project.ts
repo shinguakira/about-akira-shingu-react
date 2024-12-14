@@ -5,6 +5,7 @@ const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオ�
 const tokyoGasPic = "/images/projects/tokyo-gas2.png"; // 東京ガスの画像
 const chatGptColonePic = "/images/projects/chat-gpt-clone.png"; // ChatGPT クローンの画像
 const chatBot3dPic = "/images/projects/3d-chatbot.png"; // 3Dチャットボットの画像
+const onDevelopingPic = "/images/projects/onDeveloping.jpg"; // 開発中の画像
 
 // object for projects
 export const projects: Project[] = [
@@ -17,7 +18,7 @@ export const projects: Project[] = [
 [画像認識を使用した何か]
 [Visual Studioのプロジェクトファイル変換アプリ]
 [タイピングアプリ]`,
-    image: "",
+    image: `${onDevelopingPic}`,
     technologies: ["React", "Typescript"],
     githubUrl: "",
     liveUrl: "",

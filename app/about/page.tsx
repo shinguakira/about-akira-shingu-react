@@ -3,7 +3,7 @@ import SkillSet from "@/components/ui/skill-set";
 import WorkHistory from "@/components/ui/work-history";
 import React from "react";
 
-const About = () => {
+const AboutPage = () => {
   return (
     <>
       <div className="container mx-auto bg-gray-100 px-4 py-16 dark:bg-gray-900">
@@ -26,4 +26,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;

@@ -1,10 +1,14 @@
-import Accordion from '@/components/ui/accordion'
-import React from 'react'
+import Accordion from "@/components/ui/accordion";
+import Faq from "@/components/ui/faq";
+import { faqs } from "@/constants/faq";
+import React from "react";
 
-const Faq=() => {
+const FaqPage = () => {
   return (
-    <Accordion />
-  )
-}
+    <>
+      <Faq />
+    </>
+  );
+};
 
-export default Faq
+export default FaqPage;

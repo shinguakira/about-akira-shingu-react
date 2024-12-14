@@ -1,10 +1,10 @@
-import CommingSoon from '@/components/ui/comming-soon'
-import { QiitaIcon } from '@/components/ui/icons'
-import React from 'react'
+import CommingSoon from "@/components/ui/comming-soon";
+import { QiitaIcon } from "@/components/ui/icons";
+import React from "react";
 
-const Articles=() => {
+const ArticlePage = () => {
   return (
-    <div className="mx-auto flex flex-col items-center justify-center min-h-screen">
+    <div className="mx-auto flex min-h-screen flex-col items-center justify-center">
       <CommingSoon label="Articles" />
       <a
         href="https://qiita.com/ShinguAkira"
@@ -12,11 +12,11 @@ const Articles=() => {
         rel="noopener noreferrer"
         className="mt-6 flex items-center space-x-2"
       >
-        <QiitaIcon className="w-6 h-6" />
-        <span className="text-green-600 font-semibold">Visit Qiita</span>
+        <QiitaIcon className="h-6 w-6" />
+        <span className="font-semibold text-green-600">Visit Qiita</span>
       </a>
     </div>
-  )
-}
+  );
+};
 
-export default Articles
+export default ArticlePage;

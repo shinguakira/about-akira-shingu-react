@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 import { projects } from "@/constants/project";
-import profilePic from "public/images/profile/developer-pic-1.png";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 

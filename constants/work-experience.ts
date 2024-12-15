@@ -1,10 +1,11 @@
 import { WorkExperience } from "@/components/ui/work-history";
 import { receptionInnovationSkillSet, VOCSkillSet } from "@/constants";
+import { company } from "@/constants";
 
 // object for work experience
 export const workExperiences: WorkExperience[] = [
   {
-    company: "CurrentCompany()",
+    company: company.eastCoast,
     projectOverview: "お客さま情報検索、取得、特定APIの改修",
     period: "2024年10月 - 2024年1月(予定)",
     teamSize: "3",
@@ -21,7 +22,7 @@ export const workExperiences: WorkExperience[] = [
     technologies: [],
   },
   {
-    company: "CurrentCompany()",
+    company: company.eastCoast,
     projectOverview: "お客さま情報検索、取得、特定APIの改修",
     period: "2024年10月 - 2024年1月(予定)",
     teamSize: "3",
@@ -55,7 +56,7 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    company: "CurrentCompany()",
+    company: company.eastCoast,
     projectOverview: "お客さまの声のシステム追加改修",
     period: "2024年10月 - 2024年11月(20日)",
     teamSize: "3",
@@ -68,7 +69,7 @@ export const workExperiences: WorkExperience[] = [
     technologies: VOCSkillSet,
   },
   {
-    company: "CurrentCompany()",
+    company: company.eastCoast,
     projectOverview: "受付革新プロジェクト",
     period: "2024年5月 - 2024年1月(予定)",
     teamSize: "7-8",
@@ -85,7 +86,7 @@ export const workExperiences: WorkExperience[] = [
     technologies: receptionInnovationSkillSet,
   },
   {
-    company: "CurrentCompany()",
+    company: company.eastCoast,
     projectOverview: "お客さまの声システムの改修リプレイス",
     period: "2024年1月 - 2024年4月(4か月)",
     teamSize: "3-4",
@@ -102,7 +103,7 @@ export const workExperiences: WorkExperience[] = [
     technologies: VOCSkillSet,
   },
   {
-    company: "CompanyA(東日本技術研究所)",
+    company: `${company.staffService}(${company.higashiTechLab})`,
     projectOverview: "空港の電力監視制御システム MISE の改造",
     period: "2023年6月 - 2023年12月(6か月)",
     teamSize: "4-10",
@@ -132,7 +133,7 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    company: "CompanyA(東日本技術研究所)",
+    company: `${company.staffService}(${company.higashiTechLab})`,
     projectOverview: "PLC通信TCP/IPプログラム",
     period: "2023年4月 - 2023年6月(2ヶ月)",
     teamSize: "1",
@@ -154,7 +155,7 @@ export const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    company: "ホテルテラスザスクエア日立",
+    company: company.hotelTerrace,
     projectOverview: "フロント(アルバイト)",
     period: "約1年",
     teamSize: "",

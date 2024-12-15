@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Home" },
@@ -53,22 +52,22 @@ export default function TogglableNav() {
 
       <div
         id="nav-menu"
-        className={cn(
-          "absolute left-0 right-0 z-10 bg-white shadow-md transition-all duration-300 ease-in-out",
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"
-        )}
+        // className={cn(
+        //   "absolute left-0 right-0 z-10 bg-white shadow-md transition-all duration-300 ease-in-out",
+        //   isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"
+        // )}
       >
         <div className="mx-auto max-w-7xl space-y-1 px-4 py-2 sm:px-6 lg:px-8">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={cn(
-                "block rounded-md px-3 py-2 text-base font-medium",
-                pathname === link.href
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              )}
+              // className={cn(
+              //   "block rounded-md px-3 py-2 text-base font-medium",
+              //   pathname === link.href
+              //     ? "bg-gray-900 text-white"
+              //     : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              // )}
               onClick={toggleMenu}
             >
               {link.label}

@@ -29,7 +29,7 @@
     ],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "react/react-in-jsx-scope": "off", // Next.js handles React import
+    "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/*.test.tsx", "**/*.spec.tsx"] }

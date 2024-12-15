@@ -1,5 +1,4 @@
 export const onBusiness: string = "practical";
-import { resumeLink } from "./index";
 export const selfStudy: string = "self-study";
 
 // skillset for Voice Of Customer Management System

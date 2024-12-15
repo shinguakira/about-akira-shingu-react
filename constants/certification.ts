@@ -1,6 +1,7 @@
 import { CertificationItemProps } from "@/components/ui/certification-item";
-import { creadlyLink } from "@/constants";
+import { links } from "@/constants";
 
+const creadlyLink = links.creadlyLink;
 // object for certifications
 export const certifications: CertificationItemProps[] = [
   {

@@ -10,6 +10,7 @@ interface CustomLinkProps {
   href: string; // link to the page
   title: string; // label for the link
   className?: string; // custom styles for the link
+  prefetch?: boolean; // flag if prefetch is true
 }
 
 const iconSize = "w-6 h-6";
@@ -18,12 +19,14 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   href,
   title,
   className = "",
+  prefetch = true,
 }) => {
   const pathname = usePathname();
   return (
     <Link
       href={href}
       className={`${className} group relative focus:outline-none`}
+      prefetch={prefetch}
     >
       {title}
 
@@ -49,7 +52,12 @@ const NavBar = () => {
             className=""
           />
           <CustomLink href="/projects" title="Projects" className="" />
-          <CustomLink href="/articles" title="Articles" className="" />
+          <CustomLink
+            href="/articles"
+            title="Articles"
+            className=""
+            prefetch={false}
+          />
           <CustomLink href="/faq" title="FAQ" className="" />
         </div>
       </nav>

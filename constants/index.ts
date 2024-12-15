@@ -1,4 +1,5 @@
 export const onBusiness: string = "practical";
+import { resumeLink } from "./index";
 export const selfStudy: string = "self-study";
 
 // skillset for Voice Of Customer Management System
@@ -40,6 +41,25 @@ export const company = {
   higashiTechLab: "株式会社東日本技術研究所",
   hotelTerrace: "株式会社ホテルテラスザスクエア日立",
 };
-// Creadly link for certifications object should be defined as env variable
-export const creadlyLink: string =
-  "https://www.credly.com/users/username.aff80586";
+
+// type for links
+type Links = Record<string, string>;
+
+export const links: Links = {
+  // Creadly link for certifications object. refer env otherwise use default link
+  creadlyLink:
+    process.env.NEXT_PUBLIC_CREADLY_LINK ||
+    "https://www.credly.com/users/username.aff80586",
+  // Link for Resume.
+  resumeLink:
+    process.env.NEXT_PUBLIC_RESUME_LINK ||
+    "https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link",
+  // Link for Job History
+  jobResumeLink:
+    process.env.NEXT_PUBLIC_JOB_RESUME_LINK ||
+    "https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link",
+};
+
+/**
+ *  need to add more URLs for each links and refer env variables
+ */

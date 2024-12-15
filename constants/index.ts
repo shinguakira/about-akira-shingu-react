@@ -57,7 +57,7 @@ export const links: Links = {
   // Link for Job History
   jobResumeLink:
     process.env.NEXT_PUBLIC_JOB_RESUME_LINK ||
-    "https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link",
+    "https://drive.google.com/file/d/1scas644V4i6Qg1iHah4M5G4wkfBQDG4u/view?usp=sharing",
 };
 
 /**

@@ -67,15 +67,15 @@ const Accordion: React.FC<AccordionProps> = ({
           </div>
 
           <div
-            className={`overflow-hidden transition-all duration-300 ${
+            className={`transition-all duration-300 ${
               expandedId === index
-                ? "max-h-96 opacity-100"
+                ? "max-h-full opacity-100"
                 : "max-h-0 opacity-0"
             }`}
           >
-            <p className="leading-relaxed text-gray-600 dark:text-white">
+            <pre className="whitespace-pre-wrap leading-relaxed text-gray-600 dark:text-white">
               {answer}
-            </p>
+            </pre>
           </div>
         </div>
       </div>

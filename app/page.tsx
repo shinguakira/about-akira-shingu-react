@@ -5,7 +5,6 @@ import { LinkArrow } from "@/components/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
 import profilePic from "public/images/profile/developer-pic-1.png";
-import { jobResumeLink } from "./../constants/index";
 
 // temrary defined email address. need to move to const file or defined as env variable
 const emailAddress = "akirashingu1022@gmail.com";

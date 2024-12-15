@@ -6,7 +6,7 @@ type AccordionProps = {
   question: string;
   answer: string;
   size: string;
-  category: string;
+  category?: string;
 };
 const Accordion: React.FC<AccordionProps> = ({
   index,
@@ -31,7 +31,7 @@ const Accordion: React.FC<AccordionProps> = ({
   return (
     <div
       key={index}
-      className={`${getSizeClass(size)} transition-all duration-300`}
+      className={`${getSizeClass(size)} w-full transition-all duration-300`}
     >
       <div
         className={`cursor-pointer rounded-xl p-6 transition-all duration-300 ${

@@ -1,6 +1,6 @@
-import { Faq } from "@/components/ui/accordion";
+import { FaqProps } from "@/components/ui/faq";
 
-export const faqs: Faq[] = [
+export const faqs: FaqProps[] = [
   {
     question: "なぜWeb開発を専門としていますか？",
     answer:

@@ -25,7 +25,7 @@ const WorkHistory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-12 dark:bg-gray-900 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 px-4 py-12 dark:bg-gray-900">
       <div className="mx-auto">
         <h1 className="mb-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
           My Work History

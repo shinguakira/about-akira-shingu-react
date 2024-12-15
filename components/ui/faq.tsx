@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Command, Search, X } from "lucide-react";
 import { faqs } from "@/constants/faq";
 import Accordion from "./accordion";
+import ItemPadding from "./style/item-padding";
 
 // TODO SEPARATE COMPONENTS INTO SEARCH MODAL and ACCORDION
 
@@ -54,7 +55,7 @@ const Faq = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-6xl px-4">
+    <div className="mx-auto px-8 pb-36">
       <div className="mb-12 text-center">
         <h1 className="mb-6 text-4xl font-bold">FAQ</h1>
         <div className="flex items-center justify-center gap-2">
@@ -140,22 +141,18 @@ const Faq = () => {
           />
         </div>
       )}
-
-      <div className="mx-auto max-w-6xl px-4">
-        {/* Masonry Grid */}
-        <div className="grid auto-rows-min grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
-          {faqs.map((faq, index) => (
-            <Accordion
-              key={index}
-              index={index}
-              question={faq.question}
-              answer={faq.answer}
-              size={faq.size}
-              category={faq.category}
-            />
-          ))}
-        </div>
-      </div>
+      <ItemPadding>
+        {faqs.map((faq, index) => (
+          <Accordion
+            key={index}
+            index={index}
+            question={faq.question}
+            answer={faq.answer}
+            size={faq.size}
+            category={faq.category}
+          />
+        ))}
+      </ItemPadding>
     </div>
   );
 };

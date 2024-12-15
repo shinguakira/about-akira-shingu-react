@@ -2,13 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
-import { projects } from "@/constants";
-import profilePic from "public/images/profile/developer-pic-1.png";
+import { projects } from "@/constants/project";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
 type Project = {
-  id: string;
+  // id: string; exclude id for maintainability
   title: string;
   description: string;
   image: string;
@@ -25,9 +24,9 @@ const ProjectPage = () => {
           My Projects
         </h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project: Project, index: number) => (
             <div
-              key={project.id}
+              key={index}
               className="overflow-hidden rounded-lg bg-white shadow-lg"
             >
               <Image
@@ -41,7 +40,9 @@ const ProjectPage = () => {
                 <h2 className="mb-2 text-2xl font-bold text-gray-900">
                   {project.title}
                 </h2>
-                <p className="mb-4 text-gray-600">{project.description}</p>
+                <pre className="mb-4 w-full whitespace-pre-wrap text-gray-600">
+                  {project.description}
+                </pre>
                 <div className="mb-4">
                   <h3 className="mb-2 text-lg font-semibold text-gray-900">
                     Technologies:

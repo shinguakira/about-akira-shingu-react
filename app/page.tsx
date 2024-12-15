@@ -1,4 +1,5 @@
 import AnimatedText from "@/components/ui/animated-text";
+import DownLoadLink from "@/components/ui/download-link";
 import { LinkArrow } from "@/components/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,36 +21,31 @@ export default function Home() {
             className="text-6xl"
           />
           <p className="font-midium my-4 text-base">
-            As a skilled full-stacj developer, I am dedicated to turning ideas
+            As a skilled full-stack developer, I am dedicated to turning ideas
             into innovative web applications.explore my latest projects and
             articles, shgowcasing my expertise in React and web development.
           </p>
-          <div className="mt-2 flex items-center self-start">
-            <Link
-              href="https://drive.google.com/file/d/13UfA3q2rg-kfatbmdMOemuFqi_v9fG36/view?usp=drive_link"
-              target={"_blank"}
-              className="flex items-center rounded-lg border-transparent bg-black p-3 px-6 text-sm font-semibold text-white hover:border-black"
-              download={true}
-            >
-              <LinkArrow className="ml-2 w-6" />
-              履歴書をダウンロード
-            </Link>
-            <Link
+          <div className="mx-auto flex items-center self-start">
+            <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
+              Download→
+            </label>
+            <DownLoadLink
               href="https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link"
-              target={"_blank"}
-              className="flex items-center rounded-lg border-transparent bg-black p-3 px-6 text-lg font-semibold text-white hover:border-black"
-              download={true}
-            >
-              <LinkArrow className="ml-2 w-6" />
-              職務履歴書をダウンロード
-            </Link>
-            <Link
-              href={emailAddress}
-              target="_blank"
-              className="ml-4 text-lg font-medium text-black underline"
-            >
-              {`Contact ${emailAddress}`}
-            </Link>
+              label="履歴書"
+            />
+            <DownLoadLink
+              href="https://drive.google.com/file/d/1FD0CRnMbGqFSo9L3fgp4RWmUnlwUlHby/view?usp=drive_link"
+              label="職務履歴書"
+            />
+            <div>
+              <Link
+                href={`mailto:${emailAddress}`}
+                target="_blank"
+                className="ml-4 text-lg font-medium text-black underline"
+              >
+                {`Contact ${emailAddress}`}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

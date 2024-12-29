@@ -217,4 +217,12 @@ export const certifications: CertificationItemProps[] = [
     date: "2024-11",
     verifyLink: "https://verify.w3schools.com/1PES45GB6N",
   },
+  {
+    id: 1,
+    name: "Professional Cloud Architect Certification",
+    organization: "Google Cloud",
+    date: "2024-12",
+    verifyLink:
+      "https://www.credly.com/badges/c84a1a87-76b7-4df6-bba5-7c76dc336dc4/public_url",
+  },
 ];

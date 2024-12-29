@@ -26,21 +26,25 @@ export default function Home() {
             into innovative web applications.explore my latest projects and
             articles, shgowcasing my expertise in React and web development.
           </p>
-          <div className="mx-auto flex items-center self-start">
+          <div className="flex flex-row flex-wrap space-x-2">
             <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
               Download→
             </label>
             <DownLoadLink href={links.resumeLink} label="履歴書" />
             <DownLoadLink href={links.jobResumeLink} label="職務履歴書" />
-            <div>
-              <Link
-                href={`mailto:${emailAddress}`}
-                target="_blank"
-                className="ml-4 text-lg font-medium text-black underline"
-              >
-                {`Contact ${emailAddress}`}
-              </Link>
-            </div>
+            <DownLoadLink
+              href={links.EnglishResumeLink}
+              label="English CV/Resume"
+            />
+          </div>
+          <div>
+            <Link
+              href={`mailto:${emailAddress}`}
+              target="_blank"
+              className="text-lg font-medium text-black underline"
+            >
+              {`Contact ${emailAddress}`}
+            </Link>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { LinkArrow } from "@/components/ui/icons";
+import { ArrowDownToLine } from "lucide-react";
 import Link from "next/link";
 
 type DownLoadLinkProps = {
@@ -20,13 +20,13 @@ const DownLoadLink: React.FC<DownLoadLinkProps> = ({
     <Link
       href={href}
       target={target}
-      className={`${className}flex items-center rounded-lg border-transparent bg-black px-1 text-sm font-semibold text-white hover:border-black`}
+      className={`${className} inline-flex items-center overflow-hidden whitespace-nowrap rounded-lg border-transparent bg-black px-3 py-1 text-sm font-semibold text-white transition-colors duration-200 hover:bg-gray-800`}
       download={download}
     >
       {/* TODO may should separate className variables.
         because style of Link and one of LinkArrow should be different */}
-      <LinkArrow className={`ml-2 ${className}`} />
-      <span className="w-full">{label}</span>
+      <ArrowDownToLine className="mr-2 h-4 w-4 flex-shrink-0" />
+      <p className="ml-2 flex-shrink-0">{label}</p>
     </Link>
   );
 };

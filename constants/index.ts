@@ -33,6 +33,16 @@ export const receptionInnovationSkillSet: string[] = [
   "Swagger",
   "アジャイル開発(スクラム)",
 ];
+/**
+ * skillset imported with create-next-app
+ */
+export const nextjsSkillSet: string[] = [
+  "React",
+  "Typescript",
+  "Next.js",
+  "Tailwind CSS",
+  "Vercel",
+];
 // company names that I worked for
 export const company = {
   eastCoast: "株式会社イースト・コースト・ワン",

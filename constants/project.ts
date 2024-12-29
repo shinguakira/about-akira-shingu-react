@@ -76,7 +76,7 @@ export const projects: Project[] = [
   {
     title: "東京ガスWebサイト(お客さま情報検索)",
     description: `お客さま情報検索画面およびそのバックエンドのAPIを開発。12月にリリース済みだが追加の仕様変更
-※直接お客さま画面にアクセスできないようになっているため、ひとつ前の名義変更等の画面からお客さま検索で画面表示ができます。`,
+※直接お客さま画面にアクセスできないようになっているため、ひとつ前の名義変更等の画面から「お客さま検索」選択で画面表示ができます。`,
     image: `${tokyoGasCustomerSearchPic}`,
     technologies: receptionInnovationSkillSet,
     githubUrl: "",

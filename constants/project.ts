@@ -36,13 +36,18 @@ export const projects: Project[] = [
 検索条件を随時更新いたしますので、ご要望お問い合わせお待ちしております。
 他のサービスのバージョンも開発予定です。`,
     image: `${advancedSearchYoutubePic}`,
-    technologies: [...nextjsSkillSet, "Youtube Data API"],
+    technologies: [
+      ...nextjsSkillSet,
+      "Youtube Data API",
+      "shadcn",
+      "lucide-react",
+    ],
     githubUrl: "",
     liveUrl: "https://reception.tokyo-gas.co.jp/mskmsy/mtg?mskmsySyriKbn=10",
   },
   {
     title: "パワハラ訓練3Dチャットボット",
-    description: `パワハラ気質の上司になりきったチャットボットと会話ができるアプリ「開発中」
+    description: `パワハラ気質の上司になりきったチャットボットと会話ができるアプリ
 ※開発者は考案者ではありません。
 会話の内容は、OpenAIのGPT-4を使用しています。
 他のリポジトリをfolkして、要件に合うようにカスタマイズしています。
@@ -112,7 +117,7 @@ export const projects: Project[] = [
     title: "ポートフォリオWebサイト",
     description: "経歴、職務経歴等の情報を記載",
     image: `${tmpPic}?height=400&width=600`,
-    technologies: ["React", "Typescript", "Next.js", "Tailwind CSS", "Vercel"],
+    technologies: [...nextjsSkillSet, "lucide-react"],
     githubUrl: "https://github.com/shinguakira/about-akira-shingu-react",
     liveUrl: "/",
   },

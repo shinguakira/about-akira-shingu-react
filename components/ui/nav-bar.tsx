@@ -5,6 +5,7 @@ import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
+import ChangelogNotification from "./changelog-notification";
 
 interface CustomLinkProps {
   href: string; // link to the page
@@ -62,6 +63,9 @@ const NavBar = () => {
         </div>
       </nav>
       <nav className="xs:text-xs mx-auto flex w-full justify-end py-8 text-base font-medium">
+        <div className="mr-5">
+          <ChangelogNotification />
+        </div>
         {/* <Logo /> */}
         <Link
           href="https://www.credly.com/users/username.aff80586"

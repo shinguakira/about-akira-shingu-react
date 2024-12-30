@@ -33,6 +33,16 @@ export const receptionInnovationSkillSet: string[] = [
   "Swagger",
   "アジャイル開発(スクラム)",
 ];
+/**
+ * skillset imported with create-next-app
+ */
+export const nextjsSkillSet: string[] = [
+  "React",
+  "Typescript",
+  "Next.js",
+  "Tailwind CSS",
+  "Vercel",
+];
 // company names that I worked for
 export const company = {
   eastCoast: "株式会社イースト・コースト・ワン",
@@ -57,6 +67,14 @@ export const links: Links = {
   jobResumeLink:
     process.env.NEXT_PUBLIC_JOB_RESUME_LINK ||
     "https://drive.google.com/file/d/1scas644V4i6Qg1iHah4M5G4wkfBQDG4u/view?usp=sharing",
+  // Link for ENGLISH Job Resume
+  EnglishResumeLink:
+    process.env.NEXT_PUBLIC_ENGLISH_RESUME_LINK ||
+    "https://drive.google.com/file/d/1ENqBoJCbPwzS07l7Yl3cK-LNhXdld_V4/view?usp=sharing",
+  // Link for advanced Search Youtube Website
+  advancedSearchYoutubeLink:
+    process.env.NEXT_PUBLIC_ADVANCED_SEARCH_YOUTUBE_LINK ||
+    "https://youtube-advanced-search-five.vercel.app/",
 };
 
 /**

@@ -24,14 +24,14 @@ const ChangelogNotification = () => {
       <Button
         variant="ghost"
         size={null}
-        className="h-7 w-7"
+        className="relative"
         onClick={handleOpenModal}
       >
         <Bell className="h-7 w-7 bg-slate-50" />
         {hasNewChanges && (
           <Badge
             variant="destructive"
-            className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center p-0 text-[10px]"
+            className="absolute -right-3 -top-3 flex h-4 w-4 items-center justify-center p-0 text-[10px]"
           >
             !
           </Badge>

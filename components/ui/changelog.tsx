@@ -24,8 +24,8 @@ const Changelog: React.FC<ChangelogProps> = ({ version, date, changes }) => {
       <ul className="mt-2 space-y-2">
         {/* TODO actual changelog list should separate in a component maybe */}
         {changes.map((change, changeIndex: number) => (
-          <>
-            <li key={changeIndex} className="flex items-start gap-2">
+          <div key={changeIndex}>
+            <li className="flex items-start gap-2">
               <Badge
                 variant="secondary"
                 className={`${getChangeTypeColor(change.type)} mt-1 capitalize text-white`}
@@ -37,7 +37,7 @@ const Changelog: React.FC<ChangelogProps> = ({ version, date, changes }) => {
             <pre className="w-full whitespace-pre-wrap">
               {change.description}
             </pre>
-          </>
+          </div>
         ))}
       </ul>
     </div>

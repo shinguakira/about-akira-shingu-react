@@ -1,5 +1,9 @@
 import { Project } from "@/components/ui/project-item";
-import { receptionInnovationSkillSet, nextjsSkillSet } from "@/constants";
+import {
+  receptionInnovationSkillSet,
+  nextjsSkillSet,
+  links,
+} from "@/constants";
 
 const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオサイトの画像
 const tokyoGasPic = "/images/projects/tokyo-gas2.png"; // 東京ガスの画像
@@ -43,7 +47,7 @@ export const projects: Project[] = [
       "lucide-react",
     ],
     githubUrl: "",
-    liveUrl: "https://reception.tokyo-gas.co.jp/mskmsy/mtg?mskmsySyriKbn=10",
+    liveUrl: links.advancedSearchYoutubeLink,
   },
   {
     title: "パワハラ訓練3Dチャットボット",

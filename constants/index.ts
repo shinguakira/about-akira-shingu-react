@@ -71,6 +71,10 @@ export const links: Links = {
   EnglishResumeLink:
     process.env.NEXT_PUBLIC_ENGLISH_RESUME_LINK ||
     "https://drive.google.com/file/d/1ENqBoJCbPwzS07l7Yl3cK-LNhXdld_V4/view?usp=sharing",
+  // Link for advanced Search Youtube Website
+  advancedSearchYoutubeLink:
+    process.env.NEXT_PUBLIC_ADVANCED_SEARCH_YOUTUBE_LINK ||
+    "https://youtube-advanced-search-five.vercel.app/",
 };
 
 /**

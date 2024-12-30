@@ -9,14 +9,32 @@ export const GithubIcon = ({ className, ...rest }: IconProps) => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
-    viewBox="0 0 512 512"
+    viewBox="0 0 24 24"
     {...rest}
-    className={`h-auto w-full ${className}`}
+    className={`${className} bg-white`}
   >
-    <path fill="none" d="M0 0h512v512H0z" />
+    <path fill="none" d="M0 0h256v256H0z" />
     <path
-      fill="currentColor"
-      d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 0 0 3.8.4c8.3 0 11.5-6.1 11.5-11.4 0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 0 1-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5-10.2-26.5-24.9-33.6-24.9-33.6-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8 11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0 0 25.6-6c2-14.8 7.8-24.9 14.2-30.7-49.7-5.8-102-25.5-102-113.5 0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 0 1 5-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 0 1 112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 0 1 5 .5c12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6 0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5 0 30.7-.3 55.5-.3 63 0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 0 0 4-.4C415.9 449.2 480 363.1 480 261.7 480 134.9 379.7 32 256 32Z"
+      fillRule="evenodd"
+      d="M12 0C5.372 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
+      0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 17.07 3.633 
+      16.7 3.633 16.7c-1.087-.744.083-.729.083-.729 
+      1.205.084 1.838 1.236 1.838 1.236 
+      1.07 1.834 2.809 1.304 3.495.997 
+      .108-.776.418-1.305.76-1.604-2.665-.3-5.467-1.332-5.467-5.93 
+      0-1.31.469-2.381 1.235-3.221-.124-.303-.535-1.524.117-3.176 
+      0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 
+      c1.02.005 2.045.138 3 .405 
+      2.29-1.552 3.297-1.23 3.297-1.23 
+      .653 1.653.242 2.874.118 3.176 
+      .77.84 1.233 1.911 1.233 3.221 
+      0 4.61-2.807 5.628-5.479 5.922 
+      .43.372.823 1.102.823 2.222 
+      0 1.606-.015 2.896-.015 3.286 
+      0 .321.216.694.825.576 
+      C20.565 21.796 24 17.303 24 12 
+      24 5.373 18.627 0 12 0z"
+      clipRule="evenodd"
     />
   </svg>
 );
@@ -59,10 +77,10 @@ export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
 
 export const QiitaIcon = ({ className, ...rest }: IconProps) => (
   <img
-          src="https://logo.clearbit.com/qiita.com" // Replace with the actual path to the Qiita logo
-          alt="Qiita"
-          className={`${className}`}
-        />
+    src="https://logo.clearbit.com/qiita.com" // Replace with the actual path to the Qiita logo
+    alt="Qiita"
+    className={`${className}`}
+  />
 );
 
 export const PinterestIcon = ({ className, ...rest }: IconProps) => (
@@ -105,11 +123,12 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
 
 export const CredlyIcon = ({ className, ...rest }: IconProps) => (
   <>
-  <img className={`bg-orange-50 ${className}`} src="https://unpkg.com/simple-icons@latest/icons/credly.svg"></img>
+    <img
+      className={`bg-orange-50 ${className}`}
+      src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
+    ></img>
   </>
 );
-
-
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (
   <svg

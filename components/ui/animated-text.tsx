@@ -1,10 +1,5 @@
 import React from "react";
 
-interface AnimatedTextProps {
-  text: string; // text to animate
-  className?: string;
-}
-
 const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
   return (
     <div className="mx-auto flex w-full items-center justify-center overflow-hidden py-2 text-center">

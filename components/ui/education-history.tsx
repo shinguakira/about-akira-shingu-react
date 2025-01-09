@@ -1,12 +1,5 @@
 import { educationHistory } from "@/constants/education-history";
 import EducationItem from "./education-item";
-type EducationHistoryProps = {
-  school: string;
-  department: string;
-  startYear: string;
-  endYear: string;
-  description: string;
-};
 
 const EducationHistory: React.FC = () => {
   return (
@@ -35,4 +28,3 @@ const EducationHistory: React.FC = () => {
 };
 
 export default EducationHistory;
-export type { EducationHistoryProps };

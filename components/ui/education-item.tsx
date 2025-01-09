@@ -1,4 +1,3 @@
-import { EducationHistoryProps } from "./education-history";
 const EducationItem: React.FC<EducationHistoryProps> = ({
   school,
   startYear,

@@ -1,4 +1,3 @@
-import { SkillItemProps } from "@/components/ui/skill-item";
 import { onBusiness, selfStudy } from "@/constants";
 
 // main skills(Language,Libraries)

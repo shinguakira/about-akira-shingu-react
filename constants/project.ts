@@ -1,4 +1,3 @@
-import { Project } from "@/components/ui/project-item";
 import {
   receptionInnovationSkillSet,
   nextjsSkillSet,

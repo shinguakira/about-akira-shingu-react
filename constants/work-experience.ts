@@ -1,4 +1,3 @@
-import { WorkExperience } from "@/components/ui/work-history";
 import { receptionInnovationSkillSet, VOCSkillSet } from "@/constants";
 import { company } from "@/constants";
 

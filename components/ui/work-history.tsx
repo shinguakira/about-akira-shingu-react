@@ -4,19 +4,6 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Building2, Calendar } from "lucide-react";
 import { workExperiences } from "@/constants/work-experience";
 
-type WorkExperience = {
-  // id: number; exclude id for maintainability
-  company: string; // comapny name
-  projectOverview: string; // project name
-  period: string; // period
-  teamSize?: string; // teamSize include me, include unit
-  role: string;
-  manMonth: string;
-  description: string[];
-  archivement: string[]; // archivement
-  technologies: string[];
-};
-
 const WorkHistory = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
@@ -130,4 +117,3 @@ const WorkHistory = () => {
   );
 };
 export default WorkHistory;
-export type { WorkExperience };

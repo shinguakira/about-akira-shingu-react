@@ -2,13 +2,6 @@ import React, { memo } from "react";
 import { ArrowDownToLine } from "lucide-react";
 import Link from "next/link";
 
-type DownLoadLinkProps = {
-  href: string; // link to the page
-  target?: string; // target for the link Optional
-  className?: string; // custom styles for the link Optional
-  download?: boolean; // flag if download is true Optional
-  label: string; // label for the link
-};
 const DownLoadLink: React.FC<DownLoadLinkProps> = ({
   href = "/",
   target = "_blank",

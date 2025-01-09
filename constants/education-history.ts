@@ -1,4 +1,3 @@
-import { EducationHistoryProps } from "@/components/ui/education-history";
 export const educationHistory: EducationHistoryProps[] = [
   {
     school: "茨城大学",

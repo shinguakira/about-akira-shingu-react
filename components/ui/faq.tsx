@@ -7,13 +7,6 @@ import ItemPadding from "./style/item-padding";
 
 // TODO SEPARATE COMPONENTS INTO SEARCH MODAL and ACCORDION
 
-type FaqProps = {
-  // id: number; exclude id for maintainability
-  question: string;
-  answer: string;
-  size: string;
-  category: string;
-};
 const Faq = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -158,4 +151,3 @@ const Faq = () => {
 };
 
 export default Faq;
-export type { FaqProps };

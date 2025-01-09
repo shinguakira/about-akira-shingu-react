@@ -6,16 +6,6 @@ import { projects } from "@/constants/project";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
-type Project = {
-  // id: string; exclude id for maintainability
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  githubUrl: string;
-  liveUrl: string;
-};
-
 const ProjectPage = () => {
   return (
     <div className="mx-auto min-h-screen bg-gray-100 px-4 py-12 dark:bg-slate-500">
@@ -92,4 +82,3 @@ const ProjectPage = () => {
 };
 
 export default ProjectPage;
-export type { Project };

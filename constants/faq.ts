@@ -1,5 +1,3 @@
-import { FaqProps } from "@/components/ui/faq";
-
 export const faqs: FaqProps[] = [
   {
     question: "なぜWeb開発を専門としていますか？",

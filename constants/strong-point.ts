@@ -1,5 +1,3 @@
-import { FaqProps } from "@/components/ui/faq";
-
 // want to Optional Category field
 export type OptionalCategoryFaqProps = Omit<FaqProps, "category"> &
   Partial<Pick<FaqProps, "category">>;

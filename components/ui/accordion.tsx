@@ -1,13 +1,6 @@
 "use client";
 import React, { useState } from "react";
 
-type AccordionProps = {
-  index: number;
-  question: string;
-  answer: string;
-  size: string;
-  category?: string;
-};
 const Accordion: React.FC<AccordionProps> = ({
   index,
   question,
@@ -84,4 +77,3 @@ const Accordion: React.FC<AccordionProps> = ({
 };
 
 export default Accordion;
-export type { AccordionProps };

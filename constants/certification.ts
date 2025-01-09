@@ -1,4 +1,3 @@
-import { CertificationItemProps } from "@/components/ui/certification-item";
 import { links } from "@/constants";
 
 const creadlyLink = links.creadlyLink;

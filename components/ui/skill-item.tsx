@@ -1,12 +1,5 @@
 import { memo } from "react";
 
-type SkillItemProps = {
-  name: string;
-  category: string;
-  years: string;
-  proficyency?: string; // onBusiness or self-study
-};
-
 const SkillItem: React.FC<SkillItemProps> = ({
   name,
   category,
@@ -57,4 +50,3 @@ const SkillItem: React.FC<SkillItemProps> = ({
 };
 
 export default memo(SkillItem);
-export type { SkillItemProps };

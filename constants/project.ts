@@ -3,6 +3,7 @@ import {
   receptionInnovationSkillSet,
   nextjsSkillSet,
   links,
+  T3StackSkillSet,
 } from "@/constants";
 
 const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオサイトの画像
@@ -15,23 +16,55 @@ const chatGptColonePic = "/images/projects/chat-gpt-clone.png"; // ChatGPT ク�
 const chatBot3dPic = "/images/projects/3d-chatbot.png"; // 3Dチャットボットの画像
 const onDevelopingPic = "/images/projects/onDeveloping.jpg"; // 開発中の画像
 const advancedSearchYoutubePic = "/images/projects/advanced-search-youtube.png"; // picture for advanced search youtube
+const restaurantAroundStationPic =
+  "/images/projects/restaurant-around-station.png"; // picture for restaurant around station
+const bankingAppPic = "/images/projects/banking-app.png"; // picture for banking app
 
 // object for projects
 export const projects: Project[] = [
   {
     title: "開発予定を考えているアプリ",
     description: `[採用サイト間のプロフィール自動入力(データ連携)]
-[現在いる最寄り駅の飲食店情報リスト表示アプリ]
 [画像認識を使用した何か]
 [Visual Studioのプロジェクトファイル変換アプリ]
 [タイピングアプリ]
 [何かのマッチングアプリ]
 [何かのサイトのadvanced検索]
-]`,
+`,
     image: `${onDevelopingPic}`,
     technologies: nextjsSkillSet,
     githubUrl: "",
     liveUrl: "",
+  },
+  {
+    title: "バンキングアプリ(開発中)",
+    description: `バンキングアプリ、Sentryによるエラーログ、エラー発生時のリプレイ機能付き
+`,
+    image: `${bankingAppPic}`,
+    technologies: [
+      ...nextjsSkillSet,
+      "Sentry",
+      "Appwrite",
+      "Dwolla",
+      "shadcn",
+      "lucide-react",
+    ],
+    githubUrl: "",
+    liveUrl: "", // need to update it if its completed
+  },
+  {
+    title: "現在いる最寄り駅の飲食店情報リスト表示アプリ(ほぼモック)",
+    description: `最寄りの駅の飲食店情報リストをGooogle Mapで表示するアプリ
+`,
+    image: `${restaurantAroundStationPic}`,
+    technologies: [
+      ...T3StackSkillSet,
+      "Google Map API",
+      "shadcn",
+      "lucide-react",
+    ],
+    githubUrl: "",
+    liveUrl: links.restaurantAroundStationLink,
   },
   {
     title: "Youtube動画のadvanced検索(随時更新中)",

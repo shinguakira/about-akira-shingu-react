@@ -34,6 +34,17 @@ export const receptionInnovationSkillSet: string[] = [
   "アジャイル開発(スクラム)",
 ];
 /**
+ *  skillset for T3Stack
+ */
+export const T3StackSkillSet: string[] = [
+  "React",
+  "Typescript",
+  "Next.js",
+  "Prisma(or Drizzle)",
+  "tRPC",
+  "Tailwind CSS",
+];
+/**
  * skillset imported with create-next-app
  */
 export const nextjsSkillSet: string[] = [
@@ -75,6 +86,9 @@ export const links: Links = {
   advancedSearchYoutubeLink:
     process.env.NEXT_PUBLIC_ADVANCED_SEARCH_YOUTUBE_LINK ||
     "https://youtube-advanced-search-five.vercel.app/",
+  restaurantAroundStationLink:
+    process.env.NEXT_PUBLIC_RESTAURANT_AROUND_STATION_LINK ||
+    "https://restaurant-around-station.vercel.app/",
 };
 
 /**

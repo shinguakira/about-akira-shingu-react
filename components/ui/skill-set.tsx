@@ -73,6 +73,8 @@ const SkillSet = () => {
             years={skill.years}
             category={skill.category}
             proficyency={skill.proficyency}
+            picture={skill.picture}
+            pictureColor={skill.pictureColor}
           />
         ))}
       </div>
@@ -90,6 +92,8 @@ const SkillSet = () => {
             years={otherSkill.years}
             category={otherSkill.category}
             proficyency={otherSkill.proficyency}
+            picture={otherSkill.picture}
+            pictureColor={otherSkill.pictureColor}
           />
         ))}
       </div>

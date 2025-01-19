@@ -1,10 +1,13 @@
 import { memo } from "react";
+import SvgW3Logo from "./svg-w3-logo";
 
 const SkillItem: React.FC<SkillItemProps> = ({
   name,
   category,
   years,
   proficyency,
+  picture,
+  pictureColor,
 }) => {
   return (
     <>
@@ -12,7 +15,15 @@ const SkillItem: React.FC<SkillItemProps> = ({
         key={name}
         className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
       >
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2 flex items-center">
+          {pictureColor && picture && (
+            <SvgW3Logo
+              name={name}
+              svgPath={picture}
+              svgColor={pictureColor}
+              className="mr-3"
+            />
+          )}
           <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
             {name}
           </h3>

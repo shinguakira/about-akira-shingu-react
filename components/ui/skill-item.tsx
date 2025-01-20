@@ -13,7 +13,7 @@ const SkillItem: React.FC<SkillItemProps> = ({
     <>
       <div
         key={name}
-        className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
+        className="rounded-lg bg-white p-6 shadow-md duration-300 hover:scale-110 hover:bg-sky-100 dark:bg-gray-800 dark:hover:bg-slate-400"
       >
         <div className="mb-2 flex items-center">
           {pictureColor && picture && (
@@ -21,7 +21,7 @@ const SkillItem: React.FC<SkillItemProps> = ({
               name={name}
               svgPath={picture}
               svgColor={pictureColor}
-              className="mr-3"
+              className="mr-3 hover:-translate-y-2 hover:scale-110"
             />
           )}
           <h3 className="text-xl font-semibold text-gray-800 dark:text-white">

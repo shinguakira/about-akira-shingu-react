@@ -3,6 +3,44 @@
  */
 export const changelogs: ChangelogProps[] = [
   {
+    version: "1.3.0(予定)",
+    date: "2024-01-XX(予定)",
+    changes: [
+      {
+        type: "feature",
+        description: `バンキングアプリのgithubURLおよび公開URL追加
+サイト表示時、各ページに関する説明を表示
+データベース制御アプリのgithubURLおよび公開URL追加`,
+      },
+      {
+        type: "improvement",
+        description: `資格ページのアイコン追加`,
+      },
+      // {
+      //   type: "bugfix",
+      //   description: "ヘッダーのアイコン、履歴書ダウンロードリンクデザイン修正",
+      // },
+    ],
+  },
+  {
+    version: "1.2.0(現在)",
+    date: "2024-01-24",
+    changes: [
+      {
+        type: "feature",
+        description: `Qiita記事をArticleページに追加`,
+      },
+      {
+        type: "improvement",
+        description: `スキルセットのアイコン追加`,
+      },
+      // {
+      //   type: "bugfix",
+      //   description: "ヘッダーのアイコン、履歴書ダウンロードリンクデザイン修正",
+      // },
+    ],
+  },
+  {
     version: "1.1.0",
     date: "2024-12-30",
     changes: [

@@ -5,7 +5,7 @@ import { ja } from "date-fns/locale";
 import { Heart, MessageSquare, Eye, Bookmark } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-// import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { Button } from "./shadcn/button";
 
 interface ArticleProps {
@@ -50,13 +50,13 @@ const ArticleHeader: React.FC<{
             / <time dateTime={updated_at}>更新: {formattedUpdatedDate}</time>
           </span>
         )}
-        <Button
+        {/* <Button
           className="mb-4 ml-auto text-green-500 hover:underline"
           onClick={() => setIsOpen(!isOpen)}
           variant={isOpen ? "outline" : "outline"}
         >
-          + 詳細を見る
-        </Button>
+          ▽ 詳細を見る
+        </Button> */}
       </div>
     </header>
   );
@@ -67,10 +67,10 @@ const ArticleBody: React.FC<{ rendered_body: string }> = ({
 }) => {
   return (
     <>
-      <div
+      {/* <div
         className="prose mb-8 max-w-none"
         dangerouslySetInnerHTML={{ __html: rendered_body }}
-      />
+      /> */}
       {/* <ReactMarkdown>{rendered_body}</ReactMarkdown> */}
     </>
   );

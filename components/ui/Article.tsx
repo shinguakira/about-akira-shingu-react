@@ -1,8 +1,12 @@
+"use client";
 import type React from "react";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
 import { Heart, MessageSquare, Eye, Bookmark } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+// import ReactMarkdown from "react-markdown";
+import { Button } from "./shadcn/button";
 
 interface ArticleProps {
   title: string;
@@ -21,7 +25,9 @@ const ArticleHeader: React.FC<{
   title: string;
   created_at: string;
   updated_at: string;
-}> = ({ title, created_at, updated_at }) => {
+  setIsOpen: (isOpen: boolean) => void;
+  isOpen: boolean;
+}> = ({ title, created_at, updated_at, setIsOpen, isOpen }) => {
   const formattedCreatedDate = format(
     new Date(created_at),
     "yyyy年MM月dd日 HH:mm",
@@ -44,6 +50,12 @@ const ArticleHeader: React.FC<{
             / <time dateTime={updated_at}>更新: {formattedUpdatedDate}</time>
           </span>
         )}
+        <Button
+          className="mb-4 text-blue-600 hover:underline"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          +
+        </Button>
       </div>
     </header>
   );
@@ -53,10 +65,13 @@ const ArticleBody: React.FC<{ rendered_body: string }> = ({
   rendered_body,
 }) => {
   return (
-    <div
-      className="prose mb-8 max-w-none"
-      dangerouslySetInnerHTML={{ __html: rendered_body }}
-    />
+    <>
+      <div
+        className="prose mb-8 max-w-none"
+        dangerouslySetInnerHTML={{ __html: rendered_body }}
+      />
+      {/* <ReactMarkdown>{rendered_body}</ReactMarkdown> */}
+    </>
   );
 };
 
@@ -122,6 +137,7 @@ export function Article({
   tags,
   url,
 }: ArticleProps) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <article className="mx-auto max-w-3xl overflow-hidden rounded-lg bg-white shadow-lg">
       <div className="p-8">
@@ -129,8 +145,10 @@ export function Article({
           title={title}
           created_at={created_at}
           updated_at={updated_at}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
         />
-        <ArticleBody rendered_body={rendered_body} />
+        {isOpen && <ArticleBody rendered_body={rendered_body} />}
         <ArticleFooter
           likes_count={likes_count}
           comments_count={comments_count}

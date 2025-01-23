@@ -1,5 +1,5 @@
 import React from "react";
-import { Article } from "./article";
+import { Article } from "@/components/ui/article";
 import { GetStaticProps, NextPage } from "next";
 export const getStaticProps = async () => {
   const userId = process.env.QIITA_USER_ID; // e.g. 'qiita'

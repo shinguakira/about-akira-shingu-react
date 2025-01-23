@@ -5,8 +5,8 @@ import { ja } from "date-fns/locale";
 import { Heart, MessageSquare, Eye, Bookmark } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Button } from "./shadcn/button";
+// import ReactMarkdown from "react-markdown";
+// import { Button } from "./shadcn/button";
 
 interface ArticleProps {
   title: string;

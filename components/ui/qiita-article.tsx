@@ -37,7 +37,6 @@ export const getStaticProps = async () => {
 const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {
   return (
     <div style={{ margin: "2rem" }}>
-      <h1>Qiita Articles</h1>
       <ul>
         {articles &&
           articles.length > 0 &&

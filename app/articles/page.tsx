@@ -19,11 +19,14 @@ const ArticlePage = () => {
         href="https://qiita.com/ShinguAkira"
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:bg-green-200px-4 mt-6 flex items-center space-x-2 rounded py-2 shadow-sm transition-colors duration-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        className="hover:bg-green-200px-4 mt-6 flex items-center space-x-2 rounded border border-green-200 py-2 shadow-sm transition-colors duration-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         <QiitaIcon className="h-6 w-6" />
         <span className="font-semibold text-green-600">Visit Qiita</span>
-        <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+        <ExternalLink
+          className="ml-2 h-4 w-4 text-green-600"
+          aria-hidden="true"
+        />
       </Link>
 
       <QiitaArticle articles={articleData.articles} />

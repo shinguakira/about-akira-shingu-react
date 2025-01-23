@@ -41,8 +41,8 @@ const ArticleHeader: React.FC<{
 
   return (
     <header className="mb-8">
-      <h1 className="mb-4 text-3xl font-bold text-gray-900">{title}</h1>
-      <div className="text-sm text-gray-500">
+      <h1 className="mb-4 text-3xl font-bold">{title}</h1>
+      <div className="flex items-center justify-between text-sm">
         <time dateTime={created_at}>作成: {formattedCreatedDate}</time>
         {created_at !== updated_at && (
           <span>
@@ -51,10 +51,11 @@ const ArticleHeader: React.FC<{
           </span>
         )}
         <Button
-          className="mb-4 text-blue-600 hover:underline"
+          className="mb-4 ml-auto text-green-500 hover:underline"
           onClick={() => setIsOpen(!isOpen)}
+          variant={isOpen ? "outline" : "outline"}
         >
-          +
+          + 詳細を見る
         </Button>
       </div>
     </header>
@@ -83,9 +84,9 @@ const ArticleFooter: React.FC<{
   url: string;
 }> = ({ likes_count, comments_count, page_views_count, tags, url }) => {
   return (
-    <footer className="mt-8 border-t border-gray-200 pt-8">
+    <footer className="mt-8 border-t border-gray-900">
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center space-x-4 text-sm text-gray-500">
+        <div className="flex items-center space-x-4 text-sm">
           <span className="flex items-center">
             <Heart className="mr-1 h-4 w-4" />
             {likes_count}
@@ -103,7 +104,7 @@ const ArticleFooter: React.FC<{
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-blue-600 hover:text-blue-800"
+          className="flex items-center text-green-600 hover:text-green-800"
         >
           <Bookmark className="mr-1 h-4 w-4" />
           Qiitaで見る
@@ -120,7 +121,7 @@ const ArticleFooter: React.FC<{
 
 const Tag: React.FC<{ name: string }> = ({ name }) => {
   return (
-    <span className="inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
+    <span className="inline-block rounded-full bg-gray-400 px-3 py-1 text-sm font-semibold">
       #{name}
     </span>
   );
@@ -139,7 +140,7 @@ export function Article({
 }: ArticleProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <article className="mx-auto max-w-3xl overflow-hidden rounded-lg bg-white shadow-lg">
+    <article className="border-black-900 bg:border-white mx-auto mb-8 max-w-3xl gap-5 overflow-hidden rounded-lg border shadow">
       <div className="p-8">
         <ArticleHeader
           title={title}

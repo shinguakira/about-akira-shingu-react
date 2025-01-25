@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
     articles: data,
     // Revalidate every 60 seconds (optional):
     // So the static page regenerates if there’s a request after 60s
-    // revalidate: 60,
+    revalidate: 7200,
   };
 };
 const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {

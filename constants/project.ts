@@ -38,6 +38,7 @@ export const projects: Project[] = [
   {
     title: "バンキングアプリ(開発中)",
     description: `バンキングアプリ、Sentryによるエラーログ、エラー発生時のリプレイ機能付き
+エラー処理が不十分なところや、ユーザーに優しくないデザインなので、改修予定
 `,
     image: `${bankingAppPic}`,
     technologies: [
@@ -48,8 +49,8 @@ export const projects: Project[] = [
       "shadcn",
       "lucide-react",
     ],
-    githubUrl: "",
-    liveUrl: "", // need to update it if its completed
+    githubUrl: "https://github.com/shinguakira/banking-nextjs",
+    liveUrl: "https://banking-horizon-sooty.vercel.app/sign-in",
   },
   {
     title: "現在いる最寄り駅の飲食店情報リスト表示アプリ(ほぼモック)",

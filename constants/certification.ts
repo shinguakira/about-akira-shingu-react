@@ -224,4 +224,26 @@ export const certifications: CertificationItemProps[] = [
     verifyLink:
       "https://www.credly.com/badges/c84a1a87-76b7-4df6-bba5-7c76dc336dc4/public_url",
   },
+  {
+    id: 23,
+    name: "Certified Junior JavaScript Developer",
+    organization: "Certificates.dev",
+    date: "2025-02",
+    verifyLink:
+      "https://certificates.dev/c/9e27f955-22c7-4412-89ce-c90c2c47ebd7",
+  },
+  {
+    id: 23,
+    name: "React Basics",
+    organization: "Meta",
+    date: "2025-02",
+    verifyLink: "https://coursera.org/share/befdd27939a9340646b34c7e6a640da2",
+  },
+  {
+    id: 23,
+    name: "Introduction to Front-End Development",
+    organization: "Meta",
+    date: "2025-02",
+    verifyLink: "https://coursera.org/share/125a7c5e504f4af0814a11c70164265c",
+  },
 ];

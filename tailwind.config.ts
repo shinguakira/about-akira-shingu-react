@@ -73,11 +73,26 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+			"rainbow-border": {
+          "0%, 100%": {
+            "border-color": "#ff0000", // 赤
+          },
+          "25%": {
+            "border-color": "#ff00ff", // マゼンタ
+          },
+          "50%": {
+            "border-color": "#0000ff", // 青
+          },
+          "75%": {
+            "border-color": "#ff0000", // 赤に戻る
+          },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+			"rainbow-border": "rainbow-border var(--animation-duration) infinite",
 		}
 	},
   },

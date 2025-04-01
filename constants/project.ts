@@ -18,6 +18,7 @@ const advancedSearchYoutubePic = "/images/projects/advanced-search-youtube.png";
 const restaurantAroundStationPic =
   "/images/projects/restaurant-around-station.png"; // picture for restaurant around station
 const bankingAppPic = "/images/projects/banking-app.png"; // picture for banking app
+const typingGamePic = "/images/projects/typing-game.png"; // picture for typing game
 
 // object for projects
 export const projects: Project[] = [
@@ -26,7 +27,6 @@ export const projects: Project[] = [
     description: `[採用サイト間のプロフィール自動入力(データ連携)]
 [画像認識を使用した何か]
 [Visual Studioのプロジェクトファイル変換アプリ]
-[タイピングアプリ]
 [何かのマッチングアプリ]
 [何かのサイトのadvanced検索]
 `,
@@ -36,9 +36,24 @@ export const projects: Project[] = [
     liveUrl: "",
   },
   {
-    title: "バンキングアプリ(開発中)",
+    title: "タイピングゲーム",
+    description: `タイピングゲーム
+`,
+    image: `${typingGamePic}`,
+    technologies: [
+      ...nextjsSkillSet,
+      "Hono",
+      "Redis(Upstash)",
+      "Bun",
+      "shadcn",
+      "lucide-react",
+    ],
+    githubUrl: "https://github.com/shinguakira/typing-game-hono",
+    liveUrl: "https://typing-game-hono.vercel.app/",
+  },
+  {
+    title: "バンキングアプリ",
     description: `バンキングアプリ、Sentryによるエラーログ、エラー発生時のリプレイ機能付き
-エラー処理が不十分なところや、ユーザーに優しくないデザインなので、改修予定
 `,
     image: `${bankingAppPic}`,
     technologies: [
@@ -53,7 +68,7 @@ export const projects: Project[] = [
     liveUrl: "https://banking-horizon-sooty.vercel.app/sign-in",
   },
   {
-    title: "現在いる最寄り駅の飲食店情報リスト表示アプリ(ほぼモック)",
+    title: "現在いる最寄り駅の飲食店情報リスト表示アプリ",
     description: `最寄りの駅の飲食店情報リストをGooogle Mapで表示するアプリ
 `,
     image: `${restaurantAroundStationPic}`,

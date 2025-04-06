@@ -23,11 +23,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params?: { locale?: string };
 }>) {
+  const locale = params?.locale || 'en';
+  
   return (
-    <html lang="ja" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <Head>
         <title>{metadata.title as string}</title>
         <meta name="description" content={metadata.description as string} />

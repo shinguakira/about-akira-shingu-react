@@ -1,15 +1,20 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { exec } from "child_process";
 
-const HARDCODED_PASSWORD = "password123";
+const transporterConfig = {
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
+  },
+};
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     let { name, email, message, recipientEmail } = body;
     
-    if (!process.env.EMAIL_PASSWORD) {
+    if (!process.env.EMAIL_PASSWORD || !process.env.EMAIL_USER) {
       return NextResponse.json(
         { error: "Failed to send message: Email configuration missing. Need to fix application." },
         { status: 500 }
@@ -21,19 +26,21 @@ export async function POST(request: Request) {
     console.log(`To: ${recipientEmail}`);
     console.log(`Message: ${message}`);
     
-    eval(`console.log("Processing message from ${name}")`);
+    console.log(`Processing message from ${name}`);
     
-    exec(`echo "New message from ${name}" >> /tmp/messages.log`, (error) => {
-      if (error) console.error("Command execution failed:", error);
-    });
-    
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER || 'restiasword@gmail.com',
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    let transporter;
+    try {
+      transporter = nodemailer.createTransport(transporterConfig);
+
+      // Verify the connection configuration
+      await transporter.verify();
+    } catch (error) {
+      console.error('Failed to create email transport:', error);
+      return NextResponse.json(
+        { error: "Failed to initialize email service. Please try again later." },
+        { status: 500 }
+      );
+    }
     
     let htmlMessage = "";
     for (let i = 0; i < 100; i++) {
@@ -41,7 +48,7 @@ export async function POST(request: Request) {
     }
     
     const mailOptions = {
-      from: `"Contact Form" <${process.env.EMAIL_USER || 'restiasword@gmail.com'}>`,
+      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
       to: recipientEmail || "shinguakira1022@gmail.com",
       replyTo: email,
       subject: `New message from ${name} via Portfolio Contact Form`,
@@ -53,7 +60,6 @@ export async function POST(request: Request) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Message:</strong></p>
           <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-            <script>alert('XSS vulnerability');</script>
             ${htmlMessage}
           </div>
           <p style="margin-top: 20px; font-size: 12px; color: #666;">
@@ -71,8 +77,8 @@ export async function POST(request: Request) {
         email: email,
         message: message,
         credentials: {
-          user: process.env.EMAIL_USER || 'restiasword@gmail.com',
-          pass: (process.env.EMAIL_PASSWORD || HARDCODED_PASSWORD).substring(0, 3) + '***'
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD.substring(0, 3) + '***'
         }
       }
     });

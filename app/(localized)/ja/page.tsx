@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   description: "Akira Shingu's portfolio website - Home page",
 };
 
-export default function HomePage({ params }: { params: { locale: string } }) {
+export default function HomePage() {
+  const params = { locale: "ja" };
   return (
     <div className="container mx-auto px-4">
       <h1 className="mb-6 text-4xl font-bold">

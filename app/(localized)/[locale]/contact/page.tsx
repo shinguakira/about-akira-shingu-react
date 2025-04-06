@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Contact Akira Shingu",
 };
 
-const emailAddress = process.env.RECIPIENT_EMAIL || "shinguakira1022@gmail.com";
+const emailAddress = process.env.RECIPIENT_EMAIL || "example@example.com";
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const [name, setName] = useState("");

@@ -8,13 +8,15 @@ export const changelogs: ChangelogProps[] = [
     changes: [
       {
         type: "feature",
-        description: `バンキングアプリのgithubURLおよび公開URL追加
+        description: `タイピングゲームプロジェクト追加
+バンキングアプリのgithubURLおよび公開URL追加
 サイト表示時、各ページに関する説明を表示
 データベース制御アプリのgithubURLおよび公開URL追加`,
       },
       {
         type: "improvement",
-        description: `資格ページのアイコン追加`,
+        description: `プロジェクトページにレインボーフレーム効果追加
+資格ページのアイコン追加`,
       },
       // {
       //   type: "bugfix",

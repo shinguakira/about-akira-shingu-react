@@ -1,0 +1,67 @@
+name: Auto Assign Reviewers
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    branches:
+      - devin-develop
+
+jobs:
+  auto-assign-reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create auto-assign config
+        run: |
+          mkdir -p .github
+          cat > .github/auto-assign.yml << 'EOL'
+          # Set to true to add reviewers to pull requests
+          addReviewers: true
+          
+          # Set to true to add assignees to pull requests
+          addAssignees: true
+          
+          # A list of reviewers to be added to pull requests (GitHub user name)
+          reviewers:
+            - shinguakira
+          
+          # A list of assignees, overrides reviewers if set
+          assignees:
+            - shinguakira
+          
+          # A number of reviewers added to the pull request
+          # Set 0 to add all the reviewers
+          numberOfReviewers: 0
+          
+          # A list of keywords to be skipped the process if PR title include it
+          skipKeywords:
+            - wip
+          EOL
+      
+      - name: Auto Assign Reviewers
+        uses: kentaro-m/auto-assign-action@v1.2.5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: '.github/auto-assign.yml'
+          
+      - name: Add GitHub Copilot as Reviewer
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            try {
+              await github.rest.pulls.requestReviewers({
+                owner,
+                repo,
+                pull_number: prNumber,
+                reviewers: ['github-actions[bot]', 'copilot']
+              });
+              console.log('Successfully added Copilot as reviewer');
+            } catch (error) {
+              console.error('Error adding Copilot as reviewer:', error);
+            }

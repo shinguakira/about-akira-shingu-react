@@ -3,18 +3,20 @@
  */
 export const changelogs: ChangelogProps[] = [
   {
-    version: "1.3.0(予定)",
-    date: "2024-01-XX(予定)",
+    version: "1.3.0",
+    date: "2025-04-06",
     changes: [
       {
         type: "feature",
-        description: `バンキングアプリのgithubURLおよび公開URL追加
+        description: `タイピングゲームプロジェクト追加
+バンキングアプリのgithubURLおよび公開URL追加
 サイト表示時、各ページに関する説明を表示
 データベース制御アプリのgithubURLおよび公開URL追加`,
       },
       {
         type: "improvement",
-        description: `資格ページのアイコン追加`,
+        description: `プロジェクトページにレインボーフレーム効果追加
+資格ページのアイコン追加`,
       },
       // {
       //   type: "bugfix",
@@ -23,7 +25,7 @@ export const changelogs: ChangelogProps[] = [
     ],
   },
   {
-    version: "1.2.0(現在)",
+    version: "1.2.0",
     date: "2024-01-24",
     changes: [
       {

@@ -53,6 +53,7 @@ const NavBar = () => {
             prefetch={false}
           />
           <CustomLink href="/faq" title="FAQ" className="" />
+          <CustomLink href="/contact" title="Contact" className="" />
         </div>
       </nav>
       <nav className="xs:text-xs mx-auto flex w-full justify-end py-8 text-base font-medium">

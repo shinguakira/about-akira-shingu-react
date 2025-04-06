@@ -1,10 +1,15 @@
 import { redirect } from 'next/navigation';
 
-export default function ContactPage({ 
-  params 
-}: { 
-  params: { locale: string } 
-}) {
+interface PageProps {
+  params: {
+    locale: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+function ContactPage(props: PageProps) {
+  const { params } = props;
+  
   if (params.locale === 'en') {
     redirect('/en/contact');
   } else if (params.locale === 'ja') {
@@ -15,3 +20,5 @@ export default function ContactPage({
   
   return null;
 }
+
+export default ContactPage;

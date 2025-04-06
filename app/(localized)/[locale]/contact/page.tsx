@@ -1,14 +1,12 @@
-import { Suspense } from 'react';
 import ContactClientPage from './client-page';
 
-export const generateStaticParams = () => {
-  return [{ locale: 'en' }, { locale: 'ja' }];
-};
+interface ContactPageProps {
+  params: {
+    locale: string;
+  };
+  searchParams: Record<string, string | string[] | undefined>;
+}
 
-export default async function ContactPage({ params }: { params: { locale: string } }) {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ContactClientPage locale={params.locale} />
-    </Suspense>
-  );
+export default function ContactPage({ params }: ContactPageProps) {
+  return <ContactClientPage locale={params.locale} />;
 }

@@ -1,0 +1,40 @@
+name: Auto Assign Reviewers
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    branches:
+      - devin-develop
+
+jobs:
+  auto-assign-reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Assign Reviewers
+        uses: kentaro-m/auto-assign-action@v1.2.5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: shinguakira
+          assignees: shinguakira
+          skip-with-manual-reviewers: false
+          
+      - name: Add GitHub Copilot as Reviewer
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            try {
+              await github.rest.pulls.requestReviewers({
+                owner,
+                repo,
+                pull_number: prNumber,
+                reviewers: ['github-actions[bot]', 'copilot']
+              });
+              console.log('Successfully added Copilot as reviewer');
+            } catch (error) {
+              console.error('Error adding Copilot as reviewer:', error);
+            }

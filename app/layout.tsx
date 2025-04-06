@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Providers from "@/components/providers";
-import NavBar from "@/components/ui/nav-bar";
 import Head from "next/head";
 
 const geistSans = localFont({
@@ -23,15 +21,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params?: { locale?: string };
 }>) {
-  const locale = params?.locale || 'en';
-  
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <Head>
         <title>{metadata.title as string}</title>
         <meta name="description" content={metadata.description as string} />
@@ -40,17 +34,8 @@ export default function RootLayout({
         <link rel="icon" sizes="32x32" href="/favicon-32x32.ico" />
         <link rel="icon" sizes="16x16" href="/favicon-16x16.ico" />
       </Head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          {/* <Headers /> */}
-          <NavBar />
-          <main className="text-dark flex min-h-screen w-full grow items-center pt-36">
-            {children}
-          </main>
-          {/* <Footer /> */}
-        </Providers>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );

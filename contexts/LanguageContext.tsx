@@ -51,7 +51,7 @@ export const LanguageProvider = ({
     
     document.documentElement.lang = newLocale;
     
-    router.refresh();
+    router.push(`/${newLocale}`);
   };
 
   return (

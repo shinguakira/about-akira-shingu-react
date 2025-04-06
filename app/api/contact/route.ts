@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER || 'restiasword@gmail.com',
-        pass: process.env.EMAIL_PASSWORD || HARDCODED_PASSWORD,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
     

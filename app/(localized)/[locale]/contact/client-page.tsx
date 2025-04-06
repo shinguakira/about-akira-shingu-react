@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const emailAddress = "shinguakira1022@gmail.com";
-
 export default function ContactClientPage({ locale }: { locale: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,7 +62,6 @@ export default function ContactClientPage({ locale }: { locale: string }) {
           name,
           email,
           message,
-          recipientEmail: emailAddress,
           locale,
         }),
       });

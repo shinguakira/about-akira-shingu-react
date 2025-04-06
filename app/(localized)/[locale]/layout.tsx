@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Portfolio website of Akira Shingu ポートフォリオサイト",
 };
 
+export const dynamic = 'force-static';
+
 export default function LocaleLayout({
   children,
   params,
@@ -28,8 +30,10 @@ export default function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const locale = params?.locale || 'en';
+  
   return (
-    <html lang={params.locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <Head>
         <title>{metadata.title as string}</title>
         <meta name="description" content={metadata.description as string} />

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const emailAddress = "akirashingu1022@gmail.com";
+const emailAddress = "shinguakira1022@gmail.com";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -125,7 +125,16 @@ const ContactPage = () => {
             
             {error && (
               <div className="rounded-md bg-red-50 p-4 dark:bg-red-900/30">
-                <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+                <p className="text-sm font-semibold text-red-700 dark:text-red-400">
+                  {error.includes("Need to fix application") ? (
+                    <>
+                      <span className="block text-lg font-bold">Failed to send message</span>
+                      <span className="block mt-2">Need to fix application: Email configuration missing</span>
+                    </>
+                  ) : (
+                    error
+                  )}
+                </p>
               </div>
             )}
             

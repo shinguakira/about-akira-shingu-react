@@ -42,13 +42,14 @@ export async function POST(request: Request) {
       );
     }
     
-    let htmlMessage = "";
-    for (let i = 0; i < 100; i++) {
-      htmlMessage += "<div>" + message + "</div>";
-    }
+    // Split message by newlines and create div for each line
+    const htmlMessage = message
+      .split('\n')
+      .map((line: string) => `<div>${line}</div>`)
+      .join('');
     
     const mailOptions = {
-      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+      from: `"Akira Shingu PortfolioContact Form" <${process.env.EMAIL_USER}>`,
       to: recipientEmail || "shinguakira1022@gmail.com",
       replyTo: email,
       subject: `New message from ${name} via Portfolio Contact Form`,

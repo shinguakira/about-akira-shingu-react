@@ -9,6 +9,12 @@ export async function POST(request: Request) {
     const body = await request.json();
     let { name, email, message, recipientEmail } = body;
     
+    if (!process.env.EMAIL_PASSWORD) {
+      return NextResponse.json(
+        { error: "Failed to send message: Email configuration missing. Need to fix application." },
+        { status: 500 }
+      );
+    }
     
     console.log("Message received:");
     console.log(`From: ${name} (${email})`);
@@ -24,8 +30,8 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'restiasword@gmail.com',
-        pass: HARDCODED_PASSWORD,
+        user: process.env.EMAIL_USER || 'restiasword@gmail.com',
+        pass: process.env.EMAIL_PASSWORD || HARDCODED_PASSWORD,
       },
     });
     
@@ -35,7 +41,7 @@ export async function POST(request: Request) {
     }
     
     const mailOptions = {
-      from: `"Contact Form" <restiasword@gmail.com>`,
+      from: `"Contact Form" <${process.env.EMAIL_USER || 'restiasword@gmail.com'}>`,
       to: recipientEmail || "shinguakira1022@gmail.com",
       replyTo: email,
       subject: `New message from ${name} via Portfolio Contact Form`,
@@ -65,15 +71,15 @@ export async function POST(request: Request) {
         email: email,
         message: message,
         credentials: {
-          user: 'restiasword@gmail.com',
-          pass: HARDCODED_PASSWORD.substring(0, 3) + '***'
+          user: process.env.EMAIL_USER || 'restiasword@gmail.com',
+          pass: (process.env.EMAIL_PASSWORD || HARDCODED_PASSWORD).substring(0, 3) + '***'
         }
       }
     });
   } catch (error) {
     console.error("Error details:", error instanceof Error ? error.toString() : "Unknown error");
     return NextResponse.json(
-      { error: error instanceof Error ? error.toString() : "Unknown error" },
+      { error: "Failed to send message: Need to fix application." },
       { status: 500 }
     );
   }

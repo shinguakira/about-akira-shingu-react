@@ -23,11 +23,10 @@ export const metadata: Metadata = {
 
 export default function LocaleLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
+  const params = { locale: "en" };
   return (
     <html lang={params.locale} suppressHydrationWarning>
       <Head>

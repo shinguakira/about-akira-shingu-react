@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const emailAddress = "akirashingu1022@gmail.com";
+const emailAddress = "shinguakira1022@gmail.com";
 
 const ContactPage = () => {
   const [name, setName] = useState("");

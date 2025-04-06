@@ -1,12 +1,15 @@
-import ContactClientPage from './client-page';
+import dynamic from 'next/dynamic';
 
-interface ContactPageProps {
-  params: {
-    locale: string;
-  };
-  searchParams: Record<string, string | string[] | undefined>;
-}
+const ContactClientPage = dynamic(() => import('./client-page'), { ssr: false });
 
-export default function ContactPage({ params }: ContactPageProps) {
-  return <ContactClientPage locale={params.locale} />;
+export default function ContactPage({ 
+  params 
+}: { 
+  params: { locale: string } 
+}) {
+  return (
+    <div>
+      <ContactClientPage locale={params.locale} />
+    </div>
+  );
 }

@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "../../globals.css";
 import Providers from "@/components/providers";
 import NavBar from "@/components/ui/nav-bar";
-import Head from "next/head";
 
 const geistSans = localFont({
   src: "../../fonts/GeistVF.woff",
@@ -22,26 +21,30 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = 'force-static';
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
 
-export default function LocaleLayout({
-  children,
-  params,
-}: {
+type Props = {
   children: React.ReactNode;
-  params: { locale: string };
-}) {
+  params: {
+    locale: string;
+  };
+};
+
+export default function LocaleLayout(props: Props) {
+  const { children, params } = props;
   const locale = params?.locale || 'en';
   
   return (
     <html lang={locale} suppressHydrationWarning>
-      <Head>
+      <head>
         <title>{metadata.title as string}</title>
         <meta name="description" content={metadata.description as string} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon-32x32.ico" />
         <link rel="icon" sizes="32x32" href="/favicon-32x32.ico" />
         <link rel="icon" sizes="16x16" href="/favicon-16x16.ico" />
-      </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

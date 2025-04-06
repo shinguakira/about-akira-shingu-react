@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
 import ChangelogNotification from "./changelog-notification";
+import LanguageSwitcher from "@/components/ui/language-switcher";
 
 const iconSize = "w-6 h-6";
 
@@ -85,6 +86,7 @@ const NavBar = () => {
         >
           <GithubIcon className={iconSize} />
         </Link>
+        <LanguageSwitcher />
         <ThemeToggle />
       </nav>
     </header>

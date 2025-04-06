@@ -3,6 +3,8 @@ name: OpenAI Code Review
 on:
   pull_request:
     types: [opened, synchronize]
+    branches:
+      - devin-develop
 
 jobs:
   openai-code-review:
@@ -23,12 +25,13 @@ jobs:
           LANGUAGE: English
           MODEL: gpt-4
           PROMPT: |
-            You are an expert code reviewer. Review the code changes and provide constructive feedback.
+            You are an expert code reviewer for a React/Next.js portfolio website. Review the code changes and provide constructive feedback.
             Focus on:
-            1. Code quality and best practices
+            1. Code quality and React/Next.js best practices
             2. Potential bugs or edge cases
-            3. Performance considerations
+            3. Performance considerations for React components
             4. Security concerns
             5. Accessibility issues
+            6. UI/UX improvements
             
             Be specific and provide examples where possible. If the code looks good, say so.

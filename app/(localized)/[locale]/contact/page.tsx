@@ -4,13 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const emailAddress = process.env.RECIPIENT_EMAIL || "example@example.com";
 
-type ContactPageProps = {
-  params: {
-    locale: string;
-  };
-};
-
-export default function ContactPage({ params }: ContactPageProps) {
+export default function ContactPage({ params }: { params: { locale: string } }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

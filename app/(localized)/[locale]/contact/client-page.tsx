@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const emailAddress = process.env.RECIPIENT_EMAIL || "example@example.com";
 
-export default function ContactPage({ params }: { params: { locale: string } }) {
+export default function ContactClientPage({ locale }: { locale: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -47,7 +47,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
     }
   };
 
-  const t = translations[params.locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === 'ja' ? 'ja' : 'en'];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           email,
           message,
           recipientEmail: emailAddress,
-          locale: params.locale,
+          locale,
         }),
       });
 

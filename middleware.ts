@@ -1,35 +1,68 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const PUBLIC_FILE = /\.(.*)$/;
+const locales = ['en', 'ja'];
+const defaultLocale = 'en';
+
+const PUBLIC_FILE = /\.(?:jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2)$/;
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
   if (
-    request.nextUrl.pathname.startsWith('/_next') ||
-    request.nextUrl.pathname.includes('/api/') ||
-    PUBLIC_FILE.test(request.nextUrl.pathname)
+    pathname.startsWith('/_next') ||
+    pathname.includes('/api/') ||
+    PUBLIC_FILE.test(pathname)
   ) {
-    return;
+    return NextResponse.next();
   }
 
-  const locale = request.cookies.get('NEXT_LOCALE')?.value || 
-                 request.headers.get('accept-language')?.split(',')[0].split('-')[0] || 
-                 'en';
-  
-  const validLocale = ['en', 'ja'].includes(locale) ? locale : 'en';
-
-  const pathnameHasLocale = ['/en', '/ja'].some(
-    (loc) => request.nextUrl.pathname.startsWith(loc)
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (!pathnameHasLocale) {
-    const url = new URL(`/${validLocale}${request.nextUrl.pathname}`, request.url);
-    url.search = request.nextUrl.search;
-    return NextResponse.redirect(url);
+  if (pathnameHasLocale) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  let locale = defaultLocale;
+  
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    locale = cookieLocale;
+  } else {
+    const acceptLanguage = request.headers.get('accept-language');
+    if (acceptLanguage) {
+      const preferredLocale = acceptLanguage
+        .split(',')[0]
+        .split('-')[0]
+        .toLowerCase();
+      
+      if (locales.includes(preferredLocale)) {
+        locale = preferredLocale;
+      }
+    }
+  }
+
+  const url = new URL(
+    pathname === '/' ? `/${locale}` : `/${locale}${pathname}`, 
+    request.url
+  );
+  
+  url.search = request.nextUrl.search;
+  
+  const response = NextResponse.redirect(url);
+  response.cookies.set('NEXT_LOCALE', locale, {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 365, // 1 year
+    sameSite: 'strict',
+    secure: process.env.NODE_ENV === 'production',
+  });
+  
+  return response;
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/((?!_next|api|favicon.ico).*)',
+  ],
 };

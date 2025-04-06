@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 const transporterConfig = {
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
+    pass: process.env.EMAIL_PASSWORD,
   },
+  debug: true, // Enable debug logging
+  logger: true  // Log to console
 };
 
 export async function POST(request: Request) {
@@ -32,8 +36,9 @@ export async function POST(request: Request) {
     try {
       transporter = nodemailer.createTransport(transporterConfig);
 
-      // Verify the connection configuration
+      console.log('Attempting to verify transport...');
       await transporter.verify();
+      console.log('Transport verified successfully');
     } catch (error) {
       console.error('Failed to create email transport:', error);
       return NextResponse.json(
@@ -41,7 +46,7 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
-    
+
     // Split message by newlines and create div for each line
     const htmlMessage = message
       .split('\n')
@@ -70,19 +75,30 @@ export async function POST(request: Request) {
       `,
     };
     
-    transporter.sendMail(mailOptions);
-    
-    return NextResponse.json({ 
-      success: true,
-      debug: {
-        email: email,
-        message: message,
-        credentials: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASSWORD.substring(0, 3) + '***'
+    try {
+      console.log('Attempting to send email...');
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully:', info);
+      
+      return NextResponse.json({
+        success: true,
+        messageId: info.messageId,
+        debug: {
+          email: email,
+          message: message,
+          credentials: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD.substring(0, 3) + '***'
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again later." },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error("Error details:", error instanceof Error ? error.toString() : "Unknown error");
     return NextResponse.json(

@@ -3,8 +3,8 @@
  */
 export const changelogs: ChangelogProps[] = [
   {
-    version: "1.3.0(予定)",
-    date: "2024-01-XX(予定)",
+    version: "1.3.0",
+    date: "2025-04-06",
     changes: [
       {
         type: "feature",
@@ -23,7 +23,7 @@ export const changelogs: ChangelogProps[] = [
     ],
   },
   {
-    version: "1.2.0(現在)",
+    version: "1.2.0",
     date: "2024-01-24",
     changes: [
       {

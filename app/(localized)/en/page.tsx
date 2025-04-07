@@ -1,5 +1,4 @@
 "use client";
-import { Metadata } from "next";
 import AnimatedText from "@/components/ui/animated-text";
 import DownLoadLink from "@/components/ui/download-link";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
@@ -11,11 +10,6 @@ import profilePic from "public/images/profile/developer-pic-1.png";
 import Modal from "@/components/ui/modal";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
-
-export const metadata: Metadata = {
-  title: "Akira Shingu - Home",
-  description: "Akira Shingu's portfolio website - Home page",
-};
 
 const emailAddress = process.env.CONTACT_EMAIL || "contact@example.com";
 

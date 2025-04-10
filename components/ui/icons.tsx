@@ -77,7 +77,7 @@ export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
 
 export const QiitaIcon = ({ className, ...rest }: IconProps) => (
   <img
-    src="https://logo.clearbit.com/qiita.com" // Replace with the actual path to the Qiita logo
+    src="https://img.logo.dev/qiita.com" // Using Logo.dev as replacement for discontinued Clearbit Logo API
     alt="Qiita"
     className={`${className}`}
   />

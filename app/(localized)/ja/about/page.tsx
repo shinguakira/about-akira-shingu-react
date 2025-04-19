@@ -1,5 +1,5 @@
 import React from "react";
-import AboutPage from "@/components/ui/about-page";
+import AboutClientPage from "../../[locale]/about/client-page";
 
 export const metadata = {
   title: "Akira Shingu - プロフィール",
@@ -7,11 +7,5 @@ export const metadata = {
 };
 
 export default function JapaneseAboutPage() {
-  const translations = {
-    skillSetTitle: "スキルセット",
-    categoriesTitle: "カテゴリー",
-    strongPointsTitle: "アピールポイント"
-  };
-  
-  return <AboutPage translations={translations} />;
+  return <AboutClientPage locale="ja" />;
 }

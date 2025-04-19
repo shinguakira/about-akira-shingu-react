@@ -1,5 +1,5 @@
 import React from "react";
-import FaqPage from "@/components/ui/faq-page";
+import FaqClientPage from "../../[locale]/faq/client-page";
 
 export const metadata = {
   title: "Akira Shingu - FAQ",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function EnglishFaqPage() {
-  return <FaqPage />;
+  return <FaqClientPage locale="en" />;
 }

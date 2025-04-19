@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectsPage from "@/components/ui/projects-page";
+import ProjectsClientPage from "../../[locale]/projects/client-page";
 
 export const metadata = {
   title: "Akira Shingu - Projects",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function EnglishProjectsPage() {
-  return <ProjectsPage />;
+  return <ProjectsClientPage locale="en" />;
 }

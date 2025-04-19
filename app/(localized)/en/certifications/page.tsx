@@ -1,5 +1,5 @@
 import React from "react";
-import CertificationsPage from "@/components/ui/certifications-page";
+import CertificationsClientPage from "../../[locale]/certifications/client-page";
 
 export const metadata = {
   title: "Akira Shingu - Certifications",
@@ -7,10 +7,5 @@ export const metadata = {
 };
 
 export default function EnglishCertificationsPage() {
-  const translations = {
-    pageTitle: "My Certifications",
-    pageSubtitle: "Qualifications & Certificates"
-  };
-  
-  return <CertificationsPage translations={translations} />;
+  return <CertificationsClientPage locale="en" />;
 }

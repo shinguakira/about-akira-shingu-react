@@ -1,5 +1,5 @@
 import React from "react";
-import ArticlesPage from "@/components/ui/articles-page";
+import ArticlesClientPage from "../../[locale]/articles/client-page";
 
 export const metadata = {
   title: "Akira Shingu - Articles",
@@ -7,10 +7,5 @@ export const metadata = {
 };
 
 export default function EnglishArticlesPage() {
-  const translations = {
-    loadingText: "Loading...",
-    visitQiitaText: "Visit Qiita"
-  };
-  
-  return <ArticlesPage translations={translations} />;
+  return <ArticlesClientPage locale="en" />;
 }

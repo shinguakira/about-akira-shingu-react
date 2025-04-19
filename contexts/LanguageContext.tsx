@@ -51,7 +51,14 @@ export const LanguageProvider = ({
     
     document.documentElement.lang = newLocale;
     
-    router.push(`/${newLocale}`);
+    const pathname = window.location.pathname;
+    const currentPath = pathname.split('/').slice(2).join('/');
+    
+    if (currentPath) {
+      router.push(`/${newLocale}/${currentPath}`);
+    } else {
+      router.push(`/${newLocale}`);
+    }
   };
 
   return (

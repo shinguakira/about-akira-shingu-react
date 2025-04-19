@@ -18,6 +18,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   return metadata[locale === 'ja' ? 'ja' : 'en'];
 }
 
-export default function ArticlesPage({ params }: { params: { locale: string } }) {
+type Props = {
+  params: {
+    locale: string
+  }
+}
+
+export default function ArticlesPage({ params }: Props) {
   return <ArticlesClientPage locale={params.locale} />;
 }

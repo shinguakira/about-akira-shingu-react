@@ -61,6 +61,7 @@ export default function FaqClientPage({ locale }: { locale: string }) {
             index={index}
             question={faq.question}
             answer={faq.answer}
+            size="medium"
           />
         ))}
       </div>

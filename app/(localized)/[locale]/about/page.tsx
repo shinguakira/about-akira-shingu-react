@@ -19,11 +19,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: string
-  }
+  }>
 }
 
-export default function AboutPage({ params }: Props) {
-  return <AboutClientPage locale={params.locale} />;
+export default async function AboutPage({ params }: Props) {
+  const resolvedParams = await params;
+  return <AboutClientPage locale={resolvedParams.locale} />;
 }

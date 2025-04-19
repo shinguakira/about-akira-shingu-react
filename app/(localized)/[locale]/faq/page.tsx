@@ -19,11 +19,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: string
-  }
+  }>
 }
 
-export default function FaqPage({ params }: Props) {
-  return <FaqClientPage locale={params.locale} />;
+export default async function FaqPage({ params }: Props) {
+  const resolvedParams = await params;
+  return <FaqClientPage locale={resolvedParams.locale} />;
 }

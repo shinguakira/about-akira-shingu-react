@@ -19,6 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return metadata[locale === 'ja' ? 'ja' : 'en'];
 }
 
+/**
+ * Pre-renders pages at build time for all supported locales
+ * This improves SEO by ensuring static pages are available for search engines
+ * @returns Array of locale objects for static generation
+ */
 export async function generateStaticParams() {
   return [
     { locale: 'en' },

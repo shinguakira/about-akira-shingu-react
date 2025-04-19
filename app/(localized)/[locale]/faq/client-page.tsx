@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Accordion from "@/components/ui/accordion";
+import { faqs as faqsData } from "@/constants/faq";
 
 export default function FaqClientPage({ locale }: { locale: string }) {
   const translations = {
@@ -16,38 +17,34 @@ export default function FaqClientPage({ locale }: { locale: string }) {
 
   const t = translations[locale === 'ja' ? 'ja' : 'en'];
 
-  const faqs = {
-    en: [
-      {
-        question: "What services do you offer?",
-        answer: "I specialize in web development, cloud architecture, and software engineering with a focus on React, Next.js, and AWS technologies."
-      },
-      {
-        question: "How can I contact you for a project?",
-        answer: "You can reach out through the contact form on this website or connect with me on LinkedIn or GitHub."
-      },
-      {
-        question: "Do you work remotely?",
-        answer: "Yes, I work remotely and can collaborate with teams across different time zones."
-      }
-    ],
-    ja: [
-      {
-        question: "どのようなサービスを提供していますか？",
-        answer: "React、Next.js、AWSテクノロジーを中心としたウェブ開発、クラウドアーキテクチャ、ソフトウェアエンジニアリングを専門としています。"
-      },
-      {
-        question: "プロジェクトについて連絡するにはどうすればよいですか？",
-        answer: "このウェブサイトのお問い合わせフォームから、またはLinkedInやGitHubで連絡することができます。"
-      },
-      {
-        question: "リモートで働いていますか？",
-        answer: "はい、リモートで働いており、異なるタイムゾーンのチームと協力することができます。"
-      }
-    ]
-  };
-
-  const currentFaqs = locale === 'ja' ? faqs.ja : faqs.en;
+  const currentFaqs = locale === 'ja' 
+    ? faqsData 
+    : [
+        {
+          question: "What services do you offer?",
+          answer: "I specialize in web development, cloud architecture, and software engineering with a focus on React, Next.js, and AWS technologies.",
+          size: "medium",
+          category: "Others"
+        },
+        {
+          question: "How can I contact you for a project?",
+          answer: "You can reach out through the contact form on this website or connect with me on LinkedIn or GitHub.",
+          size: "small",
+          category: "Others"
+        },
+        {
+          question: "Do you work remotely?",
+          answer: "Yes, I work remotely and can collaborate with teams across different time zones.",
+          size: "small",
+          category: "Others"
+        },
+        {
+          question: "Why do you have so many AWS certifications?",
+          answer: "My current company is aiming to become an AWS partner, so they encourage AWS certification. I also believe that having recognized certifications helps demonstrate my commitment to professional development.",
+          size: "medium",
+          category: "Certification"
+        }
+      ];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -61,7 +58,7 @@ export default function FaqClientPage({ locale }: { locale: string }) {
             index={index}
             question={faq.question}
             answer={faq.answer}
-            size="medium"
+            size={faq.size || "medium"}
           />
         ))}
       </div>

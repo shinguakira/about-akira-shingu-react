@@ -2,37 +2,37 @@ import React from "react";
 import { Article } from "@/components/ui/article";
 import { GetStaticProps, NextPage } from "next";
 export const getStaticProps = async () => {
-  const userId = process.env.QIITA_USER_ID; // e.g. 'qiita'
+  try {
+    const userId = process.env.QIITA_USER_ID || 'ShinguAkira'; // Default to ShinguAkira if not set
+    
+    // Endpoint for fetching a user's public articles
+    const endpoint = `https://qiita.com/api/v2/users/${userId}/items?page=1&per_page=20`;
+    
+    const res = await fetch(endpoint);
+    
+    if (!res.ok) {
+      console.warn(`Failed to fetch Qiita articles. Status: ${res.status}`);
+      return {
+        articles: [],
+        revalidate: 7200,
+      };
+    }
 
-  // Optionally, if you need an access token, store it in an ENV variable:
-  const qiitaToken = process.env.QIITA_TOKEN;
+    const data: QiitaArticle[] = await res.json();
+    console.log(data);
 
-  // Endpoint for fetching a user's public articles
-  const endpoint = `https://qiita.com/api/v2/users/${userId}/items?page=1&per_page=20`;
-
-  // Include the bearer token only if you need private data or higher rate limits
-  const res = await fetch(endpoint, {
-    headers: {
-      Authorization: `Bearer ${qiitaToken}`,
-    },
-  });
-
-  // const res = await fetch(endpoint);
-
-  if (!res.ok) {
-    // If the response is not OK, throw an error
-    throw new Error(`Failed to fetch Qiita articles. Status: ${res.status}`);
+    return {
+      articles: data,
+      // Revalidate every 60 seconds (optional):
+      revalidate: 7200,
+    };
+  } catch (error) {
+    console.error('Error fetching Qiita articles:', error);
+    return {
+      articles: [],
+      revalidate: 7200,
+    };
   }
-
-  const data: QiitaArticle[] = await res.json();
-  console.log(data);
-
-  return {
-    articles: data,
-    // Revalidate every 60 seconds (optional):
-    // So the static page regenerates if there’s a request after 60s
-    revalidate: 7200,
-  };
 };
 const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {
   return (

@@ -1,0 +1,68 @@
+{
+  "site": {
+    "title": "Akira Shingu",
+    "description": "Akira Shingu's portfolio website"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "certifications": "Certifications",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welcome to my portfolio",
+    "subtitle": "Software Engineer",
+    "description": "I'm a software engineer specializing in web development and cloud technologies."
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a software engineer with experience in web development, cloud technologies, and more."
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "viewCode": "View Code"
+  },
+  "skills": {
+    "title": "Skills",
+    "languages": "Programming Languages",
+    "frameworks": "Frameworks",
+    "tools": "Tools"
+  },
+  "certifications": {
+    "title": "Certifications"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Feel free to reach out to me with any questions or opportunities.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message",
+    "needToFixApp": "Need to fix application: Email configuration missing",
+    "requiredField": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "footer": {
+    "copyright": "© 2025 Akira Shingu. All rights reserved."
+  },
+  "changelog": {
+    "title": "Changelog",
+    "version": "Version",
+    "date": "Date",
+    "changes": "Changes",
+    "feature": "Feature",
+    "improvement": "Improvement",
+    "bugfix": "Bug Fix"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "en": "English",
+    "ja": "日本語"
+  }
+}

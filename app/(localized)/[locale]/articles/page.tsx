@@ -19,6 +19,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return metadata[locale === 'ja' ? 'ja' : 'en'];
 }
 
+export async function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'ja' }
+  ];
+}
+
 type Props = {
   params: Promise<{
     locale: string

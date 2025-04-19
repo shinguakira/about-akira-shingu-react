@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import AboutClientPage from "./client-page";
-import { generateMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const locale = params.locale;

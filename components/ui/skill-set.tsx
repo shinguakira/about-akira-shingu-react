@@ -4,8 +4,12 @@ import { useState } from "react";
 import SkillCategory from "./skill-category";
 import SkillItem from "./skill-item";
 import { skills, otherSkills } from "@/constants/skill";
+import { useParams } from "next/navigation";
 
 const SkillSet = () => {
+  const params = useParams();
+  const locale = params?.locale as string || 'ja';
+  const currentLang = locale === 'ja' ? 'ja' : 'en';
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     new Set(["All"])
   );
@@ -63,7 +67,7 @@ const SkillSet = () => {
         ))}
       </div>
       <h3 className="mb-8 w-full text-center text-3xl text-blue-900 underline dark:text-white">
-        Skills
+        {currentLang === 'ja' ? 'スキル' : 'Skills'}
       </h3>
       <div className="mx-auto grid grid-cols-3 gap-6 md:grid-cols-4 lg:grid-cols-4">
         {filteredSkills.map((skill) => (
@@ -81,7 +85,7 @@ const SkillSet = () => {
       {/* display only filtered OtherSkill exist */}
       {filteredOtherSkills.length > 0 && (
         <h3 className="mb-8 w-full text-center text-3xl text-green-700 underline dark:text-gray-500">
-          Other Skills
+          {currentLang === 'ja' ? 'その他のスキル' : 'Other Skills'}
         </h3>
       )}
       <div className="mx-auto grid grid-cols-3 gap-6 md:grid-cols-4 lg:grid-cols-4">

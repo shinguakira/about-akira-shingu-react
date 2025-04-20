@@ -48,8 +48,8 @@ export default function AboutClientPage({ locale }: { locale: string }) {
               <Accordion
                 key={index}
                 index={index}
-                question={strong.question}
-                answer={strong.answer}
+                question={strong[locale === 'ja' ? 'ja' : 'en'].question}
+                answer={strong[locale === 'ja' ? 'ja' : 'en'].answer}
                 size={strong.size}
               />
             ))}

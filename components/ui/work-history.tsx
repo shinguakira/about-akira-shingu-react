@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Building2, Calendar } from "lucide-react";
-import { workExperiences } from "@/constants/work-experience";
+import { workExperiences, MultilingualWorkExperience } from "@/constants/work-experience";
+import { useParams } from "next/navigation";
 
 const WorkHistory = () => {
+  const params = useParams();
+  const locale = params?.locale as string || 'ja';
+  const currentLang = locale === 'ja' ? 'ja' : 'en';
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const toggleExpand = (id: number): void => {
@@ -15,10 +19,10 @@ const WorkHistory = () => {
     <div className="min-h-screen bg-gray-100 px-4 py-12 dark:bg-gray-900">
       <div className="mx-auto">
         <h1 className="mb-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
-          My Work History
+          {currentLang === 'ja' ? 'これまでの経歴' : 'My Work History'}
         </h1>
         <div className="space-y-6">
-          {workExperiences.map((experience: WorkExperience, index: number) => (
+          {workExperiences.map((experience: MultilingualWorkExperience, index: number) => (
             <div
               key={index}
               className="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg"
@@ -26,7 +30,7 @@ const WorkHistory = () => {
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                    {experience.projectOverview}
+                    {experience[currentLang].projectOverview}
                   </h3>
                   <button
                     onClick={() => toggleExpand(index)}
@@ -41,7 +45,7 @@ const WorkHistory = () => {
                   </button>
                 </div>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                  {experience.role}
+                  {experience[currentLang].role}
                 </p>
               </div>
               <div className="border-t border-gray-200 px-4 py-5 dark:border-gray-700 sm:px-6">
@@ -49,7 +53,7 @@ const WorkHistory = () => {
                   <div className="sm:col-span-1">
                     <dt className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
                       <Building2 className="mr-2 h-5 w-5" />
-                      Company
+                      {currentLang === 'ja' ? '会社' : 'Company'}
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                       {experience.company}
@@ -58,7 +62,7 @@ const WorkHistory = () => {
                   <div className="sm:col-span-1">
                     <dt className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
                       <Calendar className="mr-2 h-5 w-5" />
-                      Period
+                      {currentLang === 'ja' ? '期間' : 'Period'}
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                       {experience.period}
@@ -68,21 +72,21 @@ const WorkHistory = () => {
                     <>
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                          Description
+                          {currentLang === 'ja' ? '説明' : 'Description'}
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <ul className="list-disc space-y-1 pl-5">
-                            {experience.description.map((item, index) => (
+                            {experience[currentLang].description.map((item: string, index: number) => (
                               <li key={index}>{item}</li>
                             ))}
                           </ul>
                         </dd>
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                          Archivement
+                          {currentLang === 'ja' ? '成果' : 'Achievements'}
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <ul className="list-disc space-y-1 pl-5">
-                            {experience.archivement.map((item, index) => (
+                            {experience[currentLang].archivement.map((item: string, index: number) => (
                               <li key={index}>{item}</li>
                             ))}
                           </ul>
@@ -90,11 +94,11 @@ const WorkHistory = () => {
                       </div>
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                          Technologies
+                          {currentLang === 'ja' ? '使用技術' : 'Technologies'}
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <div className="flex flex-wrap gap-2">
-                            {experience.technologies.map((tech, index) => (
+                            {experience[currentLang].technologies.map((tech: string, index: number) => (
                               <span
                                 key={index}
                                 className="rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"

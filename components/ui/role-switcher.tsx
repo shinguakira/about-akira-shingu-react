@@ -20,7 +20,7 @@ export default function RoleSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const [testMode, setTestMode] = useState(true); // Default to true if env var not set
+  const [testMode, setTestMode] = useState(false); // Default to false - hidden unless explicitly enabled
   const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
   const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
@@ -28,7 +28,7 @@ export default function RoleSwitcher() {
     setIsClient(true);
     
     const testModeEnv = process.env.NEXT_PUBLIC_TEST_MODE;
-    setTestMode(testModeEnv === undefined || testModeEnv === '' || testModeEnv === '1');
+    setTestMode(testModeEnv === '1');
     
     if (process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY) {
       setRoleKeys(prev => ({

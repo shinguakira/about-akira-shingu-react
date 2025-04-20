@@ -16,9 +16,11 @@ const Faq = () => {
 
   const filteredFaqs = faqs.filter(
     (faq) =>
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.category.toLowerCase().includes(searchQuery.toLowerCase())
+      faq.ja.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.ja.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.en.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.en.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const getSizeClass = (size: string) => {
@@ -114,11 +116,11 @@ const Faq = () => {
                         {faq.category}
                       </span>
                       <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                        {faq.question}
+                        {faq.ja.question}
                       </h3>
                     </div>
                     <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-100">
-                      {faq.answer}
+                      {faq.ja.answer}
                     </p>
                   </div>
                 ))}
@@ -139,8 +141,8 @@ const Faq = () => {
           <Accordion
             key={index}
             index={index}
-            question={faq.question}
-            answer={faq.answer}
+            question={faq.ja.question}
+            answer={faq.ja.answer}
             size={faq.size}
             category={faq.category}
           />

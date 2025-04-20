@@ -9,6 +9,7 @@ import { certifications } from "../../constants/certification";
 import { strongPoint } from "../../constants/strong-point";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useRouter } from "next/navigation";
+import Modal from "@/components/ui/modal";
 
 type SearchResult = {
   type: string;
@@ -139,9 +140,6 @@ const SearchModal = () => {
         e.preventDefault();
         setIsOpen((open) => !open);
       }
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
     };
 
     document.addEventListener("keydown", down);
@@ -189,91 +187,79 @@ const SearchModal = () => {
         <Search className="h-5 w-5" />
       </button>
 
-      {/* Command Palette Modal */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
-          <div className="fixed inset-x-0 top-[20%] mx-auto max-w-2xl">
-            <div className="relative rounded-xl border border-gray-200 bg-white shadow-2xl dark:border-gray-700 dark:bg-gray-800">
-              <div className="border-b border-gray-200 dark:border-gray-700">
-                <div className="flex items-center px-4 py-3">
-                  <Search className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                  <input
-                    ref={inputRef}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={currentLang === 'ja' ? "検索..." : "Search..."}
-                    className="ml-3 flex-1 bg-transparent text-gray-900 outline-none dark:text-gray-100"
-                    autoFocus
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery("")}
-                      className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    >
-                      <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                    </button>
-                  )}
-                  <kbd className="ml-2 rounded border border-gray-200 px-1.5 py-0.5 text-xs text-gray-400 dark:border-gray-600 dark:text-gray-500">
-                    ESC
-                  </kbd>
-                </div>
-              </div>
-              <div className="max-h-[60vh] overflow-y-auto bg-white dark:bg-gray-800">
-                {searchResults.length > 0 ? (
-                  searchResults.map((result, index) => (
-                    <div
-                      key={index}
-                      className={`cursor-pointer px-4 py-3 ${
-                        selectedIndex === index
-                          ? "bg-blue-50 dark:bg-gray-700"
-                          : "hover:bg-gray-50 dark:hover:bg-gray-700"
-                      }`}
-                      onClick={() => handleResultClick(result)}
-                    >
-                      <div className="mb-1 flex items-center gap-2">
-                        <span className="text-lg" aria-hidden="true">
-                          {getTypeIcon(result.type)}
-                        </span>
-                        <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-                          {result.type}
-                        </span>
-                        {result.category && (
-                          <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
-                            {result.category}
-                          </span>
-                        )}
-                        <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                          {result.title}
-                        </h3>
-                      </div>
-                      <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-300">
-                        {result.description}
-                      </p>
-                    </div>
-                  ))
-                ) : searchQuery ? (
-                  <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
-                    {currentLang === 'ja' ? "検索結果がありません" : "No results found"}
-                  </div>
-                ) : (
-                  <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
-                    {currentLang === 'ja' 
-                      ? "キーワードを入力して検索してください" 
-                      : "Type to search across the site"}
-                  </div>
-                )}
-              </div>
-            </div>
+      <Modal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)}
+        modalTitle={currentLang === 'ja' ? "サイト内検索" : "Site Search"}
+        modalDescription={currentLang === 'ja' ? "キーワードを入力して検索" : "Enter keywords to search"}
+      >
+        <div className="relative">
+          <div className="flex items-center px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+            <Search className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            <input
+              ref={inputRef}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={currentLang === 'ja' ? "検索..." : "Search..."}
+              className="ml-3 flex-1 bg-transparent text-gray-900 outline-none dark:text-gray-100"
+              autoFocus
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+              </button>
+            )}
           </div>
-          <div
-            className="fixed inset-0"
-            onClick={() => {
-              setIsOpen(false);
-              setSearchQuery("");
-            }}
-          />
+          <div className="max-h-[50vh] overflow-y-auto">
+            {searchResults.length > 0 ? (
+              searchResults.map((result, index) => (
+                <div
+                  key={index}
+                  className={`cursor-pointer px-4 py-3 ${
+                    selectedIndex === index
+                      ? "bg-blue-50 dark:bg-gray-700"
+                      : "hover:bg-gray-50 dark:hover:bg-gray-700"
+                  }`}
+                  onClick={() => handleResultClick(result)}
+                >
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="text-lg" aria-hidden="true">
+                      {getTypeIcon(result.type)}
+                    </span>
+                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                      {result.type}
+                    </span>
+                    {result.category && (
+                      <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+                        {result.category}
+                      </span>
+                    )}
+                    <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                      {result.title}
+                    </h3>
+                  </div>
+                  <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-300">
+                    {result.description}
+                  </p>
+                </div>
+              ))
+            ) : searchQuery ? (
+              <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                {currentLang === 'ja' ? "検索結果がありません" : "No results found"}
+              </div>
+            ) : (
+              <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                {currentLang === 'ja' 
+                  ? "キーワードを入力して検索してください" 
+                  : "Type to search across the site"}
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </Modal>
     </>
   );
 };

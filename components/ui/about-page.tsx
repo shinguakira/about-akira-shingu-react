@@ -41,8 +41,8 @@ const AboutPage = ({ translations }: AboutPageProps) => {
               <Accordion
                 key={index}
                 index={index}
-                question={strong.question}
-                answer={strong.answer}
+                question={strong.ja.question}
+                answer={strong.ja.answer}
                 size={strong.size}
               />
             ))}

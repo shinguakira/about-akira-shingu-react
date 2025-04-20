@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Search, X } from "lucide-react";
+import { Search, X, ArrowRight } from "lucide-react";
 import { faqs } from "../../constants/faq";
 import { projects } from "../../constants/project";
 import { skills, otherSkills } from "../../constants/skill";
@@ -17,6 +17,7 @@ type SearchResult = {
   description: string;
   category?: string;
   url: string;
+  anchor?: string; // For navigating to specific sections
 };
 
 const SearchModal = () => {
@@ -25,6 +26,7 @@ const SearchModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const resultsContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const currentLang = locale === 'ja' ? 'ja' : 'en';
 
@@ -35,7 +37,7 @@ const SearchModal = () => {
     
     const query = searchQuery.toLowerCase();
     
-    faqs.forEach((faq) => {
+    faqs.forEach((faq, index) => {
       if (
         faq[currentLang].question.toLowerCase().includes(query) ||
         faq[currentLang].answer.toLowerCase().includes(query) ||
@@ -46,12 +48,13 @@ const SearchModal = () => {
           title: faq[currentLang].question,
           description: faq[currentLang].answer,
           category: faq.category,
-          url: `/${locale}/faq`
+          url: `/${locale}/faq`,
+          anchor: `faq-${index}`
         });
       }
     });
     
-    projects.forEach((project) => {
+    projects.forEach((project, index) => {
       if (
         project.title.toLowerCase().includes(query) ||
         project.description.toLowerCase().includes(query) ||
@@ -61,7 +64,8 @@ const SearchModal = () => {
           type: "project",
           title: project.title,
           description: project.description,
-          url: `/${locale}/projects`
+          url: `/${locale}/projects`,
+          anchor: `project-${index}`
         });
       }
     });
@@ -76,12 +80,13 @@ const SearchModal = () => {
           title: skill.name,
           description: `${skill.category} - ${skill.years} years`,
           category: skill.category,
-          url: `/${locale}/about`
+          url: `/${locale}/about`,
+          anchor: `skill-${skill.category.toLowerCase().replace(/\s+/g, '-')}`
         });
       }
     });
     
-    workExperiences.forEach((exp) => {
+    workExperiences.forEach((exp, index) => {
       if (
         exp[currentLang].projectOverview.toLowerCase().includes(query) ||
         exp[currentLang].role.toLowerCase().includes(query) ||
@@ -95,12 +100,13 @@ const SearchModal = () => {
           title: exp[currentLang].projectOverview,
           description: exp[currentLang].role,
           category: exp.company,
-          url: `/${locale}/about`
+          url: `/${locale}/about`,
+          anchor: `work-${index}`
         });
       }
     });
     
-    certifications.forEach((cert) => {
+    certifications.forEach((cert, index) => {
       if (
         cert.name.toLowerCase().includes(query) ||
         cert.organization.toLowerCase().includes(query) ||
@@ -110,12 +116,13 @@ const SearchModal = () => {
           type: "certification",
           title: cert.name,
           description: `${cert.organization} - ${cert.date}`,
-          url: `/${locale}/certifications`
+          url: `/${locale}/certifications`,
+          anchor: `cert-${index}`
         });
       }
     });
     
-    strongPoint.forEach((point) => {
+    strongPoint.forEach((point, index) => {
       if (
         point[currentLang].question.toLowerCase().includes(query) ||
         point[currentLang].answer.toLowerCase().includes(query)
@@ -124,7 +131,8 @@ const SearchModal = () => {
           type: "strongPoint",
           title: point[currentLang].question,
           description: point[currentLang].answer,
-          url: `/${locale}/about`
+          url: `/${locale}/about`,
+          anchor: `strong-point-${index}`
         });
       }
     });
@@ -140,11 +148,35 @@ const SearchModal = () => {
         e.preventDefault();
         setIsOpen((open) => !open);
       }
+
+      if (isOpen) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSelectedIndex((prevIndex) => 
+            prevIndex < searchResults.length - 1 ? prevIndex + 1 : prevIndex
+          );
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+        } else if (e.key === "Enter" && searchResults.length > 0) {
+          e.preventDefault();
+          handleResultClick(searchResults[selectedIndex]);
+        }
+      }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [isOpen, searchResults, selectedIndex]);
+
+  useEffect(() => {
+    if (resultsContainerRef.current && searchResults.length > 0) {
+      const selectedElement = document.getElementById(`search-result-${selectedIndex}`);
+      if (selectedElement) {
+        selectedElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }, [selectedIndex, searchResults.length]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -155,7 +187,12 @@ const SearchModal = () => {
   const handleResultClick = (result: SearchResult) => {
     setIsOpen(false);
     setSearchQuery("");
-    router.push(result.url);
+    
+    if (result.anchor) {
+      router.push(`${result.url}#${result.anchor}`);
+    } else {
+      router.push(result.url);
+    }
   };
 
   const getTypeIcon = (type: string) => {
@@ -174,6 +211,25 @@ const SearchModal = () => {
         return "💪";
       default:
         return "📄";
+    }
+  };
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case "faq":
+        return currentLang === 'ja' ? "よくある質問" : "FAQ";
+      case "project":
+        return currentLang === 'ja' ? "プロジェクト" : "Project";
+      case "skill":
+        return currentLang === 'ja' ? "スキル" : "Skill";
+      case "experience":
+        return currentLang === 'ja' ? "職歴" : "Work Experience";
+      case "certification":
+        return currentLang === 'ja' ? "資格" : "Certification";
+      case "strongPoint":
+        return currentLang === 'ja' ? "強み" : "Strong Point";
+      default:
+        return type;
     }
   };
 
@@ -199,7 +255,10 @@ const SearchModal = () => {
             <input
               ref={inputRef}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setSelectedIndex(0); // Reset selection when query changes
+              }}
               placeholder={currentLang === 'ja' ? "検索..." : "Search..."}
               className="ml-3 flex-1 bg-transparent text-gray-900 outline-none dark:text-gray-100"
               autoFocus
@@ -213,39 +272,56 @@ const SearchModal = () => {
               </button>
             )}
           </div>
-          <div className="max-h-[50vh] overflow-y-auto">
+          <div 
+            ref={resultsContainerRef}
+            className="max-h-[50vh] overflow-y-auto scroll-smooth"
+          >
             {searchResults.length > 0 ? (
-              searchResults.map((result, index) => (
-                <div
-                  key={index}
-                  className={`cursor-pointer px-4 py-3 ${
-                    selectedIndex === index
-                      ? "bg-blue-50 dark:bg-gray-700"
-                      : "hover:bg-gray-50 dark:hover:bg-gray-700"
-                  }`}
-                  onClick={() => handleResultClick(result)}
-                >
-                  <div className="mb-1 flex items-center gap-2">
-                    <span className="text-lg" aria-hidden="true">
-                      {getTypeIcon(result.type)}
-                    </span>
-                    <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-                      {result.type}
-                    </span>
-                    {result.category && (
-                      <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
-                        {result.category}
-                      </span>
-                    )}
-                    <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                      {result.title}
-                    </h3>
-                  </div>
-                  <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-300">
-                    {result.description}
-                  </p>
+              <>
+                <div className="p-2 text-xs text-gray-500 dark:text-gray-400">
+                  {currentLang === 'ja' 
+                    ? `${searchResults.length}件の結果が見つかりました` 
+                    : `${searchResults.length} results found`}
                 </div>
-              ))
+                {searchResults.map((result, index) => (
+                  <div
+                    id={`search-result-${index}`}
+                    key={index}
+                    className={`cursor-pointer px-4 py-3 ${
+                      selectedIndex === index
+                        ? "bg-blue-50 dark:bg-gray-700"
+                        : "hover:bg-gray-50 dark:hover:bg-gray-700"
+                    }`}
+                    onClick={() => handleResultClick(result)}
+                    onMouseEnter={() => setSelectedIndex(index)}
+                  >
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="text-lg" aria-hidden="true">
+                        {getTypeIcon(result.type)}
+                      </span>
+                      <span className="rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                        {getTypeLabel(result.type)}
+                      </span>
+                      {result.category && (
+                        <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+                          {result.category}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex-1">
+                        <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                          {result.title}
+                        </h3>
+                        <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-300">
+                          {result.description}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-gray-400 flex-shrink-0 ml-2" />
+                    </div>
+                  </div>
+                ))}
+              </>
             ) : searchQuery ? (
               <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                 {currentLang === 'ja' ? "検索結果がありません" : "No results found"}
@@ -257,6 +333,11 @@ const SearchModal = () => {
                   : "Type to search across the site"}
               </div>
             )}
+          </div>
+          <div className="px-4 py-2 text-xs text-gray-500 border-t border-gray-200 dark:border-gray-700 dark:text-gray-400">
+            {currentLang === 'ja' 
+              ? "↑↓: 移動, Enter: 選択, Esc: 閉じる" 
+              : "↑↓: Navigate, Enter: Select, Esc: Close"}
           </div>
         </div>
       </Modal>

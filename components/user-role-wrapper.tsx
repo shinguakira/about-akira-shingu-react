@@ -5,12 +5,12 @@ import { usePathname, useRouter } from 'next/navigation';
 
 export type UserRole = 'normalUser' | 'adminUser' | 'certification';
 
-const ROLE_KEYS = {
+const DEFAULT_ROLE_KEYS = {
   ADMIN: 'usr_type_a7x9z',
   CERTIFICATION: 'usr_type_c3r7f'
 };
 
-const ROLE_VALUES = {
+const DEFAULT_ROLE_VALUES = {
   ADMIN: 'adm_8d92x7',
   CERTIFICATION: 'cert_5f3g2h'
 };
@@ -24,25 +24,57 @@ export const UserRoleWrapper = ({ children }: UserRoleWrapperProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
+  const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
+  const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
   useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY) {
+      setRoleKeys(prev => ({
+        ...prev,
+        ADMIN: process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY) {
+      setRoleKeys(prev => ({
+        ...prev,
+        CERTIFICATION: process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY || DEFAULT_ROLE_KEYS.CERTIFICATION
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE) {
+      setRoleValues(prev => ({
+        ...prev,
+        ADMIN: process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE) {
+      setRoleValues(prev => ({
+        ...prev,
+        CERTIFICATION: process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE || DEFAULT_ROLE_VALUES.CERTIFICATION
+      }));
+    }
+
     const parseUrlParams = () => {
       if (typeof window !== 'undefined') {
         const urlParams = new URLSearchParams(window.location.search);
         
-        const adminValue = urlParams.get(ROLE_KEYS.ADMIN);
-        if (adminValue === ROLE_VALUES.ADMIN) {
+        const adminKey = process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN;
+        const adminValue = process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN;
+        if (urlParams.get(adminKey) === adminValue) {
           setRole('adminUser');
           return;
         }
         
-        const certValue = urlParams.get(ROLE_KEYS.CERTIFICATION);
-        if (certValue === ROLE_VALUES.CERTIFICATION) {
+        const certKey = process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY || DEFAULT_ROLE_KEYS.CERTIFICATION;
+        const certValue = process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE || DEFAULT_ROLE_VALUES.CERTIFICATION;
+        if (urlParams.get(certKey) === certValue) {
           setRole('certification');
           
           if (pathname && !pathname.includes('/certifications')) {
             const locale = pathname.split('/')[1] || 'en';
-            router.push(`/${locale}/certifications?${ROLE_KEYS.CERTIFICATION}=${ROLE_VALUES.CERTIFICATION}`);
+            router.push(`/${locale}/certifications?${certKey}=${certValue}`);
           }
           return;
         }

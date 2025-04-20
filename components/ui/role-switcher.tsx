@@ -5,12 +5,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Button } from './shadcn/button';
 import { UserRole } from '../../components/user-role-wrapper';
 
-const ROLE_KEYS = {
+const DEFAULT_ROLE_KEYS = {
   ADMIN: 'usr_type_a7x9z',
   CERTIFICATION: 'usr_type_c3r7f'
 };
 
-const ROLE_VALUES = {
+const DEFAULT_ROLE_VALUES = {
   ADMIN: 'adm_8d92x7',
   CERTIFICATION: 'cert_5f3g2h'
 };
@@ -20,25 +20,57 @@ export default function RoleSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const [testMode, setTestMode] = useState(false);
+  const [testMode, setTestMode] = useState(true); // Default to true if env var not set
+  const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
+  const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
   useEffect(() => {
     setIsClient(true);
     
-    const testModeEnabled = process.env.NEXT_PUBLIC_TEST_MODE === '1';
-    setTestMode(testModeEnabled);
+    const testModeEnv = process.env.NEXT_PUBLIC_TEST_MODE;
+    setTestMode(testModeEnv === undefined || testModeEnv === '' || testModeEnv === '1');
+    
+    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY) {
+      setRoleKeys(prev => ({
+        ...prev,
+        ADMIN: process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY) {
+      setRoleKeys(prev => ({
+        ...prev,
+        CERTIFICATION: process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY || DEFAULT_ROLE_KEYS.CERTIFICATION
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE) {
+      setRoleValues(prev => ({
+        ...prev,
+        ADMIN: process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN
+      }));
+    }
+    
+    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE) {
+      setRoleValues(prev => ({
+        ...prev,
+        CERTIFICATION: process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE || DEFAULT_ROLE_VALUES.CERTIFICATION
+      }));
+    }
     
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       
-      const adminValue = urlParams.get(ROLE_KEYS.ADMIN);
-      if (adminValue === ROLE_VALUES.ADMIN) {
+      const adminKey = process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN;
+      const adminValue = process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN;
+      if (urlParams.get(adminKey) === adminValue) {
         setCurrentRole('adminUser');
         return;
       }
       
-      const certValue = urlParams.get(ROLE_KEYS.CERTIFICATION);
-      if (certValue === ROLE_VALUES.CERTIFICATION) {
+      const certKey = process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY || DEFAULT_ROLE_KEYS.CERTIFICATION;
+      const certValue = process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE || DEFAULT_ROLE_VALUES.CERTIFICATION;
+      if (urlParams.get(certKey) === certValue) {
         setCurrentRole('certification');
         return;
       }
@@ -56,20 +88,24 @@ export default function RoleSwitcher() {
       const url = new URL(window.location.href);
       const locale = pathname?.split('/')[1] || 'en';
       
-      url.searchParams.delete(ROLE_KEYS.ADMIN);
-      url.searchParams.delete(ROLE_KEYS.CERTIFICATION);
+      url.searchParams.delete(roleKeys.ADMIN);
+      url.searchParams.delete(roleKeys.CERTIFICATION);
       
       if (newRole === 'normalUser') {
         router.push(pathname || `/${locale}`);
       } else if (newRole === 'adminUser') {
-        router.push(`${pathname || `/${locale}`}?${ROLE_KEYS.ADMIN}=${ROLE_VALUES.ADMIN}`);
+        router.push(`${pathname || `/${locale}`}?${roleKeys.ADMIN}=${roleValues.ADMIN}`);
       } else if (newRole === 'certification') {
-        router.push(`/${locale}/certifications?${ROLE_KEYS.CERTIFICATION}=${ROLE_VALUES.CERTIFICATION}`);
+        router.push(`/${locale}/certifications?${roleKeys.CERTIFICATION}=${roleValues.CERTIFICATION}`);
       }
     }
   };
 
-  if (!isClient || !testMode) {
+  if (!isClient) {
+    return null;
+  }
+
+  if (!testMode) {
     return null;
   }
 

@@ -229,6 +229,14 @@ export const skills: SkillItemProps[] = [
 // otherSkills(IDE,Editor,Project Management Tool.etc)
 export const otherSkills: SkillItemProps[] = [
   {
+    name: "Next.js Internationalization",
+    years: "3 months",
+    category: "Framework",
+    proficyency: onBusiness,
+    picture: "M24 22.525H0l12-21.05 12 21.05z",
+    pictureColor: "#000000",
+  },
+  {
     name: "VS Code(Typescript)",
     years: "1 year",
     category: "Others",

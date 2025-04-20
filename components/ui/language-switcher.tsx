@@ -13,6 +13,20 @@ import {
 
 export default function LanguageSwitcher() {
   const { locale, changeLanguage } = useLanguage();
+  const [currentLocale, setCurrentLocale] = React.useState(locale);
+  
+  React.useEffect(() => {
+    setCurrentLocale(locale);
+  }, [locale]);
+  
+  React.useEffect(() => {
+    const pathname = window.location.pathname;
+    const pathLocale = pathname.split('/')[1];
+    
+    if ((pathLocale === 'en' || pathLocale === 'ja') && pathLocale !== currentLocale) {
+      setCurrentLocale(pathLocale);
+    }
+  }, []);
 
   return (
     <DropdownMenu>
@@ -25,13 +39,13 @@ export default function LanguageSwitcher() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem
           onClick={() => changeLanguage("en")}
-          className={locale === "en" ? "bg-accent" : ""}
+          className={currentLocale === "en" ? "bg-accent" : ""}
         >
           English
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => changeLanguage("ja")}
-          className={locale === "ja" ? "bg-accent" : ""}
+          className={currentLocale === "ja" ? "bg-accent" : ""}
         >
           日本語
         </DropdownMenuItem>

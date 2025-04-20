@@ -28,6 +28,19 @@ export const LanguageProvider = ({
   const router = useRouter();
 
   useEffect(() => {
+    const pathname = window.location.pathname;
+    const pathLocale = pathname.split('/')[1];
+    
+    if (pathLocale === 'en' || pathLocale === 'ja') {
+      setLocale(pathLocale);
+      try {
+        localStorage.setItem('language', pathLocale);
+      } catch (error) {
+        console.error('Error storing language preference:', error);
+      }
+      return;
+    }
+    
     try {
       const storedLocale = localStorage.getItem('language');
       if (storedLocale && (storedLocale === 'en' || storedLocale === 'ja')) {

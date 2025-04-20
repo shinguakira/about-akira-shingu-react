@@ -7,12 +7,27 @@ const PUBLIC_FILE = /\.(?:jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2)$/;
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const searchParams = request.nextUrl.searchParams;
+  const userRole = searchParams.get('role');
 
   if (
     pathname.startsWith('/_next') ||
     pathname.includes('/api/') ||
     PUBLIC_FILE.test(pathname)
   ) {
+    return NextResponse.next();
+  }
+
+  if (userRole === 'certification') {
+    const pathParts = pathname.split('/').filter(Boolean);
+    const pathLocale = pathParts[0] && locales.includes(pathParts[0]) ? pathParts[0] : defaultLocale;
+    
+    if (!pathname.includes('/certifications')) {
+      const certUrl = new URL(`/${pathLocale}/certifications`, request.url);
+      certUrl.searchParams.set('role', 'certification');
+      return NextResponse.redirect(certUrl);
+    }
+    
     return NextResponse.next();
   }
 

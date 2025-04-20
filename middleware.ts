@@ -5,10 +5,22 @@ const defaultLocale = 'en';
 
 const PUBLIC_FILE = /\.(?:jpg|jpeg|png|gif|svg|ico|css|js|woff|woff2)$/;
 
+const ROLE_KEYS = {
+  ADMIN: 'usr_type_a7x9z',
+  CERTIFICATION: 'usr_type_c3r7f'
+};
+
+const ROLE_VALUES = {
+  ADMIN: 'adm_8d92x7',
+  CERTIFICATION: 'cert_5f3g2h'
+};
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const searchParams = request.nextUrl.searchParams;
-  const userRole = searchParams.get('role');
+  
+  const certValue = searchParams.get(ROLE_KEYS.CERTIFICATION);
+  const isCertificationRole = certValue === ROLE_VALUES.CERTIFICATION;
 
   if (
     pathname.startsWith('/_next') ||
@@ -18,13 +30,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (userRole === 'certification') {
+  if (isCertificationRole) {
     const pathParts = pathname.split('/').filter(Boolean);
     const pathLocale = pathParts[0] && locales.includes(pathParts[0]) ? pathParts[0] : defaultLocale;
     
     if (!pathname.includes('/certifications')) {
       const certUrl = new URL(`/${pathLocale}/certifications`, request.url);
-      certUrl.searchParams.set('role', 'certification');
+      certUrl.searchParams.set(ROLE_KEYS.CERTIFICATION, ROLE_VALUES.CERTIFICATION);
       return NextResponse.redirect(certUrl);
     }
     

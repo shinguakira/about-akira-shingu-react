@@ -1,36 +1,80 @@
 import { receptionInnovationSkillSet, VOCSkillSet } from "@/constants";
 import { company } from "@/constants";
 
+export type WorkExperienceContent = {
+  projectOverview: string;
+  role: string;
+  description: string[];
+  archivement: string[];
+  technologies: string[];
+};
+
+export type MultilingualWorkExperience = {
+  company: string;
+  period: string;
+  teamSize: string;
+  manMonth: string;
+  ja: WorkExperienceContent;
+  en: WorkExperienceContent;
+};
+
 // object for work experience
-export const workExperiences: WorkExperience[] = [
+export const workExperiences: MultilingualWorkExperience[] = [
   {
     company: company.eastCoast,
-    projectOverview: "ポートフォリオサイト多言語対応",
     period: "2025年4月",
     teamSize: "1",
-    role: "フルスタック開発者",
     manMonth: "0.5人月",
-    description: [
-      "個人ポートフォリオサイトの日本語・英語対応",
-      "Next.js App Routerを使用した動的ルーティングによる多言語対応",
-      "SEO対応のためのgenerateStaticParamsの実装",
-      "言語切替時に現在のページを維持する機能の実装",
-    ],
-    archivement: [
-      "Next.js 15.3.1の最新機能を活用した効率的な多言語対応の実装",
-      "ユーザー体験を向上させる言語切替機能の実装",
-      "検索エンジン最適化のための静的ページ生成の実装",
-    ],
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "React",
-      "App Router",
-      "Dynamic Routes",
-      "generateStaticParams",
-      "Internationalization",
-      "SEO最適化",
-    ],
+    ja: {
+      projectOverview: "ポートフォリオサイト多言語対応",
+      role: "フルスタック開発者",
+      description: [
+        "個人ポートフォリオサイトの日本語・英語対応",
+        "Next.js App Routerを使用した動的ルーティングによる多言語対応",
+        "SEO対応のためのgenerateStaticParamsの実装",
+        "言語切替時に現在のページを維持する機能の実装",
+      ],
+      archivement: [
+        "Next.js 15.3.1の最新機能を活用した効率的な多言語対応の実装",
+        "ユーザー体験を向上させる言語切替機能の実装",
+        "検索エンジン最適化のための静的ページ生成の実装",
+      ],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "App Router",
+        "Dynamic Routes",
+        "generateStaticParams",
+        "Internationalization",
+        "SEO最適化",
+      ],
+    },
+    en: {
+      projectOverview: "Portfolio Website Multilingual Support",
+      role: "Full Stack Developer",
+      description: [
+        "Japanese and English support for personal portfolio website",
+        "Multilingual support using dynamic routing with Next.js App Router",
+        "Implementation of generateStaticParams for SEO optimization",
+        "Implementation of language switching while maintaining current page",
+      ],
+      archivement: [
+        "Efficient multilingual implementation using Next.js 15.3.1 latest features",
+        "Implementation of language switching feature to enhance user experience",
+        "Implementation of static page generation for search engine optimization",
+      ],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "App Router",
+        "Dynamic Routes",
+        "generateStaticParams",
+        "Internationalization",
+        "SEO Optimization",
+      ],
+    },
   },
   {
     company: company.eastCoast,

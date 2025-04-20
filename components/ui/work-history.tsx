@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Building2, Calendar } from "lucide-react";
-import { workExperiences } from "@/constants/work-experience";
+import { workExperiences, MultilingualWorkExperience } from "@/constants/work-experience";
 
 const WorkHistory = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -18,7 +18,7 @@ const WorkHistory = () => {
           My Work History
         </h1>
         <div className="space-y-6">
-          {workExperiences.map((experience: WorkExperience, index: number) => (
+          {workExperiences.map((experience: MultilingualWorkExperience, index: number) => (
             <div
               key={index}
               className="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg"
@@ -26,7 +26,7 @@ const WorkHistory = () => {
               <div className="px-4 py-5 sm:px-6">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                    {experience.projectOverview}
+                    {experience.ja.projectOverview}
                   </h3>
                   <button
                     onClick={() => toggleExpand(index)}
@@ -41,7 +41,7 @@ const WorkHistory = () => {
                   </button>
                 </div>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                  {experience.role}
+                  {experience.ja.role}
                 </p>
               </div>
               <div className="border-t border-gray-200 px-4 py-5 dark:border-gray-700 sm:px-6">
@@ -72,7 +72,7 @@ const WorkHistory = () => {
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <ul className="list-disc space-y-1 pl-5">
-                            {experience.description.map((item, index) => (
+                            {experience.ja.description.map((item: string, index: number) => (
                               <li key={index}>{item}</li>
                             ))}
                           </ul>
@@ -82,7 +82,7 @@ const WorkHistory = () => {
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <ul className="list-disc space-y-1 pl-5">
-                            {experience.archivement.map((item, index) => (
+                            {experience.ja.archivement.map((item: string, index: number) => (
                               <li key={index}>{item}</li>
                             ))}
                           </ul>
@@ -94,7 +94,7 @@ const WorkHistory = () => {
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                           <div className="flex flex-wrap gap-2">
-                            {experience.technologies.map((tech, index) => (
+                            {experience.ja.technologies.map((tech: string, index: number) => (
                               <span
                                 key={index}
                                 className="rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300"

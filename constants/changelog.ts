@@ -3,6 +3,29 @@
  */
 export const changelogs: ChangelogProps[] = [
   {
+    version: "1.4.0",
+    date: "2025-04-20",
+    changes: [
+      {
+        type: "feature",
+        description: `多言語対応（日本語・英語）の実装
+動的ルーティングによる言語切り替え機能の追加
+SEO対応のためのgenerateStaticParamsの実装
+言語切替時に現在のページを維持する機能追加`,
+      },
+      {
+        type: "improvement",
+        description: `Qiitaアイコン表示のためのAPIをLogo.devに変更
+ページ構造の最適化とコード整理
+資格証明書リンクの絶対パス参照に修正`,
+      },
+      {
+        type: "bugfix",
+        description: "Vercelデプロイメントエラーの修正",
+      },
+    ],
+  },
+  {
     version: "1.3.0",
     date: "2025-04-06",
     changes: [

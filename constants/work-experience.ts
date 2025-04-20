@@ -5,6 +5,35 @@ import { company } from "@/constants";
 export const workExperiences: WorkExperience[] = [
   {
     company: company.eastCoast,
+    projectOverview: "ポートフォリオサイト多言語対応",
+    period: "2025年4月",
+    teamSize: "1",
+    role: "フルスタック開発者",
+    manMonth: "0.5人月",
+    description: [
+      "個人ポートフォリオサイトの日本語・英語対応",
+      "Next.js App Routerを使用した動的ルーティングによる多言語対応",
+      "SEO対応のためのgenerateStaticParamsの実装",
+      "言語切替時に現在のページを維持する機能の実装",
+    ],
+    archivement: [
+      "Next.js 15.3.1の最新機能を活用した効率的な多言語対応の実装",
+      "ユーザー体験を向上させる言語切替機能の実装",
+      "検索エンジン最適化のための静的ページ生成の実装",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "App Router",
+      "Dynamic Routes",
+      "generateStaticParams",
+      "Internationalization",
+      "SEO最適化",
+    ],
+  },
+  {
+    company: company.eastCoast,
     projectOverview: "お客さま情報検索、取得、特定APIの改修",
     period: "2024年10月 - 2024年1月(予定)",
     teamSize: "3",

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/app/globals.css";
 import Providers from "@/components/providers";
-import NavBar from "@/components/ui/nav-bar";
+import ClientLayoutWrapper from "@/components/client-layout-wrapper";
 
 const geistSans = localFont({
   src: "../../../app/fonts/GeistVF.woff",
@@ -50,10 +50,9 @@ type Props = {
 export default async function LocaleLayout({ children, params }: Props) {
   return (
     <Providers>
-      <NavBar />
-      <main className="text-dark flex min-h-screen w-full grow items-center pt-36">
+      <ClientLayoutWrapper>
         {children}
-      </main>
+      </ClientLayoutWrapper>
     </Providers>
   );
 }

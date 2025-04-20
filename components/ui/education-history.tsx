@@ -1,3 +1,5 @@
+"use client";
+
 import { educationHistory } from "@/constants/education-history";
 import EducationItem from "./education-item";
 import { useParams } from "next/navigation";

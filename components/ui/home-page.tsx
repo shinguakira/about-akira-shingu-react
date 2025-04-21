@@ -37,7 +37,7 @@ interface HomePageProps {
   };
 }
 
-const emailAddress = process.env.CONTACT_EMAIL || "contact@example.com";
+const emailAddress = process.env.CONTACT_EMAIL || "shinguakira1022@gmail.com";
 
 export default function HomePage({ locale, translations }: HomePageProps) {
   const [isModalOpen, setIsModalOpen] = useState(true);

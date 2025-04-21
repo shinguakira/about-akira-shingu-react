@@ -9,7 +9,7 @@ const tmpPic = "/public/images/profile/developer-pic-1.png";
 const ProjectPage = () => {
   return (
     <div className="mx-auto min-h-screen bg-gray-100 px-4 py-12 dark:bg-slate-500">
-      <div className="max-w-7xl">
+      <div className="mx-auto max-w-7xl">
         <h1 className="mb-12 text-center text-4xl font-bold text-gray-900">
           My Projects
         </h1>

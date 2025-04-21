@@ -38,7 +38,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
     },
     ja: {
       animatedText: "コードとデザインでビジョンを現実に。",
-      description: "熟練したフルスタック開発者として、アイデアを革新的なウェブアプリケーションに変えることに専念しています。私の最新プロジェクトと記事をご覧いただき、Reactとウェブ開発における専門知識をご確認ください。",
+      description: "フルスタック開発者として、アイデアを革新的なウェブアプリケーションに変えることに専念しています。私の最新プロジェクトと記事をご覧いただき、Reactとウェブ開発における専門知識をご確認ください。",
       downloadLabel: "ダウンロード→",
       resumeLabel: "履歴書",
       jobResumeLabel: "職務履歴書",
@@ -133,11 +133,11 @@ export default function HomeClientPage({ locale }: { locale: string }) {
           </div>
           <div>
             <Link
-              href="mailto:contact@example.com"
+              href="mailto:shinguakira1022@gmail.com"
               target="_blank"
               className="text-lg font-medium text-black underline"
             >
-              {`${t.contactLabel} contact@example.com`}
+              {`${t.contactLabel} shinguakira1022@gmail.com`}
             </Link>
           </div>
         </div>

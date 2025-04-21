@@ -8,6 +8,7 @@ import ThemeToggle from "../theme-toggle";
 import ChangelogNotification from "./changelog-notification";
 import LanguageSwitcher from "@/components/ui/language-switcher";
 import RoleSwitcher from "./role-switcher";
+import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconSize = "w-6 h-6";
@@ -90,6 +91,7 @@ const NavBar = () => {
         >
           <GithubIcon className={iconSize} />
         </Link>
+        <SearchModal />
         <LanguageSwitcher />
         <RoleSwitcher />
         <ThemeToggle />

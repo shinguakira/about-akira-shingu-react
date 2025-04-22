@@ -8,7 +8,8 @@ export const changelogs: ChangelogProps[] = [
     changes: [
       {
         type: "feature",
-        description: `多言語対応（日本語・英語）の実装
+        description: `プロジェクト追加
+多言語対応（日本語・英語）の実装
 動的ルーティングによる言語切り替え機能の追加
 SEO対応のためのgenerateStaticParamsの実装
 言語切替時に現在のページを維持する機能追加`,

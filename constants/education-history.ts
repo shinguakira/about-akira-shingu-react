@@ -25,7 +25,8 @@ export const educationHistory: MultilingualEducationHistoryProps[] = [
     },
     en: {
       school: "Ibaraki University",
-      department: "Faculty of Engineering, Department of Computer and Information Sciences",
+      department:
+        "Faculty of Engineering, Department of Computer and Information Sciences",
       description:
         "The Department of Computer and Information Sciences focuses on practical applications of programming, networking, and other information technology fields compared to information science. It is JABEE-accredited, which exempts graduates from the first stage of the Professional Engineer examination.",
     },

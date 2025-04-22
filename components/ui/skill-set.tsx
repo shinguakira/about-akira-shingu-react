@@ -8,8 +8,8 @@ import { useParams } from "next/navigation";
 
 const SkillSet = () => {
   const params = useParams();
-  const locale = params?.locale as string || 'ja';
-  const currentLang = locale === 'ja' ? 'ja' : 'en';
+  const locale = (params?.locale as string) || "ja";
+  const currentLang = locale === "ja" ? "ja" : "en";
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     new Set(["All"])
   );
@@ -67,7 +67,7 @@ const SkillSet = () => {
         ))}
       </div>
       <h3 className="mb-8 w-full text-center text-3xl text-blue-900 underline dark:text-white">
-        {currentLang === 'ja' ? 'スキル' : 'Skills'}
+        {currentLang === "ja" ? "スキル" : "Skills"}
       </h3>
       <div className="mx-auto grid grid-cols-3 gap-6 md:grid-cols-4 lg:grid-cols-4">
         {filteredSkills.map((skill) => (
@@ -85,7 +85,7 @@ const SkillSet = () => {
       {/* display only filtered OtherSkill exist */}
       {filteredOtherSkills.length > 0 && (
         <h3 className="mb-8 w-full text-center text-3xl text-green-700 underline dark:text-gray-500">
-          {currentLang === 'ja' ? 'その他のスキル' : 'Other Skills'}
+          {currentLang === "ja" ? "その他のスキル" : "Other Skills"}
         </h3>
       )}
       <div className="mx-auto grid grid-cols-3 gap-6 md:grid-cols-4 lg:grid-cols-4">

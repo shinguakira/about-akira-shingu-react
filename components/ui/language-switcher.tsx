@@ -14,16 +14,19 @@ import {
 export default function LanguageSwitcher() {
   const { locale, changeLanguage } = useLanguage();
   const [currentLocale, setCurrentLocale] = React.useState(locale);
-  
+
   React.useEffect(() => {
     setCurrentLocale(locale);
   }, [locale]);
-  
+
   React.useEffect(() => {
     const pathname = window.location.pathname;
-    const pathLocale = pathname.split('/')[1];
-    
-    if ((pathLocale === 'en' || pathLocale === 'ja') && pathLocale !== currentLocale) {
+    const pathLocale = pathname.split("/")[1];
+
+    if (
+      (pathLocale === "en" || pathLocale === "ja") &&
+      pathLocale !== currentLocale
+    ) {
       setCurrentLocale(pathLocale);
     }
   }, []);

@@ -12,16 +12,16 @@ export default function AboutClientPage({ locale }: { locale: string }) {
     en: {
       skillSetTitle: "My Skill Set",
       categoriesTitle: "Categories",
-      strongPointsTitle: "Strong Points"
+      strongPointsTitle: "Strong Points",
     },
     ja: {
       skillSetTitle: "スキルセット",
       categoriesTitle: "カテゴリー",
-      strongPointsTitle: "アピールポイント"
-    }
+      strongPointsTitle: "アピールポイント",
+    },
   };
 
-  const t = translations[locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === "ja" ? "ja" : "en"];
 
   return (
     <>
@@ -48,8 +48,8 @@ export default function AboutClientPage({ locale }: { locale: string }) {
               <Accordion
                 key={index}
                 index={index}
-                question={strong[locale === 'ja' ? 'ja' : 'en'].question}
-                answer={strong[locale === 'ja' ? 'ja' : 'en'].answer}
+                question={strong[locale === "ja" ? "ja" : "en"].question}
+                answer={strong[locale === "ja" ? "ja" : "en"].answer}
                 size={strong.size}
               />
             ))}

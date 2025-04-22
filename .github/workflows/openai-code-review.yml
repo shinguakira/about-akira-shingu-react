@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - name: OpenAI Code Review
         uses: anc95/ChatGPT-CodeReview@main
         env:
@@ -29,7 +29,7 @@ jobs:
           MODEL: gpt-4-turbo
           PROMPT: |
             You are an expert security-focused code reviewer for a React/Next.js portfolio website. Review the code changes and provide detailed, constructive feedback with a strong emphasis on security vulnerabilities.
-            
+
             Focus on:
             1. CRITICAL: Security vulnerabilities (especially in email functionality, environment variables, and user inputs)
             2. Code quality and React/Next.js best practices
@@ -37,7 +37,7 @@ jobs:
             4. Performance considerations for React components
             5. Accessibility issues
             6. UI/UX improvements
-            
+
             IMPORTANT: 
             - Prioritize finding and explaining security issues above all else
             - Specifically check for hardcoded credentials, unsafe eval(), command injection, XSS vulnerabilities

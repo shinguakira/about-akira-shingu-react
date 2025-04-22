@@ -48,7 +48,7 @@ export default function HomePage({ locale, translations }: HomePageProps) {
       setIsModalOpen(false);
     }
   });
-  
+
   function handleDontShowModal(modalHidden: string) {
     if (modalHidden === "true") {
       setCookie(null, "modalHidden", modalHidden, {
@@ -60,7 +60,7 @@ export default function HomePage({ locale, translations }: HomePageProps) {
       destroyCookie(null, "modalHidden", { path: "/" });
     }
   }
-  
+
   return (
     <>
       <Modal
@@ -87,13 +87,14 @@ export default function HomePage({ locale, translations }: HomePageProps) {
       </Modal>
       <div className="flex items-center justify-between">
         <div>
-          <Image src={profilePic} alt="Akira Shingu" className="h-auto w-full" />
+          <Image
+            src={profilePic}
+            alt="Akira Shingu"
+            className="h-auto w-full"
+          />
         </div>
         <div>
-          <AnimatedText
-            text={translations.animatedText}
-            className="text-6xl"
-          />
+          <AnimatedText text={translations.animatedText} className="text-6xl" />
           <p className="font-midium my-4 text-base">
             {translations.description}
           </p>
@@ -101,8 +102,14 @@ export default function HomePage({ locale, translations }: HomePageProps) {
             <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
               {translations.downloadLabel}
             </label>
-            <DownLoadLink href={links.resumeLink} label={translations.resumeLabel} />
-            <DownLoadLink href={links.jobResumeLink} label={translations.cvLabel} />
+            <DownLoadLink
+              href={links.resumeLink}
+              label={translations.resumeLabel}
+            />
+            <DownLoadLink
+              href={links.jobResumeLink}
+              label={translations.cvLabel}
+            />
             <DownLoadLink
               href={links.EnglishResumeLink}
               label={translations.englishCvLabel}

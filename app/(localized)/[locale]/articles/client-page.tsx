@@ -12,15 +12,15 @@ export default function ArticlesClientPage({ locale }: { locale: string }) {
   const translations = {
     en: {
       loading: "Loading...",
-      visitQiita: "Visit Qiita"
+      visitQiita: "Visit Qiita",
     },
     ja: {
       loading: "読み込み中...",
-      visitQiita: "Qiitaを訪問"
-    }
+      visitQiita: "Qiitaを訪問",
+    },
   };
 
-  const t = translations[locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === "ja" ? "ja" : "en"];
 
   React.useEffect(() => {
     const fetchData = async () => {

@@ -61,20 +61,18 @@ const ContactPage = () => {
               Message Sent!
             </h3>
             <p className="mb-6 text-gray-700 dark:text-gray-300">
-              Thank you for your message. I'll get back to you as soon as possible.
+              Thank you for your message. I'll get back to you as soon as
+              possible.
             </p>
-            <Button
-              onClick={() => setSubmitted(false)}
-              variant="outline"
-            >
+            <Button onClick={() => setSubmitted(false)} variant="outline">
               Send Another Message
             </Button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label 
-                htmlFor="name" 
+              <label
+                htmlFor="name"
                 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Name
@@ -88,10 +86,10 @@ const ContactPage = () => {
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               />
             </div>
-            
+
             <div>
-              <label 
-                htmlFor="email" 
+              <label
+                htmlFor="email"
                 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Email
@@ -105,10 +103,10 @@ const ContactPage = () => {
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               />
             </div>
-            
+
             <div>
-              <label 
-                htmlFor="message" 
+              <label
+                htmlFor="message"
                 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Message
@@ -122,14 +120,18 @@ const ContactPage = () => {
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               />
             </div>
-            
+
             {error && (
               <div className="rounded-md bg-red-50 p-4 dark:bg-red-900/30">
                 <p className="text-sm font-semibold text-red-700 dark:text-red-400">
                   {error.includes("Need to fix application") ? (
                     <>
-                      <span className="block text-lg font-bold">Failed to send message</span>
-                      <span className="block mt-2">Need to fix application: Email configuration missing</span>
+                      <span className="block text-lg font-bold">
+                        Failed to send message
+                      </span>
+                      <span className="mt-2 block">
+                        Need to fix application: Email configuration missing
+                      </span>
                     </>
                   ) : (
                     error
@@ -137,12 +139,8 @@ const ContactPage = () => {
                 </p>
               </div>
             )}
-            
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="w-full"
-            >
+
+            <Button type="submit" disabled={isSubmitting} className="w-full">
               {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>

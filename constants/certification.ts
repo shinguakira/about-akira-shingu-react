@@ -235,16 +235,23 @@ export const certifications: CertificationItemProps[] = [
   },
   {
     id: 23,
-    name: "React Basics",
+    name: "Meta Front-End Developer Certificate",
     organization: "Meta",
     date: "2025-02",
-    verifyLink: "https://coursera.org/share/befdd27939a9340646b34c7e6a640da2",
+    verifyLink: "https://www.credly.com/badges/d93bc926-790d-467b-90c4-06797bcd3084",
   },
   {
     id: 23,
-    name: "Introduction to Front-End Development",
+    name: "Principles of UX/UI Design",
     organization: "Meta",
     date: "2025-02",
-    verifyLink: "https://coursera.org/share/125a7c5e504f4af0814a11c70164265c",
+    verifyLink: "https://coursera.org/share/f11392407270a0c8e14f8f7f57c4fe8d",
+  },
+  {
+    id: 23,
+    name: "Advanced React",
+    organization: "Meta",
+    date: "2025-02",
+    verifyLink: "https://coursera.org/share/37486ef3a07ab9a0d83115e92f620164",
   },
 ];

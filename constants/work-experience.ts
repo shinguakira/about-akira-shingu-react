@@ -6,7 +6,6 @@ export type WorkExperienceContent = {
   role: string;
   description: string[];
   archivement: string[];
-  technologies: string[];
 };
 
 export type MultilingualWorkExperience = {
@@ -14,6 +13,7 @@ export type MultilingualWorkExperience = {
   period: string;
   teamSize: string;
   manMonth: string;
+  technologies: string[];
   ja: WorkExperienceContent;
   en: WorkExperienceContent;
 };
@@ -25,6 +25,30 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2025年3月 - (現在)",
     teamSize: "10人",
     manMonth: "",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "(Ruby)",
+      "Material UI",
+      "React Hook Form",
+      "GraphQL",
+      "PostgreSQL",
+      "zod",
+      "NextAuth0",
+      "codegen",
+      "Windsurf",
+      "Cloudinary",
+      "Vercel",
+      "Github",
+      "RSend",
+      "Metabase",
+      "Redis",
+      "Sentry",
+      "Figma",
+      "Slack",
+      "CodeRabbit"
+    ],
     ja: {
       projectOverview: "コーチングマッチングサービスの開発",
       role: "フルスタック開発者",
@@ -40,31 +64,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "toCサービスとしてSEO観点にも考慮したNext.jsの実装を経験することができました。",
         "初のデザイナーがいる環境での開発でしたが、色の名前などはFigmaに定義されているもので会話したりなど、認識齟齬を減らしながら開発を行いました。",
         "また、すべてのページ、すべての箇所についてデザイン案があるわけではないため、自身でいくつかのパターンでモックを作成したりしてデザイナーさんや、マネージャーの方にデザイン提案を行いました。",
-
-      ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "(Ruby)",
-        "Material UI",
-        "React Hook Form",
-        "GraphQL",
-        "PostgreSQL",
-        "zod",
-        "NextAuth0",
-        "codegen",
-        "Windsurf",
-        "Cloudinary",
-        "Vercel",
-        "Github",
-        "RSend",
-        "Metabase",
-        "Redis",
-        "Sentry",
-        "Figma",
-        "Slack",
-        "CodeRabbit"
       ],
     },
     en: {
@@ -83,30 +82,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "This was my first time working in an environment with designers, and I reduced misunderstandings by communicating using color names defined in Figma.",
         "Since design proposals weren't available for all pages and sections, I created multiple mock patterns and proposed designs to designers and managers.",
       ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "(Ruby)",
-        "Material UI",
-        "React Hook Form",
-        "GraphQL",
-        "PostgreSQL",
-        "zod",
-        "NextAuth0",
-        "codegen",
-        "Windsurf",
-        "Cloudinary",
-        "Vercel",
-        "Github",
-        "RSend",
-        "Metabase",
-        "Redis",
-        "Sentry",
-        "Figma",
-        "Slack",
-        "CodeRabbit"
-      ],
     },
   },
   {
@@ -114,6 +89,16 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2025年3月 - 2025年6月",
     teamSize: "10人",
     manMonth: "",
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "PostgreSQL",
+      "Oracle Cloud",
+      "AWS S3",
+      "AWS Lambda",
+      "Python",
+      "Kubernetes",
+    ],
     ja: {
       projectOverview: "住宅ローンシステムのOracleクラウド移行",
       role: "フルスタック開発者",
@@ -125,16 +110,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       ],
       archivement: [
         "既存の仕様の理解と共に、新規環境の仕様の理解を行い膨大な資料と有識者に確認を取りながら移行のための調査及び設計書作成を行いました。同時期に入ったメンバーで、現場に依存しない技術面での困りごとなどをフォローし、プロジェクトを円滑に進めるのに貢献しました。",
-      ],
-      technologies: [
-        "Angular",
-        "TypeScript",
-        "PostgreSQL",
-        "Oracle Cloud",
-        "AWS S3",
-        "AWS Lambda",
-        "Python",
-        "Kubernetes",
       ],
     },
     en: {
@@ -149,16 +124,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "I understood both existing and new environment specifications while conducting research and creating design documents for migration by consulting extensive documentation and subject matter experts. I also supported team members who joined at the same time with technical issues, contributing to the smooth progress of the project.",
       ],
-      technologies: [
-        "Angular",
-        "TypeScript",
-        "PostgreSQL",
-        "Oracle Cloud",
-        "AWS S3",
-        "AWS Lambda",
-        "Python",
-        "Kubernetes",
-      ],
     },
   },
   {
@@ -166,6 +131,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2024年10月 - 2024年2月",
     teamSize: "3",
     manMonth: "3,4人月",
+    technologies: [],
     ja: {
       projectOverview: "お客さま情報検索、取得、特定APIの改修",
       role: "フルスタック(基本詳細仕様書作成、開発、テスト)",
@@ -176,24 +142,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       ],
       archivement: [
         "前プロジェクト同様、仕様を理解し、各人の能力に合わせたタスク割り振りおよび、開発に携わった。",
-      ],
-      technologies: [
-        "Typescript",
-        "React",
-        "Node.js",
-        "MySQL",
-        "Selenium(Python)",
-        "little state machine",
-        "React Hook Form",
-        "axios",
-        "TypeORM",
-        "class-validator",
-        "Apollo Client Server(GraphQL)",
-        "Azure(App Service,Azure Functions)",
-        "Backlog",
-        "Redmine",
-        "Swagger",
-        "アジャイル開発(スクラム)",
       ],
     },
     en: {
@@ -207,24 +155,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Similar to the previous project, understood the specifications, assigned tasks according to each person's abilities, and contributed to development",
       ],
-      technologies: [
-        "Typescript",
-        "React",
-        "Node.js",
-        "MySQL",
-        "Selenium(Python)",
-        "little state machine",
-        "React Hook Form",
-        "axios",
-        "TypeORM",
-        "class-validator",
-        "Apollo Client Server(GraphQL)",
-        "Azure(App Service,Azure Functions)",
-        "Backlog",
-        "Redmine",
-        "Swagger",
-        "Agile Development (Scrum)",
-      ],
     },
   },
   {
@@ -232,6 +162,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2024年10月 - 2024年11月(20日)",
     teamSize: "3",
     manMonth: "3,4人月",
+    technologies: VOCSkillSet,
     ja: {
       projectOverview: "お客さまの声のシステム追加改修",
       role: "フルスタック(基本詳細仕様書作成、開発、テスト)",
@@ -239,7 +170,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "見積もりも合わせて必要だったため、見積もりを行い、見積もりより少し、早く完了し、リリース。特に問題の問い合わせ等なく、現在稼働中",
       ],
-      technologies: VOCSkillSet,
     },
     en: {
       projectOverview: "Voice of Customer System Additional Modifications",
@@ -250,7 +180,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Completed the project ahead of the estimated schedule, including the estimation work that was required. Released without issues and currently in operation",
       ],
-      technologies: VOCSkillSet,
     },
   },
   {
@@ -258,6 +187,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2024年5月 - 2024年2月",
     teamSize: "7-8",
     manMonth: "15+人月",
+    technologies: receptionInnovationSkillSet,
     ja: {
       projectOverview: "受付革新プロジェクト",
       role: "フルスタック(基本詳細仕様書作成、開発、テスト)",
@@ -269,7 +199,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "前プロジェクト同様、仕様を理解し、各人の能力に合わせたタスク割り振りおよび、開発に携わった。",
       ],
-      technologies: receptionInnovationSkillSet,
     },
     en: {
       projectOverview: "Reception Innovation Project",
@@ -282,7 +211,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Similar to the previous project, understood the specifications, assigned tasks according to each person's abilities, and contributed to development",
       ],
-      technologies: receptionInnovationSkillSet,
     },
   },
   {
@@ -290,6 +218,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2024年1月 - 2024年4月(4か月)",
     teamSize: "3-4",
     manMonth: "15人月",
+    technologies: VOCSkillSet,
     ja: {
       projectOverview: "お客さまの声システムの改修リプレイス",
       role: "フルスタック(基本詳細仕様書作成、開発、テスト)",
@@ -301,7 +230,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "チームの初期メンバーであり、社内に該当の技術スタックおよび業務知識を持つものがいない状態で、15 人月で見積もられた当プロジェクトを 2 人でこなし、軽微な問題はあれど、大きな問題もなく、不必要な増員もなくプロジェクトを終えることができた。工数に余裕ができたことで、1 か月後にプロジェクト加入したメンバーが、予定になかった追加の機能、画面の開発に着手、同時期に完了、リリースまで行うことができ、プロジェクトに貢献できた。取引先に、質問することでいち早く、某ガス会社の業務の流れを理解し、追加で要件定義が必要なものを洗い出したり、各人の能力を把握し、要望に対してのタスクの割り振りを行った。",
       ],
-      technologies: VOCSkillSet,
     },
     en: {
       projectOverview: "Voice of Customer System Renovation and Replacement",
@@ -314,7 +242,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "As an initial team member, completed a project estimated at 15 person-months with just 2 people, despite no one in the company having the relevant technology stack or business knowledge. Finished with only minor issues and without unnecessary additional staffing. The efficiency created capacity for a member who joined a month later to develop additional unplanned features and screens, completing and releasing them simultaneously, contributing to the project's success. Quickly understood the gas company's business flow by asking questions to the client, identified additional requirements, assessed each person's abilities, and assigned tasks according to requests.",
       ],
-      technologies: VOCSkillSet,
     },
   },
   {
@@ -322,6 +249,17 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2023年6月 - 2023年12月(6か月)",
     teamSize: "4-10",
     manMonth: "不明(2021年頃スタート)",
+    technologies: [
+      "C",
+      "C++",
+      "C#",
+      "Java",
+      "javascript",
+      "Springboot",
+      "Visual Studio 2010,2015,2019",
+      "PDB",
+      "HDB",
+    ],
     ja: {
       projectOverview: "空港の電力監視制御システム MISE の改造",
       role: "フルスタック(仕様書作成、開発、テスト、テスト環境構築)",
@@ -335,17 +273,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       ],
       archivement: [
         "プロジェクトに途中参加にも関わらず、ソフトのソース、仕様を理解し、開発に貢献。プロジェクトの是非が決まる、技術管理センター(TMC)でのソフトウェア品質チェックにソフト側の代表として参加し、現地にて起こった問題を解決しました。",
-      ],
-      technologies: [
-        "C",
-        "C++",
-        "C#",
-        "Java",
-        "javascript",
-        "Springboot",
-        "Visual Studio 2010,2015,2019",
-        "PDB",
-        "HDB",
       ],
     },
     en: {
@@ -363,17 +290,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Despite joining the project midway, understood the software source code and specifications, contributing to development. Participated as a software representative in the Technical Management Center (TMC) software quality check, which determined the project's approval, and resolved issues that occurred on-site.",
       ],
-      technologies: [
-        "C",
-        "C++",
-        "C#",
-        "Java",
-        "JavaScript",
-        "Spring Boot",
-        "Visual Studio 2010,2015,2019",
-        "PDB",
-        "HDB",
-      ],
     },
   },
   {
@@ -381,6 +297,13 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2023年4月 - 2023年6月(2ヶ月)",
     teamSize: "1",
     manMonth: "9人月",
+    technologies: [
+      "C#",
+      "Visual Studio2017",
+      "Windows Form",
+      "Modbus",
+      "Omron製PLC",
+    ],
     ja: {
       projectOverview: "PLC通信TCP/IPプログラム",
       role: "フルスタック(仕様書作成、開発、テスト)",
@@ -390,13 +313,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       ],
       archivement: [
         "本来は、コンソールでのプログラムの開発だったが、時間に余裕があったため、Window Form を使ってGUI の画面があるプログラムを改めて作成",
-      ],
-      technologies: [
-        "C#",
-        "Visual Studio2017",
-        "Windows Form",
-        "Modbus",
-        "Omron製PLC",
       ],
     },
     en: {
@@ -409,13 +325,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Originally planned as a console program development, but due to having extra time, created a program with a GUI screen using Windows Forms",
       ],
-      technologies: [
-        "C#",
-        "Visual Studio 2017",
-        "Windows Forms",
-        "Modbus",
-        "Omron PLC",
-      ],
     },
   },
   {
@@ -423,6 +332,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "約1年",
     teamSize: "",
     manMonth: "",
+    technologies: [],
     ja: {
       projectOverview: "フロント(アルバイト)",
       role: "",
@@ -432,7 +342,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "より良いサービスを目指すためのアイデア提案または試作作成",
       ],
       archivement: ["割り算にも苦戦していた生徒を私立の中学の受験に合格させた"],
-      technologies: [""],
     },
     en: {
       projectOverview: "Hotel Front Desk (Part-time)",
@@ -445,7 +354,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Improved efficiency of document creation using Excel. Created manuals for handling English-speaking customers and managed system migration, completing the tasks without issues",
       ],
-      technologies: [""],
     },
   },
   {
@@ -453,6 +361,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2019- 約1年",
     teamSize: "",
     manMonth: "",
+    technologies: [],
     ja: {
       projectOverview: "英語日本語翻訳(アルバイト)",
       role: "",
@@ -463,7 +372,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "電話対応、Amazonの出品者の代表番号にかかってくる電話を対応",
       ],
       archivement: [""],
-      technologies: [""],
     },
     en: {
       projectOverview: "English-Japanese Translation (Part-time)",
@@ -475,7 +383,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "Phone support, handling calls to the Amazon seller's representative number",
       ],
       archivement: [""],
-      technologies: [""],
     },
   },
   {
@@ -483,12 +390,12 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2019- ",
     teamSize: "",
     manMonth: "",
+    technologies: [],
     ja: {
       projectOverview: "翻訳フリーランス",
       role: "",
       description: ["英語日本語翻訳", "動画、Webサイト、軍事はがきなどの翻訳"],
       archivement: [""],
-      technologies: [""],
     },
     en: {
       projectOverview: "Freelance Translator",
@@ -498,7 +405,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "Translation of videos, websites, military postcards, etc.",
       ],
       archivement: [""],
-      technologies: [""],
     },
   },
   {
@@ -506,6 +412,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
     period: "2019 -",
     teamSize: "",
     manMonth: "",
+    technologies: [],
     ja: {
       projectOverview: "数学、英語中心の家庭教師",
       role: "",
@@ -514,7 +421,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "小学生は私立の中学受験を控えていた",
       ],
       archivement: ["割り算にも苦戦していた生徒を私立の中学の受験に合格させた"],
-      technologies: [""],
     },
     en: {
       projectOverview: "Math and English Tutor (Part-time)",
@@ -526,7 +432,6 @@ export const workExperiences: MultilingualWorkExperience[] = [
       archivement: [
         "Helped a student who was struggling with division to pass the entrance exam for a private junior high school",
       ],
-      technologies: [""],
     },
   },
 ];

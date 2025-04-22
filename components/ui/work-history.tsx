@@ -106,7 +106,7 @@ const WorkHistory = () => {
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 dark:text-white">
                             <div className="flex flex-wrap gap-2">
-                              {experience[currentLang].technologies.map(
+                              {experience.technologies.map(
                                 (tech: string, index: number) => (
                                   <span
                                     key={index}

@@ -26,18 +26,19 @@ export type ProjectContent = {
   title: string;
   description: string;
   image: string;
-  technologies: string[];
   githubUrl: string;
   liveUrl: string;
 };
 
 export type MultilingualProjectProps = {
+  technologies: string[];
   ja: ProjectContent;
   en: ProjectContent;
 };
 
 export const projects: MultilingualProjectProps[] = [
   {
+    technologies: nextjsSkillSet,
     ja: {
       title: "開発予定を考えているアプリ",
       description: `[採用サイト間のプロフィール自動入力(データ連携)]
@@ -50,8 +51,7 @@ export const projects: MultilingualProjectProps[] = [
 [タイピング×Google Map]
 [タイピング×2Dゲーム]  
 `,
-      image: `${onDevelopingPic}`,
-      technologies: nextjsSkillSet,
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
@@ -67,13 +67,22 @@ export const projects: MultilingualProjectProps[] = [
 [Typing Game with Google Map Integration]
 [Typing Game with 2D Game Elements]  
 `,
-      image: `${onDevelopingPic}`,
-      technologies: nextjsSkillSet,
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
   },
   {
+    technologies: [
+      "React",
+      "TypeScript",
+      "Remix",
+      "Hono.js",
+      "DB(未定)",
+      "Tailwind CSS",
+      "lucide-react",
+      "kaPlay",
+    ],
     ja: {
       title: "2Dゲーム",
       description: `KaPlayライブラリを使用した2Dゲーム
@@ -81,17 +90,7 @@ ChatGPTが考えたストーリーを元にゲームボーイ風のグラフィ�
 あえてゲーム開発で、ReactおよびReact関連のライブラリを使用することで、
 普段の開発では気づかない各ライブラリを使用時の特徴や、最適化について学習する。
 `,
-      image: `${TwodRpgPic}`,
-      technologies: [
-        "React",
-        "TypeScript",
-        "Remix",
-        "Hono.js",
-        "DB(未定)",
-        "Tailwind CSS",
-        "lucide-react",
-        "kaPlay",
-      ],
+      image: TwodRpgPic,
       githubUrl: "https://github.com/shinguakira/2d-rpg-react",
       liveUrl: "",
     },
@@ -102,30 +101,20 @@ Currently implementing Game Boy-style graphics based on a story created by ChatG
 By deliberately using React and React-related libraries for game development,
 I'm learning about the characteristics and optimization of libraries that I might not notice in regular development.
 `,
-      image: `${TwodRpgPic}`,
-      technologies: [
-        "React",
-        "TypeScript",
-        "Remix",
-        "Hono.js",
-        "DB(TBD)",
-        "Tailwind CSS",
-        "lucide-react",
-        "kaPlay",
-      ],
+      image: TwodRpgPic,
       githubUrl: "https://github.com/shinguakira/2d-rpg-react",
       liveUrl: "",
     },
   },
   {
+    technologies: ["TypeScript", "Hono.js", "AWS Lambda"],
     ja: {
       title: "神宮章情報取得API(開発中)",
       description: `神宮章情報取得API
 ポートフォリオを別パターン作成や、履歴書作成処理のために、メンテナンス時間削減のため、共通に使用できるAPI
 データはDBなしでjsonで定義。
 `,
-      image: `${onDevelopingPic}`,
-      technologies: ["TypeScript", "Hono.js", "AWS Lambda"],
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
@@ -135,28 +124,27 @@ I'm learning about the characteristics and optimization of libraries that I migh
 Created to reduce maintenance time for portfolio creation and resume processing.
 Data is defined in JSON without a database.
 `,
-      image: `${onDevelopingPic}`,
-      technologies: ["TypeScript", "Hono.js", "AWS Lambda"],
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
   },
   {
+    technologies: [
+      "React",
+      "TypeScript",
+      "Remix",
+      "Context API",
+      "Tailwind CSS",
+      "lucide-react",
+    ],
     ja: {
       title: "国検索アプリ(開発中)",
       description: `国検索アプリ
 公開APIを使用して国情報を取得し、国名を検索するアプリ。
 タイピングゲームと紐づけたり、国名検索だけでなくより細かい、州や県、市などを検索する実装も検討中
 `,
-      image: `${onDevelopingPic}`,
-      technologies: [
-        "React",
-        "TypeScript",
-        "Remix",
-        "Context API",
-        "Tailwind CSS",
-        "lucide-react",
-      ],
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
@@ -165,20 +153,20 @@ Data is defined in JSON without a database.
       description: `An application that retrieves and searches for country information using a public API.
 Considering implementations to link with typing games and search for more detailed information such as states, prefectures, and cities.
 `,
-      image: `${onDevelopingPic}`,
-      technologies: [
-        "React",
-        "TypeScript",
-        "Remix",
-        "Context API",
-        "Tailwind CSS",
-        "lucide-react",
-      ],
+      image: onDevelopingPic,
       githubUrl: "",
       liveUrl: "",
     },
   },
   {
+    technologies: [
+      ...nextjsSkillSet,
+      "AstraDB(Apache Cassandra)",
+      "@ai-sdk/react",
+      "OpenAI API",
+      "shadcn",
+      "lucide-react",
+    ],
     ja: {
       title: "神宮章情報用RAGチャットボット",
       description: `神宮章情報用RAGチャットボット
@@ -186,15 +174,7 @@ Considering implementations to link with typing games and search for more detail
 精度向上のためベクトルの近似の調整や、データの区切りの適切かが必要そう。
 Amazon Kendraを使ったRAGチャットボットに似た挙動
 `,
-      image: `${ragChatBotAkiraShinguPic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "AstraDB(Apache Cassandra)",
-        "@ai-sdk/react",
-        "OpenAI API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: ragChatBotAkiraShinguPic,
       githubUrl: "https://github.com/shinguakira/rag-skill-match",
       liveUrl: "",
     },
@@ -204,35 +184,27 @@ Amazon Kendraを使ったRAGチャットボットに似た挙動
 Requires adjustment of vector approximation and appropriate data segmentation for accuracy improvement.
 Similar behavior to an Amazon Kendra-based RAG chatbot.
 `,
-      image: `${ragChatBotAkiraShinguPic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "AstraDB(Apache Cassandra)",
-        "@ai-sdk/react",
-        "OpenAI API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: ragChatBotAkiraShinguPic,
       githubUrl: "https://github.com/shinguakira/rag-skill-match",
       liveUrl: "",
     },
   },
   {
+    technologies: [
+      ...nextjsSkillSet,
+      "Hono.js",
+      "Redis(Upstash)",
+      "Bun",
+      "shadcn",
+      "lucide-react",
+    ],
     ja: {
       title: "タイピングゲーム",
       description: `タイピングゲーム
 様々なモードを実装。tailWindCSSやshadcnなどのコードを練習できるモードあり
 効果音を選択できることによって好きな効果音でプレイできます
 `,
-      image: `${typingGamePic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Hono.js",
-        "Redis(Upstash)",
-        "Bun",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: typingGamePic,
       githubUrl: "https://github.com/shinguakira/typing-game-hono",
       liveUrl: "https://typing-game-hono.vercel.app/",
     },
@@ -242,33 +214,25 @@ Similar behavior to an Amazon Kendra-based RAG chatbot.
 Includes modes for practicing Tailwind CSS and shadcn code.
 You can select different sound effects to play with your preferred audio feedback.
 `,
-      image: `${typingGamePic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Hono.js",
-        "Redis(Upstash)",
-        "Bun",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: typingGamePic,
       githubUrl: "https://github.com/shinguakira/typing-game-hono",
       liveUrl: "https://typing-game-hono.vercel.app/",
     },
   },
   {
+    technologies: [
+      ...nextjsSkillSet,
+      "Sentry",
+      "Appwrite",
+      "Dwolla",
+      "shadcn",
+      "lucide-react",
+    ],
     ja: {
       title: "バンキングアプリ",
       description: `バンキングアプリ、Sentryによるエラーログ、エラー発生時のリプレイ機能付き
 `,
-      image: `${bankingAppPic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Sentry",
-        "Appwrite",
-        "Dwolla",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: bankingAppPic,
       githubUrl: "https://github.com/shinguakira/banking-nextjs",
       liveUrl: "https://banking-horizon-sooty.vercel.app/sign-in",
     },
@@ -276,31 +240,23 @@ You can select different sound effects to play with your preferred audio feedbac
       title: "Banking App",
       description: `A banking application with Sentry error logging and replay functionality when errors occur.
 `,
-      image: `${bankingAppPic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Sentry",
-        "Appwrite",
-        "Dwolla",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: bankingAppPic,
       githubUrl: "https://github.com/shinguakira/banking-nextjs",
       liveUrl: "https://banking-horizon-sooty.vercel.app/sign-in",
     },
   },
   {
+    technologies: [
+      ...T3StackSkillSet,
+      "Google Map API",
+      "shadcn",
+      "lucide-react",
+    ],
     ja: {
       title: "現在いる最寄り駅の飲食店情報リスト表示アプリ",
       description: `最寄りの駅の飲食店情報リストをGooogle Mapで表示するアプリ
 `,
-      image: `${restaurantAroundStationPic}`,
-      technologies: [
-        ...T3StackSkillSet,
-        "Google Map API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: restaurantAroundStationPic,
       githubUrl: "",
       liveUrl: links.restaurantAroundStationLink,
     },
@@ -308,31 +264,25 @@ You can select different sound effects to play with your preferred audio feedbac
       title: "Restaurant Information App for Nearby Stations",
       description: `An application that displays restaurant information for the nearest station on Google Maps.
 `,
-      image: `${restaurantAroundStationPic}`,
-      technologies: [
-        ...T3StackSkillSet,
-        "Google Map API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: restaurantAroundStationPic,
       githubUrl: "",
       liveUrl: links.restaurantAroundStationLink,
     },
   },
   {
+    technologies: [
+      ...nextjsSkillSet,
+      "Youtube Data API",
+      "shadcn",
+      "lucide-react",
+    ],
     ja: {
       title: "Youtube動画のadvanced検索(随時更新中)",
       description: `Youtubeの詳細検索サイト
 公式のYoutubeではできない詳細な検索によって効率よく目的の動画を探すことができるサイト
 検索条件を随時更新いたしますので、ご要望お問い合わせお待ちしております。
 他のサービスのバージョンも開発予定です。`,
-      image: `${advancedSearchYoutubePic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Youtube Data API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: advancedSearchYoutubePic,
       githubUrl: "",
       liveUrl: links.advancedSearchYoutubeLink,
     },
@@ -342,18 +292,22 @@ You can select different sound effects to play with your preferred audio feedbac
 Efficiently find the videos you're looking for with detailed search options not available on the official YouTube site.
 Search conditions are regularly updated. Please feel free to contact us with your requests.
 Planning to develop versions for other services as well.`,
-      image: `${advancedSearchYoutubePic}`,
-      technologies: [
-        ...nextjsSkillSet,
-        "Youtube Data API",
-        "shadcn",
-        "lucide-react",
-      ],
+      image: advancedSearchYoutubePic,
       githubUrl: "",
       liveUrl: links.advancedSearchYoutubeLink,
     },
   },
   {
+    technologies: [
+      "React",
+      "Typescript",
+      "Next.js",
+      "Styled Components",
+      "Vercel",
+      "Google Text-to-Speech API",
+      "OpenAI API",
+      "babyron.js",
+    ],
     ja: {
       title: "パワハラ訓練3Dチャットボット",
       description: `パワハラ気質の上司になりきったチャットボットと会話ができるアプリ
@@ -363,17 +317,7 @@ Planning to develop versions for other services as well.`,
 元のソースとの変更点
 ・パワハラ上司っぽい会話内容
 ・一定の期間(30秒)ごとに特定の音声付きチャットをボットが送信する。十数パターンあります。`,
-      image: `${chatBot3dPic}`,
-      technologies: [
-        "React",
-        "Typescript",
-        "Next.js",
-        "Styled Components",
-        "Vercel",
-        "Google Text-to-Speech API",
-        "OpenAI API",
-        "babyron.js",
-      ],
+      image: chatBot3dPic,
       githubUrl: "https://github.com/shinguakira/3d-chatbot-power",
       liveUrl: "https://3d-chatbot-power.vercel.app/",
     },
@@ -386,27 +330,17 @@ I forked another repository and customized it to meet the requirements.
 Changes from the original source:
 - Conversation content mimicking a harassing boss
 - The bot sends specific voice-enabled chats at regular intervals (30 seconds). There are over a dozen patterns.`,
-      image: `${chatBot3dPic}`,
-      technologies: [
-        "React",
-        "Typescript",
-        "Next.js",
-        "Styled Components",
-        "Vercel",
-        "Google Text-to-Speech API",
-        "OpenAI API",
-        "babyron.js",
-      ],
+      image: chatBot3dPic,
       githubUrl: "https://github.com/shinguakira/3d-chatbot-power",
       liveUrl: "https://3d-chatbot-power.vercel.app/",
     },
   },
   {
+    technologies: ["React", "Vite", "Typescript"],
     ja: {
       title: "ChatGPT クローン",
       description: "フロントVite,React,バックExpress.js使用のChatGPTクローン",
-      image: `${chatGptColonePic}`,
-      technologies: ["React", "Vite", "Typescript"],
+      image: chatGptColonePic,
       githubUrl: "https://github.com/shinguakira/gpt-clone",
       liveUrl: "",
     },
@@ -414,18 +348,17 @@ Changes from the original source:
       title: "ChatGPT Clone",
       description:
         "A ChatGPT clone using Vite, React for frontend and Express.js for backend",
-      image: `${chatGptColonePic}`,
-      technologies: ["React", "Vite", "Typescript"],
+      image: chatGptColonePic,
       githubUrl: "https://github.com/shinguakira/gpt-clone",
       liveUrl: "",
     },
   },
   {
+    technologies: [...nextjsSkillSet, "lucide-react"],
     ja: {
       title: "ポートフォリオWebサイト",
       description: "経歴、職務経歴等の情報を記載",
       image: `${tmpPic}?height=400&width=600`,
-      technologies: [...nextjsSkillSet, "lucide-react"],
       githubUrl: "",
       liveUrl: "/",
     },
@@ -434,7 +367,6 @@ Changes from the original source:
       description:
         "A website showcasing my background, work history, and other professional information",
       image: `${tmpPic}?height=400&width=600`,
-      technologies: [...nextjsSkillSet, "lucide-react"],
       githubUrl: "",
       liveUrl: "/",
     },

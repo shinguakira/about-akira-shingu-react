@@ -5,6 +5,27 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 Portfolio Website Repository
 ![Screenshot](./public/images/pages/home.png)
 
+## Tech Stack
+
+[![React Badge](https://img.shields.io/badge/-React-61DBFB?style=for-the-badge&labelColor=black&logo=react&logoColor=61DBFB)](#) 
+[![Javascript Badge](https://img.shields.io/badge/-Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)](#) 
+[![Typescript Badge](https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc)](#)
+[![Next.js Badge](https://img.shields.io/badge/-Next.js-000000?style=for-the-badge&labelColor=black&logo=next.js&logoColor=white)](#)
+[![Tailwind CSS Badge](https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=for-the-badge&labelColor=black&logo=tailwindcss&logoColor=06B6D4)](#)
+[![Shadcn/UI Badge](https://img.shields.io/badge/-Shadcn/UI-000000?style=for-the-badge&labelColor=black&logo=shadcnui&logoColor=white)](#)
+
+### Additional Libraries
+
+[![i18next Badge](https://img.shields.io/badge/-i18next-26A69A?style=for-the-badge&labelColor=black&logo=i18next&logoColor=26A69A)](#)
+[![Radix UI Badge](https://img.shields.io/badge/-Radix_UI-FF4785?style=for-the-badge&labelColor=black&logo=radixui&logoColor=FF4785)](#)
+[![Lucide React Badge](https://img.shields.io/badge/-Lucide_React-5E5CE6?style=for-the-badge&labelColor=black&logo=lucide&logoColor=5E5CE6)](#)
+[![React Markdown Badge](https://img.shields.io/badge/-React_Markdown-61DAFB?style=for-the-badge&labelColor=black&logo=markdown&logoColor=61DAFB)](#)
+[![ESLint Badge](https://img.shields.io/badge/-ESLint-4B32C3?style=for-the-badge&labelColor=black&logo=eslint&logoColor=4B32C3)](#)
+[![Prettier Badge](https://img.shields.io/badge/-Prettier-F7B93E?style=for-the-badge&labelColor=black&logo=prettier&logoColor=F7B93E)](#)
+[![Nodemailer Badge](https://img.shields.io/badge/-Nodemailer-22B573?style=for-the-badge&labelColor=black&logo=nodemailer&logoColor=22B573)](#)
+[![Class Variance Authority Badge](https://img.shields.io/badge/-CVA-4F46E5?style=for-the-badge&labelColor=black&logo=tailwindcss&logoColor=4F46E5)](#)
+[![Next Themes Badge](https://img.shields.io/badge/-Next_Themes-000000?style=for-the-badge&labelColor=black&logo=next.js&logoColor=white)](#)
+
 ## Getting Started
 
 First, run the development server:

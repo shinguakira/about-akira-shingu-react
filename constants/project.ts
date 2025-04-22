@@ -19,6 +19,8 @@ const restaurantAroundStationPic =
   "/images/projects/restaurant-around-station.png"; // picture for restaurant around station
 const bankingAppPic = "/images/projects/banking-app.png"; // picture for banking app
 const typingGamePic = "/images/projects/typing-game.png"; // picture for typing game
+const TwodRpgPic = "/images/projects/2d-rpg-react.png"; // picture for 2d rpg
+const ragChatBotAkiraShinguPic = "/images/projects/rag-chatbot-akirashingu.jpg"; // picture for rag chatbot akira shingu
 
 // object for projects
 export const projects: Project[] = [
@@ -29,6 +31,10 @@ export const projects: Project[] = [
 [Visual Studioのプロジェクトファイル変換アプリ]
 [何かのマッチングアプリ]
 [何かのサイトのadvanced検索]
+[オンライン会議アプリ]
+[タイピング×パワハラ3Dボット]
+[タイピング×Google Map]
+[タイピング×2Dゲーム]  
 `,
     image: `${onDevelopingPic}`,
     technologies: nextjsSkillSet,
@@ -36,13 +42,88 @@ export const projects: Project[] = [
     liveUrl: "",
   },
   {
+    title: "2Dゲーム",
+    description: `KaPlayライブラリを使用した2Dゲーム
+    ChatGPTが考えたストーリーを元にゲームボーイ風のグラフィックでの実装中。
+    あえてゲーム開発で、ReactおよびReact関連のライブラリを使用することで、
+    普段の開発では気づかない各ライブラリを使用時の特徴や、最適化について学習する。
+`,
+    image: `${TwodRpgPic}`,
+    technologies: [
+      "React",
+      "TypeScript",
+      "Remix",
+      "Hono.js",
+      "DB(未定)",
+      "Tailwind CSS",
+      "lucide-react",
+      "kaPlay",
+    ],
+    githubUrl: "https://github.com/shinguakira/2d-rpg-react",
+    liveUrl: "",
+  },
+  {
+    title: "神宮章情報取得API(開発中)",
+    description: `神宮章情報取得API
+ポートフォリオを別パターン作成や、履歴書作成処理のために、メンテナンス時間削減のため、共通に使用できるAPI
+データはDBなしでjsonで定義。
+`,
+    image: `${onDevelopingPic}`,
+    technologies: [
+      "TypeScript",
+      "Hono.js",
+      "AWS Lambda",
+    ],
+    githubUrl: "",
+    liveUrl: "",
+  },
+  {
+    title: "国検索アプリ(開発中)",
+    description: `国検索アプリ
+公開APIを使用して国情報を取得し、国名を検索するアプリ。
+タイピングゲームと紐づけたり、国名検索だけでなくより細かい、州や県、市などを検索する実装も検討中
+`,
+    image: `${onDevelopingPic}`,
+    technologies: [
+      "React",
+      "TypeScript",
+      "Remix",
+      "Context API",
+      "Tailwind CSS",
+      "lucide-react",
+    ],
+    githubUrl: "",
+    liveUrl: "",
+  },
+  {
+    title: "神宮章情報用RAGチャットボット",
+    description: `神宮章情報用RAGチャットボット
+読み込ませたベクトル情報から神宮章に関する情報を取得するRAGチャットボット
+精度向上のためベクトルの近似の調整や、データの区切りの適切かが必要そう。
+Amazon Kendraを使ったRAGチャットボットに似た挙動
+`,
+    image: `${ragChatBotAkiraShinguPic}`,
+    technologies: [
+      ...nextjsSkillSet,
+      "AstraDB(Apache Cassandra)",
+      "@ai-sdk/react",
+      "OpenAI API",
+      "shadcn",
+      "lucide-react",
+    ],
+    githubUrl: "https://github.com/shinguakira/rag-skill-match",
+    liveUrl: "",
+  },
+  {
     title: "タイピングゲーム",
     description: `タイピングゲーム
+様々なモードを実装。tailWindCSSやshadcnなどのコードを練習できるモードあり
+効果音を選択できることによって好きな効果音でプレイできます
 `,
     image: `${typingGamePic}`,
     technologies: [
       ...nextjsSkillSet,
-      "Hono",
+      "Hono.js",
       "Redis(Upstash)",
       "Bun",
       "shadcn",

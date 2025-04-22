@@ -125,11 +125,7 @@ I'm learning about the characteristics and optimization of libraries that I migh
 データはDBなしでjsonで定義。
 `,
       image: `${onDevelopingPic}`,
-      technologies: [
-        "TypeScript",
-        "Hono.js",
-        "AWS Lambda",
-      ],
+      technologies: ["TypeScript", "Hono.js", "AWS Lambda"],
       githubUrl: "",
       liveUrl: "",
     },
@@ -140,11 +136,7 @@ Created to reduce maintenance time for portfolio creation and resume processing.
 Data is defined in JSON without a database.
 `,
       image: `${onDevelopingPic}`,
-      technologies: [
-        "TypeScript",
-        "Hono.js",
-        "AWS Lambda",
-      ],
+      technologies: ["TypeScript", "Hono.js", "AWS Lambda"],
       githubUrl: "",
       liveUrl: "",
     },
@@ -420,7 +412,8 @@ Changes from the original source:
     },
     en: {
       title: "ChatGPT Clone",
-      description: "A ChatGPT clone using Vite, React for frontend and Express.js for backend",
+      description:
+        "A ChatGPT clone using Vite, React for frontend and Express.js for backend",
       image: `${chatGptColonePic}`,
       technologies: ["React", "Vite", "Typescript"],
       githubUrl: "https://github.com/shinguakira/gpt-clone",
@@ -438,7 +431,8 @@ Changes from the original source:
     },
     en: {
       title: "Portfolio Website",
-      description: "A website showcasing my background, work history, and other professional information",
+      description:
+        "A website showcasing my background, work history, and other professional information",
       image: `${tmpPic}?height=400&width=600`,
       technologies: [...nextjsSkillSet, "lucide-react"],
       githubUrl: "",

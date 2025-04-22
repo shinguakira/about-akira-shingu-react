@@ -9,8 +9,8 @@ const tmpPic = "/public/images/profile/developer-pic-1.png";
 
 const ProjectPage = () => {
   const params = useParams();
-  const locale = params?.locale as string || "ja";
-  
+  const locale = (params?.locale as string) || "ja";
+
   return (
     <div className="mx-auto min-h-screen bg-gray-100 px-4 py-12 dark:bg-slate-500">
       <div className="mx-auto max-w-7xl">
@@ -20,7 +20,7 @@ const ProjectPage = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index: number) => {
             const localizedProject = locale === "en" ? project.en : project.ja;
-            
+
             return (
               <div
                 style={

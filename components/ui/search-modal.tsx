@@ -56,14 +56,14 @@ const SearchModal = () => {
     
     projects.forEach((project, index) => {
       if (
-        project.title.toLowerCase().includes(query) ||
-        project.description.toLowerCase().includes(query) ||
-        project.technologies.some(tech => tech.toLowerCase().includes(query))
+        project[currentLang].title.toLowerCase().includes(query) ||
+        project[currentLang].description.toLowerCase().includes(query) ||
+        project[currentLang].technologies.some(tech => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "project",
-          title: project.title,
-          description: project.description,
+          title: project[currentLang].title,
+          description: project[currentLang].description,
           url: `/${locale}/projects`,
           anchor: `project-${index}`
         });

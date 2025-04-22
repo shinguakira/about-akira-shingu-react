@@ -71,7 +71,8 @@ export const certifications: CertificationItemProps[] = [
     name: "AZ-900 Microsoft Azure Fundamentals",
     organization: "Microsoft",
     date: "2024-03",
-    verifyLink: "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
+    verifyLink:
+      "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
   },
   {
     id: 11,

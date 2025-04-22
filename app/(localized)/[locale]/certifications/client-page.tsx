@@ -3,19 +3,23 @@ import React from "react";
 import CertificationItem from "@/components/ui/certification-item";
 import { certifications } from "@/constants/certification";
 
-export default function CertificationsClientPage({ locale }: { locale: string }) {
+export default function CertificationsClientPage({
+  locale,
+}: {
+  locale: string;
+}) {
   const translations = {
     en: {
       pageTitle: "My Certifications",
-      pageSubtitle: "Qualifications & Certificates"
+      pageSubtitle: "Qualifications & Certificates",
     },
     ja: {
       pageTitle: "資格・認定証",
-      pageSubtitle: "資格・認定証一覧"
-    }
+      pageSubtitle: "資格・認定証一覧",
+    },
   };
 
-  const t = translations[locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === "ja" ? "ja" : "en"];
 
   return (
     <div className="container mx-auto h-auto bg-slate-300 px-4 py-8 dark:bg-gray-900">

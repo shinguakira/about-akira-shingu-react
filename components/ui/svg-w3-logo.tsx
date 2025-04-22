@@ -15,7 +15,7 @@ const svgW3Logo = ({
       fill={svgColor}
       role="img"
       aria-label={`${name} icon`}
-      style={{minWidth: "24px", minHeight: "24px"}}
+      style={{ minWidth: "24px", minHeight: "24px" }}
     >
       {titleName && <title>{titleName}</title>}
       <path d={svgPath} />

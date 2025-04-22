@@ -1,9 +1,15 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { useRouter, usePathname } from "next/navigation";
 
-export type UserRole = 'normalUser' | 'adminUser' | 'certification';
+export type UserRole = "normalUser" | "adminUser" | "certification";
 
 type UserRoleContextType = {
   role: UserRole;
@@ -11,7 +17,7 @@ type UserRoleContextType = {
 };
 
 const UserRoleContext = createContext<UserRoleContextType>({
-  role: 'normalUser',
+  role: "normalUser",
   setUserRole: () => {},
 });
 
@@ -22,9 +28,9 @@ type UserRoleProviderProps = {
   initialRole?: UserRole;
 };
 
-export const UserRoleProvider = ({ 
-  children, 
-  initialRole = 'normalUser' 
+export const UserRoleProvider = ({
+  children,
+  initialRole = "normalUser",
 }: UserRoleProviderProps) => {
   const [role, setRole] = useState<UserRole>(initialRole);
   const router = useRouter();
@@ -32,63 +38,63 @@ export const UserRoleProvider = ({
 
   useEffect(() => {
     const parseUrlParams = () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         const urlParams = new URLSearchParams(window.location.search);
-        const userRole = urlParams.get('role');
-        
-        if (userRole === 'admin') {
-          setRole('adminUser');
-        } else if (userRole === 'certification') {
-          setRole('certification');
-          
-          if (pathname && !pathname.includes('/certifications')) {
-            const locale = pathname.split('/')[1] || 'en';
+        const userRole = urlParams.get("role");
+
+        if (userRole === "admin") {
+          setRole("adminUser");
+        } else if (userRole === "certification") {
+          setRole("certification");
+
+          if (pathname && !pathname.includes("/certifications")) {
+            const locale = pathname.split("/")[1] || "en";
             router.push(`/${locale}/certifications?role=certification`);
           }
         } else {
-          setRole('normalUser');
+          setRole("normalUser");
         }
       }
     };
 
     parseUrlParams();
-    
-    window.addEventListener('popstate', parseUrlParams);
-    
+
+    window.addEventListener("popstate", parseUrlParams);
+
     return () => {
-      window.removeEventListener('popstate', parseUrlParams);
+      window.removeEventListener("popstate", parseUrlParams);
     };
   }, [pathname, router]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('userRole', role);
+      localStorage.setItem("userRole", role);
     } catch (error) {
-      console.error('Error storing user role:', error);
+      console.error("Error storing user role:", error);
     }
   }, [role]);
 
   const setUserRole = (newRole: UserRole) => {
     if (newRole === role) return;
-    
+
     setRole(newRole);
-    
-    if (typeof window !== 'undefined') {
+
+    if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      
-      if (newRole === 'normalUser') {
-        url.searchParams.delete('role');
-      } else if (newRole === 'adminUser') {
-        url.searchParams.set('role', 'admin');
-      } else if (newRole === 'certification') {
-        url.searchParams.set('role', 'certification');
-        
-        const locale = pathname?.split('/')[1] || 'en';
+
+      if (newRole === "normalUser") {
+        url.searchParams.delete("role");
+      } else if (newRole === "adminUser") {
+        url.searchParams.set("role", "admin");
+      } else if (newRole === "certification") {
+        url.searchParams.set("role", "certification");
+
+        const locale = pathname?.split("/")[1] || "en";
         router.push(`/${locale}/certifications?role=certification`);
         return;
       }
-      
-      window.history.pushState({}, '', url.toString());
+
+      window.history.pushState({}, "", url.toString());
     }
   };
 

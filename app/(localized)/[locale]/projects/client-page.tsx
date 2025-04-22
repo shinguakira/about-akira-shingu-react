@@ -6,15 +6,15 @@ export default function ProjectsClientPage({ locale }: { locale: string }) {
   const translations = {
     en: {
       title: "My Projects",
-      description: "A showcase of my recent work and projects"
+      description: "A showcase of my recent work and projects",
     },
     ja: {
       title: "プロジェクト",
-      description: "最近の作品とプロジェクトのショーケース"
-    }
+      description: "最近の作品とプロジェクトのショーケース",
+    },
   };
 
-  const t = translations[locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === "ja" ? "ja" : "en"];
 
   return (
     <div className="container mx-auto px-4">

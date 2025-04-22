@@ -28,7 +28,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
       {title}
 
       <span
-        className={`ease absolute -bottom-0.5 left-0 inline-block h-[1px] w-0 bg-black transition-[width] duration-300 group-hover:w-full ${pathname === href || (pathname.endsWith(href.split('/').slice(2).join('/')) && href !== '/en' && href !== '/ja') ? "w-full" : "w-0"}`}
+        className={`ease absolute -bottom-0.5 left-0 inline-block h-[1px] w-0 bg-black transition-[width] duration-300 group-hover:w-full ${pathname === href || (pathname.endsWith(href.split("/").slice(2).join("/")) && href !== "/en" && href !== "/ja") ? "w-full" : "w-0"}`}
       >
         &nbsp;
       </span>
@@ -38,27 +38,43 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   const { locale } = useLanguage();
-  
+
   return (
     <header className="fixed top-0 z-10 flex w-full justify-between border-b border-t border-gray-300 bg-blue-200 py-2 font-medium shadow-md dark:bg-blue-900">
       <nav className="xs:text-xs mx-auto flex w-full justify-between py-8 text-base font-medium">
         <div className="xs:text-xs ml-4 space-x-4">
-          <CustomLink href={`/${locale}`} title={locale === 'ja' ? 'ホーム' : 'Home'} className="" />
-          <CustomLink href={`/${locale}/about`} title={locale === 'ja' ? '概要' : 'About'} className="" />
           <CustomLink
-            href={`/${locale}/certifications`}
-            title={locale === 'ja' ? '資格' : 'Certifications'}
+            href={`/${locale}`}
+            title={locale === "ja" ? "ホーム" : "Home"}
             className=""
           />
-          <CustomLink href={`/${locale}/projects`} title={locale === 'ja' ? 'プロジェクト' : 'Projects'} className="" />
+          <CustomLink
+            href={`/${locale}/about`}
+            title={locale === "ja" ? "概要" : "About"}
+            className=""
+          />
+          <CustomLink
+            href={`/${locale}/certifications`}
+            title={locale === "ja" ? "資格" : "Certifications"}
+            className=""
+          />
+          <CustomLink
+            href={`/${locale}/projects`}
+            title={locale === "ja" ? "プロジェクト" : "Projects"}
+            className=""
+          />
           <CustomLink
             href={`/${locale}/articles`}
-            title={locale === 'ja' ? '記事' : 'Articles'}
+            title={locale === "ja" ? "記事" : "Articles"}
             className=""
             prefetch={false}
           />
           <CustomLink href={`/${locale}/faq`} title="FAQ" className="" />
-          <CustomLink href={`/${locale}/contact`} title={locale === 'ja' ? '連絡先' : 'Contact'} className="" />
+          <CustomLink
+            href={`/${locale}/contact`}
+            title={locale === "ja" ? "連絡先" : "Contact"}
+            className=""
+          />
         </div>
       </nav>
       <nav className="xs:text-xs mx-auto flex w-full justify-end py-8 text-base font-medium">

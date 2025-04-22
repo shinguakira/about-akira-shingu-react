@@ -191,7 +191,9 @@ export const workExperiences: MultilingualWorkExperience[] = [
     en: {
       projectOverview: "Voice of Customer System Additional Modifications",
       role: "Full Stack Developer (Specification, Development, Testing)",
-      description: ["Additional modifications to the system delivered and released in April 2024"],
+      description: [
+        "Additional modifications to the system delivered and released in April 2024",
+      ],
       archivement: [
         "Completed the project ahead of the estimated schedule, including the estimation work that was required. Released without issues and currently in operation",
       ],
@@ -294,7 +296,8 @@ export const workExperiences: MultilingualWorkExperience[] = [
       ],
     },
     en: {
-      projectOverview: "Airport Power Monitoring and Control System (MISE) Modification",
+      projectOverview:
+        "Airport Power Monitoring and Control System (MISE) Modification",
       role: "Full Stack Developer (Specification, Development, Testing, Test Environment Setup)",
       description: [
         "Modification of power monitoring and control systems for more than 12 airports and performance evaluation centers",
@@ -439,7 +442,10 @@ export const workExperiences: MultilingualWorkExperience[] = [
     en: {
       projectOverview: "Freelance Translator",
       role: "",
-      description: ["English-Japanese translation", "Translation of videos, websites, military postcards, etc."],
+      description: [
+        "English-Japanese translation",
+        "Translation of videos, websites, military postcards, etc.",
+      ],
       archivement: [""],
       technologies: [""],
     },
@@ -466,7 +472,9 @@ export const workExperiences: MultilingualWorkExperience[] = [
         "Tutored one elementary school student and one junior high school student",
         "The elementary school student was preparing for a private junior high school entrance exam",
       ],
-      archivement: ["Helped a student who was struggling with division to pass the entrance exam for a private junior high school"],
+      archivement: [
+        "Helped a student who was struggling with division to pass the entrance exam for a private junior high school",
+      ],
       technologies: [""],
     },
   },

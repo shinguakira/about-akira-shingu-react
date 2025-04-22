@@ -34,7 +34,9 @@ export default function RootLayout({
         <link rel="icon" sizes="32x32" href="/favicon-32x32.ico" />
         <link rel="icon" sizes="16x16" href="/favicon-16x16.ico" />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 const transporterConfig = {
-  host: 'smtp.gmail.com',
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
@@ -10,49 +10,54 @@ const transporterConfig = {
     pass: process.env.EMAIL_PASSWORD,
   },
   debug: true, // Enable debug logging
-  logger: true  // Log to console
+  logger: true, // Log to console
 };
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     let { name, email, message, recipientEmail } = body;
-    
+
     if (!process.env.EMAIL_PASSWORD || !process.env.EMAIL_USER) {
       return NextResponse.json(
-        { error: "Failed to send message: Email configuration missing. Need to fix application." },
+        {
+          error:
+            "Failed to send message: Email configuration missing. Need to fix application.",
+        },
         { status: 500 }
       );
     }
-    
+
     console.log("Message received:");
     console.log(`From: ${name} (${email})`);
     console.log(`To: ${recipientEmail}`);
     console.log(`Message: ${message}`);
-    
+
     console.log(`Processing message from ${name}`);
-    
+
     let transporter;
     try {
       transporter = nodemailer.createTransport(transporterConfig);
 
-      console.log('Attempting to verify transport...');
+      console.log("Attempting to verify transport...");
       await transporter.verify();
-      console.log('Transport verified successfully');
+      console.log("Transport verified successfully");
     } catch (error) {
-      console.error('Failed to create email transport:', error);
+      console.error("Failed to create email transport:", error);
       return NextResponse.json(
-        { error: "Failed to initialize email service. Please try again later." },
+        {
+          error: "Failed to initialize email service. Please try again later.",
+        },
         { status: 500 }
       );
     }
 
     // Split message by newlines and create div for each line
     const htmlMessage = message
-      .split('\n')
+      .split("\n")
       .map((line: string) => `<div>${line}</div>`)
-      .join('');
-    
+      .join("");
+
     const mailOptions = {
       from: `"Akira Shingu PortfolioContact Form" <${process.env.EMAIL_USER}>`,
       to: recipientEmail || "shinguakira1022@gmail.com",
@@ -74,12 +79,12 @@ export async function POST(request: Request) {
         </div>
       `,
     };
-    
+
     try {
-      console.log('Attempting to send email...');
+      console.log("Attempting to send email...");
       const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully:', info);
-      
+      console.log("Email sent successfully:", info);
+
       return NextResponse.json({
         success: true,
         messageId: info.messageId,
@@ -88,19 +93,22 @@ export async function POST(request: Request) {
           message: message,
           credentials: {
             user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD.substring(0, 3) + '***'
-          }
-        }
+            pass: process.env.EMAIL_PASSWORD.substring(0, 3) + "***",
+          },
+        },
       });
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error("Failed to send email:", error);
       return NextResponse.json(
         { error: "Failed to send email. Please try again later." },
         { status: 500 }
       );
     }
   } catch (error) {
-    console.error("Error details:", error instanceof Error ? error.toString() : "Unknown error");
+    console.error(
+      "Error details:",
+      error instanceof Error ? error.toString() : "Unknown error"
+    );
     return NextResponse.json(
       { error: "Failed to send message: Need to fix application." },
       { status: 500 }

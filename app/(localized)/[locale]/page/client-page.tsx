@@ -15,7 +15,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
   const translations = {
     en: {
       animatedText: "Turning Vision Into Reality With Code And Design.",
-      description: "As a skilled full-stack developer, I am dedicated to turning ideas into innovative web applications. Explore my latest projects and articles, showcasing my expertise in React and web development.",
+      description:
+        "As a skilled full-stack developer, I am dedicated to turning ideas into innovative web applications. Explore my latest projects and articles, showcasing my expertise in React and web development.",
       downloadLabel: "Download→",
       resumeLabel: "Resume",
       jobResumeLabel: "Job Resume",
@@ -34,16 +35,24 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalArticlesDesc: "Article titles and links",
       modalFaq: "FAQ",
       modalFaqDesc: "Frequently Asked Questions",
-      modalButtonText: "Don't show until updates"
+      modalButtonText: "Don't show until updates",
     },
     ja: {
-      animatedText: "コードとデザインでビジョンを現実に。",
-      description: "フルスタック開発者として、アイデアを革新的なウェブアプリケーションに変えることに専念しています。私の最新プロジェクトと記事をご覧いただき、Reactとウェブ開発における専門知識をご確認ください。",
-      downloadLabel: "ダウンロード→",
-      resumeLabel: "履歴書",
-      jobResumeLabel: "職務履歴書",
-      englishResumeLabel: "英語版履歴書",
-      contactLabel: "お問い合わせ",
+      animatedText: "Turning Vision Into Reality With Code And Design.",
+      description:
+        "As a skilled full-stack developer, I am dedicated to turning ideas into innovative web applications. Explore my latest projects and articles, showcasing my expertise in React and web development.",
+      downloadLabel: "Download→",
+      resumeLabel: "Resume",
+      jobResumeLabel: "Job Resume",
+      englishResumeLabel: "English CV/Resume",
+      contactLabel: "Contact",
+      // animatedText: "コードとデザインでビジョンを現実に。",
+      // description: "フルスタック開発者として、アイデアを革新的なウェブアプリケーションに変えることに専念しています。私の最新プロジェクトと記事をご覧いただき、Reactとウェブ開発における専門知識をご確認ください。",
+      // downloadLabel: "ダウンロード→",
+      // resumeLabel: "履歴書",
+      // jobResumeLabel: "職務履歴書",
+      // englishResumeLabel: "英語版履歴書",
+      // contactLabel: "お問い合わせ",
       modalTitle: "ホーム",
       modalHome: "ホーム",
       modalHomeDesc: "履歴書・職務履歴書ダウンロード",
@@ -57,13 +66,13 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalArticlesDesc: "記事のタイトルおよびリンク",
       modalFaq: "よくある質問",
       modalFaqDesc: "よくある質問",
-      modalButtonText: "更新があるまで表示しない"
-    }
+      modalButtonText: "更新があるまで表示しない",
+    },
   };
 
-  const t = translations[locale === 'ja' ? 'ja' : 'en'];
+  const t = translations[locale === "ja" ? "ja" : "en"];
   const [isModalOpen, setIsModalOpen] = useState(true);
-  
+
   useEffect(() => {
     const cookies = parseCookies();
     if (!cookies.modalHidden) {
@@ -71,7 +80,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       setIsModalOpen(false);
     }
   }, []);
-  
+
   function handleDontShowModal(modalHidden: string) {
     if (modalHidden === "true") {
       setCookie(null, "modalHidden", modalHidden, {
@@ -83,7 +92,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       destroyCookie(null, "modalHidden", { path: "/" });
     }
   }
-  
+
   return (
     <>
       <Modal
@@ -113,13 +122,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
           <Image src={profilePic} alt="alt" className="h-auto w-full" />
         </div>
         <div>
-          <AnimatedText
-            text={t.animatedText}
-            className="text-6xl"
-          />
-          <p className="font-midium my-4 text-base">
-            {t.description}
-          </p>
+          <AnimatedText text={t.animatedText} className="text-6xl" />
+          <p className="font-midium my-4 text-base">{t.description}</p>
           <div className="flex flex-row flex-wrap space-x-2">
             <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
               {t.downloadLabel}

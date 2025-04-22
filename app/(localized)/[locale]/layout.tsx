@@ -15,10 +15,14 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
-  
+
   const metadata = {
     en: {
       title: "Akira Shingu",
@@ -27,32 +31,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ja: {
       title: "Akira Shingu",
       description: "Akira Shinguのポートフォリオサイト",
-    }
+    },
   };
-  
-  return metadata[locale === 'ja' ? 'ja' : 'en'];
+
+  return metadata[locale === "ja" ? "ja" : "en"];
 }
 
 export async function generateStaticParams() {
-  return [
-    { locale: 'en' },
-    { locale: 'ja' }
-  ];
+  return [{ locale: "en" }, { locale: "ja" }];
 }
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{
-    locale: string
-  }>
-}
+    locale: string;
+  }>;
+};
 
 export default async function LocaleLayout({ children, params }: Props) {
   return (
     <Providers>
-      <ClientLayoutWrapper>
-        {children}
-      </ClientLayoutWrapper>
+      <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
     </Providers>
   );
 }

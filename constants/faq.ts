@@ -78,7 +78,8 @@ export const faqs: MultilingualFaqProps[] = [
         "大学退学後、最低限の金銭的余裕を確保し、改めてITの仕事に就職しようと考えていたためです。ホテルのフロントを選んだ理由は、自分の強みである英語を活かすためです。プログラミングを活かしたかったのですが、適切なアルバイトがなかったため、ホテルの仕事に就きました。",
     },
     en: {
-      question: "Why did you choose to work at a hotel front desk instead of immediately joining the IT industry after leaving university?",
+      question:
+        "Why did you choose to work at a hotel front desk instead of immediately joining the IT industry after leaving university?",
       answer:
         "After leaving university, I wanted to secure a minimum financial stability before pursuing an IT career. I chose to work at a hotel front desk to leverage my strength in English. While I wanted to use my programming skills, there weren't suitable part-time opportunities available in that field, so I took the hotel position.",
     },
@@ -106,7 +107,8 @@ export const faqs: MultilingualFaqProps[] = [
         "その時のプロジェクト、会社で必要とされる知識を取得するため、資格を取得していたためです。このばらつきにより、やりたいことが定まっていないのではないか、等良い印象を持たれない方がいらっしゃるかもしれませんが、そのばらついている労力が1つのもの集約されるとどうなるかと想像されると良いかと思います。",
     },
     en: {
-      question: "Why is there such variety in the types of certifications you've obtained?",
+      question:
+        "Why is there such variety in the types of certifications you've obtained?",
       answer:
         "I obtained certifications to acquire knowledge needed for specific projects and companies at different times. Some might get the impression that this variety indicates a lack of focus or direction, but I'd encourage you to imagine what could be achieved if all that diverse effort were concentrated on a single goal.",
     },
@@ -120,7 +122,8 @@ export const faqs: MultilingualFaqProps[] = [
         "現在の会社が、AWSのパートナーになることを目指しているため、AWSの資格取得を推奨していること、AWS All Certified Engineerの表彰により、会社の知名度向上に微力ながら助力できると考えたためです。また認知度のない資格を取得しても、評価されない可能性があったためです。",
     },
     en: {
-      question: "As a developer, why have you obtained so many AWS certifications?",
+      question:
+        "As a developer, why have you obtained so many AWS certifications?",
       answer:
         "My current company aims to become an AWS partner, so they encourage obtaining AWS certifications. I believed that achieving AWS All Certified Engineer recognition could help increase the company's visibility. Additionally, obtaining certifications that lack recognition might not be valued as highly.",
     },

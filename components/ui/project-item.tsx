@@ -51,7 +51,7 @@ const ProjectPage = () => {
                       Technologies:
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {localizedProject.technologies.map((tech, index) => (
+                      {project.technologies.map((tech, index) => (
                         <span
                           key={index}
                           className="rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"

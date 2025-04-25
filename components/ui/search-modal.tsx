@@ -58,7 +58,7 @@ const SearchModal = () => {
       if (
         project[currentLang].title.toLowerCase().includes(query) ||
         project[currentLang].description.toLowerCase().includes(query) ||
-        project[currentLang].technologies.some(tech => tech.toLowerCase().includes(query))
+        project.technologies.some(tech => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "project",
@@ -93,7 +93,7 @@ const SearchModal = () => {
         exp.company.toLowerCase().includes(query) ||
         exp[currentLang].description.some(desc => desc.toLowerCase().includes(query)) ||
         exp[currentLang].archivement.some(arch => arch.toLowerCase().includes(query)) ||
-        exp[currentLang].technologies.some(tech => tech.toLowerCase().includes(query))
+        exp.technologies.some(tech => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "experience",

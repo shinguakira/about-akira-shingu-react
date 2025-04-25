@@ -10,6 +10,7 @@ import profilePic from "public/images/profile/developer-pic-1.png";
 import Modal from "@/components/ui/modal";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
+import SearchModal from "@/components/ui/search-modal";
 
 export default function HomeClientPage({ locale }: { locale: string }) {
   const translations = {
@@ -36,6 +37,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalFaq: "FAQ",
       modalFaqDesc: "Frequently Asked Questions",
       modalButtonText: "Don't show until updates",
+      modalSearch: "Search from website(You can also search from the top of the page)",
+      modalSearchDesc: "Click icon to search",
     },
     ja: {
       animatedText: "Turning Vision Into Reality With Code And Design.",
@@ -67,6 +70,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalFaq: "よくある質問",
       modalFaqDesc: "よくある質問",
       modalButtonText: "更新があるまで表示しない",
+      modalSearch: "サイト内検索(サイト右上からも検索できます。)",
+      modalSearchDesc: "アイコンクリックで検索",
     },
   };
 
@@ -113,6 +118,11 @@ export default function HomeClientPage({ locale }: { locale: string }) {
         <ul>{t.modalArticlesDesc}</ul>
         <div className="font-bold">{t.modalFaq}</div>
         <ul>{t.modalFaqDesc}</ul>
+        <div className="font-bold">{t.modalSearch}</div>
+        <div className="border-2 border-radius mb-2 flex items-center">
+          <SearchModal />
+          {t.modalSearchDesc}
+        </div>
         <Button onClick={() => handleDontShowModal("true")}>
           {t.modalButtonText}
         </Button>

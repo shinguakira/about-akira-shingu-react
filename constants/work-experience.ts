@@ -47,7 +47,7 @@ export const workExperiences: MultilingualWorkExperience[] = [
       "Sentry",
       "Figma",
       "Slack",
-      "CodeRabbit"
+      "CodeRabbit",
     ],
     ja: {
       projectOverview: "コーチングマッチングサービスの開発",

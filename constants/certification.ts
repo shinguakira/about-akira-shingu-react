@@ -238,7 +238,8 @@ export const certifications: CertificationItemProps[] = [
     name: "Meta Front-End Developer Certificate",
     organization: "Meta",
     date: "2025-02",
-    verifyLink: "https://www.credly.com/badges/d93bc926-790d-467b-90c4-06797bcd3084",
+    verifyLink:
+      "https://www.credly.com/badges/d93bc926-790d-467b-90c4-06797bcd3084",
   },
   {
     id: 23,

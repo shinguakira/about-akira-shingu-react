@@ -37,7 +37,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalFaq: "FAQ",
       modalFaqDesc: "Frequently Asked Questions",
       modalButtonText: "Don't show until updates",
-      modalSearch: "Search from website(You can also search from the top of the page)",
+      modalSearch:
+        "Search from website(You can also search from the top of the page)",
       modalSearchDesc: "Click icon to search",
     },
     ja: {
@@ -77,6 +78,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
 
   const t = translations[locale === "ja" ? "ja" : "en"];
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   useEffect(() => {
     const cookies = parseCookies();
@@ -119,8 +121,15 @@ export default function HomeClientPage({ locale }: { locale: string }) {
         <div className="font-bold">{t.modalFaq}</div>
         <ul>{t.modalFaqDesc}</ul>
         <div className="font-bold">{t.modalSearch}</div>
-        <div className="border-2 border-radius mb-2 flex items-center">
-          <SearchModal />
+        <div
+          className="border-radius mb-2 flex items-center border-2"
+          onClick={() => setSearchModalOpen(true)}
+        >
+          <SearchModal
+            asInput={true}
+            openModal={searchModalOpen}
+            onOpenChange={setSearchModalOpen}
+          />
           {t.modalSearchDesc}
         </div>
         <Button onClick={() => handleDontShowModal("true")}>
@@ -138,12 +147,13 @@ export default function HomeClientPage({ locale }: { locale: string }) {
             <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
               {t.downloadLabel}
             </label>
-            <DownLoadLink href={links.resumeLink} label={t.resumeLabel} />
+            {/* TODO: mask or control based on role. no links shown by default */}
+            {/* <DownLoadLink href={links.resumeLink} label={t.resumeLabel} />
             <DownLoadLink href={links.jobResumeLink} label={t.jobResumeLabel} />
             <DownLoadLink
               href={links.EnglishResumeLink}
               label={t.englishResumeLabel}
-            />
+            /> */}
           </div>
           <div>
             <Link

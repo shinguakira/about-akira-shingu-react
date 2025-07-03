@@ -20,7 +20,15 @@ type SearchResult = {
   anchor?: string; // For navigating to specific sections
 };
 
-const SearchModal = () => {
+const SearchModal = ({
+  asInput = false,
+  openModal = false,
+  onOpenChange,
+}: {
+  asInput?: boolean;
+  openModal?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) => {
   const { locale } = useLanguage();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -28,15 +36,30 @@ const SearchModal = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const currentLang = locale === 'ja' ? 'ja' : 'en';
+  const currentLang = locale === "ja" ? "ja" : "en";
+
+  // Sync internal state with external control
+  useEffect(() => {
+    if (openModal !== undefined) {
+      setIsOpen(openModal);
+    }
+  }, [openModal]);
+
+  // Notify parent component when modal state changes
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (onOpenChange) {
+      onOpenChange(open);
+    }
+  };
 
   const getSearchResults = (): SearchResult[] => {
     const results: SearchResult[] = [];
-    
+
     if (!searchQuery.trim()) return results;
-    
+
     const query = searchQuery.toLowerCase();
-    
+
     faqs.forEach((faq, index) => {
       if (
         faq[currentLang].question.toLowerCase().includes(query) ||
@@ -49,27 +72,27 @@ const SearchModal = () => {
           description: faq[currentLang].answer,
           category: faq.category,
           url: `/${locale}/faq`,
-          anchor: `faq-${index}`
+          anchor: `faq-${index}`,
         });
       }
     });
-    
+
     projects.forEach((project, index) => {
       if (
         project[currentLang].title.toLowerCase().includes(query) ||
         project[currentLang].description.toLowerCase().includes(query) ||
-        project.technologies.some(tech => tech.toLowerCase().includes(query))
+        project.technologies.some((tech) => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "project",
           title: project[currentLang].title,
           description: project[currentLang].description,
           url: `/${locale}/projects`,
-          anchor: `project-${index}`
+          anchor: `project-${index}`,
         });
       }
     });
-    
+
     [...skills, ...otherSkills].forEach((skill) => {
       if (
         skill.name.toLowerCase().includes(query) ||
@@ -81,19 +104,23 @@ const SearchModal = () => {
           description: `${skill.category} - ${skill.years} years`,
           category: skill.category,
           url: `/${locale}/about`,
-          anchor: `skill-${skill.category.toLowerCase().replace(/\s+/g, '-')}`
+          anchor: `skill-${skill.category.toLowerCase().replace(/\s+/g, "-")}`,
         });
       }
     });
-    
+
     workExperiences.forEach((exp, index) => {
       if (
         exp[currentLang].projectOverview.toLowerCase().includes(query) ||
         exp[currentLang].role.toLowerCase().includes(query) ||
         exp.company.toLowerCase().includes(query) ||
-        exp[currentLang].description.some(desc => desc.toLowerCase().includes(query)) ||
-        exp[currentLang].archivement.some(arch => arch.toLowerCase().includes(query)) ||
-        exp.technologies.some(tech => tech.toLowerCase().includes(query))
+        exp[currentLang].description.some((desc) =>
+          desc.toLowerCase().includes(query)
+        ) ||
+        exp[currentLang].archivement.some((arch) =>
+          arch.toLowerCase().includes(query)
+        ) ||
+        exp.technologies.some((tech) => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "experience",
@@ -101,11 +128,11 @@ const SearchModal = () => {
           description: exp[currentLang].role,
           category: exp.company,
           url: `/${locale}/about`,
-          anchor: `work-${index}`
+          anchor: `work-${index}`,
         });
       }
     });
-    
+
     certifications.forEach((cert, index) => {
       if (
         cert.name.toLowerCase().includes(query) ||
@@ -117,11 +144,11 @@ const SearchModal = () => {
           title: cert.name,
           description: `${cert.organization} - ${cert.date}`,
           url: `/${locale}/certifications`,
-          anchor: `cert-${index}`
+          anchor: `cert-${index}`,
         });
       }
     });
-    
+
     strongPoint.forEach((point, index) => {
       if (
         point[currentLang].question.toLowerCase().includes(query) ||
@@ -132,11 +159,11 @@ const SearchModal = () => {
           title: point[currentLang].question,
           description: point[currentLang].answer,
           url: `/${locale}/about`,
-          anchor: `strong-point-${index}`
+          anchor: `strong-point-${index}`,
         });
       }
     });
-    
+
     return results;
   };
 
@@ -146,13 +173,13 @@ const SearchModal = () => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setIsOpen((open) => !open);
+        handleOpenChange(!isOpen);
       }
 
       if (isOpen) {
         if (e.key === "ArrowDown") {
           e.preventDefault();
-          setSelectedIndex((prevIndex) => 
+          setSelectedIndex((prevIndex) =>
             prevIndex < searchResults.length - 1 ? prevIndex + 1 : prevIndex
           );
         } else if (e.key === "ArrowUp") {
@@ -171,9 +198,14 @@ const SearchModal = () => {
 
   useEffect(() => {
     if (resultsContainerRef.current && searchResults.length > 0) {
-      const selectedElement = document.getElementById(`search-result-${selectedIndex}`);
+      const selectedElement = document.getElementById(
+        `search-result-${selectedIndex}`
+      );
       if (selectedElement) {
-        selectedElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        selectedElement.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
       }
     }
   }, [selectedIndex, searchResults.length]);
@@ -185,9 +217,9 @@ const SearchModal = () => {
   }, [isOpen]);
 
   const handleResultClick = (result: SearchResult) => {
-    setIsOpen(false);
+    handleOpenChange(false);
     setSearchQuery("");
-    
+
     if (result.anchor) {
       router.push(`${result.url}#${result.anchor}`);
     } else {
@@ -217,17 +249,17 @@ const SearchModal = () => {
   const getTypeLabel = (type: string) => {
     switch (type) {
       case "faq":
-        return currentLang === 'ja' ? "よくある質問" : "FAQ";
+        return currentLang === "ja" ? "よくある質問" : "FAQ";
       case "project":
-        return currentLang === 'ja' ? "プロジェクト" : "Project";
+        return currentLang === "ja" ? "プロジェクト" : "Project";
       case "skill":
-        return currentLang === 'ja' ? "スキル" : "Skill";
+        return currentLang === "ja" ? "スキル" : "Skill";
       case "experience":
-        return currentLang === 'ja' ? "職歴" : "Work Experience";
+        return currentLang === "ja" ? "職歴" : "Work Experience";
       case "certification":
-        return currentLang === 'ja' ? "資格" : "Certification";
+        return currentLang === "ja" ? "資格" : "Certification";
       case "strongPoint":
-        return currentLang === 'ja' ? "強み" : "Strong Point";
+        return currentLang === "ja" ? "強み" : "Strong Point";
       default:
         return type;
     }
@@ -235,22 +267,38 @@ const SearchModal = () => {
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center justify-center rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-        aria-label="Search"
-      >
-        <Search className="h-5 w-5" />
-      </button>
+      {asInput ? (
+        <div
+          onClick={() => handleOpenChange(true)}
+          className="flex cursor-pointer items-center rounded-md border border-gray-300 px-3 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800"
+        >
+          <Search className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+          <span className="text-gray-500 dark:text-gray-400">
+            {currentLang === "ja" ? "検索..." : "Search..."}
+          </span>
+        </div>
+      ) : (
+        <button
+          onClick={() => handleOpenChange(true)}
+          className="flex items-center justify-center rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+          aria-label="Search"
+        >
+          <Search className="h-5 w-5" />
+        </button>
+      )}
 
-      <Modal 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)}
-        modalTitle={currentLang === 'ja' ? "サイト内検索" : "Site Search"}
-        modalDescription={currentLang === 'ja' ? "キーワードを入力して検索" : "Enter keywords to search"}
+      <Modal
+        isOpen={isOpen}
+        onClose={() => handleOpenChange(false)}
+        modalTitle={currentLang === "ja" ? "サイト内検索" : "Site Search"}
+        modalDescription={
+          currentLang === "ja"
+            ? "キーワードを入力して検索"
+            : "Enter keywords to search"
+        }
       >
         <div className="relative">
-          <div className="flex items-center px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center border-b border-gray-200 px-4 py-3 dark:border-gray-700">
             <Search className="h-5 w-5 text-gray-500 dark:text-gray-400" />
             <input
               ref={inputRef}
@@ -259,7 +307,7 @@ const SearchModal = () => {
                 setSearchQuery(e.target.value);
                 setSelectedIndex(0); // Reset selection when query changes
               }}
-              placeholder={currentLang === 'ja' ? "検索..." : "Search..."}
+              placeholder={currentLang === "ja" ? "検索..." : "Search..."}
               className="ml-3 flex-1 bg-transparent text-gray-900 outline-none dark:text-gray-100"
               autoFocus
             />
@@ -272,15 +320,15 @@ const SearchModal = () => {
               </button>
             )}
           </div>
-          <div 
+          <div
             ref={resultsContainerRef}
             className="max-h-[50vh] overflow-y-auto scroll-smooth"
           >
             {searchResults.length > 0 ? (
               <>
                 <div className="p-2 text-xs text-gray-500 dark:text-gray-400">
-                  {currentLang === 'ja' 
-                    ? `${searchResults.length}件の結果が見つかりました` 
+                  {currentLang === "ja"
+                    ? `${searchResults.length}件の結果が見つかりました`
                     : `${searchResults.length} results found`}
                 </div>
                 {searchResults.map((result, index) => (
@@ -308,7 +356,7 @@ const SearchModal = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <h3 className="font-medium text-gray-900 dark:text-gray-100">
                           {result.title}
@@ -317,26 +365,28 @@ const SearchModal = () => {
                           {result.description}
                         </p>
                       </div>
-                      <ArrowRight className="h-4 w-4 text-gray-400 flex-shrink-0 ml-2" />
+                      <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0 text-gray-400" />
                     </div>
                   </div>
                 ))}
               </>
             ) : searchQuery ? (
               <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
-                {currentLang === 'ja' ? "検索結果がありません" : "No results found"}
+                {currentLang === "ja"
+                  ? "検索結果がありません"
+                  : "No results found"}
               </div>
             ) : (
               <div className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
-                {currentLang === 'ja' 
-                  ? "キーワードを入力して検索してください" 
+                {currentLang === "ja"
+                  ? "キーワードを入力して検索してください"
                   : "Type to search across the site"}
               </div>
             )}
           </div>
-          <div className="px-4 py-2 text-xs text-gray-500 border-t border-gray-200 dark:border-gray-700 dark:text-gray-400">
-            {currentLang === 'ja' 
-              ? "↑↓: 移動, Enter: 選択, Esc: 閉じる" 
+          <div className="border-t border-gray-200 px-4 py-2 text-xs text-gray-500 dark:border-gray-700 dark:text-gray-400">
+            {currentLang === "ja"
+              ? "↑↓: 移動, Enter: 選択, Esc: 閉じる"
               : "↑↓: Navigate, Enter: Select, Esc: Close"}
           </div>
         </div>

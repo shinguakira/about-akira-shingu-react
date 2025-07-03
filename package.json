@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint:fix": "eslint --fix ./**/*.{js,jsx,ts,tsx}",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "dev": "next dev",
@@ -51,6 +52,7 @@
     "eslint-config-next": "15.0.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.1",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "postcss": "^8",

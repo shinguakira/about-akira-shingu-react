@@ -78,9 +78,9 @@ const NavBar = () => {
   ];
 
   return (
-    <header className="fixed top-0 z-10 flex w-full justify-between border-b border-t border-gray-300 bg-blue-200 py-2 font-medium shadow-md dark:bg-blue-900">
-      <nav className="xs:text-xs mx-auto flex w-full justify-between py-8 text-base font-medium">
-        <div className="xs:text-xs ml-4 space-x-4 hidden md:flex">
+    <header className="fixed top-0 z-10 flex w-full justify-between border-b border-t border-gray-300 bg-blue-200 font-medium shadow-md dark:bg-blue-900">
+      <nav className="xs:text-xs mx-auto flex w-full justify-between pt-8 text-base font-medium">
+        <div className="xs:text-xs ml-4 hidden space-x-4 md:flex">
           {navigationLinks.map((link) => (
             <CustomLink
               key={link.href}
@@ -91,7 +91,7 @@ const NavBar = () => {
             />
           ))}
         </div>
-        
+
         <div className="ml-4 md:hidden">
           <Button
             variant="ghost"
@@ -110,12 +110,12 @@ const NavBar = () => {
           </Button>
         </div>
       </nav>
-      
-      <nav className="xs:text-xs mx-auto flex w-full justify-end py-8 text-base font-medium">
+
+      <nav className="xs:text-xs mx-auto flex w-full justify-end py-4 text-base font-medium">
         <div className="mr-5">
           <ChangelogNotification />
         </div>
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden items-center space-x-2 md:flex">
           <Link
             href="https://www.credly.com/users/username.aff80586"
             target="_blank"
@@ -130,7 +130,11 @@ const NavBar = () => {
           >
             <LinkedInIcon className={iconSize} />
           </Link>
-          <Link href="https://qiita.com/ShinguAkira" target="_blank" className="">
+          <Link
+            href="https://qiita.com/ShinguAkira"
+            target="_blank"
+            className=""
+          >
             <QiitaIcon className={iconSize} />
           </Link>
           <Link
@@ -145,8 +149,8 @@ const NavBar = () => {
           <RoleSwitcher />
           <ThemeToggle />
         </div>
-        
-        <div className="md:hidden flex items-center space-x-2">
+
+        <div className="flex items-center space-x-2 md:hidden">
           <SearchModal />
           <LanguageSwitcher />
           <RoleSwitcher />
@@ -165,11 +169,11 @@ const NavBar = () => {
                 key={link.href}
                 href={link.href}
                 title={link.title}
-                className="block py-2 text-gray-800 dark:text-gray-200 hover:bg-blue-300 dark:hover:bg-blue-800 rounded px-2"
+                className="block rounded px-2 py-2 text-gray-800 hover:bg-blue-300 dark:text-gray-200 dark:hover:bg-blue-800"
                 prefetch={link.prefetch}
               />
             ))}
-            <div className="flex items-center justify-center space-x-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+            <div className="flex items-center justify-center space-x-4 border-t border-gray-300 pt-4 dark:border-gray-600">
               <Link
                 href="https://www.credly.com/users/username.aff80586"
                 target="_blank"
@@ -184,7 +188,11 @@ const NavBar = () => {
               >
                 <LinkedInIcon className={iconSize} />
               </Link>
-              <Link href="https://qiita.com/ShinguAkira" target="_blank" className="">
+              <Link
+                href="https://qiita.com/ShinguAkira"
+                target="_blank"
+                className=""
+              >
                 <QiitaIcon className={iconSize} />
               </Link>
               <Link

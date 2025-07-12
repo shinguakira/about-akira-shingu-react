@@ -1,4 +1,4 @@
-export type CertificationItemProps = {
+type CertificationItemProps = {
   id: number; // index of certification list
   name: string; // name of certification
   organization: string; // organization name

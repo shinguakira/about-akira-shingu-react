@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./shadcn/button";
 import { UserRole } from "../../components/user-role-wrapper";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 const DEFAULT_ROLE_KEYS = {
   ADMIN: "usr_type_a7x9z",
@@ -21,6 +22,7 @@ export default function RoleSwitcher() {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [testMode, setTestMode] = useState(false); // Default to false - hidden unless explicitly enabled
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
   const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
@@ -121,13 +123,13 @@ export default function RoleSwitcher() {
     return null;
   }
 
-  if (!testMode) {
+  // Show on desktop screens regardless of test mode, or on mobile if test mode is enabled
+  if (!isDesktop && !testMode) {
     return null;
   }
 
   return (
     <div className="flex flex-col space-y-2 rounded-md bg-gray-100 p-2 dark:bg-gray-800">
-      <h3 className="text-sm font-medium">Switch User Role</h3>
       <div className="flex space-x-2">
         <Button
           variant={currentRole === "normalUser" ? "default" : "outline"}

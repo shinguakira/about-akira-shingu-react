@@ -26,24 +26,24 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 ## Project Structure
 
 ```
-â”œâ”€â”€ .github/            # GitHub workflows and configurations
-â”œâ”€â”€ app/                # Next.js App Router pages
-â”‚   â”œâ”€â”€ (localized)/    # Localization wrapper with [locale] parameter
-â”‚   â”œâ”€â”€ about/          # About page routes
-â”‚   â”œâ”€â”€ api/            # API routes (including contact form handling)
-â”‚   â”œâ”€â”€ articles/       # Articles/blog section
-â”‚   â”œâ”€â”€ certifications/ # Professional certifications section
-â”‚   â”œâ”€â”€ contact/        # Contact page
-â”‚   â”œâ”€â”€ faq/            # FAQ section
-â”‚   â””â”€â”€ projects/       # Projects showcase
-â”œâ”€â”€ components/         # React components
-â”‚   â”œâ”€â”€ ui/             # Reusable UI components
-â”‚   â””â”€â”€ ...             # Other specialized components
-â”œâ”€â”€ constants/          # Constants and static data
-â”œâ”€â”€ contexts/           # React contexts (e.g., language, theme)
-â”œâ”€â”€ lib/                # Utility functions
-â”œâ”€â”€ public/             # Static assets
-â”œâ”€â”€ types/              # TypeScript type definitions
+„¥„Ÿ„Ÿ .github/            # GitHub workflows and configurations
+„¥„Ÿ„Ÿ app/                # Next.js App Router pages
+„    „¥„Ÿ„Ÿ (localized)/    # Localization wrapper with [locale] parameter
+„    „¥„Ÿ„Ÿ about/          # About page routes
+„    „¥„Ÿ„Ÿ api/            # API routes (including contact form handling)
+„    „¥„Ÿ„Ÿ articles/       # Articles/blog section
+„    „¥„Ÿ„Ÿ certifications/ # Professional certifications section
+„    „¥„Ÿ„Ÿ contact/        # Contact page
+„    „¥„Ÿ„Ÿ faq/            # FAQ section
+„    „¤„Ÿ„Ÿ projects/       # Projects showcase
+„¥„Ÿ„Ÿ components/         # React components
+„    „¥„Ÿ„Ÿ ui/             # Reusable UI components
+„    „¤„Ÿ„Ÿ ...             # Other specialized components
+„¥„Ÿ„Ÿ constants/          # Constants and static data
+„¥„Ÿ„Ÿ contexts/           # React contexts (e.g., language, theme)
+„¥„Ÿ„Ÿ lib/                # Utility functions
+„¥„Ÿ„Ÿ public/             # Static assets
+„¥„Ÿ„Ÿ types/              # TypeScript type definitions
 ```
 
 ## Key Features

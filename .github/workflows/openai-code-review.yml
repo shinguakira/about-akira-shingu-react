@@ -39,12 +39,14 @@ jobs:
             - UI component design
 
             IMPORTANT INSTRUCTIONS:
-            1. Provide BRIEF problem statements followed by CONCRETE solutions
-            2. Use specific code examples when suggesting improvements
-            3. Include at least one official documentation URL or article link for EACH problem identified
+            1. If you find no significant issues, simply respond with "✅ Code review completed. No issues found."
+            2. Do NOT invent or exaggerate problems - only report genuine issues
+            3. For actual issues found, provide BRIEF problem statements followed by CONCRETE solutions
+            4. Use specific code examples when suggesting improvements
+            5. Include at least one official documentation URL or article link for EACH problem identified
                (e.g., Next.js docs, React docs, TypeScript handbook)
-            4. Prioritize the most impactful changes first
-            5. Skip minor issues and focus on patterns that affect multiple components
-            6. Do NOT organize your review by categories - just list the issues and fixes
-            7. If your comment exceeds 300 characters, split it into multiple comments numbered as "Part 1/N", "Part 2/N", etc.
-            8. Ignore security issues completely
+            6. Prioritize the most impactful changes first
+            7. Skip minor issues and focus on patterns that affect multiple components
+            8. Do NOT organize your review by categories - just list the issues and fixes
+            9. If your comment exceeds 300 characters, split it into multiple comments numbered as "Part 1/N", "Part 2/N", etc.
+            10. Ignore security issues completely

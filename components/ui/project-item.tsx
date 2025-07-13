@@ -2,12 +2,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
-import { projects } from "@/constants/project";
+import { ProjectContent } from "@/constants/project";
 import { useParams } from "next/navigation";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
-const ProjectPage = () => {
+interface ProjectItemProps {
+  projects: ProjectContent[];
+}
+
+const ProjectPage = ({ projects }: ProjectItemProps) => {
   const params = useParams();
   const locale = (params?.locale as string) || "ja";
 
@@ -19,8 +23,6 @@ const ProjectPage = () => {
         </h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index: number) => {
-            const localizedProject = locale === "en" ? project.en : project.ja;
-
             return (
               <div
                 style={
@@ -33,18 +35,18 @@ const ProjectPage = () => {
                 className={`overflow-hidden rounded-lg border-4 bg-white shadow-lg ${index === 1 ? "animate-rainbow-border" : ""}`}
               >
                 <Image
-                  src={localizedProject.image ? localizedProject.image : tmpPic}
-                  alt={localizedProject.title}
+                  src={project.image ? project.image : tmpPic}
+                  alt={project.title}
                   width={1200}
                   height={700}
                   className="w-full bg-black object-cover"
                 />
                 <div className="p-6">
                   <h2 className="mb-2 text-2xl font-bold text-gray-900">
-                    {localizedProject.title}
+                    {project.title}
                   </h2>
                   <pre className="mb-4 w-full whitespace-pre-wrap text-gray-600">
-                    {localizedProject.description}
+                    {project.description}
                   </pre>
                   <div className="mb-4">
                     <h3 className="mb-2 text-lg font-semibold text-gray-900">
@@ -62,9 +64,9 @@ const ProjectPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    {localizedProject.githubUrl && (
+                    {project.githubUrl && (
                       <Link
-                        href={localizedProject.githubUrl}
+                        href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 transition-colors hover:text-gray-900"
@@ -73,9 +75,9 @@ const ProjectPage = () => {
                         <span>GitHub Repository</span>
                       </Link>
                     )}{" "}
-                    {localizedProject.liveUrl && (
+                    {project.liveUrl && (
                       <Link
-                        href={localizedProject.liveUrl}
+                        href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-600 transition-colors hover:text-gray-900"

@@ -82,10 +82,13 @@ export async function fetchCertifications(lang?: string) {
 }
 
 /**
- * Example: Fetch projects data (for future use)
+ * Fetches project data with 1 week cache
+ * @param lang - Optional language code for localized content
  */
-export async function fetchProjects() {
-  return fetchFromPortfolioApi('projects');
+export async function fetchProjects(lang?: string) {
+  return fetchFromPortfolioApi('projects', {
+    queryParams: lang ? { lang } : undefined
+  });
 }
 
 /**

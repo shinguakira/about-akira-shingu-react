@@ -1,8 +1,15 @@
 "use client";
 import React from "react";
 import ProjectItem from "@/components/ui/project-item";
+import { MultilingualProjectProps, ProjectContent } from "@/constants/project";
 
-export default function ProjectsClientPage({ locale }: { locale: string }) {
+export default function ProjectsClientPage({
+  locale,
+  projects,
+}: {
+  locale: string;
+  projects: ProjectContent[];
+}) {
   const translations = {
     en: {
       title: "My Projects",
@@ -20,7 +27,7 @@ export default function ProjectsClientPage({ locale }: { locale: string }) {
     <div className="container mx-auto px-4">
       <h1 className="mb-6 text-4xl font-bold">{t.title}</h1>
       <p className="mb-8 text-lg">{t.description}</p>
-      <ProjectItem />
+      <ProjectItem projects={projects} />
     </div>
   );
 }

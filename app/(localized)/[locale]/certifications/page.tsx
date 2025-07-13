@@ -40,9 +40,9 @@ type Props = {
   }>;
 };
 
-// Set this page to be statically generated at build time
-export const dynamic = 'force-static';
-export const revalidate = 604800; // Revalidate once per week (7 days)
+// Use ISR with long cache instead of force-static to avoid build issues
+// Still revalidates once per week (7 days)
+export const revalidate = 604800;
 
 export default async function CertificationsPage({ params }: Props) {
   const resolvedParams = await params;

@@ -96,11 +96,11 @@ EMAIL_TO=
 ```
 
 ### Build Commands
-- Development: `npm run dev`
-- Production build: `npm run build`
-- Start production server: `npm start`
-- Linting: `npm run lint` or `npm run lint:fix`
-- Format code: `npm run format`
+- Development: `pnpm run dev`
+- Production build: `pnpm run build`
+- Start production server: `pnpm start`
+- Linting: `pnpm run lint` or `pnpm run lint:fix`
+- Format code: `pnpm run format`
 
 ### Deployment Target
 This Next.js application is optimized for deployment on Vercel or similar platforms that support Next.js natively.

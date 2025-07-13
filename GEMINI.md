@@ -51,10 +51,10 @@ The portfolio showcases professional certifications dynamically fetched from an 
 
 In the project directory, you can run:
 
-- `npm run dev`: Runs the app in development mode.
-- `npm run build`: Builds the app for production.
-- `npm run start`: Starts a production server.
-- `npm run lint`: Lints the codebase for errors.
-- `npm run lint:fix`: Automatically fixes linting errors.
-- `npm run format`: Formats the code using Prettier.
-- `npm run check-format`: Checks for formatting issues.
+- `pnpm run dev`: Runs the app in development mode.
+- `pnpm run build`: Builds the app for production.
+- `pnpm run start`: Starts a production server.
+- `pnpm run lint`: Lints the codebase for errors.
+- `pnpm run lint:fix`: Automatically fixes linting errors.
+- `pnpm run format`: Formats the code using Prettier.
+- `pnpm run check-format`: Checks for formatting issues.

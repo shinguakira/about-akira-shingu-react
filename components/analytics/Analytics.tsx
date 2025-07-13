@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 interface AnalyticsProps {
   gtmId?: string; // Google Tag Manager ID (optional if using hardcoded default)
@@ -13,10 +13,8 @@ interface AnalyticsProps {
 const DEFAULT_GTM_ID = "GTM-NP85DLQQ"; // Replace with your actual GTM ID
 const DEFAULT_CLARITY_ID = "xxxxxxxxxx"; // Replace with your actual Clarity ID
 
-export default function Analytics({
-  gtmId = DEFAULT_GTM_ID,
-  clarityId = DEFAULT_CLARITY_ID,
-}: AnalyticsProps) {
+// Separate component to handle hooks that need Suspense
+function AnalyticsPageTracker({ gtmId }: { gtmId: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -31,8 +29,19 @@ export default function Analytics({
     }
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+export default function Analytics({
+  gtmId = DEFAULT_GTM_ID,
+  clarityId = DEFAULT_CLARITY_ID,
+}: AnalyticsProps) {
   return (
     <>
+      <Suspense fallback={null}>
+        <AnalyticsPageTracker gtmId={gtmId} />
+      </Suspense>
+
       {/* Google Tag Manager */}
       <Script
         id="gtm-script"
@@ -48,20 +57,24 @@ export default function Analytics({
         }}
       />
 
-      {/* GTM noscript (fallback for browsers without JavaScript) */}
+      {/* Google Tag Manager (noscript) */}
       <noscript
         dangerouslySetInnerHTML={{
           __html: `
-            <iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
+              height="0"
+              width="0"
+              style="display:none;visibility:hidden"
+            ></iframe>
           `,
         }}
       />
 
-      {/* Microsoft Clarity (only if clarityId is provided) */}
+      {/* Microsoft Clarity */}
       {clarityId && (
         <Script
-          id="microsoft-clarity"
+          id="clarity-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `

@@ -44,9 +44,9 @@ export default function RootLayout({
       >
         {children}
         {/* Include Analytics - component has default IDs built in */}
-        <Analytics 
-          gtmId={process.env.NEXT_PUBLIC_GTM_ID} 
-          clarityId={process.env.NEXT_PUBLIC_CLARITY_ID} 
+        <Analytics
+          gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+          clarityId={process.env.NEXT_PUBLIC_CLARITY_ID}
         />
       </body>
     </html>

@@ -3,7 +3,8 @@
  * Uses Next.js App Router data fetching with caching
  */
 
-const BASE_URL = 'https://portfolio-api-ten-delta.vercel.app/api';
+// Use environment variable with fallback to default URL
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL || 'https://portfolio-api-ten-delta.vercel.app/api';
 
 type FetchOptions = {
   /** Cache revalidation time in seconds (default: 1 week) */
@@ -51,7 +52,9 @@ export async function fetchFromPortfolioApi<T = any>(
   try {
     const response = await fetch(url, {
       headers,
-      cache,
+      // When using next.revalidate, don't specify cache: 'force-cache'
+      // to avoid the warning about specifying both
+      ...(cache ? { cache } : {}),
       next: { 
         revalidate: revalidateSeconds
       }

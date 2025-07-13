@@ -40,11 +40,16 @@ type Props = {
   }>;
 };
 
+// Set this page to be statically generated at build time
+export const dynamic = 'force-static';
+export const revalidate = 604800; // Revalidate once per week (7 days)
+
 export default async function CertificationsPage({ params }: Props) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
 
   // Fetch certifications data on the server with locale as lang parameter
+  // This data fetching will happen at build time for SSG
   let certifications;
   try {
     // Pass locale as lang query parameter to the API

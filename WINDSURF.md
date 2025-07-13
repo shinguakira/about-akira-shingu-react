@@ -3,6 +3,31 @@
 ## Project Overview
 This is a personal portfolio website for Akira Shingu built using modern web technologies. The site features a responsive design with dark/light mode support and multilingual capabilities (English/Japanese).
 
+## Next.js Development Patterns
+
+### TypeScript Integration
+- **Implicit Type System**: Types are defined without explicit `export` keywords and imported implicitly where needed
+- **TypeScript Configuration**: Optimized for Next.js App Router with proper module resolution
+- **Type Safety**: Ensuring type safety across components without verbose type annotations
+
+### Data Fetching Strategy
+- **Server-First Approach**: Data fetching happens in server components whenever possible
+- **No Client-Side API Calls**: Avoiding `useEffect` hooks for API calls
+- **Props Passing Pattern**: Server components fetch data and pass it to client components
+- **Revalidation Strategy**: Using Next.js built-in data revalidation instead of client-side polling
+
+### API Architecture & Services
+- **Unified Service Layer**: Generic `portfolioApi.ts` service for all external data endpoints
+- **Type-Safe Generics**: Using TypeScript generics with `fetchFromPortfolioApi<T>` for type safety
+- **Service Architecture**: Specialized helper functions built on the core fetching logic
+- **Abstracted Implementation**: API details hidden behind a clean service interface
+
+### Technical Implementation
+- **Static Generation Strategy**: Leveraging App Router's advanced static generation features
+- **Cache Management**: Smart handling of cache directives to avoid conflicts with revalidation
+- **Error Handling**: Graceful fallback to local data when API calls fail
+- **Environment Compatibility**: Services designed to work in both development and production
+
 ## Tech Stack
 
 ### Core Technologies
@@ -26,24 +51,24 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 ## Project Structure
 
 ```
-„¥„Ÿ„Ÿ .github/            # GitHub workflows and configurations
-„¥„Ÿ„Ÿ app/                # Next.js App Router pages
-„    „¥„Ÿ„Ÿ (localized)/    # Localization wrapper with [locale] parameter
-„    „¥„Ÿ„Ÿ about/          # About page routes
-„    „¥„Ÿ„Ÿ api/            # API routes (including contact form handling)
-„    „¥„Ÿ„Ÿ articles/       # Articles/blog section
-„    „¥„Ÿ„Ÿ certifications/ # Professional certifications section
-„    „¥„Ÿ„Ÿ contact/        # Contact page
-„    „¥„Ÿ„Ÿ faq/            # FAQ section
-„    „¤„Ÿ„Ÿ projects/       # Projects showcase
-„¥„Ÿ„Ÿ components/         # React components
-„    „¥„Ÿ„Ÿ ui/             # Reusable UI components
-„    „¤„Ÿ„Ÿ ...             # Other specialized components
-„¥„Ÿ„Ÿ constants/          # Constants and static data
-„¥„Ÿ„Ÿ contexts/           # React contexts (e.g., language, theme)
-„¥„Ÿ„Ÿ lib/                # Utility functions
-„¥„Ÿ„Ÿ public/             # Static assets
-„¥„Ÿ„Ÿ types/              # TypeScript type definitions
+â€Â¥â€Å¸â€Å¸ .github/            # GitHub workflows and configurations
+â€Â¥â€Å¸â€Å¸ app/                # Next.js App Router pages
+â€Â    â€Â¥â€Å¸â€Å¸ (localized)/    # Localization wrapper with [locale] parameter
+â€Â    â€Â¥â€Å¸â€Å¸ about/          # About page routes
+â€Â    â€Â¥â€Å¸â€Å¸ api/            # API routes (including contact form handling)
+â€Â    â€Â¥â€Å¸â€Å¸ articles/       # Articles/blog section
+â€Â    â€Â¥â€Å¸â€Å¸ certifications/ # Professional certifications section
+â€Â    â€Â¥â€Å¸â€Å¸ contact/        # Contact page
+â€Â    â€Â¥â€Å¸â€Å¸ faq/            # FAQ section
+â€Â    â€Â¤â€Å¸â€Å¸ projects/       # Projects showcase
+â€Â¥â€Å¸â€Å¸ components/         # React components
+â€Â    â€Â¥â€Å¸â€Å¸ ui/             # Reusable UI components
+â€Â    â€Â¤â€Å¸â€Å¸ ...             # Other specialized components
+â€Â¥â€Å¸â€Å¸ constants/          # Constants and static data
+â€Â¥â€Å¸â€Å¸ contexts/           # React contexts (e.g., language, theme)
+â€Â¥â€Å¸â€Å¸ lib/                # Utility functions
+â€Â¥â€Å¸â€Å¸ public/             # Static assets
+â€Â¥â€Å¸â€Å¸ types/              # TypeScript type definitions
 ```
 
 ## Key Features

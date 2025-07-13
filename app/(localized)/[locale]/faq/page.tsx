@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import FaqClientPage from "./client-page";
 
 export async function generateMetadata({
@@ -40,5 +41,9 @@ type Props = {
 
 export default async function FaqPage({ params }: Props) {
   const resolvedParams = await params;
-  return <FaqClientPage locale={resolvedParams.locale} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FaqClientPage locale={resolvedParams.locale} />
+    </Suspense>
+  );
 }

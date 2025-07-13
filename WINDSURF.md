@@ -1,28 +1,33 @@
 # About Akira Shingu - Personal Portfolio Website
 
 ## Project Overview
+
 This is a personal portfolio website for Akira Shingu built using modern web technologies. The site features a responsive design with dark/light mode support and multilingual capabilities (English/Japanese).
 
 ## Next.js Development Patterns
 
 ### TypeScript Integration
+
 - **Implicit Type System**: Types are defined without explicit `export` keywords and imported implicitly where needed
 - **TypeScript Configuration**: Optimized for Next.js App Router with proper module resolution
 - **Type Safety**: Ensuring type safety across components without verbose type annotations
 
 ### Data Fetching Strategy
+
 - **Server-First Approach**: Data fetching happens in server components whenever possible
 - **No Client-Side API Calls**: Avoiding `useEffect` hooks for API calls
 - **Props Passing Pattern**: Server components fetch data and pass it to client components
 - **Revalidation Strategy**: Using Next.js built-in data revalidation instead of client-side polling
 
 ### API Architecture & Services
+
 - **Unified Service Layer**: Generic `portfolioApi.ts` service for all external data endpoints
 - **Type-Safe Generics**: Using TypeScript generics with `fetchFromPortfolioApi<T>` for type safety
 - **Service Architecture**: Specialized helper functions built on the core fetching logic
 - **Abstracted Implementation**: API details hidden behind a clean service interface
 
 ### Technical Implementation
+
 - **Static Generation Strategy**: Leveraging App Router's advanced static generation features
 - **Cache Management**: Smart handling of cache directives to avoid conflicts with revalidation
 - **Error Handling**: Graceful fallback to local data when API calls fail
@@ -31,6 +36,7 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 ## Tech Stack
 
 ### Core Technologies
+
 - **Framework**: Next.js 15.0.2
 - **UI Library**: React 19.0.0 (RC version)
 - **Language**: TypeScript
@@ -39,11 +45,13 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 - **Theme Switching**: next-themes
 
 ### UI Components
+
 - Custom UI components built on top of shadcn principles
 - Lucide React icons
 - Various Radix UI primitives for accessible components
 
 ### Additional Libraries
+
 - date-fns for date formatting
 - react-markdown for markdown rendering
 - nodemailer for contact form functionality
@@ -83,26 +91,54 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 ## Deployment Considerations
 
 ### Environment Variables
-The application may require the following environment variables to be set:
+
+This project uses the following environment variables that need to be set in a `.env.local` file:
 
 ```
-# Email functionality for contact form
+# Analytics
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX         # Your Google Tag Manager ID
+NEXT_PUBLIC_CLARITY_ID=xxxxxxxxxx      # Your Microsoft Clarity ID
+
+# Email
 EMAIL_SERVER=
 EMAIL_PORT=
 EMAIL_USERNAME=
 EMAIL_PASSWORD=
 EMAIL_FROM=
 EMAIL_TO=
+
+# Portfolio API
+PORTFOLIO_API_URL=https://portfolio-api-ten-delta.vercel.app/api
 ```
 
 ### Build Commands
+
 - Development: `pnpm run dev`
 - Production build: `pnpm run build`
 - Start production server: `pnpm start`
 - Linting: `pnpm run lint` or `pnpm run lint:fix`
 - Format code: `pnpm run format`
+- Check formatting: `pnpm run check-format`
+
+### Code Quality Workflow
+
+To maintain code quality, always run linting and formatting before finalizing code changes:
+
+```bash
+# Fix linting issues
+pnpm run lint:fix
+
+# Format code
+pnpm run format
+
+# Verify build succeeds
+pnpm run build
+```
+
+This ensures consistent code style, fixes common issues, and prevents build failures during deployment.
 
 ### Deployment Target
+
 This Next.js application is optimized for deployment on Vercel or similar platforms that support Next.js natively.
 
 ## Additional Notes

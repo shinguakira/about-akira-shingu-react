@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import ProjectsClientPage from "./client-page";
+import { fetchProjects } from "@/services/portfolioApi";
+import { projects as localProjects } from "@/constants/project";
 
 export async function generateMetadata({
   params,
@@ -32,6 +34,10 @@ export async function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ja" }];
 }
 
+// Use ISR with long cache instead of force-static to avoid build issues
+// Still revalidates once per week (7 days)
+export const revalidate = 604800;
+
 type Props = {
   params: Promise<{
     locale: string;
@@ -40,5 +46,26 @@ type Props = {
 
 export default async function ProjectsPage({ params }: Props) {
   const resolvedParams = await params;
-  return <ProjectsClientPage locale={resolvedParams.locale} />;
+  const locale = resolvedParams.locale;
+
+  let projectData;
+
+  try {
+    // Fetch projects data from API with locale as lang parameter
+    projectData = await fetchProjects(locale);
+    console.log("projectData", projectData);
+  } catch (error) {
+    console.error("Failed to fetch projects from API:", error);
+    // Fallback to local data if API fails
+    // Transform MultilingualProjectProps to ProjectContent based on locale
+    projectData = localProjects.map((project) => {
+      const localizedProject = locale === "en" ? project.en : project.ja;
+      return {
+        ...localizedProject,
+        technologies: project.technologies,
+      };
+    });
+  }
+
+  return <ProjectsClientPage locale={locale} projects={projectData} />;
 }

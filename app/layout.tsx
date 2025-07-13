@@ -13,10 +13,15 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// Viewport is now moved to its own export per Next.js latest recommendations
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Akira Shingu",
   description: "Portfolio website of Akira Shingu ポートフォリオサイト",
-  viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: [
       { url: "/favicon-16x16.ico", sizes: "16x16" },

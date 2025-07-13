@@ -4,7 +4,6 @@ import CertificationItem from "@/components/ui/certification-item";
 import CertificationItem2 from "@/components/certificationItem2";
 import CertificationItem3 from "@/components/certificationItem3";
 import CertificationItem4 from "@/components/certificationItem4";
-import { certifications } from "@/constants/certification";
 import {
   Select,
   SelectContent,
@@ -17,8 +16,10 @@ type LayoutType = "default" | "modern" | "premium" | "special";
 
 export default function CertificationsClientPage({
   locale,
+  initialCertifications,
 }: {
   locale: string;
+  initialCertifications: any[];
 }) {
   const translations = {
     en: {
@@ -117,7 +118,7 @@ export default function CertificationsClientPage({
       </header>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {certifications.map((cert, index: number) =>
+        {initialCertifications.map((cert, index: number) =>
           renderCertificationItem(cert, index)
         )}
       </div>

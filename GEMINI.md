@@ -3,6 +3,28 @@
 
 This is a portfolio website for Akira Shingu, built with Next.js and TypeScript.
 
+## Certification API Integration
+
+The portfolio showcases professional certifications dynamically fetched from an external API with fallback to static data:
+
+### Data Architecture
+- **Dynamic Data Source**: Integration with `https://portfolio-api-ten-delta.vercel.app/api/certifications`
+- **Language Support**: API requests include locale parameter (`lang=en` or `lang=ja`)
+- **Weekly Cache Strategy**: Data refreshed once per week (604800 seconds)
+- **Static Fallback**: Local certification data used if API request fails
+
+### Next.js Implementation
+- **Server Components**: All data fetching occurs in server components
+- **Props Passing**: Server fetches data and passes to client components
+- **Static Generation**: Pages pre-rendered at build time for all locales
+- **Force-Static Directive**: Using `dynamic = 'force-static'` for optimal performance
+
+### UI Components
+- **Layout Switcher**: Four distinct certification card styles (classic, modern, premium, special)
+- **Special Edition Default**: Special layout set as default viewing option
+- **Client-side Switching**: Layout changes handled client-side without page reload
+- **Responsive Design**: All layouts fully responsive using Tailwind CSS
+
 ## Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org/)
@@ -29,10 +51,10 @@ This is a portfolio website for Akira Shingu, built with Next.js and TypeScript.
 
 In the project directory, you can run:
 
-- `npm run dev`: Runs the app in development mode.
-- `npm run build`: Builds the app for production.
-- `npm run start`: Starts a production server.
-- `npm run lint`: Lints the codebase for errors.
-- `npm run lint:fix`: Automatically fixes linting errors.
-- `npm run format`: Formats the code using Prettier.
-- `npm run check-format`: Checks for formatting issues.
+- `pnpm run dev`: Runs the app in development mode.
+- `pnpm run build`: Builds the app for production.
+- `pnpm run start`: Starts a production server.
+- `pnpm run lint`: Lints the codebase for errors.
+- `pnpm run lint:fix`: Automatically fixes linting errors.
+- `pnpm run format`: Formats the code using Prettier.
+- `pnpm run check-format`: Checks for formatting issues.

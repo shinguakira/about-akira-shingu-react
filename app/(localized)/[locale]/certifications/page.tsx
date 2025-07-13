@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import CertificationsClientPage from "./client-page";
+import { fetchCertifications } from "@/services/portfolioApi";
+import { certifications as localCertifications } from "@/constants/certification";
 
 export async function generateMetadata({
   params,
@@ -38,7 +40,30 @@ type Props = {
   }>;
 };
 
+// Use ISR with long cache instead of force-static to avoid build issues
+// Still revalidates once per week (7 days)
+export const revalidate = 604800;
+
 export default async function CertificationsPage({ params }: Props) {
   const resolvedParams = await params;
-  return <CertificationsClientPage locale={resolvedParams.locale} />;
+  const locale = resolvedParams.locale;
+
+  // Fetch certifications data on the server with locale as lang parameter
+  // This data fetching will happen at build time for SSG
+  let certifications;
+  try {
+    // Pass locale as lang query parameter to the API
+    certifications = await fetchCertifications(locale);
+  } catch (error) {
+    console.error("Failed to fetch certifications:", error);
+    // Fall back to local data
+    certifications = localCertifications;
+  }
+
+  return (
+    <CertificationsClientPage
+      locale={locale}
+      initialCertifications={certifications}
+    />
+  );
 }

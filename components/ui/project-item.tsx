@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 import { ProjectContent } from "@/constants/project";
-import { useParams } from "next/navigation";
+// // Import useParams only if needed for localization
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
@@ -12,8 +12,7 @@ interface ProjectItemProps {
 }
 
 const ProjectPage = ({ projects }: ProjectItemProps) => {
-  const params = useParams();
-  const locale = (params?.locale as string) || "ja";
+  // Project data is already localized, so we don't need to use locale
 
   return (
     <div className="mx-auto min-h-screen bg-gray-100 px-4 py-12 dark:bg-slate-500">

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ProjectItem from "@/components/ui/project-item";
-import { MultilingualProjectProps, ProjectContent } from "@/constants/project";
+import { ProjectContent } from "@/constants/project";
 
 export default function ProjectsClientPage({
   locale,

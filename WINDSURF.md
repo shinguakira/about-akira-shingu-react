@@ -83,16 +83,23 @@ This is a personal portfolio website for Akira Shingu built using modern web tec
 ## Deployment Considerations
 
 ### Environment Variables
-The application may require the following environment variables to be set:
+This project uses the following environment variables that need to be set in a `.env.local` file:
 
 ```
-# Email functionality for contact form
+# Analytics
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX         # Your Google Tag Manager ID
+NEXT_PUBLIC_CLARITY_ID=xxxxxxxxxx      # Your Microsoft Clarity ID
+
+# Email
 EMAIL_SERVER=
 EMAIL_PORT=
 EMAIL_USERNAME=
 EMAIL_PASSWORD=
 EMAIL_FROM=
 EMAIL_TO=
+
+# Portfolio API
+PORTFOLIO_API_URL=https://portfolio-api-ten-delta.vercel.app/api
 ```
 
 ### Build Commands

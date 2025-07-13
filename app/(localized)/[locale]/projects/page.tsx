@@ -53,7 +53,6 @@ export default async function ProjectsPage({ params }: Props) {
   try {
     // Fetch projects data from API with locale as lang parameter
     projectData = await fetchProjects(locale);
-    console.log("projectData", projectData);
   } catch (error) {
     console.error("Failed to fetch projects from API:", error);
     // Fallback to local data if API fails

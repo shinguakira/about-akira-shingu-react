@@ -124,6 +124,7 @@ export default function RoleSwitcher() {
   }
 
   // Show on desktop screens regardless of test mode, or on mobile if test mode is enabled
+  console.log(testMode);
   if (!isDesktop && !testMode) {
     return null;
   }

@@ -14,6 +14,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const iconSize = "w-6 h-6";
+const DEVMODE = false;
 
 const CustomLink: React.FC<CustomLinkProps> = ({
   href,
@@ -153,7 +154,7 @@ const NavBar = () => {
         <div className="flex items-center space-x-2 md:hidden">
           <SearchModal />
           <LanguageSwitcher />
-          <RoleSwitcher />
+          {DEVMODE && <RoleSwitcher />}
           <ThemeToggle />
         </div>
       </nav>

@@ -69,7 +69,7 @@ const SkillSet = () => {
       <h3 className="mb-8 w-full text-center text-3xl text-blue-900 underline dark:text-white">
         {currentLang === "ja" ? "スキル" : "Skills"}
       </h3>
-      <div className="mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+      <div className="mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
         {filteredSkills.map((skill) => (
           <SkillItem
             key={skill.name}

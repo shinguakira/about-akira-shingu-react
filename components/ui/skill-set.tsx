@@ -88,7 +88,7 @@ const SkillSet = () => {
           {currentLang === "ja" ? "その他のスキル" : "Other Skills"}
         </h3>
       )}
-      <div className="mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+      <div className="mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
         {filteredOtherSkills.map((otherSkill) => (
           <SkillItem
             key={otherSkill.name}

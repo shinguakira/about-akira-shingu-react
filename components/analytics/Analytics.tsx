@@ -11,7 +11,7 @@ interface AnalyticsProps {
 
 // You can optionally hardcode IDs here for simpler usage
 const DEFAULT_GTM_ID = "GTM-NP85DLQQ"; // Replace with your actual GTM ID
-const DEFAULT_CLARITY_ID = "xxxxxxxxxx"; // Replace with your actual Clarity ID
+const DEFAULT_CLARITY_ID = "selyr7wk8v"; // Replace with your actual Clarity ID
 
 // Separate component to handle hooks that need Suspense
 function AnalyticsPageTracker({ gtmId }: { gtmId: string }) {

@@ -61,12 +61,14 @@ export async function fetchFromPortfolioApi<T = any>(
         revalidate: revalidateSeconds,
       },
     });
+    const responseJson = await response.json();
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status} for ${url}`);
+      throw new Error(
+        `API error: ${response.status} for ${url} ${responseJson.message}`
+      );
     }
-
-    return response.json();
+    return responseJson.data;
   } catch (error) {
     console.error(`Error fetching ${path} from portfolio API:`, error);
     throw error;
@@ -77,7 +79,9 @@ export async function fetchFromPortfolioApi<T = any>(
  * Fetches certification data with 1 week cache
  * @param lang - Optional language code for localized content
  */
-export async function fetchCertifications(lang?: string) {
+export async function fetchCertifications(
+  lang?: string
+): Promise<CertificationItemProps[]> {
   return fetchFromPortfolioApi("certifications", {
     queryParams: lang ? { lang } : undefined,
   });
@@ -87,7 +91,7 @@ export async function fetchCertifications(lang?: string) {
  * Fetches project data with 1 week cache
  * @param lang - Optional language code for localized content
  */
-export async function fetchProjects(lang?: string) {
+export async function fetchProjects(lang?: string): Promise<any> {
   return fetchFromPortfolioApi("projects", {
     queryParams: lang ? { lang } : undefined,
   });
@@ -98,4 +102,57 @@ export async function fetchProjects(lang?: string) {
  */
 export async function fetchSkills() {
   return fetchFromPortfolioApi("skills", { revalidateSeconds: 86400 }); // 1 day cache
+}
+
+/**
+ * Type definition for certification items
+ */
+export type CertificationItemProps = {
+  name: string;
+  issuer: string;
+  date: string;
+  verifyLink?: string;
+  image?: string;
+};
+
+/**
+ * Type for strong point data
+ * The API returns already localized content based on the lang parameter
+ */
+export type StrongPointProps = {
+  size: string;
+  category?: string;
+  question: string;
+  answer: string;
+};
+
+/**
+ * Fetches strong points data with 1 week cache
+ * Falls back to local constants if API endpoint doesn't exist
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchStrongPoints(
+  lang?: string
+): Promise<StrongPointProps[]> {
+  try {
+    // Try to fetch from API first
+    return await fetchFromPortfolioApi("strong-points", {
+      queryParams: lang ? { lang } : undefined,
+    });
+  } catch (error) {
+    console.error("Falling back to local strong points data", error);
+    // Fallback to local data if API fails
+    const { strongPoint } = await import("../constants/strong-point");
+
+    // Convert the local data format to match the expected API format
+    // Local data has separate ja/en objects, but the API would return
+    // data already localized for the requested language
+    const languageKey = lang === "ja" ? "ja" : "en";
+    return strongPoint.map((item) => ({
+      size: item.size,
+      category: item.category,
+      question: item[languageKey].question,
+      answer: item[languageKey].answer,
+    }));
+  }
 }

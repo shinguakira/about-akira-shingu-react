@@ -7,7 +7,13 @@ import ItemPadding from "@/components/ui/style/item-padding";
 import EducationHistory from "@/components/ui/education-history";
 import { StrongPointProps } from "@/services/portfolioApi";
 
-export default function AboutClientPage({ locale, strongPoints }: { locale: string; strongPoints: StrongPointProps[] }) {
+export default function AboutClientPage({
+  locale,
+  strongPoints,
+}: {
+  locale: string;
+  strongPoints: StrongPointProps[];
+}) {
   const translations = {
     en: {
       skillSetTitle: "My Skill Set",
@@ -55,7 +61,9 @@ export default function AboutClientPage({ locale, strongPoints }: { locale: stri
                 />
               ))
             ) : (
-              <div className="text-center text-gray-500">Loading strong points...</div>
+              <div className="text-center text-gray-500">
+                Loading strong points...
+              </div>
             )}
           </ItemPadding>
         </div>

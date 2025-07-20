@@ -3,11 +3,11 @@ import React from "react";
 import Accordion from "@/components/ui/accordion";
 import SkillSet from "@/components/ui/skill-set";
 import WorkHistory from "@/components/ui/work-history";
-import { strongPoint } from "@/constants/strong-point";
 import ItemPadding from "@/components/ui/style/item-padding";
 import EducationHistory from "@/components/ui/education-history";
+import { StrongPointProps } from "@/services/portfolioApi";
 
-export default function AboutClientPage({ locale }: { locale: string }) {
+export default function AboutClientPage({ locale, strongPoints }: { locale: string; strongPoints: StrongPointProps[] }) {
   const translations = {
     en: {
       skillSetTitle: "My Skill Set",
@@ -44,15 +44,19 @@ export default function AboutClientPage({ locale }: { locale: string }) {
             {t.strongPointsTitle}
           </h3>
           <ItemPadding>
-            {strongPoint.map((strong, index) => (
-              <Accordion
-                key={index}
-                index={index}
-                question={strong[locale === "ja" ? "ja" : "en"].question}
-                answer={strong[locale === "ja" ? "ja" : "en"].answer}
-                size={strong.size}
-              />
-            ))}
+            {strongPoints && strongPoints.length > 0 ? (
+              strongPoints.map((strong, index) => (
+                <Accordion
+                  key={index}
+                  index={index}
+                  question={strong.question}
+                  answer={strong.answer}
+                  size={strong.size}
+                />
+              ))
+            ) : (
+              <div className="text-center text-gray-500">Loading strong points...</div>
+            )}
           </ItemPadding>
         </div>
       </div>

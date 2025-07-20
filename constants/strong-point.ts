@@ -14,7 +14,7 @@ export const strongPoint: MultilingualFaqProps[] = [
   {
     size: "large",
     ja: {
-      question: "新しい知識の習得、適応の早さ",
+      question: "新しい知識の習得、適応の早さ fallback",
       answer: `新しい知識への習得の早さに自信があります。スタッフサービスやイースト・コースト・ワンでは、どちらも未知の言語、技術ですが、知識がある人にも劣らず、プロジェクトを完遂することができました。
 これらの経験が、習得の早さの証明になります。
 現在の私のスキルに不足を感じられた場合でも、実際は想像以上の早さでスキル不足を埋めることができます。
@@ -23,7 +23,7 @@ export const strongPoint: MultilingualFaqProps[] = [
 `,
     },
     en: {
-      question: "Quick Learning and Adaptability",
+      question: "Quick Learning and AdaptabilityFallback",
       answer: `I am confident in my ability to quickly learn new knowledge. At both Staff Service and East Coast One, I was able to complete projects using unfamiliar languages and technologies, performing as well as those with prior knowledge.
 These experiences demonstrate my quick learning ability.
 Even if you feel my current skills are lacking, I can fill those gaps faster than you might expect.

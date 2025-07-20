@@ -1,5 +1,10 @@
 import { Metadata } from "next";
 import AboutClientPage from "./client-page";
+import { fetchStrongPoints } from "@/services/portfolioApi";
+
+// Ensure page is static with revalidation for optimal performance
+export const dynamic = "force-static";
+export const revalidate = 604800; // 1 week
 
 export async function generateMetadata({
   params,
@@ -40,5 +45,11 @@ type Props = {
 
 export default async function AboutPage({ params }: Props) {
   const resolvedParams = await params;
-  return <AboutClientPage locale={resolvedParams.locale} />;
+  const locale = resolvedParams.locale;
+
+  // Fetch strong points data from the API
+  const strongPointsData = await fetchStrongPoints(locale);
+  console.log("strongPointsData", strongPointsData);
+
+  return <AboutClientPage locale={locale} strongPoints={strongPointsData} />;
 }

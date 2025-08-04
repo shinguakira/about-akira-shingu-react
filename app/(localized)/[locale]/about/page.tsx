@@ -1,6 +1,14 @@
 import { Metadata } from "next";
 import AboutClientPage from "./client-page";
-import { fetchStrongPoints } from "@/services/portfolioApi";
+import {
+  fetchStrongPoints,
+  fetchSkills,
+  fetchOtherSkills,
+  fetchEducation,
+  StrongPointProps,
+  Skill,
+  EducationHistory,
+} from "@/services/portfolioApi";
 
 // Ensure page is static with revalidation for optimal performance
 export const dynamic = "force-static";
@@ -47,9 +55,51 @@ export default async function AboutPage({ params }: Props) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
 
-  // Fetch strong points data from the API
-  const strongPointsData = await fetchStrongPoints(locale);
-  console.log("strongPointsData", strongPointsData);
+  // Fetch data from the API in parallel with error handling
+  let strongPointsData: StrongPointProps[] = [];
+  let skillsData: Skill[] = [];
+  let otherSkillsData: Skill[] = [];
+  let educationData: EducationHistory[] = [];
 
-  return <AboutClientPage locale={locale} strongPoints={strongPointsData} />;
+  try {
+    // Try to fetch all data in parallel
+    [strongPointsData, skillsData, otherSkillsData, educationData] =
+      await Promise.all([
+        fetchStrongPoints(locale),
+        fetchSkills(locale),
+        fetchOtherSkills(locale),
+        fetchEducation(locale),
+      ]);
+  } catch (error) {
+    console.error("Error fetching API data:", error);
+
+    // Handle individual fallbacks if needed
+    if (!strongPointsData) {
+      strongPointsData = [];
+    }
+
+    if (!skillsData) {
+      skillsData = [];
+    }
+
+    if (!otherSkillsData) {
+      otherSkillsData = [];
+    }
+
+    if (!educationData) {
+      // If education API fails, we'll need to fetch local data and transform it
+      // Will be handled by the EducationHistory component
+      educationData = [];
+    }
+  }
+
+  return (
+    <AboutClientPage
+      locale={locale}
+      strongPoints={strongPointsData}
+      skills={skillsData}
+      otherSkills={otherSkillsData}
+      education={educationData}
+    />
+  );
 }

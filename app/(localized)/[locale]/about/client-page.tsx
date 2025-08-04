@@ -5,14 +5,24 @@ import SkillSet from "@/components/ui/skill-set";
 import WorkHistory from "@/components/ui/work-history";
 import ItemPadding from "@/components/ui/style/item-padding";
 import EducationHistory from "@/components/ui/education-history";
-import { StrongPointProps } from "@/services/portfolioApi";
+import {
+  StrongPointProps,
+  Skill,
+  EducationHistory as EducationHistoryType,
+} from "@/services/portfolioApi";
 
 export default function AboutClientPage({
-  locale,
+  locale = "en",
   strongPoints,
+  skills,
+  otherSkills,
+  education,
 }: {
-  locale: string;
+  locale?: string;
   strongPoints: StrongPointProps[];
+  skills: Skill[];
+  otherSkills: Skill[];
+  education: EducationHistoryType[];
 }) {
   const translations = {
     en: {
@@ -41,17 +51,26 @@ export default function AboutClientPage({
             {t.categoriesTitle}
           </h3>
           <div className="flex flex-wrap gap-2">
-            <SkillSet />
+            <div className="col-span-1 md:col-span-2">
+              <h3 className="mb-4 text-center text-xl font-semibold text-gray-700 dark:text-gray-300">
+                {t.skillSetTitle}
+              </h3>
+              <SkillSet
+                locale={locale}
+                skills={skills}
+                otherSkills={otherSkills}
+              />
+            </div>
           </div>
           <WorkHistory />
-          <EducationHistory />
+          <EducationHistory locale={locale} education={education} />
           {/* ItemPadding is just to apply css */}
           <h3 className="mb-4 text-center text-xl font-semibold text-gray-700 dark:text-gray-300">
             {t.strongPointsTitle}
           </h3>
           <ItemPadding>
             {strongPoints && strongPoints.length > 0 ? (
-              strongPoints.map((strong, index) => (
+              strongPoints.map((strong: StrongPointProps, index: number) => (
                 <Accordion
                   key={index}
                   index={index}

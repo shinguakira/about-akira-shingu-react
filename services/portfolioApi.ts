@@ -4,9 +4,9 @@
  */
 
 // Use environment variable with fallback to default URL
-const BASE_URL =
-  process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL ||
-  "https://portfolio-api-ten-delta.vercel.app/api";
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL
+  ? `${process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL}/api`
+  : "https://portfolio-api-ten-delta.vercel.app/api";
 
 type FetchOptions = {
   /** Cache revalidation time in seconds (default: 1 week) */
@@ -38,6 +38,7 @@ export async function fetchFromPortfolioApi<T = any>(
 
   // Build URL with query parameters
   let url = `${BASE_URL}/${path}`;
+  console.log(url);
   const searchParams = new URLSearchParams();
 
   // Add all query parameters
@@ -98,10 +99,64 @@ export async function fetchProjects(lang?: string): Promise<any> {
 }
 
 /**
- * Example: Fetch skill data with custom cache (for future use)
+ * Type for skill data
  */
-export async function fetchSkills() {
-  return fetchFromPortfolioApi("skills", { revalidateSeconds: 86400 }); // 1 day cache
+export type SkillItem = {
+  name: string;
+  category: string;
+  years: string;
+  proficiency?: string; // onBusiness or self-study
+  picture?: string; // url for skill picture
+  pictureColor?: string; // color for skill picture
+};
+
+// For backward compatibility
+export type Skill = SkillItem;
+
+/**
+ * Fetches skill data with 1 day cache
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchSkills(lang?: string): Promise<Skill[]> {
+  return fetchFromPortfolioApi("skills", {
+    queryParams: lang ? { lang } : undefined,
+    revalidateSeconds: 86400, // 1 day cache
+  });
+}
+
+/**
+ * Fetches other skills data with 1 day cache
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchOtherSkills(lang?: string): Promise<Skill[]> {
+  return fetchFromPortfolioApi("other-skills", {
+    queryParams: lang ? { lang } : undefined,
+    revalidateSeconds: 86400, // 1 day cache
+  });
+}
+
+/**
+ * Type for education history data
+ */
+export type EducationHistory = {
+  startYear: string;
+  endYear: string;
+  school: string;
+  department: string;
+  description: string;
+};
+
+/**
+ * Fetches education history with 1 week cache
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchEducation(
+  lang?: string
+): Promise<EducationHistory[]> {
+  return fetchFromPortfolioApi("education", {
+    queryParams: lang ? { lang } : undefined,
+    revalidateSeconds: 604800, // 1 week cache
+  });
 }
 
 /**
@@ -149,6 +204,45 @@ export async function fetchStrongPoints(
     // data already localized for the requested language
     const languageKey = lang === "ja" ? "ja" : "en";
     return strongPoint.map((item) => ({
+      size: item.size,
+      category: item.category,
+      question: item[languageKey].question,
+      answer: item[languageKey].answer,
+    }));
+  }
+}
+
+/**
+ * Type for FAQ data
+ * The API returns already localized content based on the lang parameter
+ */
+export type FaqProps = {
+  size: string;
+  category: string;
+  question: string;
+  answer: string;
+};
+
+/**
+ * Fetches FAQ data with 1 week cache
+ * Falls back to local constants if API endpoint doesn't exist
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchFaqs(lang?: string): Promise<FaqProps[]> {
+  try {
+    // Try to fetch from API first
+    return await fetchFromPortfolioApi("faqs", {
+      queryParams: lang ? { lang } : undefined,
+      revalidateSeconds: 604800, // 1 week cache
+    });
+  } catch (error) {
+    console.error("Falling back to local FAQ data", error);
+    // Fallback to local data if API fails
+    const { faqs } = await import("../constants/faq");
+
+    // Convert the local data format to match the expected API format
+    const languageKey = lang === "ja" ? "ja" : "en";
+    return faqs.map((item) => ({
       size: item.size,
       category: item.category,
       question: item[languageKey].question,

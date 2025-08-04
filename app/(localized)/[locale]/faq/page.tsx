@@ -1,7 +1,18 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import FaqClientPage from "./client-page";
+import { fetchFaqs, FaqProps } from "@/services/portfolioApi";
 
+// Ensure page is static with revalidation for optimal performance
+export const dynamic = "force-static";
+export const revalidate = 604800; // 1 week
+
+/**
+ * Generates metadata for the FAQ page based on locale
+ * This improves SEO by providing localized metadata
+ * @param params - Contains the locale from the dynamic route
+ * @returns Object with title and description metadata
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -13,7 +24,7 @@ export async function generateMetadata({
   const metadata = {
     en: {
       title: "Akira Shingu - FAQ",
-      description: "Frequently Asked Questions about Akira Shingu",
+      description: "Frequently asked questions about Akira Shingu",
     },
     ja: {
       title: "Akira Shingu - よくある質問",
@@ -41,9 +52,21 @@ type Props = {
 
 export default async function FaqPage({ params }: Props) {
   const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+
+  // Fetch FAQ data from API with error handling
+  let faqData: FaqProps[] = [];
+
+  try {
+    faqData = await fetchFaqs(locale);
+  } catch (error) {
+    console.error("Error fetching FAQ data:", error);
+    // faqData will remain empty array, handled by the client component
+  }
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <FaqClientPage locale={resolvedParams.locale} />
+      <FaqClientPage locale={locale} faqs={faqData} />
     </Suspense>
   );
 }

@@ -15,7 +15,7 @@ export interface MultilingualEducationHistoryProps {
 
 export const educationHistory: MultilingualEducationHistoryProps[] = [
   {
-    startYear: "2018/4",
+    startYear: "2018/44",
     endYear: "2022/4(退学)",
     ja: {
       school: "茨城大学",

@@ -4,9 +4,9 @@
  */
 
 // Use environment variable with fallback to default URL
-const BASE_URL =
-  `${process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL}/api` ||
-  "https://portfolio-api-ten-delta.vercel.app/api";
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL
+  ? `${process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL}/api`
+  : "https://portfolio-api-ten-delta.vercel.app/api";
 
 type FetchOptions = {
   /** Cache revalidation time in seconds (default: 1 week) */

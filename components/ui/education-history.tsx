@@ -1,13 +1,21 @@
 "use client";
 
-import { educationHistory } from "@/constants/education-history";
 import EducationItem from "./education-item";
-import { useParams } from "next/navigation";
+import { EducationHistory as EducationHistoryType } from "@/services/portfolioApi";
+import { educationHistory as localEducationHistory } from "@/constants/education-history";
 
-const EducationHistory: React.FC = () => {
-  const params = useParams();
-  const locale = (params?.locale as string) || "ja";
+const EducationHistory = ({
+  locale = "en",
+  education,
+}: {
+  locale?: string;
+  education?: EducationHistoryType[];
+}) => {
   const currentLang = locale === "ja" ? "ja" : "en";
+
+  // If no education data is provided, use empty array
+  // We'll handle the conversion from local format in the About page component
+  const educationItems = education || [];
   return (
     <>
       <div className="bg-gray-100 px-4 py-4 dark:bg-gray-900">
@@ -16,14 +24,14 @@ const EducationHistory: React.FC = () => {
             {currentLang === "ja" ? "学歴" : "Education"}
           </h1>
           <div className="space-y-6">
-            {educationHistory.map((education, index) => (
+            {educationItems.map((item: EducationHistoryType, index: number) => (
               <EducationItem
                 key={index}
-                school={education[currentLang].school}
-                department={education[currentLang].department}
-                startYear={education.startYear}
-                endYear={education.endYear}
-                description={education[currentLang].description}
+                school={item.school}
+                department={item.department}
+                startYear={item.startYear}
+                endYear={item.endYear}
+                description={item.description}
               />
             ))}
           </div>

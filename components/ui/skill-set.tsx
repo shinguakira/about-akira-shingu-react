@@ -1,31 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import SkillCategory from "./skill-category";
 import SkillItem from "./skill-item";
-import { skills, otherSkills } from "@/constants/skill";
-import { useParams } from "next/navigation";
+import {
+  skills as localSkills,
+  otherSkills as localOtherSkills,
+} from "@/constants/skill";
+import { Skill } from "@/services/portfolioApi";
+import SkillCategory from "./skill-category";
 
-const SkillSet = () => {
-  const params = useParams();
-  const locale = (params?.locale as string) || "ja";
+const SkillSet = ({
+  locale = "en",
+  skills: apiSkills,
+  otherSkills: apiOtherSkills,
+}: {
+  locale?: string;
+  skills?: Skill[];
+  otherSkills?: Skill[];
+}) => {
   const currentLang = locale === "ja" ? "ja" : "en";
+
+  // Use API data if provided, otherwise fallback to local constants
+  const skills = apiSkills || localSkills;
+  const otherSkills = apiOtherSkills || localOtherSkills;
+
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     new Set(["All"])
   );
-
   const categories = [
     "All",
-    ...new Set(skills.map((skill) => skill.category)),
+    ...new Set(skills.map((skill: Skill) => skill.category)),
   ].sort();
 
   const filteredSkills = selectedCategories.has("All")
     ? skills
-    : skills.filter((skill) => selectedCategories.has(skill.category));
+    : skills.filter((skill: Skill) => selectedCategories.has(skill.category));
 
   const filteredOtherSkills = selectedCategories.has("All")
     ? otherSkills
-    : otherSkills.filter((otherSkill) =>
+    : otherSkills.filter((otherSkill: any) =>
         selectedCategories.has(otherSkill.category)
       );
 
@@ -34,23 +47,30 @@ const SkillSet = () => {
       const newSet = new Set(prev);
       if (category === "All") {
         if (newSet.has("All")) {
-          newSet.clear();
+          // If "All" is already selected, do nothing
+          return newSet;
         } else {
+          // If "All" is being selected, clear other categories
           newSet.clear();
           newSet.add("All");
+          return newSet;
         }
       } else {
+        // If a specific category is toggled
         if (newSet.has(category)) {
+          // If the category is being deselected
           newSet.delete(category);
+          // If no categories left, select "All"
           if (newSet.size === 0) {
             newSet.add("All");
           }
         } else {
+          // If the category is being selected
+          newSet.delete("All"); // Remove "All" when a specific category is selected
           newSet.add(category);
-          newSet.delete("All");
         }
+        return newSet;
       }
-      return newSet;
     });
   };
 
@@ -70,13 +90,13 @@ const SkillSet = () => {
         {currentLang === "ja" ? "スキル" : "Skills"}
       </h3>
       <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        {filteredSkills.map((skill) => (
+        {filteredSkills.map((skill: Skill) => (
           <SkillItem
             key={skill.name}
             name={skill.name}
             years={skill.years}
             category={skill.category}
-            proficyency={skill.proficyency}
+            proficyency={skill.proficiency || "N/A"}
             picture={skill.picture}
             pictureColor={skill.pictureColor}
           />
@@ -89,7 +109,7 @@ const SkillSet = () => {
         </h3>
       )}
       <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        {filteredOtherSkills.map((otherSkill) => (
+        {filteredOtherSkills.map((otherSkill: any) => (
           <SkillItem
             key={otherSkill.name}
             name={otherSkill.name}

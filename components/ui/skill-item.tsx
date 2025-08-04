@@ -1,14 +1,21 @@
 import { memo } from "react";
 import SvgW3Logo from "./svg-w3-logo";
+import Image from "next/image";
 
-const SkillItem: React.FC<SkillItemProps> = ({
+// Import the BASE_URL from the portfolio API service
+const BASE_URL =
+  process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL ||
+  "https://portfolio-api-ten-delta.vercel.app";
+
+const SkillItem = ({
   name,
   category,
   years,
   proficyency,
   picture,
   pictureColor,
-}) => {
+}: SkillItemProps) => {
+  console.log(name, picture);
   return (
     <>
       <div
@@ -17,11 +24,18 @@ const SkillItem: React.FC<SkillItemProps> = ({
       >
         <div className="mb-2 flex items-center">
           {pictureColor && picture && (
-            <SvgW3Logo
-              name={name}
-              svgPath={picture}
-              svgColor={pictureColor}
-              className="mr-3 hover:-translate-y-2 hover:scale-110"
+            // <SvgW3Logo
+            //   name={name}
+            //   svgPath={picture}
+            //   svgColor={pictureColor}
+            //   className="mr-3 hover:-translate-y-2 hover:scale-110"
+            // />
+            <Image
+              src={picture.startsWith("/") ? `${BASE_URL}${picture}` : picture}
+              alt={name}
+              width={24}
+              height={24}
+              priority
             />
           )}
           <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
@@ -41,23 +55,13 @@ const SkillItem: React.FC<SkillItemProps> = ({
                 {proficyency}
               </span>
             </div>
-            <div className="text-right">
-              {/* <span className="text-xs font-semibold inline-block text-blue-600 dark:text-blue-200">
-                    {level}%
-                  </span> */}
-            </div>
+            <div className="text-right"></div>
           </div>
           <label>{years}</label>
-          {/* <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200 dark:bg-blue-800">
-                <div 
-                  style={{ width: `${level}%` }}
-                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
-                ></div>
-              </div> */}
         </div>
       </div>
     </>
   );
 };
 
-export default memo(SkillItem);
+export default memo(SkillItem) as typeof SkillItem;

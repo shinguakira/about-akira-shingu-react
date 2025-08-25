@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Analytics from "@/components/analytics/Analytics";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,6 +43,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader
+          color="#0070f3"
+          showSpinner={true}
+          template='<div class="bar" role="bar"><div class="peg"></div></div> <div class="spinner" role="spinner"><div class="spinner-icon" style="width: 24px; height: 24px; border-width: 4px;"></div></div>'
+        />
         {children}
         {/* Include Analytics - component has default IDs built in */}
         <Analytics

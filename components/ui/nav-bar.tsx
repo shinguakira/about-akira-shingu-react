@@ -147,14 +147,14 @@ const NavBar = () => {
           </Link>
           <SearchModal />
           <LanguageSwitcher />
-          <RoleSwitcher />
+          {/* <RoleSwitcher /> */}
           <ThemeToggle />
         </div>
 
         <div className="flex items-center space-x-2 md:hidden">
           <SearchModal />
           <LanguageSwitcher />
-          {DEVMODE && <RoleSwitcher />}
+          {/* {DEVMODE && <RoleSwitcher />} */}
           <ThemeToggle />
         </div>
       </nav>

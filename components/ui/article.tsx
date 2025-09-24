@@ -5,21 +5,9 @@ import { ja } from "date-fns/locale";
 import { Heart, MessageSquare, Eye, Bookmark } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import type { ArticleProps } from "@/types/article";
 // import ReactMarkdown from "react-markdown";
 // import { Button } from "./shadcn/button";
-
-interface ArticleProps {
-  title: string;
-  body: string;
-  rendered_body: string;
-  created_at: string;
-  updated_at: string;
-  likes_count: number;
-  comments_count: number;
-  page_views_count: number;
-  tags: { name: string }[];
-  url: string;
-}
 
 const ArticleHeader: React.FC<{
   title: string;

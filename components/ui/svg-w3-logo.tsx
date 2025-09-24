@@ -11,7 +11,7 @@ const svgW3Logo = ({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className={`mb-2 h-12 w-12 ${className}`}
+      className={`mb-2 size-12 ${className}`}
       fill={svgColor}
       role="img"
       aria-label={`${name} icon`}

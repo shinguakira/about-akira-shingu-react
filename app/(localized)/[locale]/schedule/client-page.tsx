@@ -27,8 +27,12 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
   const calendarId =
     process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "shinguakira1022@gmail.com";
 
-  // Google Calendar embed URL
+  // Google Calendar embed URL (current approach)
   const calendarSrc = `https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&src=${encodeURIComponent(calendarId)}&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&showTz=0`;
+
+  // Alternative: Direct calendar URL as suggested by user
+  const directCalendarUrl =
+    "https://calendar.google.com/calendar/u/1?cid=c2hpbmd1YWtpcmExMDIyQGdtYWlsLmNvbQ";
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -65,18 +69,53 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
                 </div>
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-lg">
-                <iframe
-                  src={calendarSrc}
-                  style={{ border: 0 }}
-                  width="100%"
-                  height="600"
-                  frameBorder="0"
-                  scrolling="no"
-                  title={t.title}
-                  className="rounded-lg"
-                  loading="lazy"
-                />
+              <div className="space-y-6">
+                {/* Embed calendar */}
+                <div className="relative overflow-hidden rounded-lg">
+                  <iframe
+                    src={calendarSrc}
+                    style={{ border: 0 }}
+                    width="100%"
+                    height="600"
+                    frameBorder="0"
+                    scrolling="no"
+                    title={t.title}
+                    className="rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Alternative: Direct calendar link */}
+                <div className="text-center">
+                  <a
+                    href={directCalendarUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                  >
+                    <svg
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                    {locale === "ja"
+                      ? "フルカレンダーを開く"
+                      : "Open Full Calendar"}
+                  </a>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    {locale === "ja"
+                      ? "新しいタブでより詳細なカレンダービューを開きます"
+                      : "Opens a more detailed calendar view in a new tab"}
+                  </p>
+                </div>
               </div>
             )}
           </div>

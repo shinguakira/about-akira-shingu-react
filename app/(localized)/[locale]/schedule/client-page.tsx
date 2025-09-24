@@ -27,9 +27,6 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
   const calendarId =
     process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "shinguakira1022@gmail.com";
 
-  // Google Calendar embed URL - cleaner format as suggested by user
-  const calendarSrc = `https://calendar.google.com/calendar/embed?src=shinguakira1022%40gmail.com&ctz=Asia%2FTokyo&mode=AGENDA&showTitle=0&showTabs=0&showCalendars=0`;
-
   // Alternative: Direct calendar URL as suggested by user (for opening in new tab)
   const directCalendarUrl =
     "https://calendar.google.com/calendar/embed?src=shinguakira1022%40gmail.com&ctz=Asia%2FTokyo&mode=AGENDA&showTitle=0&showTabs=0&showCalendars=0";
@@ -70,11 +67,11 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
               </div>
             ) : (
               <div className="space-y-6">
-                {/* Embed calendar */}
+                {/* Embed calendar using the comprehensive format suggested by user */}
                 <div className="relative overflow-hidden rounded-lg">
-                  <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=c2hpbmd1YWtpcmExMDIyQGdtYWlsLmNvbQ&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043&color=%230b8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                    src={calendarSrc}
-                    style={{ border: 0 }}
+                  <iframe
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=c2hpbmd1YWtpcmExMDIyQGdtYWlsLmNvbQ&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043&color=%230b8043"
+                    style={{ border: "solid 1px #777" }}
                     width="100%"
                     height="600"
                     frameBorder="0"

@@ -1,6 +1,8 @@
 import React from "react";
 import { Article } from "@/components/ui/article";
 import { GetStaticProps, NextPage } from "next";
+import type { ArticleProps, QiitaArticle } from "@/types/article";
+
 export const getStaticProps = async () => {
   try {
     const userId = process.env.QIITA_USER_ID || "ShinguAkira"; // Default to ShinguAkira if not set
@@ -19,11 +21,27 @@ export const getStaticProps = async () => {
     }
 
     const data: QiitaArticle[] = await res.json();
-    console.log(data);
+    console.log("Qiita API response:", data);
+
+    // Map QiitaArticle to ArticleProps format
+    const articles: ArticleProps[] = data.map((qiitaArticle) => ({
+      id: qiitaArticle.id,
+      title: qiitaArticle.title,
+      url: qiitaArticle.url,
+      created_at: qiitaArticle.created_at,
+      updated_at: qiitaArticle.updated_at,
+      body: qiitaArticle.body,
+      rendered_body: qiitaArticle.rendered_body,
+      likes_count: qiitaArticle.likes_count,
+      comments_count: qiitaArticle.comments_count,
+      // Handle missing page_views_count gracefully - Qiita API v2 may not return this field
+      page_views_count: qiitaArticle.page_views_count ?? 0,
+      tags: qiitaArticle.tags.map((tag) => ({ name: tag.name })),
+    }));
 
     return {
-      articles: data,
-      // Revalidate every 60 seconds (optional):
+      articles,
+      // Revalidate every 2 hours
       revalidate: 7200,
     };
   } catch (error) {
@@ -34,6 +52,7 @@ export const getStaticProps = async () => {
     };
   }
 };
+
 const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {
   return (
     <div style={{ margin: "2rem" }}>
@@ -41,17 +60,7 @@ const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {
         {articles &&
           articles.length > 0 &&
           articles.map((article: ArticleProps) => (
-            <Article
-              body={""}
-              rendered_body={""}
-              updated_at={""}
-              likes_count={0}
-              comments_count={0}
-              page_views_count={0}
-              tags={[]}
-              key={article.id}
-              {...article}
-            />
+            <Article key={article.id} {...article} />
           ))}
       </ul>
     </div>

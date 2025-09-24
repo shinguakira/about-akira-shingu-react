@@ -7,13 +7,13 @@ import { strongPoint } from "../../constants/strong-point";
 import ItemPadding from "../ui/style/item-padding";
 import EducationHistory from "../ui/education-history";
 
-interface AboutPageProps {
+type AboutPageProps = {
   translations: {
     skillSetTitle: string;
     categoriesTitle: string;
     strongPointsTitle: string;
   };
-}
+};
 
 const AboutPage = ({ translations }: AboutPageProps) => {
   return (

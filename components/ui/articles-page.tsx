@@ -4,12 +4,12 @@ import QiitaArticle, { getStaticProps } from "../ui/qiita-article";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
-interface ArticlesPageProps {
+type ArticlesPageProps = {
   translations: {
     loadingText: string;
     visitQiitaText: string;
   };
-}
+};
 
 const ArticlesPage = async ({ translations }: ArticlesPageProps) => {
   const articleData = await getStaticProps();

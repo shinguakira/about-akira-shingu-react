@@ -8,7 +8,7 @@ import { useState } from "react";
 // import ReactMarkdown from "react-markdown";
 // import { Button } from "./shadcn/button";
 
-interface ArticleProps {
+type ArticleProps = {
   title: string;
   body: string;
   rendered_body: string;
@@ -19,7 +19,7 @@ interface ArticleProps {
   page_views_count: number;
   tags: { name: string }[];
   url: string;
-}
+};
 
 const ArticleHeader: React.FC<{
   title: string;

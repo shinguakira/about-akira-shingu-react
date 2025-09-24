@@ -8,7 +8,7 @@ const Logo = () => {
     <div className="mt-2 flex items-center justify-center">
       <Link
         href="/"
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-black text-2xl font-bold text-white bg-blend-darken"
+        className="flex size-16 items-center justify-center rounded-full bg-black text-2xl font-bold text-white bg-blend-darken"
       >
         AS
       </Link>

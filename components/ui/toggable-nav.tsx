@@ -40,9 +40,9 @@ export default function TogglableNav() {
               aria-controls="nav-menu"
             >
               {isOpen ? (
-                <X className="h-6 w-6" aria-hidden="true" />
+                <X className="size-6" aria-hidden="true" />
               ) : (
-                <Menu className="h-6 w-6" aria-hidden="true" />
+                <Menu className="size-6" aria-hidden="true" />
               )}
               <span className="sr-only">Toggle menu</span>
             </Button>

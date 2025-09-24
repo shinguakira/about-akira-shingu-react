@@ -42,9 +42,9 @@ const WorkHistory = () => {
                       aria-expanded={expandedId === index}
                     >
                       {expandedId === index ? (
-                        <ChevronUp className="h-5 w-5" />
+                        <ChevronUp className="size-5" />
                       ) : (
-                        <ChevronDown className="h-5 w-5" />
+                        <ChevronDown className="size-5" />
                       )}
                     </button>
                   </div>
@@ -56,7 +56,7 @@ const WorkHistory = () => {
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     <div className="sm:col-span-1">
                       <dt className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
-                        <Building2 className="mr-2 h-5 w-5" />
+                        <Building2 className="mr-2 size-5" />
                         {currentLang === "ja" ? "会社" : "Company"}
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 dark:text-white">
@@ -65,7 +65,7 @@ const WorkHistory = () => {
                     </div>
                     <div className="sm:col-span-1">
                       <dt className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
-                        <Calendar className="mr-2 h-5 w-5" />
+                        <Calendar className="mr-2 size-5" />
                         {currentLang === "ja" ? "期間" : "Period"}
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 dark:text-white">

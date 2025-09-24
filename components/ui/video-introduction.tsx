@@ -141,23 +141,23 @@ export default function VideoIntroduction() {
         <div className="mb-2 flex items-center justify-between">
           <Button
             onClick={togglePlay}
-            className="flex h-10 w-10 items-center justify-center rounded-full p-0"
+            className="flex size-10 items-center justify-center rounded-full p-0"
           >
             {isPlaying ? (
-              <Pause className="h-4 w-4" />
+              <Pause className="size-4" />
             ) : (
-              <Play className="h-4 w-4" />
+              <Play className="size-4" />
             )}
           </Button>
           <Slider value={progress} onChange={handleSeek} />
           <Button
             onClick={toggleMute}
-            className="flex h-10 w-10 items-center justify-center rounded-full p-0"
+            className="flex size-10 items-center justify-center rounded-full p-0"
           >
             {isMuted ? (
-              <VolumeX className="h-4 w-4" />
+              <VolumeX className="size-4" />
             ) : (
-              <Volume2 className="h-4 w-4" />
+              <Volume2 className="size-4" />
             )}
           </Button>
         </div>
@@ -177,7 +177,7 @@ export default function VideoIntroduction() {
             </span>
           </div>
           <Button onClick={handleReset} className="flex items-center">
-            <RotateCcw className="mr-2 h-4 w-4" />
+            <RotateCcw className="mr-2 size-4" />
             Reset
           </Button>
         </div>

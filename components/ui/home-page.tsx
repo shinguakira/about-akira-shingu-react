@@ -11,7 +11,7 @@ import Modal from "@/components/ui/modal";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
 
-interface HomePageProps {
+type HomePageProps = {
   locale: string;
   translations: {
     animatedText: string;
@@ -35,7 +35,7 @@ interface HomePageProps {
     modalFaqText: string;
     modalDontShowButton: string;
   };
-}
+};
 
 const emailAddress = process.env.CONTACT_EMAIL || "shinguakira1022@gmail.com";
 

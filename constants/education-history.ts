@@ -1,4 +1,4 @@
-export interface MultilingualEducationHistoryProps {
+export type MultilingualEducationHistoryProps = {
   startYear: string;
   endYear: string;
   ja: {
@@ -11,7 +11,7 @@ export interface MultilingualEducationHistoryProps {
     department: string;
     description: string;
   };
-}
+};
 
 export const educationHistory: MultilingualEducationHistoryProps[] = [
   {

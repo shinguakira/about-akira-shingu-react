@@ -7,9 +7,9 @@ import { ProjectContent } from "@/constants/project";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
-interface ProjectItemProps {
+type ProjectItemProps = {
   projects: ProjectContent[];
-}
+};
 
 const ProjectPage = ({ projects }: ProjectItemProps) => {
   // Project data is already localized, so we don't need to use locale

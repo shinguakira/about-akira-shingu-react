@@ -3,17 +3,17 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
 
-interface SelectProps {
+type SelectProps = {
   value: string;
   onValueChange: (value: string) => void;
   children: React.ReactNode;
   className?: string;
-}
+};
 
-interface LayoutOption {
+type LayoutOption = {
   value: string;
   label: string;
-}
+};
 
 const layouts: { [key: string]: string } = {
   default: "Classic",
@@ -48,10 +48,10 @@ const Select: React.FC<SelectProps> = ({
   );
 };
 
-interface SelectTriggerProps {
+type SelectTriggerProps = {
   className?: string;
   children: React.ReactNode;
-}
+};
 
 const SelectTrigger: React.FC<SelectTriggerProps> = ({
   className = "",
@@ -64,18 +64,18 @@ const SelectTrigger: React.FC<SelectTriggerProps> = ({
   );
 };
 
-interface SelectValueProps {
+type SelectValueProps = {
   placeholder: string;
-}
+};
 
 const SelectValue: React.FC<SelectValueProps> = ({ placeholder }) => {
   return <span>{placeholder}</span>;
 };
 
-interface SelectContentProps {
+type SelectContentProps = {
   children: React.ReactNode;
   className?: string;
-}
+};
 
 const SelectContent: React.FC<SelectContentProps> = ({
   children,
@@ -84,12 +84,12 @@ const SelectContent: React.FC<SelectContentProps> = ({
   return <div className={`p-1 ${className}`}>{children}</div>;
 };
 
-interface SelectItemProps {
+type SelectItemProps = {
   value: string;
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-}
+};
 
 const SelectItem: React.FC<SelectItemProps> = ({
   value,

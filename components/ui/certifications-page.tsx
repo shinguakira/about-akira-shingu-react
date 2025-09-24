@@ -2,12 +2,12 @@ import React from "react";
 import CertificationItem from "../ui/certification-item";
 import { certifications } from "../../constants/certification";
 
-interface CertificationsPageProps {
+type CertificationsPageProps = {
   translations: {
     pageTitle: string;
     pageSubtitle: string;
   };
-}
+};
 
 const CertificationsPage = ({ translations }: CertificationsPageProps) => {
   return (

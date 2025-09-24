@@ -13,7 +13,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const iconSize = "w-6 h-6";
+const iconSize = "size-6";
 const DEVMODE = false;
 
 const CustomLink: React.FC<CustomLinkProps> = ({
@@ -103,9 +103,9 @@ const NavBar = () => {
             aria-controls="mobile-nav-menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
+              <X className="size-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
+              <Menu className="size-6" aria-hidden="true" />
             )}
             <span className="sr-only">Toggle menu</span>
           </Button>

@@ -27,10 +27,10 @@ const CertificationItem4 = ({
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="rounded-xl border border-blue-200/50 bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-3 shadow-lg backdrop-blur-sm dark:border-cyan-400/30 dark:from-cyan-500/20 dark:to-blue-500/20">
-                  <Award className="h-6 w-6 text-blue-700 dark:text-cyan-400" />
+                  <Award className="size-6 text-blue-700 dark:text-cyan-400" />
                 </div>
                 <div className="absolute -right-1 -top-1">
-                  <Zap className="h-4 w-4 text-amber-500 drop-shadow-sm dark:text-yellow-400" />
+                  <Zap className="size-4 text-amber-500 drop-shadow-sm dark:text-yellow-400" />
                 </div>
               </div>
             </div>
@@ -38,10 +38,10 @@ const CertificationItem4 = ({
               variant="ghost"
               size="sm"
               asChild
-              className="h-8 w-8 rounded-full border border-blue-200/50 bg-blue-50/80 p-0 text-blue-700 backdrop-blur-sm hover:bg-blue-100/80 hover:text-blue-800 dark:border-slate-600/50 dark:bg-slate-800/80 dark:text-cyan-400 dark:hover:bg-slate-700/80 dark:hover:text-cyan-300"
+              className="size-8 rounded-full border border-blue-200/50 bg-blue-50/80 p-0 text-blue-700 backdrop-blur-sm hover:bg-blue-100/80 hover:text-blue-800 dark:border-slate-600/50 dark:bg-slate-800/80 dark:text-cyan-400 dark:hover:bg-slate-700/80 dark:hover:text-cyan-300"
             >
               <a href={verifyLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLink className="size-4" />
               </a>
             </Button>
           </div>
@@ -53,12 +53,12 @@ const CertificationItem4 = ({
             </h3>
 
             <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Building2 className="h-4 w-4 text-blue-600 dark:text-cyan-400" />
+              <Building2 className="size-4 text-blue-600 dark:text-cyan-400" />
               <span className="text-sm font-medium">{organization}</span>
             </div>
 
             <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-              <Calendar className="h-4 w-4 text-purple-600 dark:text-blue-400" />
+              <Calendar className="size-4 text-purple-600 dark:text-blue-400" />
               <span className="text-sm">{date}</span>
             </div>
           </div>
@@ -70,7 +70,7 @@ const CertificationItem4 = ({
           >
             <a href={verifyLink} target="_blank" rel="noopener noreferrer">
               認定証を確認
-              <ExternalLink className="ml-2 h-4 w-4" />
+              <ExternalLink className="ml-2 size-4" />
             </a>
           </Button>
         </CardContent>

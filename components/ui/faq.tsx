@@ -58,7 +58,7 @@ const Faq = () => {
             onClick={() => setIsOpen(true)}
             className="inline-flex items-center space-x-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-600 shadow-sm transition-colors hover:bg-gray-50 dark:bg-gray-800"
           >
-            <Search className="h-4 w-4" />
+            <Search className="size-4" />
             <span>Search FAQ</span>
             <kbd className="ml-2 rounded border border-gray-200 px-1.5 py-0.5 text-xs">
               ⌘press k
@@ -74,7 +74,7 @@ const Faq = () => {
             <div className="relative rounded-xl border border-gray-200 shadow-2xl">
               <div className="border-b">
                 <div className="flex items-center px-4 py-3">
-                  <Search className="h-5 w-5 text-gray-500" />
+                  <Search className="size-5 text-gray-500" />
                   <input
                     ref={inputRef}
                     value={searchQuery}
@@ -88,7 +88,7 @@ const Faq = () => {
                       onClick={() => setSearchQuery("")}
                       className="rounded p-1 hover:bg-gray-100"
                     >
-                      <X className="h-4 w-4 text-gray-500 dark:text-gray-100" />
+                      <X className="size-4 text-gray-500 dark:text-gray-100" />
                     </button>
                   )}
                   <kbd className="ml-2 rounded border border-gray-200 px-1.5 py-0.5 text-xs text-gray-400">

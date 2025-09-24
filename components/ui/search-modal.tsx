@@ -272,7 +272,7 @@ const SearchModal = ({
           onClick={() => handleOpenChange(true)}
           className="flex cursor-pointer items-center rounded-md border border-gray-300 px-3 py-2 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800"
         >
-          <Search className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+          <Search className="mr-2 size-4 text-gray-500 dark:text-gray-400" />
           <span className="text-gray-500 dark:text-gray-400">
             {currentLang === "ja" ? "検索..." : "Search..."}
           </span>
@@ -283,7 +283,7 @@ const SearchModal = ({
           className="flex items-center justify-center rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
           aria-label="Search"
         >
-          <Search className="h-5 w-5" />
+          <Search className="size-5" />
         </button>
       )}
 
@@ -299,7 +299,7 @@ const SearchModal = ({
       >
         <div className="relative">
           <div className="flex items-center border-b border-gray-200 px-4 py-3 dark:border-gray-700">
-            <Search className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            <Search className="size-5 text-gray-500 dark:text-gray-400" />
             <input
               ref={inputRef}
               value={searchQuery}
@@ -316,7 +316,7 @@ const SearchModal = ({
                 onClick={() => setSearchQuery("")}
                 className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <X className="size-4 text-gray-500 dark:text-gray-400" />
               </button>
             )}
           </div>
@@ -365,7 +365,7 @@ const SearchModal = ({
                           {result.description}
                         </p>
                       </div>
-                      <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0 text-gray-400" />
+                      <ArrowRight className="ml-2 size-4 flex-shrink-0 text-gray-400" />
                     </div>
                   </div>
                 ))}

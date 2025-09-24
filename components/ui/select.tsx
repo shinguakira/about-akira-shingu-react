@@ -36,7 +36,7 @@ const Select: React.FC<SelectProps> = ({
         onClick={() => setIsOpen(!isOpen)}
       >
         {layouts[value] || value}
-        <ChevronDown className="h-4 w-4 opacity-50" />
+        <ChevronDown className="size-4 opacity-50" />
       </div>
 
       {isOpen && (

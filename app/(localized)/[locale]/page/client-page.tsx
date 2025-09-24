@@ -34,6 +34,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalProjectsDesc: "Development projects with git URLs and project URLs",
       modalArticles: "Articles",
       modalArticlesDesc: "Article titles and links",
+      modalSchedule: "Schedule",
+      modalScheduleDesc: "Calendar and availability",
       modalFaq: "FAQ",
       modalFaqDesc: "Frequently Asked Questions",
       modalButtonText: "Don't show until updates",
@@ -68,6 +70,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
       modalProjectsDesc: "開発プロジェクトのgitURLおよびプロジェクトURL",
       modalArticles: "記事",
       modalArticlesDesc: "記事のタイトルおよびリンク",
+      modalSchedule: "スケジュール",
+      modalScheduleDesc: "カレンダー・空き状況",
       modalFaq: "よくある質問",
       modalFaqDesc: "よくある質問",
       modalButtonText: "更新があるまで表示しない",
@@ -118,6 +122,8 @@ export default function HomeClientPage({ locale }: { locale: string }) {
         <ul>{t.modalProjectsDesc}</ul>
         <div className="font-bold">{t.modalArticles}</div>
         <ul>{t.modalArticlesDesc}</ul>
+        <div className="font-bold">{t.modalSchedule}</div>
+        <ul>{t.modalScheduleDesc}</ul>
         <div className="font-bold">{t.modalFaq}</div>
         <ul>{t.modalFaqDesc}</ul>
         <div className="font-bold">{t.modalSearch}</div>

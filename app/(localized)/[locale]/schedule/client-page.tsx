@@ -28,7 +28,7 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
     process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "shinguakira1022@gmail.com";
 
   // Google Calendar embed URL optimized to show all events
-  const calendarSrc = `https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&src=${encodeURIComponent(calendarId)}&color=%23039BE5&showTitle=1&showNav=1&showDate=1&showPrint=1&showTabs=1&showCalendars=1&showTz=1&mode=AGENDA`;
+  const calendarSrc = `https://calendar.google.com/calendar/u/1?cid=c2hpbmd1YWtpcmExMDIyQGdtYWlsLmNvbQ`;
 
   // Alternative: Direct calendar URL as suggested by user (for opening in new tab)
   const directCalendarUrl =

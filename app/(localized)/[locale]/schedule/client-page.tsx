@@ -72,7 +72,7 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
               <div className="space-y-6">
                 {/* Embed calendar */}
                 <div className="relative overflow-hidden rounded-lg">
-                  <iframe
+                  <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=c2hpbmd1YWtpcmExMDIyQGdtYWlsLmNvbQ&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043&color=%230b8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
                     src={calendarSrc}
                     style={{ border: 0 }}
                     width="100%"

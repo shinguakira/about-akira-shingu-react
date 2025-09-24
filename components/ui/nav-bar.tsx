@@ -69,6 +69,10 @@ const NavBar = () => {
       prefetch: false,
     },
     {
+      href: `/${locale}/schedule`,
+      title: locale === "ja" ? "スケジュール" : "Schedule",
+    },
+    {
       href: `/${locale}/faq`,
       title: "FAQ",
     },

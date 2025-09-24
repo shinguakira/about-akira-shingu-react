@@ -41,8 +41,11 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
 
   const t = translations[locale === "ja" ? "ja" : "en"];
 
-  // Sample Google Calendar public URL - you'll need to replace this with the actual calendar ID
-  const calendarId = "your-calendar-id@gmail.com";
+  // Google Calendar configuration
+  // Use environment variable if available, otherwise fallback to placeholder
+  const calendarId =
+    process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID ||
+    "en.japanese#holiday@group.v.calendar.google.com";
   const googleCalendarUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=Asia%2FTokyo`;
   const directCalendarUrl = `https://calendar.google.com/calendar/u/0?cid=${encodeURIComponent(calendarId)}`;
 

@@ -25,7 +25,7 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
 
   // Environment variable for calendar ID, with fallback to placeholder
   const calendarId =
-    process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "your-calendar-id@gmail.com";
+    process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || "shinguakira1022@gmail.com";
 
   // Google Calendar embed URL
   const calendarSrc = `https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&src=${encodeURIComponent(calendarId)}&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&showTz=0`;

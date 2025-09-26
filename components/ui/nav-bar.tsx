@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
@@ -43,8 +43,44 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 const NavBar = () => {
   const { locale } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  // Close mobile menu when clicking outside (mobile only)
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      // Check if we're in mobile viewport (< 768px, which is md breakpoint in Tailwind)
+      const isMobile = window.innerWidth < 768;
+
+      let target: Node | null = null;
+      if (event.type === "mousedown") {
+        target = (event as MouseEvent).target as Node;
+      } else if (event.type === "touchstart") {
+        target = (event as TouchEvent).target as Node;
+      }
+
+      if (
+        isMobile &&
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        target &&
+        !mobileMenuRef.current.contains(target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   const navigationLinks = [
     {
@@ -161,6 +197,7 @@ const NavBar = () => {
 
       {isMobileMenuOpen && (
         <div
+          ref={mobileMenuRef}
           id="mobile-nav-menu"
           className="absolute left-0 right-0 top-full z-20 bg-blue-200 shadow-lg dark:bg-blue-900 md:hidden"
         >

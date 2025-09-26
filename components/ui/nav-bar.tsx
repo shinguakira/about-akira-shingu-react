@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
@@ -48,8 +48,8 @@ const NavBar = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   // Close mobile menu when clicking outside (mobile only)
-  useEffect(() => {
-    const handleClickOutside = (event: Event) => {
+  const handleClickOutside = useCallback(
+    (event: Event) => {
       // Check if we're in mobile viewport (< 768px, which is md breakpoint in Tailwind)
       const isMobile = window.innerWidth < 768;
 
@@ -69,8 +69,11 @@ const NavBar = () => {
       ) {
         setIsMobileMenuOpen(false);
       }
-    };
+    },
+    [isMobileMenuOpen]
+  );
 
+  useEffect(() => {
     if (isMobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("touchstart", handleClickOutside);
@@ -80,7 +83,7 @@ const NavBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, handleClickOutside]);
 
   const navigationLinks = [
     {

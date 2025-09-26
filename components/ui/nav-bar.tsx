@@ -154,11 +154,8 @@ const NavBar = () => {
           </Button>
         </div>
 
-        <div className="flex items-center justify-end">
-          <ChangelogNotification />
-        </div>
-
         <div className="mr-4 hidden items-center space-x-2 md:flex">
+          <ChangelogNotification />
           <Link
             href="https://www.credly.com/users/username.aff80586"
             target="_blank"
@@ -194,6 +191,7 @@ const NavBar = () => {
         </div>
 
         <div className="mr-4 flex items-center space-x-2 md:hidden">
+          <ChangelogNotification />
           <SearchModal />
           <LanguageSwitcher />
           {/* {DEVMODE && <RoleSwitcher />} */}

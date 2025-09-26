@@ -158,10 +158,12 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
 );
 
 export const CredlyIcon = ({ className, ...rest }: IconProps) => (
-  <img
+  <>
+    <img
       className={`bg-orange-50 ${className}`}
       src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
     ></img>
+  </>
 );
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (

@@ -93,6 +93,7 @@ export default function Analytics({
 
 // Add this to provide TypeScript support for the dataLayer
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
     dataLayer: any[];
   }

@@ -14,6 +14,7 @@
   ],
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/extensions": [

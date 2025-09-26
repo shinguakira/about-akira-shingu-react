@@ -158,19 +158,10 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
 );
 
 export const CredlyIcon = ({ className, ...rest }: IconProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
-    viewBox="0 0 24 24"
-    {...rest}
-    className={`h-auto w-full ${className}`}
-  >
-    <path
-      fill="#FF6B35"
-      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.5 8.5c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5S13.067 5 15 5s3.5 1.567 3.5 3.5zm-13 0C5.5 10.433 3.933 12 2 12s-3.5-1.567-3.5-3.5S-1.433 5 .5 5s3.5 1.567 3.5 3.5zm6.5 5c-2.2 0-4.2-.9-5.7-2.4-.4-.4-.4-1 0-1.4s1-.4 1.4 0c1.2 1.2 2.8 1.8 4.3 1.8s3.1-.6 4.3-1.8c.4-.4 1-.4 1.4 0s.4 1 0 1.4c-1.5 1.5-3.5 2.4-5.7 2.4z"
-    />
-  </svg>
+  <img
+      className={`bg-orange-50 ${className}`}
+      src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
+    ></img>
 );
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (

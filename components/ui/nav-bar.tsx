@@ -154,7 +154,7 @@ const NavBar = () => {
           </Button>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-end">
           <ChangelogNotification />
         </div>
 

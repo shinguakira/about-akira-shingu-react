@@ -76,11 +76,47 @@ export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
 );
 
 export const QiitaIcon = ({ className, ...rest }: IconProps) => (
-  <img
-    src="https://img.logo.dev/qiita.com" // Using Logo.dev as replacement for discontinued Clearbit Logo API
-    alt="Qiita"
-    className={`${className}`}
-  />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    {...rest}
+    className={`h-auto w-full ${className}`}
+  >
+    <path
+      fill="#55c500"
+      d="M3.57 14.67l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0L.71 11.81c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M10.43 14.67l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0L7.57 11.81c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M17.29 14.67l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0l-1.38 1.38c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M6.0 7.81l1.38-1.38c.79-.79.79-2.07 0-2.86S5.31 2.78 4.52 3.57L3.14 4.95c-.79.79-.79 2.07 0 2.86L4.52 9.19c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M12.86 7.81l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0L10 4.95c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M19.72 7.81l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0L16.86 4.95c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M8.86 21.52l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0L5.0 18.66c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+    <path
+      fill="#55c500"
+      d="M15.72 21.52l1.38-1.38c.79-.79.79-2.07 0-2.86s-2.07-.79-2.86 0l-1.38 1.38c-.79.79-.79 2.07 0 2.86l1.38 1.38c.79.79 2.07.79 2.86 0 .79-.79.79-2.07 0-2.86z"
+    />
+  </svg>
 );
 
 export const PinterestIcon = ({ className, ...rest }: IconProps) => (
@@ -122,12 +158,19 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
 );
 
 export const CredlyIcon = ({ className, ...rest }: IconProps) => (
-  <>
-    <img
-      className={`bg-orange-50 ${className}`}
-      src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
-    ></img>
-  </>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    {...rest}
+    className={`h-auto w-full ${className}`}
+  >
+    <path
+      fill="#FF6B35"
+      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.5 8.5c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5S13.067 5 15 5s3.5 1.567 3.5 3.5zm-13 0C5.5 10.433 3.933 12 2 12s-3.5-1.567-3.5-3.5S-1.433 5 .5 5s3.5 1.567 3.5 3.5zm6.5 5c-2.2 0-4.2-.9-5.7-2.4-.4-.4-.4-1 0-1.4s1-.4 1.4 0c1.2 1.2 2.8 1.8 4.3 1.8s3.1-.6 4.3-1.8c.4-.4 1-.4 1.4 0s.4 1 0 1.4c-1.5 1.5-3.5 2.4-5.7 2.4z"
+    />
+  </svg>
 );
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (

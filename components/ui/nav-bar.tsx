@@ -11,7 +11,7 @@ import RoleSwitcher from "./role-switcher";
 import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 
 const iconSize = "size-6";
 const DEVMODE = false;
@@ -123,8 +123,8 @@ const NavBar = () => {
 
   return (
     <header className="fixed top-0 z-10 flex w-full justify-between border-b border-t border-gray-300 bg-blue-200 font-medium shadow-md dark:bg-blue-900">
-      <nav className="xs:text-xs mx-auto flex w-full justify-between pt-8 text-base font-medium">
-        <div className="xs:text-xs ml-4 hidden space-x-4 md:flex">
+      <nav className="xs:text-xs mx-auto flex w-full items-center justify-between py-4 text-base font-medium">
+        <div className="xs:text-xs ml-4 hidden space-x-4 pt-4 md:flex">
           {navigationLinks.map((link) => (
             <CustomLink
               key={link.href}
@@ -136,7 +136,7 @@ const NavBar = () => {
           ))}
         </div>
 
-        <div className="ml-4 md:hidden">
+        <div className="ml-4 pt-4 md:hidden">
           <Button
             variant="ghost"
             size="icon"
@@ -153,13 +153,12 @@ const NavBar = () => {
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
-      </nav>
 
-      <nav className="xs:text-xs mx-auto flex w-full justify-end py-4 text-base font-medium">
-        <div className="mr-5">
+        <div className="flex items-center justify-center">
           <ChangelogNotification />
         </div>
-        <div className="hidden items-center space-x-2 md:flex">
+
+        <div className="mr-4 hidden items-center space-x-2 md:flex">
           <Link
             href="https://www.credly.com/users/username.aff80586"
             target="_blank"
@@ -194,7 +193,7 @@ const NavBar = () => {
           <ThemeToggle />
         </div>
 
-        <div className="flex items-center space-x-2 md:hidden">
+        <div className="mr-4 flex items-center space-x-2 md:hidden">
           <SearchModal />
           <LanguageSwitcher />
           {/* {DEVMODE && <RoleSwitcher />} */}

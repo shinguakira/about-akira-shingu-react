@@ -4,23 +4,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const CertificationItem2 = ({
-  id,
   name,
   organization = "unknown",
+  issuer, // Support API format
   date = "",
   verifyLink,
   className = "",
 }: CertificationItemProps) => {
+  // Use organization if available, otherwise use issuer (for API data)
+  const displayOrganization = organization || issuer || "Unknown";
+
   const handleVerify = (verifyLink?: string) => {
     if (verifyLink) {
       window.open(verifyLink, "_blank", "noopener,noreferrer");
     }
   };
   return (
-    <Card
-      key={id}
-      className="group overflow-hidden transition-all duration-300 hover:shadow-xl"
-    >
+    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl">
       <CardContent className="p-0">
         <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-6 text-white">
           <div className="mb-4 flex items-center justify-between">
@@ -30,7 +30,7 @@ const CertificationItem2 = ({
           <h3 className="mb-2 text-lg font-bold leading-tight">{name}</h3>
           <div className="flex items-center gap-2 text-blue-100">
             <Building className="size-4" />
-            <span className="text-sm">{organization}</span>
+            <span className="text-sm">{displayOrganization}</span>
           </div>
         </div>
 

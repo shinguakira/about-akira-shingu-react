@@ -5,13 +5,16 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const CertificationItem4 = ({
-  id,
   name,
   organization = "unknown",
+  issuer, // Support API format
   date = "",
   verifyLink,
   className = "",
 }: CertificationItemProps) => {
+  // Use organization if available, otherwise use issuer (for API data)
+  const displayOrganization = organization || issuer || "Unknown";
+
   return (
     <div className={cn("group relative", className)}>
       {/* 背景のぼかし効果 - ライト/ダーク対応 */}
@@ -54,7 +57,7 @@ const CertificationItem4 = ({
 
             <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
               <Building2 className="size-4 text-blue-600 dark:text-cyan-400" />
-              <span className="text-sm font-medium">{organization}</span>
+              <span className="text-sm font-medium">{displayOrganization}</span>
             </div>
 
             <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">

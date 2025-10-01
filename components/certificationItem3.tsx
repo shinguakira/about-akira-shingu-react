@@ -16,23 +16,27 @@ const CertificationItem3 = ({
   id,
   name,
   organization = "unknown",
+  issuer, // Support API format
   date = "",
   verifyLink,
   className = "",
 }: CertificationItemProps) => {
+  // Use organization if available, otherwise use issuer (for API data)
+  const displayOrganization = organization || issuer || "Unknown";
+
   const handleVerify = (verifyLink?: string) => {
     if (verifyLink) {
       window.open(verifyLink, "_blank", "noopener,noreferrer");
     }
   };
 
-  const getIconForIndex = (index: number) => {
+  const getIconForIndex = (index?: number) => {
     const icons = [Trophy, Shield, Star, Award];
-    const IconComponent = icons[index % icons.length];
+    const IconComponent = icons[(index || 0) % icons.length];
     return IconComponent;
   };
   const IconComponent = getIconForIndex(id);
-  const isEven = id % 2 === 0;
+  const isEven = (id || 0) % 2 === 0;
 
   return (
     <Card
@@ -62,7 +66,7 @@ const CertificationItem3 = ({
             <h3 className="mb-3 text-2xl font-bold leading-tight">{name}</h3>
             <div className="mb-4 flex items-center gap-2 text-white/80">
               <Building className="size-5" />
-              <span className="text-lg">{organization}</span>
+              <span className="text-lg">{displayOrganization}</span>
             </div>
           </div>
         </div>

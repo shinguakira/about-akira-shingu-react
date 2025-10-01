@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CertificationItemProps } from "@/services/portfolioApi";
 
 type LayoutType = "default" | "modern" | "premium" | "special";
 
@@ -19,7 +20,7 @@ export default function CertificationsClientPage({
   initialCertifications,
 }: {
   locale: string;
-  initialCertifications: any[];
+  initialCertifications: CertificationItemProps[];
 }) {
   const translations = {
     en: {
@@ -36,7 +37,10 @@ export default function CertificationsClientPage({
   const [selectedLayout, setSelectedLayout] = useState<LayoutType>("special");
 
   // Component mapping based on selected layout
-  const renderCertificationItem = (cert: any, index: number) => {
+  const renderCertificationItem = (
+    cert: CertificationItemProps,
+    index: number
+  ) => {
     switch (selectedLayout) {
       case "default":
         return <CertificationItem key={index} {...cert} />;

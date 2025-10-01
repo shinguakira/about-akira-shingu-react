@@ -2,18 +2,18 @@ import Link from "next/link";
 import React from "react";
 
 const CertificationItem = ({
-  id,
   name,
   organization = "unknown",
+  issuer, // Support API format
   date = "",
   verifyLink,
   className = "",
 }: CertificationItemProps) => {
+  // Use organization if available, otherwise use issuer (for API data)
+  const displayOrganization = organization || issuer || "Unknown";
+
   return (
-    <div
-      key={id}
-      className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-700"
-    >
+    <div className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-700">
       <div className="p-6">
         <h2 className="mb-2 flex items-center gap-2 text-xl font-semibold">
           <span className="text-blue-500" aria-hidden="true">
@@ -22,7 +22,7 @@ const CertificationItem = ({
           {name}
         </h2>
         <span className="mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          {organization ? organization : "Unknown"}
+          {displayOrganization}
         </span>
         <p className="mt-2 flex items-center text-sm text-gray-600 dark:text-gray-50">
           <span className="mr-1" aria-hidden="true">

@@ -5,7 +5,7 @@ const creadlyLink = links.creadlyLink;
 export const certifications: CertificationItemProps[] = [
   {
     id: 1,
-    name: "基本情報技術者試験asdf",
+    name: "基本情報技術者試験",
     organization: "IPA",
     date: "2023-05",
     verifyLink: "/images/certification/kihonInfoCert.pdf",

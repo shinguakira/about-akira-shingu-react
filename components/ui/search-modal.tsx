@@ -134,15 +134,16 @@ const SearchModal = ({
     });
 
     certifications.forEach((cert, index) => {
+      const organization = cert.organization || cert.issuer || "";
       if (
         cert.name.toLowerCase().includes(query) ||
-        cert.organization.toLowerCase().includes(query) ||
+        organization.toLowerCase().includes(query) ||
         cert.date.toLowerCase().includes(query)
       ) {
         results.push({
           type: "certification",
           title: cert.name,
-          description: `${cert.organization} - ${cert.date}`,
+          description: `${organization} - ${cert.date}`,
           url: `/${locale}/certifications`,
           anchor: `cert-${index}`,
         });

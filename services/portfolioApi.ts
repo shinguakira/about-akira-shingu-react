@@ -41,9 +41,13 @@ export async function fetchFromPortfolioApi<T = any>(
   console.log(url);
   const searchParams = new URLSearchParams();
 
-  // Add all query parameters
+  // Add all query parameters with proper encoding
+  // URLSearchParams automatically encodes parameters to prevent injection attacks
   Object.entries(queryParams).forEach(([key, value]) => {
-    if (value) searchParams.append(key, value);
+    if (value) {
+      // Ensure value is sanitized and encoded
+      searchParams.append(key, String(value));
+    }
   });
 
   // Append query parameters if any exist
@@ -161,13 +165,17 @@ export async function fetchEducation(
 
 /**
  * Type definition for certification items
+ * Supports both API format (issuer) and local format (organization, id)
  */
 export type CertificationItemProps = {
+  id?: number; // For local data
   name: string;
-  issuer: string;
+  issuer?: string; // For API data
+  organization?: string; // For local data
   date: string;
   verifyLink?: string;
   image?: string;
+  className?: string; // For styling
 };
 
 /**

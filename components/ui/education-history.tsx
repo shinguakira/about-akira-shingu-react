@@ -1,7 +1,7 @@
 "use client";
 
 import EducationItem from "./education-item";
-import { EducationHistory as EducationHistoryType } from "@/services/portfolioApi";
+import type { EducationHistory as EducationHistoryType } from "@shinguakira/portfolio-api-types";
 import { educationHistory as localEducationHistory } from "@/constants/education-history";
 
 const EducationHistory = ({

@@ -3,6 +3,21 @@
  * Uses Next.js App Router data fetching with caching
  */
 
+import type {
+  ApiResponse,
+  CertificationItem,
+  CertificationsResponse,
+  EducationHistory,
+  EducationResponse,
+  Faq,
+  FaqResponse,
+  ProjectsResponse,
+  SkillItem,
+  SkillsResponse,
+  StrongPoint,
+  StrongPointsResponse,
+} from "@shinguakira/portfolio-api-types";
+
 // Use environment variable with fallback to default URL
 const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL
   ? `${process.env.NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL}/api`
@@ -62,14 +77,14 @@ export async function fetchFromPortfolioApi<T = any>(
         revalidate: revalidateSeconds,
       },
     });
-    const responseJson = await response.json();
+    const responseJson: ApiResponse<T> = await response.json();
 
     if (!response.ok) {
       throw new Error(
         `API error: ${response.status} for ${url} ${responseJson.message}`
       );
     }
-    return responseJson.data;
+    return responseJson.data as T;
   } catch (error) {
     console.error(`Error fetching ${path} from portfolio API:`, error);
     throw error;
@@ -82,8 +97,8 @@ export async function fetchFromPortfolioApi<T = any>(
  */
 export async function fetchCertifications(
   lang?: string
-): Promise<CertificationItemProps[]> {
-  return fetchFromPortfolioApi("certifications", {
+): Promise<CertificationsResponse> {
+  return fetchFromPortfolioApi<CertificationsResponse>("certifications", {
     queryParams: lang ? { lang } : undefined,
   });
 }
@@ -92,33 +107,19 @@ export async function fetchCertifications(
  * Fetches project data with 1 week cache
  * @param lang - Optional language code for localized content
  */
-export async function fetchProjects(lang?: string): Promise<any> {
-  return fetchFromPortfolioApi("projects", {
+export async function fetchProjects(lang?: string): Promise<ProjectsResponse> {
+  return fetchFromPortfolioApi<ProjectsResponse>("projects", {
     queryParams: lang ? { lang } : undefined,
   });
 }
 
-/**
- * Type for skill data
- */
-export type SkillItem = {
-  name: string;
-  category: string;
-  years: string;
-  proficiency?: string; // onBusiness or self-study
-  picture?: string; // url for skill picture
-  pictureColor?: string; // color for skill picture
-};
-
-// For backward compatibility
-export type Skill = SkillItem;
 
 /**
  * Fetches skill data with 1 day cache
  * @param lang - Optional language code for localized content
  */
-export async function fetchSkills(lang?: string): Promise<Skill[]> {
-  return fetchFromPortfolioApi("skills", {
+export async function fetchSkills(lang?: string): Promise<SkillsResponse> {
+  return fetchFromPortfolioApi<SkillsResponse>("skills", {
     queryParams: lang ? { lang } : undefined,
     revalidateSeconds: 86400, // 1 day cache
   });
@@ -128,23 +129,12 @@ export async function fetchSkills(lang?: string): Promise<Skill[]> {
  * Fetches other skills data with 1 day cache
  * @param lang - Optional language code for localized content
  */
-export async function fetchOtherSkills(lang?: string): Promise<Skill[]> {
-  return fetchFromPortfolioApi("other-skills", {
+export async function fetchOtherSkills(lang?: string): Promise<SkillsResponse> {
+  return fetchFromPortfolioApi<SkillsResponse>("other-skills", {
     queryParams: lang ? { lang } : undefined,
     revalidateSeconds: 86400, // 1 day cache
   });
 }
-
-/**
- * Type for education history data
- */
-export type EducationHistory = {
-  startYear: string;
-  endYear: string;
-  school: string;
-  department: string;
-  description: string;
-};
 
 /**
  * Fetches education history with 1 week cache
@@ -152,34 +142,13 @@ export type EducationHistory = {
  */
 export async function fetchEducation(
   lang?: string
-): Promise<EducationHistory[]> {
-  return fetchFromPortfolioApi("education", {
+): Promise<EducationResponse> {
+  return fetchFromPortfolioApi<EducationResponse>("education", {
     queryParams: lang ? { lang } : undefined,
     revalidateSeconds: 604800, // 1 week cache
   });
 }
 
-/**
- * Type definition for certification items
- */
-export type CertificationItemProps = {
-  name: string;
-  issuer: string;
-  date: string;
-  verifyLink?: string;
-  image?: string;
-};
-
-/**
- * Type for strong point data
- * The API returns already localized content based on the lang parameter
- */
-export type StrongPointProps = {
-  size: string;
-  category?: string;
-  question: string;
-  answer: string;
-};
 
 /**
  * Fetches strong points data with 1 week cache
@@ -188,10 +157,10 @@ export type StrongPointProps = {
  */
 export async function fetchStrongPoints(
   lang?: string
-): Promise<StrongPointProps[]> {
+): Promise<StrongPointsResponse> {
   try {
     // Try to fetch from API first
-    return await fetchFromPortfolioApi("strong-points", {
+    return await fetchFromPortfolioApi<StrongPointsResponse>("strong-points", {
       queryParams: lang ? { lang } : undefined,
     });
   } catch (error) {
@@ -205,33 +174,22 @@ export async function fetchStrongPoints(
     const languageKey = lang === "ja" ? "ja" : "en";
     return strongPoint.map((item) => ({
       size: item.size,
-      category: item.category,
       question: item[languageKey].question,
       answer: item[languageKey].answer,
     }));
   }
 }
 
-/**
- * Type for FAQ data
- * The API returns already localized content based on the lang parameter
- */
-export type FaqProps = {
-  size: string;
-  category: string;
-  question: string;
-  answer: string;
-};
 
 /**
  * Fetches FAQ data with 1 week cache
  * Falls back to local constants if API endpoint doesn't exist
  * @param lang - Optional language code for localized content
  */
-export async function fetchFaqs(lang?: string): Promise<FaqProps[]> {
+export async function fetchFaqs(lang?: string): Promise<FaqResponse> {
   try {
     // Try to fetch from API first
-    return await fetchFromPortfolioApi("faqs", {
+    return await fetchFromPortfolioApi<FaqResponse>("faqs", {
       queryParams: lang ? { lang } : undefined,
       revalidateSeconds: 604800, // 1 week cache
     });

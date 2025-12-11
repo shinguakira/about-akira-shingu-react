@@ -5,10 +5,12 @@ import {
   fetchSkills,
   fetchOtherSkills,
   fetchEducation,
-  StrongPointProps,
-  Skill,
-  EducationHistory,
 } from "@/services/portfolioApi";
+import type {
+  StrongPoint,
+  SkillItem,
+  EducationHistory,
+} from "@shinguakira/portfolio-api-types";
 
 // Ensure page is static with revalidation for optimal performance
 export const dynamic = "force-static";
@@ -56,9 +58,9 @@ export default async function AboutPage({ params }: Props) {
   const locale = resolvedParams.locale;
 
   // Fetch data from the API in parallel with error handling
-  let strongPointsData: StrongPointProps[] = [];
-  let skillsData: Skill[] = [];
-  let otherSkillsData: Skill[] = [];
+  let strongPointsData: StrongPoint[] = [];
+  let skillsData: SkillItem[] = [];
+  let otherSkillsData: SkillItem[] = [];
   let educationData: EducationHistory[] = [];
 
   try {

@@ -5,11 +5,11 @@ import SkillSet from "@/components/ui/skill-set";
 import WorkHistory from "@/components/ui/work-history";
 import ItemPadding from "@/components/ui/style/item-padding";
 import EducationHistory from "@/components/ui/education-history";
-import {
-  StrongPointProps,
-  Skill,
+import type {
+  StrongPoint,
+  SkillItem,
   EducationHistory as EducationHistoryType,
-} from "@/services/portfolioApi";
+} from "@shinguakira/portfolio-api-types";
 
 export default function AboutClientPage({
   locale = "en",
@@ -19,9 +19,9 @@ export default function AboutClientPage({
   education,
 }: {
   locale?: string;
-  strongPoints: StrongPointProps[];
-  skills: Skill[];
-  otherSkills: Skill[];
+  strongPoints: StrongPoint[];
+  skills: SkillItem[];
+  otherSkills: SkillItem[];
   education: EducationHistoryType[];
 }) {
   const translations = {
@@ -70,7 +70,7 @@ export default function AboutClientPage({
           </h3>
           <ItemPadding>
             {strongPoints && strongPoints.length > 0 ? (
-              strongPoints.map((strong: StrongPointProps, index: number) => (
+              strongPoints.map((strong: StrongPoint, index: number) => (
                 <Accordion
                   key={index}
                   index={index}

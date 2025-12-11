@@ -1,8 +1,7 @@
-type SkillItemProps = {
-  name: string;
-  category: string;
-  years: string;
-  proficyency?: string; // onBusiness or self-study
-  picture?: string; // url for skill picture
-  pictureColor?: string; // color for skill picture
+import type { SkillItem } from "@shinguakira/portfolio-api-types";
+
+// Re-export for backward compatibility
+// Note: API uses 'proficiency' but local uses 'proficyency' (typo)
+type SkillItemProps = SkillItem & {
+  proficyency?: string; // Keep for backward compatibility with local components
 };

@@ -2,14 +2,14 @@
 import React from "react";
 import Accordion from "@/components/ui/accordion";
 import { faqs as localFaqsData } from "@/constants/faq";
-import { FaqProps } from "@/services/portfolioApi";
+import type { Faq } from "@shinguakira/portfolio-api-types";
 
 export default function FaqClientPage({
   locale,
   faqs: apiFaqs = [],
 }: {
   locale: string;
-  faqs?: FaqProps[];
+  faqs?: Faq[];
 }) {
   const translations = {
     en: {

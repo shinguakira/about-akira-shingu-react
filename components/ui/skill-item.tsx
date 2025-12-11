@@ -1,6 +1,11 @@
 import { memo } from "react";
 import SvgW3Logo from "./svg-w3-logo";
 import Image from "next/image";
+import type { SkillItem as SkillItemType } from "@shinguakira/portfolio-api-types";
+
+type SkillItemProps = SkillItemType & {
+  proficyency?: string; // Keep for backward compatibility with local components
+};
 
 // Import the BASE_URL from the portfolio API service
 const BASE_URL =

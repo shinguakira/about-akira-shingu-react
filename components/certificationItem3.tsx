@@ -11,6 +11,11 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItem & {
+  className?: string;
+};
 
 const CertificationItem3 = ({
   id,

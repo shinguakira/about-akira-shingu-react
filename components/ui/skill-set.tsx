@@ -6,7 +6,7 @@ import {
   skills as localSkills,
   otherSkills as localOtherSkills,
 } from "@/constants/skill";
-import { Skill } from "@/services/portfolioApi";
+import type { SkillItem as Skill } from "@shinguakira/portfolio-api-types";
 import SkillCategory from "./skill-category";
 
 const SkillSet = ({

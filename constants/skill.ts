@@ -1,4 +1,9 @@
 import { onBusiness, selfStudy } from "@/constants";
+import type { SkillItem } from "@shinguakira/portfolio-api-types";
+
+type SkillItemProps = SkillItem & {
+  proficyency?: string; // Keep for backward compatibility
+};
 
 // main skills(Language,Libraries)
 export const skills: SkillItemProps[] = [

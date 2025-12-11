@@ -1,4 +1,3 @@
-import CommingSoon from "@/components/ui/comming-soon";
 import { QiitaIcon } from "@/components/ui/icons";
 import React from "react";
 import QiitaArticle, {

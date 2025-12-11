@@ -4,13 +4,7 @@ import CertificationItem from "@/components/ui/certification-item";
 import CertificationItem2 from "@/components/certificationItem2";
 import CertificationItem3 from "@/components/certificationItem3";
 import CertificationItem4 from "@/components/certificationItem4";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem } from "@/components/ui/select";
 
 type LayoutType = "default" | "modern" | "premium" | "special";
 

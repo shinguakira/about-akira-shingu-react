@@ -1,6 +1,6 @@
 import React from "react";
 import { Article } from "@/components/ui/article";
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 export const getStaticProps = async () => {
   try {
     const userId = process.env.QIITA_USER_ID || "ShinguAkira"; // Default to ShinguAkira if not set

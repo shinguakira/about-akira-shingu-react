@@ -1,13 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
 import ChangelogNotification from "./changelog-notification";
 import LanguageSwitcher from "@/components/ui/language-switcher";
-import RoleSwitcher from "./role-switcher";
 import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";

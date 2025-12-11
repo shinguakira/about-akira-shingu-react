@@ -5,16 +5,11 @@
 
 import type {
   ApiResponse,
-  CertificationItem,
   CertificationsResponse,
-  EducationHistory,
   EducationResponse,
-  Faq,
   FaqResponse,
   ProjectsResponse,
-  SkillItem,
   SkillsResponse,
-  StrongPoint,
   StrongPointsResponse,
 } from "@shinguakira/portfolio-api-types";
 
@@ -113,7 +108,6 @@ export async function fetchProjects(lang?: string): Promise<ProjectsResponse> {
   });
 }
 
-
 /**
  * Fetches skill data with 1 day cache
  * @param lang - Optional language code for localized content
@@ -149,7 +143,6 @@ export async function fetchEducation(
   });
 }
 
-
 /**
  * Fetches strong points data with 1 week cache
  * Falls back to local constants if API endpoint doesn't exist
@@ -179,7 +172,6 @@ export async function fetchStrongPoints(
     }));
   }
 }
-
 
 /**
  * Fetches FAQ data with 1 week cache

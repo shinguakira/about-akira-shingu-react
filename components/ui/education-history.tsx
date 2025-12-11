@@ -2,7 +2,6 @@
 
 import EducationItem from "./education-item";
 import type { EducationHistory as EducationHistoryType } from "@shinguakira/portfolio-api-types";
-import { educationHistory as localEducationHistory } from "@/constants/education-history";
 
 const EducationHistory = ({
   locale = "en",

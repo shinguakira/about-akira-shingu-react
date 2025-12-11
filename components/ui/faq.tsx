@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Command, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { faqs } from "@/constants/faq";
 import Accordion from "./accordion";
 import ItemPadding from "./style/item-padding";

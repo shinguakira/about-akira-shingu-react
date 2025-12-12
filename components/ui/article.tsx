@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import { ja } from "date-fns/locale";
 import { Heart, MessageSquare, Eye, Bookmark } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 // import ReactMarkdown from "react-markdown";
 // import { Button } from "./shadcn/button";
 
@@ -25,9 +24,7 @@ const ArticleHeader: React.FC<{
   title: string;
   created_at: string;
   updated_at: string;
-  setIsOpen: (isOpen: boolean) => void;
-  isOpen: boolean;
-}> = ({ title, created_at, updated_at, setIsOpen, isOpen }) => {
+}> = ({ title, created_at, updated_at }) => {
   const formattedCreatedDate = format(
     new Date(created_at),
     "yyyy年MM月dd日 HH:mm",
@@ -62,17 +59,11 @@ const ArticleHeader: React.FC<{
   );
 };
 
-const ArticleBody: React.FC<{ rendered_body: string }> = ({
-  rendered_body,
-}) => {
+const Tag: React.FC<{ name: string }> = ({ name }) => {
   return (
-    <>
-      {/* <div
-        className="prose mb-8 max-w-none"
-        dangerouslySetInnerHTML={{ __html: rendered_body }}
-      /> */}
-      {/* <ReactMarkdown>{rendered_body}</ReactMarkdown> */}
-    </>
+    <span className="inline-block rounded-full bg-gray-400 px-3 py-1 text-sm font-semibold">
+      #{name}
+    </span>
   );
 };
 
@@ -119,17 +110,8 @@ const ArticleFooter: React.FC<{
   );
 };
 
-const Tag: React.FC<{ name: string }> = ({ name }) => {
-  return (
-    <span className="inline-block rounded-full bg-gray-400 px-3 py-1 text-sm font-semibold">
-      #{name}
-    </span>
-  );
-};
-
 export function Article({
   title,
-  rendered_body,
   created_at,
   updated_at,
   likes_count,
@@ -138,7 +120,6 @@ export function Article({
   tags,
   url,
 }: ArticleProps) {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <article className="border-black-900 bg:border-white mx-auto mb-8 max-w-3xl gap-5 overflow-hidden rounded-lg border shadow">
       <div className="p-8">
@@ -146,10 +127,7 @@ export function Article({
           title={title}
           created_at={created_at}
           updated_at={updated_at}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
         />
-        {isOpen && <ArticleBody rendered_body={rendered_body} />}
         <ArticleFooter
           likes_count={likes_count}
           comments_count={comments_count}

@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import FaqClientPage from "./client-page";
-import { fetchFaqs, FaqProps } from "@/services/portfolioApi";
+import { fetchFaqs } from "@/services/portfolioApi";
+import type { Faq } from "@shinguakira/portfolio-api-types";
 
 // Ensure page is static with revalidation for optimal performance
 export const dynamic = "force-static";
@@ -55,7 +56,7 @@ export default async function FaqPage({ params }: Props) {
   const locale = resolvedParams.locale;
 
   // Fetch FAQ data from API with error handling
-  let faqData: FaqProps[] = [];
+  let faqData: Faq[] = [];
 
   try {
     faqData = await fetchFaqs(locale);

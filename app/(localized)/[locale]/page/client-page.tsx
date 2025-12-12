@@ -1,9 +1,6 @@
 "use client";
 import AnimatedText from "@/components/ui/animated-text";
-import DownLoadLink from "@/components/ui/download-link";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
-import { links } from "@/constants";
-import { LinkArrow } from "@/components/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
 import profilePic from "public/images/profile/developer-pic-1.png";

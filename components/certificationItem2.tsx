@@ -2,6 +2,11 @@ import React from "react";
 import { ExternalLink, Award, Calendar, Building, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItem & {
+  className?: string;
+};
 
 const CertificationItem2 = ({
   id,
@@ -9,7 +14,6 @@ const CertificationItem2 = ({
   organization = "unknown",
   date = "",
   verifyLink,
-  className = "",
 }: CertificationItemProps) => {
   const handleVerify = (verifyLink?: string) => {
     if (verifyLink) {

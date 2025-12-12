@@ -1,20 +1,17 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import Logo from "./logo";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
 import ChangelogNotification from "./changelog-notification";
 import LanguageSwitcher from "@/components/ui/language-switcher";
-import RoleSwitcher from "./role-switcher";
 import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const iconSize = "size-6";
-const DEVMODE = false;
 
 const CustomLink: React.FC<CustomLinkProps> = ({
   href,
@@ -42,10 +39,16 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   const { locale } = useLanguage();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  // Close mobile menu when navigating to a different page
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Close mobile menu when clicking outside (mobile only)
   const handleClickOutside = useCallback(
@@ -91,8 +94,16 @@ const NavBar = () => {
       title: locale === "ja" ? "ホーム" : "Home",
     },
     {
-      href: `/${locale}/about`,
-      title: locale === "ja" ? "概要" : "About",
+      href: `/${locale}/work-history`,
+      title: locale === "ja" ? "経歴" : "Work History",
+    },
+    {
+      href: `/${locale}/skills`,
+      title: locale === "ja" ? "スキルセット" : "Skills",
+    },
+    {
+      href: `/${locale}/strong-points`,
+      title: locale === "ja" ? "アピールポイント" : "Strong Points",
     },
     {
       href: `/${locale}/certifications`,
@@ -100,7 +111,7 @@ const NavBar = () => {
     },
     {
       href: `/${locale}/projects`,
-      title: locale === "ja" ? "プロジェクト" : "Projects",
+      title: locale === "ja" ? "個人開発" : "Projects",
     },
     {
       href: `/${locale}/articles`,
@@ -156,7 +167,7 @@ const NavBar = () => {
       </nav>
 
       <nav className="xs:text-xs mx-auto flex w-full justify-end py-4 text-base font-medium">
-        <div className="mr-5">
+        <div className="mr-5 flex items-center">
           <ChangelogNotification />
         </div>
         <div className="hidden items-center space-x-2 md:flex">

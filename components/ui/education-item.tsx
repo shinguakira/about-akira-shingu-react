@@ -1,3 +1,7 @@
+import type { EducationHistory } from "@shinguakira/portfolio-api-types";
+
+type EducationHistoryProps = EducationHistory;
+
 const EducationItem: React.FC<EducationHistoryProps> = ({
   school,
   startYear,

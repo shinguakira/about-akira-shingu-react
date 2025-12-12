@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Search, X, ArrowRight } from "lucide-react";
 import { faqs } from "../../constants/faq";
 import { projects } from "../../constants/project";
@@ -46,12 +46,15 @@ const SearchModal = ({
   }, [openModal]);
 
   // Notify parent component when modal state changes
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
-    if (onOpenChange) {
-      onOpenChange(open);
-    }
-  };
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      setIsOpen(open);
+      if (onOpenChange) {
+        onOpenChange(open);
+      }
+    },
+    [onOpenChange]
+  );
 
   const getSearchResults = (): SearchResult[] => {
     const results: SearchResult[] = [];
@@ -103,7 +106,7 @@ const SearchModal = ({
           title: skill.name,
           description: `${skill.category} - ${skill.years} years`,
           category: skill.category,
-          url: `/${locale}/about`,
+          url: `/${locale}/skills`,
           anchor: `skill-${skill.category.toLowerCase().replace(/\s+/g, "-")}`,
         });
       }
@@ -127,7 +130,7 @@ const SearchModal = ({
           title: exp[currentLang].projectOverview,
           description: exp[currentLang].role,
           category: exp.company,
-          url: `/${locale}/about`,
+          url: `/${locale}/work-history`,
           anchor: `work-${index}`,
         });
       }
@@ -158,7 +161,7 @@ const SearchModal = ({
           type: "strongPoint",
           title: point[currentLang].question,
           description: point[currentLang].answer,
-          url: `/${locale}/about`,
+          url: `/${locale}/strong-points`,
           anchor: `strong-point-${index}`,
         });
       }
@@ -168,6 +171,20 @@ const SearchModal = ({
   };
 
   const searchResults = getSearchResults();
+
+  const handleResultClick = useCallback(
+    (result: SearchResult) => {
+      handleOpenChange(false);
+      setSearchQuery("");
+
+      if (result.anchor) {
+        router.push(`${result.url}#${result.anchor}`);
+      } else {
+        router.push(result.url);
+      }
+    },
+    [handleOpenChange, router]
+  );
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -194,7 +211,13 @@ const SearchModal = ({
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [isOpen, searchResults, selectedIndex]);
+  }, [
+    isOpen,
+    searchResults,
+    selectedIndex,
+    handleOpenChange,
+    handleResultClick,
+  ]);
 
   useEffect(() => {
     if (resultsContainerRef.current && searchResults.length > 0) {
@@ -215,17 +238,6 @@ const SearchModal = ({
       inputRef.current.focus();
     }
   }, [isOpen]);
-
-  const handleResultClick = (result: SearchResult) => {
-    handleOpenChange(false);
-    setSearchQuery("");
-
-    if (result.anchor) {
-      router.push(`${result.url}#${result.anchor}`);
-    } else {
-      router.push(result.url);
-    }
-  };
 
   const getTypeIcon = (type: string) => {
     switch (type) {

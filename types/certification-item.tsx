@@ -1,8 +1,5 @@
-type CertificationItemProps = {
-  id: number; // index of certification list
-  name: string; // name of certification
-  organization: string; // organization name
-  date: string; // date of certified
-  verifyLink: string; // link to verify certification
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItem & {
   className?: string; // additional class name
 };

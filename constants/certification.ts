@@ -1,4 +1,9 @@
 import { links } from "@/constants";
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItem & {
+  className?: string;
+};
 
 const creadlyLink = links.creadlyLink;
 // object for certifications

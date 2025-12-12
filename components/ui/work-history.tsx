@@ -19,12 +19,11 @@ const WorkHistory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-12 dark:bg-gray-900">
-      <div className="mx-auto">
-        <h1 className="mb-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
-          {currentLang === "ja" ? "これまでの経歴" : "My Work History"}
-        </h1>
-        <div className="space-y-6">
+    <div className="py-12">
+      <h1 className="mb-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
+        {currentLang === "ja" ? "これまでの経歴" : "My Work History"}
+      </h1>
+      <div className="space-y-6">
           {workExperiences.map(
             (experience: MultilingualWorkExperience, index: number) => (
               <div
@@ -126,7 +125,6 @@ const WorkHistory = () => {
               </div>
             )
           )}
-        </div>
       </div>
     </div>
   );

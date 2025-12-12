@@ -1,10 +1,3 @@
-import {
-  receptionInnovationSkillSet,
-  nextjsSkillSet,
-  links,
-  T3StackSkillSet,
-} from "@/constants";
-
 const tmpPic = "/images/profile/developer-pic-1.png"; // ポートフォリオサイトの画像
 const tokyoGasPic = "/images/projects/tokyo-gas2.png"; // 東京ガスの画像
 const tokyoGasHenkoPic = "/images/projects/tokyo-gas-henko.png"; // picture for tokyo gas henko screens

@@ -4,13 +4,8 @@ import CertificationItem from "@/components/ui/certification-item";
 import CertificationItem2 from "@/components/certificationItem2";
 import CertificationItem3 from "@/components/certificationItem3";
 import CertificationItem4 from "@/components/certificationItem4";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem } from "@/components/ui/select";
+import type { CertificationItem as CertificationType } from "@shinguakira/portfolio-api-types";
 
 type LayoutType = "default" | "modern" | "premium" | "special";
 
@@ -19,7 +14,7 @@ export default function CertificationsClientPage({
   initialCertifications,
 }: {
   locale: string;
-  initialCertifications: any[];
+  initialCertifications: CertificationType[];
 }) {
   const translations = {
     en: {
@@ -36,7 +31,7 @@ export default function CertificationsClientPage({
   const [selectedLayout, setSelectedLayout] = useState<LayoutType>("special");
 
   // Component mapping based on selected layout
-  const renderCertificationItem = (cert: any, index: number) => {
+  const renderCertificationItem = (cert: CertificationType, index: number) => {
     switch (selectedLayout) {
       case "default":
         return <CertificationItem key={index} {...cert} />;

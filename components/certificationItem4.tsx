@@ -3,9 +3,13 @@ import { ExternalLink, Award, Calendar, Zap, Building2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItem & {
+  className?: string;
+};
 
 const CertificationItem4 = ({
-  id,
   name,
   organization = "unknown",
   date = "",

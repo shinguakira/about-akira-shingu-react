@@ -37,8 +37,6 @@ type HomePageProps = {
   };
 };
 
-const emailAddress = process.env.CONTACT_EMAIL || "shinguakira1022@gmail.com";
-
 export default function HomePage({ locale, translations }: HomePageProps) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   useEffect(() => {
@@ -47,7 +45,7 @@ export default function HomePage({ locale, translations }: HomePageProps) {
     } else {
       setIsModalOpen(false);
     }
-  });
+  }, []);
 
   function handleDontShowModal(modalHidden: string) {
     if (modalHidden === "true") {

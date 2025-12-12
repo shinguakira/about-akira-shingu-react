@@ -10,23 +10,13 @@ type SelectProps = {
   className?: string;
 };
 
-type LayoutOption = {
-  value: string;
-  label: string;
-};
-
 const layouts: { [key: string]: string } = {
   default: "Classic",
   modern: "Modern",
   premium: "Premium",
 };
 
-const Select: React.FC<SelectProps> = ({
-  value,
-  onValueChange,
-  children,
-  className = "",
-}) => {
+const Select: React.FC<SelectProps> = ({ value, children, className = "" }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -92,7 +82,6 @@ type SelectItemProps = {
 };
 
 const SelectItem: React.FC<SelectItemProps> = ({
-  value,
   children,
   className = "",
   onClick,

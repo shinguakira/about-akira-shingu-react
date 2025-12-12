@@ -6,7 +6,7 @@ import {
   skills as localSkills,
   otherSkills as localOtherSkills,
 } from "@/constants/skill";
-import { Skill } from "@/services/portfolioApi";
+import type { SkillItem as Skill } from "@shinguakira/portfolio-api-types";
 import SkillCategory from "./skill-category";
 
 const SkillSet = ({
@@ -38,7 +38,7 @@ const SkillSet = ({
 
   const filteredOtherSkills = selectedCategories.has("All")
     ? otherSkills
-    : otherSkills.filter((otherSkill: any) =>
+    : otherSkills.filter((otherSkill: Skill) =>
         selectedCategories.has(otherSkill.category)
       );
 
@@ -109,13 +109,13 @@ const SkillSet = ({
         </h3>
       )}
       <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        {filteredOtherSkills.map((otherSkill: any) => (
+        {filteredOtherSkills.map((otherSkill: Skill) => (
           <SkillItem
             key={otherSkill.name}
             name={otherSkill.name}
             years={otherSkill.years}
             category={otherSkill.category}
-            proficyency={otherSkill.proficyency}
+            proficyency={otherSkill.proficiency || "N/A"}
             picture={otherSkill.picture}
             pictureColor={otherSkill.pictureColor}
           />

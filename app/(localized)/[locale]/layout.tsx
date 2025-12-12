@@ -1,19 +1,7 @@
 import { Metadata } from "next";
-import localFont from "next/font/local";
 import "@/app/globals.css";
 import Providers from "@/components/providers";
 import ClientLayoutWrapper from "@/components/client-layout-wrapper";
-
-const geistSans = localFont({
-  src: "../../../app/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../../../app/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export async function generateMetadata({
   params,
@@ -48,7 +36,7 @@ type Props = {
   }>;
 };
 
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({ children }: Props) {
   return (
     <Providers>
       <ClientLayoutWrapper>{children}</ClientLayoutWrapper>

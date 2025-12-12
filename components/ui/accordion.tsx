@@ -6,9 +6,26 @@ const Accordion: React.FC<AccordionProps> = ({
   question,
   answer,
   size,
-  category,
+  isExpanded: externalIsExpanded,
+  onToggle: externalOnToggle,
 }) => {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [internalExpandedId, setInternalExpandedId] = useState<number | null>(
+    null
+  );
+
+  // Use external state if provided, otherwise use internal state
+  const isCurrentlyExpanded =
+    externalIsExpanded !== undefined
+      ? externalIsExpanded
+      : internalExpandedId === index;
+
+  const handleToggle = () => {
+    if (externalOnToggle) {
+      externalOnToggle();
+    } else {
+      setInternalExpandedId(internalExpandedId === index ? null : index);
+    }
+  };
 
   const getSizeClass = (size: string) => {
     switch (size) {
@@ -28,11 +45,11 @@ const Accordion: React.FC<AccordionProps> = ({
     >
       <div
         className={`cursor-pointer rounded-xl p-6 transition-all duration-300 ${
-          expandedId === index
+          isCurrentlyExpanded
             ? "border-blue-200 bg-blue-50 shadow-lg dark:bg-blue-700"
             : "border-gray-200 bg-white hover:border-blue-200 hover:shadow-md dark:bg-slate-600"
         } border`}
-        onClick={() => setExpandedId(expandedId === index ? null : index)}
+        onClick={handleToggle}
       >
         <div className="flex flex-col">
           <div className="mb-2 flex justify-between">
@@ -42,7 +59,7 @@ const Accordion: React.FC<AccordionProps> = ({
                     </span> */}
               <h3
                 className={`font-medium ${
-                  expandedId === index
+                  isCurrentlyExpanded
                     ? "text-blue-700 dark:text-white"
                     : "text-gray-900 dark:text-white"
                 }`}
@@ -52,7 +69,7 @@ const Accordion: React.FC<AccordionProps> = ({
             </div>
             <span
               className={`ml-4 text-xl transition-transform duration-300 ${
-                expandedId === index ? "rotate-45" : ""
+                isCurrentlyExpanded ? "rotate-45" : ""
               }`}
             >
               +
@@ -61,7 +78,7 @@ const Accordion: React.FC<AccordionProps> = ({
 
           <div
             className={`transition-all duration-300 ${
-              expandedId === index
+              isCurrentlyExpanded
                 ? "max-h-full opacity-100"
                 : "max-h-0 opacity-0"
             }`}

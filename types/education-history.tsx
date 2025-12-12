@@ -1,7 +1,4 @@
-type EducationHistoryProps = {
-  school: string;
-  department: string;
-  startYear: string;
-  endYear: string;
-  description: string;
-};
+import type { EducationHistory } from "@shinguakira/portfolio-api-types";
+
+// Re-export for backward compatibility
+type EducationHistoryProps = EducationHistory;

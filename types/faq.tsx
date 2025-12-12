@@ -1,7 +1,4 @@
-type FaqProps = {
-  // id: number; exclude id for maintainability
-  question: string;
-  answer: string;
-  size: string;
-  category: string;
-};
+import type { Faq } from "@shinguakira/portfolio-api-types";
+
+// Re-export for backward compatibility
+type FaqProps = Faq;

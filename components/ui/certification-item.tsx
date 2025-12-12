@@ -1,5 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import type { CertificationItem as CertificationItemType } from "@shinguakira/portfolio-api-types";
+
+type CertificationItemProps = CertificationItemType & {
+  className?: string;
+};
 
 const CertificationItem = ({
   id,
@@ -7,7 +12,6 @@ const CertificationItem = ({
   organization = "unknown",
   date = "",
   verifyLink,
-  className = "",
 }: CertificationItemProps) => {
   return (
     <div

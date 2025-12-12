@@ -4,10 +4,10 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
 import { Suspense, useEffect } from "react";
 
-interface AnalyticsProps {
+type AnalyticsProps = {
   gtmId?: string; // Google Tag Manager ID (optional if using hardcoded default)
   clarityId?: string; // Microsoft Clarity ID (optional)
-}
+};
 
 // You can optionally hardcode IDs here for simpler usage
 const DEFAULT_GTM_ID = "GTM-NP85DLQQ"; // Replace with your actual GTM ID
@@ -100,6 +100,7 @@ interface GTMDataLayer {
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
     dataLayer: GTMDataLayer[];
   }

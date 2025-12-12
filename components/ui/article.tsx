@@ -7,7 +7,7 @@ import Link from "next/link";
 // import ReactMarkdown from "react-markdown";
 // import { Button } from "./shadcn/button";
 
-interface ArticleProps {
+type ArticleProps = {
   title: string;
   body: string;
   rendered_body: string;
@@ -18,7 +18,7 @@ interface ArticleProps {
   page_views_count: number;
   tags: { name: string }[];
   url: string;
-}
+};
 
 const ArticleHeader: React.FC<{
   title: string;
@@ -79,15 +79,15 @@ const ArticleFooter: React.FC<{
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center space-x-4 text-sm">
           <span className="flex items-center">
-            <Heart className="mr-1 h-4 w-4" />
+            <Heart className="mr-1 size-4" />
             {likes_count}
           </span>
           <span className="flex items-center">
-            <MessageSquare className="mr-1 h-4 w-4" />
+            <MessageSquare className="mr-1 size-4" />
             {comments_count}
           </span>
           <span className="flex items-center">
-            <Eye className="mr-1 h-4 w-4" />
+            <Eye className="mr-1 size-4" />
             {page_views_count}
           </span>
         </div>
@@ -97,7 +97,7 @@ const ArticleFooter: React.FC<{
           rel="noopener noreferrer"
           className="flex items-center text-green-600 hover:text-green-800"
         >
-          <Bookmark className="mr-1 h-4 w-4" />
+          <Bookmark className="mr-1 size-4" />
           Qiitaで見る
         </Link>
       </div>

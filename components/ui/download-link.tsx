@@ -18,7 +18,7 @@ const DownLoadLink: React.FC<DownLoadLinkProps> = ({
     >
       {/* TODO may should separate className variables.
         because style of Link and one of LinkArrow should be different */}
-      <ArrowDownToLine className="mr-2 h-4 w-4 flex-shrink-0" />
+      <ArrowDownToLine className="mr-2 size-4 flex-shrink-0" />
       <p className="ml-2 flex-shrink-0">{label}</p>
     </Link>
   );

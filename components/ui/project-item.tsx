@@ -7,9 +7,9 @@ import { ProjectContent } from "@/constants/project";
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";
 
-interface ProjectItemProps {
+type ProjectItemProps = {
   projects: ProjectContent[];
-}
+};
 
 const ProjectPage = ({ projects }: ProjectItemProps) => {
   // Project data is already localized, so we don't need to use locale
@@ -70,7 +70,7 @@ const ProjectPage = ({ projects }: ProjectItemProps) => {
                         rel="noopener noreferrer"
                         className="text-gray-600 transition-colors hover:text-gray-900"
                       >
-                        <Github className="h-6 w-6" />
+                        <Github className="size-6" />
                         <span>GitHub Repository</span>
                       </Link>
                     )}{" "}
@@ -81,7 +81,7 @@ const ProjectPage = ({ projects }: ProjectItemProps) => {
                         rel="noopener noreferrer"
                         className="text-gray-600 transition-colors hover:text-gray-900"
                       >
-                        <ExternalLink className="h-6 w-6" />
+                        <ExternalLink className="size-6" />
                         <span>Live Demo</span>
                       </Link>
                     )}

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
@@ -11,7 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const iconSize = "w-6 h-6";
+const iconSize = "size-6";
 
 const CustomLink: React.FC<CustomLinkProps> = ({
   href,
@@ -40,8 +40,47 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 const NavBar = () => {
   const { locale } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  // Close mobile menu when clicking outside (mobile only)
+  const handleClickOutside = useCallback(
+    (event: Event) => {
+      // Check if we're in mobile viewport (< 768px, which is md breakpoint in Tailwind)
+      const isMobile = window.innerWidth < 768;
+
+      let target: Node | null = null;
+      if (event.type === "mousedown") {
+        target = (event as MouseEvent).target as Node;
+      } else if (event.type === "touchstart") {
+        target = (event as TouchEvent).target as Node;
+      }
+
+      if (
+        isMobile &&
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        target &&
+        !mobileMenuRef.current.contains(target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    },
+    [isMobileMenuOpen]
+  );
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isMobileMenuOpen, handleClickOutside]);
 
   const navigationLinks = [
     {
@@ -64,6 +103,10 @@ const NavBar = () => {
       href: `/${locale}/articles`,
       title: locale === "ja" ? "記事" : "Articles",
       prefetch: false,
+    },
+    {
+      href: `/${locale}/schedule`,
+      title: locale === "ja" ? "スケジュール" : "Schedule",
     },
     {
       href: `/${locale}/faq`,
@@ -100,9 +143,9 @@ const NavBar = () => {
             aria-controls="mobile-nav-menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
+              <X className="size-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
+              <Menu className="size-6" aria-hidden="true" />
             )}
             <span className="sr-only">Toggle menu</span>
           </Button>
@@ -158,6 +201,7 @@ const NavBar = () => {
 
       {isMobileMenuOpen && (
         <div
+          ref={mobileMenuRef}
           id="mobile-nav-menu"
           className="absolute left-0 right-0 top-full z-20 bg-blue-200 shadow-lg dark:bg-blue-900 md:hidden"
         >

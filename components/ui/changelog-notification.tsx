@@ -27,7 +27,7 @@ const ChangelogNotification = () => {
         className="relative"
         onClick={handleOpenModal}
       >
-        <Bell className="size-7 bg-slate-50" />
+        <Bell className="size-6" />
         {hasNewChanges && (
           <Badge
             variant="destructive"

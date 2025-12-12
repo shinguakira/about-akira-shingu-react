@@ -39,10 +39,16 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
 const NavBar = () => {
   const { locale } = useLanguage();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  // Close mobile menu when navigating to a different page
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Close mobile menu when clicking outside (mobile only)
   const handleClickOutside = useCallback(
@@ -97,7 +103,7 @@ const NavBar = () => {
     },
     {
       href: `/${locale}/projects`,
-      title: locale === "ja" ? "プロジェクト" : "Projects",
+      title: locale === "ja" ? "個人開発" : "Projects",
     },
     {
       href: `/${locale}/articles`,
@@ -153,7 +159,7 @@ const NavBar = () => {
       </nav>
 
       <nav className="xs:text-xs mx-auto flex w-full justify-end py-4 text-base font-medium">
-        <div className="mr-5">
+        <div className="mr-5 flex items-center">
           <ChangelogNotification />
         </div>
         <div className="hidden items-center space-x-2 md:flex">

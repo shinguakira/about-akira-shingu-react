@@ -21,16 +21,16 @@ const EducationHistory = ({
         {currentLang === "ja" ? "学歴" : "Education"}
       </h1>
       <div className="space-y-6">
-            {educationItems.map((item: EducationHistoryType, index: number) => (
-              <EducationItem
-                key={index}
-                school={item.school}
-                department={item.department}
-                startYear={item.startYear}
-                endYear={item.endYear}
-                description={item.description}
-              />
-            ))}
+        {educationItems.map((item: EducationHistoryType, index: number) => (
+          <EducationItem
+            key={index}
+            school={item.school}
+            department={item.department}
+            startYear={item.startYear}
+            endYear={item.endYear}
+            description={item.description}
+          />
+        ))}
       </div>
     </div>
   );

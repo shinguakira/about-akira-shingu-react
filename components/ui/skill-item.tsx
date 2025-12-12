@@ -36,7 +36,9 @@ const SkillItem = ({
           {pictureColor && picture && (
             <div className="flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 p-2 transition-transform duration-300 group-hover:scale-110 dark:from-blue-900 dark:to-blue-800">
               <Image
-                src={picture.startsWith("/") ? `${BASE_URL}${picture}` : picture}
+                src={
+                  picture.startsWith("/") ? `${BASE_URL}${picture}` : picture
+                }
                 alt={name}
                 width={32}
                 height={32}

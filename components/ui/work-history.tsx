@@ -74,7 +74,9 @@ const WorkHistory = () => {
                         <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
                           <div className="flex items-center gap-2">
                             <Building2 className="size-4" />
-                            <span className="font-medium">{experience.company}</span>
+                            <span className="font-medium">
+                              {experience.company}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Calendar className="size-4" />
@@ -84,7 +86,7 @@ const WorkHistory = () => {
                       </div>
                       <button
                         onClick={() => toggleExpand(index)}
-                        className="flex size-10 items-center justify-center rounded-full bg-gray-100 transition-all duration-300 hover:bg-blue-100 hover:rotate-180 dark:bg-gray-700 dark:hover:bg-blue-900"
+                        className="flex size-10 items-center justify-center rounded-full bg-gray-100 transition-all duration-300 hover:rotate-180 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
                         aria-expanded={expandedId === index}
                       >
                         {expandedId === index ? (
@@ -104,7 +106,9 @@ const WorkHistory = () => {
                         <div>
                           <h4 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
                             <div className="size-1.5 rounded-full bg-blue-500"></div>
-                            {currentLang === "ja" ? "プロジェクト内容" : "Description"}
+                            {currentLang === "ja"
+                              ? "プロジェクト内容"
+                              : "Description"}
                           </h4>
                           <ul className="space-y-2 pl-4">
                             {experience[currentLang].description.map(
@@ -124,7 +128,9 @@ const WorkHistory = () => {
                         <div>
                           <h4 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
                             <div className="size-1.5 rounded-full bg-green-500"></div>
-                            {currentLang === "ja" ? "成果・実績" : "Achievements"}
+                            {currentLang === "ja"
+                              ? "成果・実績"
+                              : "Achievements"}
                           </h4>
                           <ul className="space-y-2 pl-4">
                             {experience[currentLang].archivement.map(
@@ -144,7 +150,9 @@ const WorkHistory = () => {
                         <div>
                           <h4 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
                             <div className="size-1.5 rounded-full bg-purple-500"></div>
-                            {currentLang === "ja" ? "使用技術・ツール" : "Technologies"}
+                            {currentLang === "ja"
+                              ? "使用技術・ツール"
+                              : "Technologies"}
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {experience.technologies.map(

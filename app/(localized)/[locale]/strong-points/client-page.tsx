@@ -37,16 +37,17 @@ export default function StrongPointsClientPage({
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 px-4 py-16 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950">
-      {/* Animated Background Elements */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-20 -top-20 size-96 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-10 blur-3xl"></div>
-        <div className="animation-delay-2000 absolute -bottom-20 -right-20 size-96 animate-pulse rounded-full bg-gradient-to-r from-pink-400 to-yellow-400 opacity-10 blur-3xl"></div>
-      </div>
+    <div className="container mx-auto bg-gray-100 px-4 py-16 dark:bg-gray-900">
+      <div className="relative min-h-screen overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 px-4 py-16 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950">
+        {/* Animated Background Elements */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-20 -top-20 size-96 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-10 blur-3xl"></div>
+          <div className="animation-delay-2000 absolute -bottom-20 -right-20 size-96 animate-pulse rounded-full bg-gradient-to-r from-pink-400 to-yellow-400 opacity-10 blur-3xl"></div>
+        </div>
 
-      <div className="container relative mx-auto max-w-6xl">
-        {/* Header Section */}
-        <div className="mb-16 text-center">
+        <div className="relative mx-auto max-w-7xl">
+          {/* Header Section */}
+          <div className="mb-16 text-center">
           <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 shadow-lg dark:bg-gray-800">
             <Sparkles className="size-6 animate-pulse text-yellow-500" />
             <span className="text-sm font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300">
@@ -192,6 +193,7 @@ export default function StrongPointsClientPage({
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     </div>

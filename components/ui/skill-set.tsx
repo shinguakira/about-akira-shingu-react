@@ -75,53 +75,74 @@ const SkillSet = ({
   };
 
   return (
-    <>
-      <div className="grid grid-cols-3 gap-6 overflow-auto md:grid-cols-4 lg:grid-cols-10">
-        {categories.map((category) => (
-          <SkillCategory
-            key={category}
-            category={category}
-            selectedCategories={selectedCategories}
-            onClick={toggleCategory}
-          />
-        ))}
+    <div className="space-y-12">
+      {/* Category Filter Section */}
+      <div className="rounded-2xl bg-white p-6 shadow-md dark:bg-gray-800">
+        <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300">
+          {currentLang === "ja" ? "カテゴリーで絞り込み" : "Filter by Category"}
+        </h4>
+        <div className="grid grid-cols-3 gap-3 overflow-auto md:grid-cols-4 lg:grid-cols-10">
+          {categories.map((category) => (
+            <SkillCategory
+              key={category}
+              category={category}
+              selectedCategories={selectedCategories}
+              onClick={toggleCategory}
+            />
+          ))}
+        </div>
       </div>
-      <h3 className="mb-8 w-full text-center text-3xl text-blue-900 underline dark:text-white">
-        {currentLang === "ja" ? "スキル" : "Skills"}
-      </h3>
-      <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        {filteredSkills.map((skill: Skill) => (
-          <SkillItem
-            key={skill.name}
-            name={skill.name}
-            years={skill.years}
-            category={skill.category}
-            proficyency={skill.proficiency || "N/A"}
-            picture={skill.picture}
-            pictureColor={skill.pictureColor}
-          />
-        ))}
+
+      {/* Main Skills Section */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+            {currentLang === "ja" ? "メインスキル" : "Core Skills"}
+          </h3>
+          <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-purple-500 to-blue-500"></div>
+        </div>
+        <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredSkills.map((skill: Skill) => (
+            <SkillItem
+              key={skill.name}
+              name={skill.name}
+              years={skill.years}
+              category={skill.category}
+              proficyency={skill.proficiency || "N/A"}
+              picture={skill.picture}
+              pictureColor={skill.pictureColor}
+            />
+          ))}
+        </div>
       </div>
-      {/* display only filtered OtherSkill exist */}
+
+      {/* Other Skills Section */}
       {filteredOtherSkills.length > 0 && (
-        <h3 className="mb-8 w-full text-center text-3xl text-green-700 underline dark:text-gray-500">
-          {currentLang === "ja" ? "その他のスキル" : "Other Skills"}
-        </h3>
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-green-500 to-teal-500"></div>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {currentLang === "ja" ? "その他のスキル" : "Additional Skills"}
+            </h3>
+            <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-500 to-green-500"></div>
+          </div>
+          <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {filteredOtherSkills.map((otherSkill: Skill) => (
+              <SkillItem
+                key={otherSkill.name}
+                name={otherSkill.name}
+                years={otherSkill.years}
+                category={otherSkill.category}
+                proficyency={otherSkill.proficiency || "N/A"}
+                picture={otherSkill.picture}
+                pictureColor={otherSkill.pictureColor}
+              />
+            ))}
+          </div>
+        </div>
       )}
-      <div className="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        {filteredOtherSkills.map((otherSkill: Skill) => (
-          <SkillItem
-            key={otherSkill.name}
-            name={otherSkill.name}
-            years={otherSkill.years}
-            category={otherSkill.category}
-            proficyency={otherSkill.proficiency || "N/A"}
-            picture={otherSkill.picture}
-            pictureColor={otherSkill.pictureColor}
-          />
-        ))}
-      </div>
-    </>
+    </div>
   );
 };
 

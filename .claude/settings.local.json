@@ -10,7 +10,9 @@
       "Bash(cat:*)",
       "Bash(npm run lint)",
       "Bash(npm run lint:fix:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(pnpm run lint:fix:*)",
+      "Bash(pnpm run format:*)"
     ]
   }
 }

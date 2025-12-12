@@ -3,6 +3,64 @@
  */
 export const changelogs: ChangelogProps[] = [
   {
+    version: "1.8.0",
+    date: "2025-12",
+    changes: [
+      {
+        type: "improvement",
+        description: `主要ページのUIデザインを全面刷新
+スキルページ: グラデーションカード、ホバーエフェクト、カテゴリーフィルター改善
+経歴ページ: タイムラインスタイル、グラデーション要素、インタラクティブカード
+アピールポイント: 独特なカードレイアウト、アニメーション背景、動的アイコンシステム
+FAQページ: Q&Aバッジシステム、カテゴリーグルーピング、モダンなアコーディオン`,
+      },
+    ],
+  },
+  {
+    version: "1.7.0",
+    date: "2025-12",
+    changes: [
+      {
+        type: "feature",
+        description: `Aboutページを「履歴」「強み」「スキル」「作業履歴」に分離
+Googleカレンダー連携によるスケジュールページ追加
+外部APIとの連携により、データの一元管理を実現`,
+      },
+      {
+        type: "improvement",
+        description: `モバイルナビゲーションのUX改善（外側クリックで閉じる機能追加）
+ヘッダーのスタイリング改善`,
+      },
+    ],
+  },
+  {
+    version: "1.6.0",
+    date: "2025-09",
+    changes: [
+      {
+        type: "improvement",
+        description: `モバイルナビゲーションに外側をクリックして閉じる機能を追加
+ヘッダーレイアウトの改善`,
+      },
+    ],
+  },
+  {
+    version: "1.5.0",
+    date: "2025-07",
+    changes: [
+      {
+        type: "feature",
+        description: `プロジェクト、資格、スキルページを外部API連携に対応
+強みページのデータをAPI経由で取得するように変更`,
+      },
+      {
+        type: "improvement",
+        description: `スマートフォン向けレイアウトの改善
+スキル表示のスペーシングとカラム調整`,
+      },
+    ],
+  },
+  {
     version: "1.4.0",
     date: "2025-04-20",
     changes: [

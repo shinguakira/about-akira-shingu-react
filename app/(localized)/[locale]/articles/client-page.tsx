@@ -5,7 +5,7 @@ import QiitaArticle, { getStaticProps } from "@/components/ui/qiita-article";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
-interface QiitaArticle {
+type QiitaArticle = {
   id: string;
   title: string;
   url: string;
@@ -17,12 +17,12 @@ interface QiitaArticle {
   body: string;
   rendered_body: string;
   tags: Array<{ name: string }>;
-}
+};
 
-interface ArticleData {
+type ArticleData = {
   articles: QiitaArticle[];
   revalidate?: number;
-}
+};
 
 export default function ArticlesClientPage({ locale }: { locale: string }) {
   const [articleData, setArticleData] = React.useState<ArticleData | null>(

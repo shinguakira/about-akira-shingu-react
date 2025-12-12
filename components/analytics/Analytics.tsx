@@ -92,12 +92,12 @@ export default function Analytics({
 }
 
 // Add this to provide TypeScript support for the dataLayer
-interface GTMDataLayer {
+type GTMDataLayer = {
   event: string;
   page?: string;
   search?: string;
   [key: string]: unknown;
-}
+};
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

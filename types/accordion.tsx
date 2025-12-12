@@ -4,4 +4,6 @@ type AccordionProps = {
   answer: string;
   size: string;
   category?: string;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 };

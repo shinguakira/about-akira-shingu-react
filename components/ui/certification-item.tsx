@@ -12,7 +12,6 @@ const CertificationItem = ({
   organization = "unknown",
   date = "",
   verifyLink,
-  className = "",
 }: CertificationItemProps) => {
   return (
     <div

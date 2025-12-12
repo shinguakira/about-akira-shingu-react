@@ -58,7 +58,7 @@ export default function VideoIntroduction() {
     if (videoRef.current) {
       setDuration(videoRef.current.duration);
     }
-  }, [videoRef.current]);
+  }, []);
 
   const togglePlay = () => {
     if (videoRef.current) {

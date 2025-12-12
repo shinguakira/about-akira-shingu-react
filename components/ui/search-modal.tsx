@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Search, X, ArrowRight } from "lucide-react";
 import { faqs } from "../../constants/faq";
 import { projects } from "../../constants/project";
@@ -46,12 +46,15 @@ const SearchModal = ({
   }, [openModal]);
 
   // Notify parent component when modal state changes
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
-    if (onOpenChange) {
-      onOpenChange(open);
-    }
-  };
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      setIsOpen(open);
+      if (onOpenChange) {
+        onOpenChange(open);
+      }
+    },
+    [onOpenChange]
+  );
 
   const getSearchResults = (): SearchResult[] => {
     const results: SearchResult[] = [];
@@ -169,6 +172,20 @@ const SearchModal = ({
 
   const searchResults = getSearchResults();
 
+  const handleResultClick = useCallback(
+    (result: SearchResult) => {
+      handleOpenChange(false);
+      setSearchQuery("");
+
+      if (result.anchor) {
+        router.push(`${result.url}#${result.anchor}`);
+      } else {
+        router.push(result.url);
+      }
+    },
+    [handleOpenChange, router]
+  );
+
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -194,7 +211,13 @@ const SearchModal = ({
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [isOpen, searchResults, selectedIndex]);
+  }, [
+    isOpen,
+    searchResults,
+    selectedIndex,
+    handleOpenChange,
+    handleResultClick,
+  ]);
 
   useEffect(() => {
     if (resultsContainerRef.current && searchResults.length > 0) {
@@ -215,17 +238,6 @@ const SearchModal = ({
       inputRef.current.focus();
     }
   }, [isOpen]);
-
-  const handleResultClick = (result: SearchResult) => {
-    handleOpenChange(false);
-    setSearchQuery("");
-
-    if (result.anchor) {
-      router.push(`${result.url}#${result.anchor}`);
-    } else {
-      router.push(result.url);
-    }
-  };
 
   const getTypeIcon = (type: string) => {
     switch (type) {

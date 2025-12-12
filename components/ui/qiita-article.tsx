@@ -41,17 +41,7 @@ const QiitaArticle: NextPage<{ articles: ArticleProps[] }> = ({ articles }) => {
         {articles &&
           articles.length > 0 &&
           articles.map((article: ArticleProps) => (
-            <Article
-              body={""}
-              rendered_body={""}
-              updated_at={""}
-              likes_count={0}
-              comments_count={0}
-              page_views_count={0}
-              tags={[]}
-              key={article.id}
-              {...article}
-            />
+            <Article key={article.id} {...article} />
           ))}
       </ul>
     </div>

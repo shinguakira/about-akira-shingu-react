@@ -5,8 +5,29 @@ import QiitaArticle, { getStaticProps } from "@/components/ui/qiita-article";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
+interface QiitaArticle {
+  id: string;
+  title: string;
+  url: string;
+  created_at: string;
+  updated_at: string;
+  likes_count: number;
+  comments_count: number;
+  page_views_count: number;
+  body: string;
+  rendered_body: string;
+  tags: Array<{ name: string }>;
+}
+
+interface ArticleData {
+  articles: QiitaArticle[];
+  revalidate?: number;
+}
+
 export default function ArticlesClientPage({ locale }: { locale: string }) {
-  const [articleData, setArticleData] = React.useState<any>(null);
+  const [articleData, setArticleData] = React.useState<ArticleData | null>(
+    null
+  );
   const [loading, setLoading] = React.useState(true);
 
   const translations = {

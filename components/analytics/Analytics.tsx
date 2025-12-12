@@ -14,7 +14,7 @@ const DEFAULT_GTM_ID = "GTM-NP85DLQQ"; // Replace with your actual GTM ID
 const DEFAULT_CLARITY_ID = "selyr7wk8v"; // Replace with your actual Clarity ID
 
 // Separate component to handle hooks that need Suspense
-function AnalyticsPageTracker({ gtmId }: { gtmId: string }) {
+function AnalyticsPageTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -39,7 +39,7 @@ export default function Analytics({
   return (
     <>
       <Suspense fallback={null}>
-        <AnalyticsPageTracker gtmId={gtmId} />
+        <AnalyticsPageTracker />
       </Suspense>
 
       {/* Google Tag Manager */}
@@ -92,8 +92,15 @@ export default function Analytics({
 }
 
 // Add this to provide TypeScript support for the dataLayer
+interface GTMDataLayer {
+  event: string;
+  page?: string;
+  search?: string;
+  [key: string]: unknown;
+}
+
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: GTMDataLayer[];
   }
 }

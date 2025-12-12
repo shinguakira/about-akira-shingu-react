@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
     ) {
       setCurrentLocale(pathLocale);
     }
-  }, []);
+  }, [currentLocale]);
 
   return (
     <DropdownMenu>

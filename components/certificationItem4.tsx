@@ -10,7 +10,6 @@ type CertificationItemProps = CertificationItem & {
 };
 
 const CertificationItem4 = ({
-  id,
   name,
   organization = "unknown",
   date = "",

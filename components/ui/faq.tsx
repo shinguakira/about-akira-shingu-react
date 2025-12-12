@@ -23,16 +23,32 @@ const Faq = () => {
       faq.en.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const getSizeClass = (size: string) => {
-    switch (size) {
-      case "large":
-        return "md:col-span-2 md:row-span-2";
-      case "medium":
-        return "md:col-span-2 md:row-span-2";
-      default:
-        return "md:col-span-2 md:row-span-2";
+  // Navigate through search results with arrow keys
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isOpen && filteredFaqs.length > 0) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSelectedIndex((prev) =>
+            prev < filteredFaqs.length - 1 ? prev + 1 : prev
+          );
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          setExpandedId(selectedIndex);
+          setIsOpen(false);
+          setSearchQuery("");
+        }
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
     }
-  };
+  }, [isOpen, filteredFaqs.length, selectedIndex]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -138,14 +154,19 @@ const Faq = () => {
       )}
       <ItemPadding>
         {faqs.map((faq, index) => (
-          <Accordion
-            key={index}
-            index={index}
-            question={faq.ja.question}
-            answer={faq.ja.answer}
-            size={faq.size}
-            category={faq.category}
-          />
+          <div key={index} id={`accordion-${index}`}>
+            <Accordion
+              index={index}
+              question={faq.ja.question}
+              answer={faq.ja.answer}
+              size={faq.size}
+              category={faq.category}
+              isExpanded={expandedId === index}
+              onToggle={() =>
+                setExpandedId(expandedId === index ? null : index)
+              }
+            />
+          </div>
         ))}
       </ItemPadding>
     </div>

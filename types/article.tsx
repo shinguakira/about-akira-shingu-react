@@ -3,11 +3,13 @@ type ArticleProps = {
   title: string;
   url: string;
   created_at: string;
-  // ... add more fields if needed
+  updated_at: string;
+  likes_count: number;
+  comments_count: number;
+  page_views_count: number;
+  body: string;
+  rendered_body: string;
+  tags: Array<{ name: string }>;
 };
 
-type QiitaArticle = ArticleProps & {
-  //   likes_count: number;
-  //   tags: string[];
-  // add more fields for Qiita specific fields
-};
+type QiitaArticle = ArticleProps;

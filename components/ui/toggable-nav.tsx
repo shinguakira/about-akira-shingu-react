@@ -16,7 +16,7 @@ const links = [
 
 export default function TogglableNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const _pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 

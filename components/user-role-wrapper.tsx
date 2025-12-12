@@ -24,8 +24,8 @@ export const UserRoleWrapper = ({ children }: UserRoleWrapperProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
-  const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
+  const [_roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
+  const [_roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY) {

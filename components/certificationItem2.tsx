@@ -14,7 +14,6 @@ const CertificationItem2 = ({
   organization = "unknown",
   date = "",
   verifyLink,
-  className = "",
 }: CertificationItemProps) => {
   const handleVerify = (verifyLink?: string) => {
     if (verifyLink) {

@@ -3,6 +3,7 @@ interface IconProps {
 }
 
 import * as React from "react";
+import Image from "next/image";
 
 export const GithubIcon = ({ className, ...rest }: IconProps) => (
   <svg
@@ -75,13 +76,17 @@ export const LinkedInIcon = ({ className, ...rest }: IconProps) => (
   </svg>
 );
 
-export const QiitaIcon = ({ className, ...rest }: IconProps) => (
-  <img
-    src="https://img.logo.dev/qiita.com" // Using Logo.dev as replacement for discontinued Clearbit Logo API
-    alt="Qiita"
-    className={`${className}`}
-  />
-);
+export const QiitaIcon = ({ className }: IconProps) => {
+  return (
+    <Image
+      src="https://img.logo.dev/qiita.com" // Using Logo.dev as replacement for discontinued Clearbit Logo API
+      alt="Qiita"
+      className={`${className}`}
+      width={24}
+      height={24}
+    />
+  );
+};
 
 export const PinterestIcon = ({ className, ...rest }: IconProps) => (
   <svg
@@ -121,14 +126,19 @@ export const DribbbleIcon = ({ className, ...rest }: IconProps) => (
   </svg>
 );
 
-export const CredlyIcon = ({ className, ...rest }: IconProps) => (
-  <>
-    <img
-      className={`bg-orange-50 ${className}`}
-      src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
-    ></img>
-  </>
-);
+export const CredlyIcon = ({ className }: IconProps) => {
+  return (
+    <>
+      <Image
+        className={`bg-orange-50 ${className}`}
+        src="https://unpkg.com/simple-icons@latest/icons/credly.svg"
+        alt="Credly"
+        width={24}
+        height={24}
+      />
+    </>
+  );
+};
 
 export const SunIcon = ({ className, ...rest }: IconProps) => (
   <svg

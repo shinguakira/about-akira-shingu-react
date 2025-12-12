@@ -9,6 +9,7 @@
 **主な目的**: フルスタック開発者のスキル、職歴、実績、プロジェクトの紹介
 
 ### 主要機能
+
 - ✅ 多言語対応（英語/日本語）
 - ✅ スキル・職歴・学歴の表示
 - ✅ 認定資格の管理と検証
@@ -23,6 +24,7 @@
 ## 技術スタック
 
 ### コアフレームワーク
+
 ```json
 {
   "runtime": "Node.js 20.x",
@@ -33,6 +35,7 @@
 ```
 
 ### スタイリング
+
 - **Tailwind CSS 3.4.14** - ユーティリティファーストCSS
 - **Shadcn/UI** - コンポーネントライブラリ（new-york style）
 - **Radix UI** - ヘッドレスUIプリミティブ
@@ -41,16 +44,19 @@
 - **CVA (class-variance-authority)** - バリアントベースのスタイリング
 
 ### 国際化 (i18n)
+
 - **next-i18next 15.4.2** - ルーティングと翻訳
 - **i18next 24.2.3** - 国際化フレームワーク
 - **react-i18next 15.4.1** - React バインディング
 
 ### データフェッチング
+
 - **カスタムPortfolio API**: `@shinguakira/portfolio-api-types` v1.0.0
 - **APIエンドポイント**: `https://portfolio-api-ten-delta.vercel.app/api`
 - **Nodemailer 6.10.0** - お問い合わせフォーム用
 
 ### 開発ツール
+
 - **pnpm** - パッケージマネージャー
 - **ESLint 8.57.1** - コード品質チェック
 - **Prettier 3.3.3** - コードフォーマット（Tailwindプラグイン付き）
@@ -135,7 +141,9 @@ about-akira-shingu-react/
 ### 設定ファイル
 
 #### `middleware.ts`
+
 **役割**: ロケール検出・リダイレクト、ロールベースアクセス制御
+
 ```typescript
 // 機能:
 // 1. ブラウザ言語からロケール検出
@@ -145,7 +153,9 @@ about-akira-shingu-react/
 ```
 
 #### `services/portfolioApi.ts`
+
 **役割**: 集中化されたAPIクライアント
+
 ```typescript
 // 主要メソッド:
 fetchCertifications(lang?: string): Promise<CertificationsResponse>
@@ -162,7 +172,9 @@ fetchFaqs(lang?: string): Promise<FaqResponse>
 ```
 
 #### `components/providers.tsx`
+
 **役割**: グローバルコンテキストプロバイダー
+
 ```typescript
 // 統合するプロバイダー:
 // - ThemeProvider (ダークモード)
@@ -173,6 +185,7 @@ fetchFaqs(lang?: string): Promise<FaqResponse>
 ### ページアーキテクチャパターン
 
 **ハイブリッドServer/Clientコンポーネント**:
+
 ```
 /about/
 ├── page.tsx          # Server: データフェッチ、メタデータ、静的生成
@@ -180,6 +193,7 @@ fetchFaqs(lang?: string): Promise<FaqResponse>
 ```
 
 **実装例**:
+
 ```typescript
 // page.tsx (Server Component)
 export default async function AboutPage({ params: { locale } }) {
@@ -202,7 +216,9 @@ export default function ClientPage({ skills, education }) {
 ## コーディング規約
 
 ### 1. インポートパス
+
 **絶対パスを使用** (`@/` エイリアス):
+
 ```typescript
 // ✅ Good
 import { cn } from "@/lib/utils";
@@ -214,6 +230,7 @@ import NavBar from "../components/ui/nav-bar";
 ```
 
 ### 2. コンポーネントの命名
+
 ```typescript
 // ファイル名: kebab-case
 skill-item.tsx
@@ -226,7 +243,9 @@ type SkillItemProps = { ... }
 ```
 
 ### 3. TypeScript型定義
+
 **外部パッケージから型をインポート**:
+
 ```typescript
 import type { SkillItem } from "@shinguakira/portfolio-api-types";
 
@@ -238,7 +257,9 @@ type SkillItemProps = SkillItem & {
 ```
 
 ### 4. スタイリング
+
 **Tailwind + cn()ユーティリティ**:
+
 ```typescript
 import { cn } from "@/lib/utils";
 
@@ -250,6 +271,7 @@ import { cn } from "@/lib/utils";
 ```
 
 **レスポンシブ + ダークモード**:
+
 ```typescript
 <div className="
   text-sm md:text-base lg:text-lg
@@ -259,7 +281,9 @@ import { cn } from "@/lib/utils";
 ```
 
 ### 5. データフェッチング
+
 **Server Componentでフェッチ**:
+
 ```typescript
 // page.tsx
 import { fetchSkills } from "@/services/portfolioApi";
@@ -271,6 +295,7 @@ export default async function Page({ params: { locale } }) {
 ```
 
 **キャッシング設定**:
+
 ```typescript
 // 強制的に静的生成
 export const dynamic = "force-static";
@@ -280,16 +305,19 @@ export const revalidate = 604800; // 1週間
 ```
 
 ### 6. 翻訳の扱い
+
 **Server Component（静的）**:
+
 ```typescript
 const translations = {
   en: { title: "Home", description: "..." },
-  ja: { title: "ホーム", description: "..." }
+  ja: { title: "ホーム", description: "..." },
 };
 const t = translations[locale === "ja" ? "ja" : "en"];
 ```
 
 **Client Component（コンテキスト）**:
+
 ```typescript
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -303,11 +331,13 @@ const { locale, changeLanguage } = useLanguage();
 ### 新しいページを追加する
 
 1. **ディレクトリ作成**:
+
 ```bash
 mkdir -p app/(localized)/[locale]/new-page
 ```
 
 2. **Server Component作成** (`page.tsx`):
+
 ```typescript
 import type { Metadata } from "next";
 
@@ -327,6 +357,7 @@ export default async function NewPage({ params: { locale } }) {
 ```
 
 3. **Client Component作成** (`client-page.tsx`):
+
 ```typescript
 'use client';
 
@@ -340,6 +371,7 @@ export default function ClientPage({ data }) {
 ```
 
 4. **ナビゲーションに追加** (`components/ui/nav-bar.tsx`):
+
 ```typescript
 const links = [
   { href: `/${locale}/about`, label: t("nav.about") },
@@ -348,6 +380,7 @@ const links = [
 ```
 
 5. **翻訳追加** (`public/locales/*/common.json`):
+
 ```json
 {
   "nav": {
@@ -360,6 +393,7 @@ const links = [
 ### 新しいAPIエンドポイントを追加する
 
 1. **`services/portfolioApi.ts`に追加**:
+
 ```typescript
 export async function fetchNewData(
   lang?: string,
@@ -385,6 +419,7 @@ export async function fetchNewData(
 ```
 
 2. **型定義を確認** (`@shinguakira/portfolio-api-types`):
+
 ```typescript
 import type { NewDataResponse } from "@shinguakira/portfolio-api-types";
 ```
@@ -392,11 +427,13 @@ import type { NewDataResponse } from "@shinguakira/portfolio-api-types";
 ### 新しいUIコンポーネントを追加する
 
 1. **Shadcn/UIコンポーネントの場合**:
+
 ```bash
 npx shadcn-ui@latest add [component-name]
 ```
 
 2. **カスタムコンポーネントの場合** (`components/ui/new-component.tsx`):
+
 ```typescript
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -427,12 +464,14 @@ export default function NewComponent({
 ### 環境変数を追加する
 
 1. **`.env.local`に追加**:
+
 ```bash
 NEXT_PUBLIC_NEW_VAR=value  # クライアント側でアクセス可能
 NEW_SERVER_VAR=secret      # サーバー側のみ
 ```
 
 2. **コードで使用**:
+
 ```typescript
 // クライアント側
 const publicVar = process.env.NEXT_PUBLIC_NEW_VAR;
@@ -452,11 +491,13 @@ const serverVar = process.env.NEW_SERVER_VAR;
 ### 1. ロールベースアクセス制御（RBAC）
 
 **3つのユーザーロール**:
+
 - `normalUser`: デフォルト訪問者
 - `adminUser`: 管理者（クエリパラメータ経由）
 - `certification`: 認定資格検証用（`/certifications`にリダイレクト）
 
 **実装**:
+
 ```typescript
 // URLクエリパラメータでロール設定
 ?usr_type_a7x9z=adm_8d92x7  // 管理者
@@ -471,6 +512,7 @@ if (role === "certification") {
 ### 2. フォールバックデータ戦略
 
 **API障害時のローカルデータ**:
+
 ```typescript
 try {
   return await fetchFromPortfolioApi("endpoint");
@@ -484,6 +526,7 @@ try {
 ### 3. CSS変数ベースのテーマ
 
 **デザインシステム**:
+
 ```css
 :root {
   --background: 0 0% 100%;
@@ -497,6 +540,7 @@ try {
 ```
 
 **Tailwindで使用**:
+
 ```typescript
 <div className="bg-background text-foreground" />
 ```
@@ -504,24 +548,26 @@ try {
 ### 4. 型安全なAPI統合
 
 **外部型パッケージ使用**:
+
 ```typescript
 // フロントエンドとバックエンドで同じ型を共有
 import type {
   SkillItem,
   CertificationItem,
-  ApiResponse
+  ApiResponse,
 } from "@shinguakira/portfolio-api-types";
 ```
 
 ### 5. ISR（インクリメンタル静的再生成）
 
 **静的生成 + 自動再検証**:
+
 ```typescript
 export const revalidate = 604800; // 1週間ごとに再生成
 
 // または fetch単位で
 fetch(url, {
-  next: { revalidate: 86400 } // 1日
+  next: { revalidate: 86400 }, // 1日
 });
 ```
 
@@ -532,9 +578,11 @@ fetch(url, {
 ### よくあるエラーと解決方法
 
 #### 1. 型エラー: "Cannot find name 'XxxProps'"
+
 **原因**: 型定義のインポート漏れ
 
 **解決**:
+
 ```typescript
 import type { SkillItem } from "@shinguakira/portfolio-api-types";
 
@@ -544,37 +592,45 @@ type SkillItemProps = SkillItem & {
 ```
 
 #### 2. ビルドエラー: "You're importing a component that needs useState"
+
 **原因**: Server ComponentでClient専用機能を使用
 
 **解決**: ファイル先頭に `'use client'` を追加
-```typescript
-'use client';
 
-import { useState } from 'react';
+```typescript
+"use client";
+
+import { useState } from "react";
 ```
 
 #### 3. 画像が表示されない
+
 **原因**: `next.config.ts`でドメインが許可されていない
 
 **解決**:
+
 ```typescript
 // next.config.ts
 export default {
   images: {
-    domains: ["portfolio-api-ten-delta.vercel.app"]
-  }
-}
+    domains: ["portfolio-api-ten-delta.vercel.app"],
+  },
+};
 ```
 
 #### 4. 翻訳が反映されない
+
 **チェックリスト**:
+
 1. `public/locales/{locale}/common.json`に追加済みか
 2. キーが正しいか（ドット記法: `nav.home`）
 3. ブラウザキャッシュをクリア
 4. 開発サーバーを再起動
 
 #### 5. スタイルが適用されない
+
 **チェックリスト**:
+
 1. Tailwindクラスが正しいか
 2. `globals.css`で`@tailwind`ディレクティブが読み込まれているか
 3. `tailwind.config.ts`で`content`パスが正しいか
@@ -602,6 +658,7 @@ pnpm dev --debug
 ## パフォーマンス最適化
 
 ### 画像最適化
+
 ```typescript
 import Image from "next/image";
 
@@ -615,6 +672,7 @@ import Image from "next/image";
 ```
 
 ### フォント最適化
+
 ```typescript
 import localFont from "next/font/local";
 
@@ -625,6 +683,7 @@ const geistSans = localFont({
 ```
 
 ### コンポーネントのメモ化
+
 ```typescript
 import { memo } from "react";
 
@@ -636,6 +695,7 @@ export default SkillItem;
 ```
 
 ### 動的インポート
+
 ```typescript
 import dynamic from "next/dynamic";
 
@@ -650,6 +710,7 @@ const HeavyComponent = dynamic(() => import("@/components/heavy"), {
 ## セキュリティベストプラクティス
 
 ### 環境変数の取り扱い
+
 ```typescript
 // ✅ Good: サーバー側のみ
 const secret = process.env.EMAIL_PASSWORD;
@@ -659,6 +720,7 @@ const publicKey = process.env.NEXT_PUBLIC_GTM_ID;
 ```
 
 ### XSS対策
+
 ```typescript
 // ✅ Good: エスケープされる
 <div>{userInput}</div>
@@ -668,6 +730,7 @@ const publicKey = process.env.NEXT_PUBLIC_GTM_ID;
 ```
 
 ### APIキーの保護
+
 - `.env.local`をGitIgnoreに追加
 - Vercelの環境変数機能を使用
 - クライアント側でAPIキーを使わない
@@ -679,10 +742,12 @@ const publicKey = process.env.NEXT_PUBLIC_GTM_ID;
 ### Vercelへのデプロイ
 
 1. **GitHubリポジトリと連携**:
+
    - Vercelダッシュボード → New Project
    - GitHubリポジトリを選択
 
 2. **環境変数を設定**:
+
 ```bash
 NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
 NEXT_PUBLIC_CLARITY_ID=xxxxxxxxxx
@@ -692,6 +757,7 @@ EMAIL_PASSWORD=app-password
 ```
 
 3. **ビルド設定**:
+
    - Framework Preset: Next.js
    - Build Command: `pnpm build`
    - Output Directory: `.next`
@@ -718,24 +784,28 @@ EMAIL_PASSWORD=app-password
 ## AIエージェントへの推奨事項
 
 ### 開発を始める前に理解すべきファイル
+
 1. `middleware.ts` - ルーティングとロール制御
 2. `services/portfolioApi.ts` - データフェッチロジック
 3. `components/providers.tsx` - グローバルステート
 4. `app/(localized)/[locale]/layout.tsx` - ページ構造
 
 ### コード変更時の注意点
+
 - **型定義**: `@shinguakira/portfolio-api-types`から直接インポート（再エクスポートしない）
 - **翻訳**: 英語と日本語の両方を更新
 - **スタイル**: Tailwindクラスを使用（カスタムCSSは避ける）
 - **パフォーマンス**: Server Componentを優先、必要な場合のみClient Component
 
 ### 質問する前に確認すること
+
 1. 既存のコンポーネントで似た実装がないか
 2. `constants/`にフォールバックデータが存在するか
 3. `public/locales/`に翻訳キーが存在するか
 4. `@shinguakira/portfolio-api-types`に型定義があるか
 
 ### コミット前のチェック
+
 ```bash
 pnpm run lint:fix        # 自動修正
 pnpm run format          # フォーマット
@@ -748,6 +818,7 @@ pnpm run build           # ビルド確認
 ## 参考リンク
 
 ### 公式ドキュメント
+
 - [Next.js App Router](https://nextjs.org/docs/app)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [Shadcn/UI](https://ui.shadcn.com/)
@@ -755,6 +826,7 @@ pnpm run build           # ビルド確認
 - [React 19 RC](https://react.dev/blog/2024/04/25/react-19)
 
 ### プロジェクト固有
+
 - **Portfolio API**: `https://portfolio-api-ten-delta.vercel.app/api`
 - **型定義パッケージ**: `@shinguakira/portfolio-api-types`
 - **デプロイ**: Vercel (プロジェクトID: `prj_63yj0spwD8yq2AU1au7ZGKhPPyxt`)
@@ -766,6 +838,7 @@ pnpm run build           # ビルド確認
 このプロジェクトは**Next.js 15 App Routerの最新パターン**を採用した、**本番環境レベルの個人ポートフォリオサイト**です。
 
 **主要な特徴**:
+
 - 🌐 完全バイリンガル（英語/日本語）
 - 🎨 モダンなUI（Tailwind + Shadcn/UI）
 - ⚡ 高パフォーマンス（ISR、画像最適化）
@@ -775,6 +848,7 @@ pnpm run build           # ビルド確認
 - 📱 完全レスポンシブ
 
 **開発の原則**:
+
 - Server ComponentファーストでSEO最適化
 - 型安全性を最優先
 - フォールバック戦略でレジリエンス確保

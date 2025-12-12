@@ -94,8 +94,16 @@ const NavBar = () => {
       title: locale === "ja" ? "ホーム" : "Home",
     },
     {
-      href: `/${locale}/about`,
-      title: locale === "ja" ? "概要" : "About",
+      href: `/${locale}/work-history`,
+      title: locale === "ja" ? "経歴" : "Work History",
+    },
+    {
+      href: `/${locale}/skills`,
+      title: locale === "ja" ? "スキルセット" : "Skills",
+    },
+    {
+      href: `/${locale}/strong-points`,
+      title: locale === "ja" ? "アピールポイント" : "Strong Points",
     },
     {
       href: `/${locale}/certifications`,

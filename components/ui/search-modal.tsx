@@ -106,7 +106,7 @@ const SearchModal = ({
           title: skill.name,
           description: `${skill.category} - ${skill.years} years`,
           category: skill.category,
-          url: `/${locale}/about`,
+          url: `/${locale}/skills`,
           anchor: `skill-${skill.category.toLowerCase().replace(/\s+/g, "-")}`,
         });
       }
@@ -130,7 +130,7 @@ const SearchModal = ({
           title: exp[currentLang].projectOverview,
           description: exp[currentLang].role,
           category: exp.company,
-          url: `/${locale}/about`,
+          url: `/${locale}/work-history`,
           anchor: `work-${index}`,
         });
       }
@@ -161,7 +161,7 @@ const SearchModal = ({
           type: "strongPoint",
           title: point[currentLang].question,
           description: point[currentLang].answer,
-          url: `/${locale}/about`,
+          url: `/${locale}/strong-points`,
           anchor: `strong-point-${index}`,
         });
       }

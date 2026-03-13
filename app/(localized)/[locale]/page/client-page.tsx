@@ -8,6 +8,7 @@ import Modal from "@/components/ui/modal";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
 import SearchModal from "@/components/ui/search-modal";
+import AdSection from "@/components/adsense/AdSection";
 
 export default function HomeClientPage({ locale }: { locale: string }) {
   const translations = {
@@ -163,6 +164,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
           </div>
         </div>
       </div>
+      <AdSection />
     </>
   );
 }

@@ -3,6 +3,7 @@
 import React from "react";
 import { UserRoleWrapper } from "./user-role-wrapper";
 import NavBar from "./ui/nav-bar";
+import Footer from "./footer";
 
 type ClientLayoutWrapperProps = {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export default function ClientLayoutWrapper({
           >
             {children}
           </main>
+          {role !== "certification" && <Footer />}
         </>
       )}
     </UserRoleWrapper>

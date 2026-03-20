@@ -27,12 +27,7 @@ export function PwaInstallButton({
 
   if (variant === "icon") {
     return (
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={handleClick}
-        title={label}
-      >
+      <Button variant="ghost" size="icon" onClick={handleClick} title={label}>
         <Download className="size-5" />
       </Button>
     );

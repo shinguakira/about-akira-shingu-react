@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Analytics from "@/components/analytics/Analytics";
 import NextTopLoader from "nextjs-toploader";
+import { PWARegister } from "@/components/pwa/PWARegister";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,12 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.ico", sizes: "16x16" },
       { url: "/favicon-32x32.ico", sizes: "32x32" },
     ],
+  },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "AS Portfolio",
   },
 };
 
@@ -57,6 +64,7 @@ export default function RootLayout({
           showSpinner={true}
           template='<div class="bar" role="bar"><div class="peg"></div></div> <div class="spinner" role="spinner"><div class="spinner-icon" style="width: 24px; height: 24px; border-width: 4px;"></div></div>'
         />
+        <PWARegister />
         {children}
         {/* Include Analytics - component has default IDs built in */}
         <Analytics

@@ -10,6 +10,7 @@ import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PwaInstallButton } from "@/components/pwa/PwaInstallButton";
 
 const iconSize = "size-6";
 
@@ -199,6 +200,7 @@ const NavBar = () => {
           >
             <GithubIcon className={iconSize} />
           </Link>
+          <PwaInstallButton variant="icon" locale={locale} />
           <SearchModal />
           <LanguageSwitcher />
           {/* <RoleSwitcher /> */}
@@ -206,6 +208,7 @@ const NavBar = () => {
         </div>
 
         <div className="flex items-center space-x-2 md:hidden">
+          <PwaInstallButton variant="icon" locale={locale} />
           <SearchModal />
           <LanguageSwitcher />
           {/* {DEVMODE && <RoleSwitcher />} */}

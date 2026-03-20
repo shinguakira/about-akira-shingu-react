@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
 import SearchModal from "@/components/ui/search-modal";
 import AdSection from "@/components/adsense/AdSection";
+import { PwaInstallButton } from "@/components/pwa/PwaInstallButton";
 
 export default function HomeClientPage({ locale }: { locale: string }) {
   const translations = {
@@ -153,7 +154,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
               label={t.englishResumeLabel}
             /> */}
           </div>
-          <div>
+          <div className="flex items-center gap-4">
             <Link
               href="mailto:shinguakira1022@gmail.com"
               target="_blank"
@@ -161,6 +162,7 @@ export default function HomeClientPage({ locale }: { locale: string }) {
             >
               {`${t.contactLabel} shinguakira1022@gmail.com`}
             </Link>
+            <PwaInstallButton variant="full" locale={locale} />
           </div>
         </div>
       </div>

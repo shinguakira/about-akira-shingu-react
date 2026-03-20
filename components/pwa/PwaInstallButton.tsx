@@ -13,23 +13,25 @@ export function PwaInstallButton({
   variant = "icon",
   locale = "en",
 }: PwaInstallButtonProps) {
-  const { canInstall, isInstalled, isIOS, install } = usePwaInstall();
+  const { canInstall, isInstalled, install } = usePwaInstall();
 
   if (isInstalled) return null;
 
-  if (isIOS) {
-    return null; // iOS requires manual "Add to Home Screen" — no button needed
-  }
+  const handleClick = () => {
+    if (canInstall) {
+      install();
+    }
+  };
 
-  if (!canInstall) return null;
+  const label = locale === "ja" ? "アプリをインストール" : "Install App";
 
   if (variant === "icon") {
     return (
       <Button
         variant="ghost"
         size="icon"
-        onClick={install}
-        title={locale === "ja" ? "アプリをインストール" : "Install App"}
+        onClick={handleClick}
+        title={label}
       >
         <Download className="size-5" />
       </Button>
@@ -38,12 +40,12 @@ export function PwaInstallButton({
 
   return (
     <Button
-      onClick={install}
+      onClick={handleClick}
       variant="outline"
       className="flex items-center gap-2"
     >
       <Download className="size-4" />
-      {locale === "ja" ? "アプリをインストール" : "Install App"}
+      {label}
     </Button>
   );
 }

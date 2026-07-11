@@ -15,7 +15,7 @@ const ProjectPage = ({ projects }: ProjectItemProps) => {
   // Project data is already localized, so we don't need to use locale
 
   return (
-    <div className="mx-auto min-h-screen bg-gray-100 px-4 py-12 dark:bg-slate-500">
+    <div className="mx-auto min-h-screen px-4 py-12">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-12 text-center text-4xl font-bold text-gray-900">
           My Projects

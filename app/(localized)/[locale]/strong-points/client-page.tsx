@@ -37,7 +37,7 @@ export default function StrongPointsClientPage({
   };
 
   return (
-    <div className="container mx-auto bg-gray-100 px-4 py-16 dark:bg-gray-900">
+    <div className="container mx-auto px-4 py-16">
       <div className="relative min-h-screen overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 px-4 py-16 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950">
         {/* Animated Background Elements */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">

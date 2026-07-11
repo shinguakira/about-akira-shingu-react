@@ -24,7 +24,7 @@ export default function SkillsClientPage({
   const t = translations[locale === "ja" ? "ja" : "en"];
 
   return (
-    <div className="container mx-auto bg-gray-100 px-4 py-16 dark:bg-gray-900">
+    <div className="container mx-auto px-4 py-16">
       <h1 className="mb-8 text-center text-4xl font-bold text-gray-800 dark:text-white">
         {t.title}
       </h1>

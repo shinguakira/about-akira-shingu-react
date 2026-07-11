@@ -18,7 +18,7 @@ type AboutPageProps = {
 const AboutPage = ({ translations }: AboutPageProps) => {
   return (
     <>
-      <div className="container mx-auto bg-gray-100 px-4 py-16 dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-16">
         <h2 className="mb-8 text-center text-3xl font-bold text-gray-800 dark:text-white">
           {translations.skillSetTitle}
         </h2>

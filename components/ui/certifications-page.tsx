@@ -11,7 +11,7 @@ type CertificationsPageProps = {
 
 const CertificationsPage = ({ translations }: CertificationsPageProps) => {
   return (
-    <div className="container mx-auto h-auto bg-slate-300 px-4 py-8 dark:bg-gray-900">
+    <div className="container mx-auto h-auto px-4 py-8">
       <header className="mb-10 text-center">
         <h1 className="mb-2 text-4xl font-bold dark:text-gray-200">
           {translations.pageTitle}

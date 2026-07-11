@@ -12,7 +12,7 @@ export default function WorkHistoryClientPage({
   education: EducationHistoryType[];
 }) {
   return (
-    <div className="container mx-auto min-h-screen bg-gray-100 px-4 py-8 dark:bg-gray-900">
+    <div className="container mx-auto min-h-screen px-4 py-8">
       <WorkHistory />
       <EducationHistory locale={locale} education={education} />
     </div>

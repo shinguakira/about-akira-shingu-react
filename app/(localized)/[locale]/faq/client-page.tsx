@@ -61,7 +61,7 @@ export default function FaqClientPage({
   const categories = Object.keys(groupedFaqs);
 
   return (
-    <div className="container mx-auto min-h-screen bg-gray-100 px-4 py-16 dark:bg-gray-900">
+    <div className="container mx-auto min-h-screen px-4 py-16">
       {/* Header Section */}
       <div className="mb-16 text-center">
         <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3 shadow-lg">

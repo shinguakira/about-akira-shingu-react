@@ -135,38 +135,40 @@ export default function HomeClientPage({ locale }: { locale: string }) {
           {t.modalButtonText}
         </Button>
       </Modal>
-      <div className="flex items-center justify-between">
-        <div>
-          <Image src={profilePic} alt="alt" className="h-auto w-full" />
-        </div>
-        <div>
-          <AnimatedText text={t.animatedText} className="text-6xl" />
-          <p className="font-midium my-4 text-base">{t.description}</p>
-          <div className="flex flex-row flex-wrap space-x-2">
-            <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
-              {t.downloadLabel}
-            </label>
-            {/* TODO: mask or control based on role. no links shown by default */}
-            {/* <DownLoadLink href={links.resumeLink} label={t.resumeLabel} />
-            <DownLoadLink href={links.jobResumeLink} label={t.jobResumeLabel} />
-            <DownLoadLink
-              href={links.EnglishResumeLink}
-              label={t.englishResumeLabel}
-            /> */}
+      <div className="flex w-full flex-col">
+        <div className="flex items-center justify-between">
+          <div>
+            <Image src={profilePic} alt="alt" className="h-auto w-full" />
           </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="mailto:shinguakira1022@gmail.com"
-              target="_blank"
-              className="text-lg font-medium text-black underline"
-            >
-              {`${t.contactLabel} shinguakira1022@gmail.com`}
-            </Link>
-            <PwaInstallButton variant="full" locale={locale} />
+          <div>
+            <AnimatedText text={t.animatedText} className="text-6xl" />
+            <p className="font-midium my-4 text-base">{t.description}</p>
+            <div className="flex flex-row flex-wrap space-x-2">
+              <label className="text-lg font-bold text-blue-800 dark:text-blue-400">
+                {t.downloadLabel}
+              </label>
+              {/* TODO: mask or control based on role. no links shown by default */}
+              {/* <DownLoadLink href={links.resumeLink} label={t.resumeLabel} />
+              <DownLoadLink href={links.jobResumeLink} label={t.jobResumeLabel} />
+              <DownLoadLink
+                href={links.EnglishResumeLink}
+                label={t.englishResumeLabel}
+              /> */}
+            </div>
+            <div className="flex items-center gap-4">
+              <Link
+                href="mailto:shinguakira1022@gmail.com"
+                target="_blank"
+                className="text-lg font-medium text-black underline"
+              >
+                {`${t.contactLabel} shinguakira1022@gmail.com`}
+              </Link>
+              <PwaInstallButton variant="full" locale={locale} />
+            </div>
           </div>
         </div>
+        <AdSection />
       </div>
-      <AdSection />
     </>
   );
 }

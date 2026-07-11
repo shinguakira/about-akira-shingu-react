@@ -35,36 +35,45 @@ Both compilers report **0 errors** on identical code (parity verified).
    `tsgo` binary. Classic `typescript` is kept for the fallback script and for
    the Next.js build.
 2. **`package.json`**: `type-check` → `tsgo --noEmit`; added `type-check:tsc`.
-3. **`tsconfig.json`**: removed `baseUrl`, replaced with a `"*": ["./*"]` path
-   mapping; added `"noUncheckedSideEffectImports": false` for the CSS imports
-   (both explained in the notices below).
+3. **`tsconfig.json`**: removed `baseUrl` and added
+   `"noUncheckedSideEffectImports": false` for the CSS imports (both explained
+   in the notices below).
+4. **Two imports rewritten** to the `@/` alias (they previously relied on
+   `baseUrl` — see notice 1).
 
 ## ⚠️ Specific notices
 
-### 1. `baseUrl` was removed — replaced by a `"*"` path mapping
+### 1. `baseUrl` was removed — two imports switched to `@/`
 
 TS 7 **removed the `baseUrl` compiler option** (`error TS5102`). This repo used
-`baseUrl: "."` so that a couple of files could import from the project root
-without the `@/` prefix:
+`baseUrl: "."` so that two files could import from the project root without the
+`@/` prefix:
 
 ```ts
+// before (relied on baseUrl)
 import profilePic from "public/images/profile/developer-pic-1.png";
 import { ... } from "components/ui/shadcn/dialog";
 ```
 
-To keep those working, `baseUrl` was replaced with a wildcard path mapping that
-reproduces the exact same resolution:
+Rather than emulate `baseUrl` with a broad `"*": ["./*"]` wildcard mapping
+(which makes every bare specifier try a project-root lookup first), those two
+imports were simply rewritten to the existing `@/` alias:
+
+```ts
+// after
+import profilePic from "@/public/images/profile/developer-pic-1.png";
+import { ... } from "@/components/ui/shadcn/dialog";
+```
+
+So `paths` keeps only the standard alias — no catch-all:
 
 ```jsonc
 "paths": {
-  "@/*": ["./*"],
-  "*":   ["./*"]   // replaces baseUrl: "." for bare project-root imports
+  "@/*": ["./*"]
 }
 ```
 
-This is resolved by both `tsc` and `tsgo`, and by the Next.js build.
-If you prefer, you can instead rewrite those two imports to use the `@/` alias
-and drop the `"*"` line — but as-is nothing needs to change.
+Resolved identically by `tsc`, `tsgo`, and the Next.js build.
 
 ### 2. `noUncheckedSideEffectImports: false` — for CSS side-effect imports
 

@@ -3,7 +3,7 @@ import AnimatedText from "@/components/ui/animated-text";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 import Image from "next/image";
 import Link from "next/link";
-import profilePic from "public/images/profile/developer-pic-1.png";
+import profilePic from "@/public/images/profile/developer-pic-1.png";
 import Modal from "@/components/ui/modal";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";

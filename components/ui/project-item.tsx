@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/ui/icons";
 import type { Project as ProjectContent } from "@shinguakira/portfolio-api-types";
 // // Import useParams only if needed for localization
 
@@ -70,7 +71,7 @@ const ProjectPage = ({ projects }: ProjectItemProps) => {
                         rel="noopener noreferrer"
                         className="text-gray-600 transition-colors hover:text-gray-900"
                       >
-                        <Github className="size-6" />
+                        <GithubIcon className="size-6" />
                         <span>GitHub Repository</span>
                       </Link>
                     )}{" "}

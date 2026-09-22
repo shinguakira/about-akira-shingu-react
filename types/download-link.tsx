@@ -1,4 +1,4 @@
-type DownLoadLinkProps = {
+export type DownLoadLinkProps = {
   href: string; // link to the page
   target?: string; // target for the link Optional
   className?: string; // custom styles for the link Optional

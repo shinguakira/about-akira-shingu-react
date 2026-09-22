@@ -37,8 +37,9 @@ pnpm run build
 
 Command timings:
 
-- `pnpm run lint` -- takes 3 seconds, shows warnings but passes
-- `pnpm run lint:fix` -- BROKEN: ESLint config issue with JS files. Use `pnpm run lint` instead
+- `pnpm run lint` -- oxlint, takes under 1 second, shows warnings but passes
+- `pnpm run lint:fix` -- oxlint with `--fix`
+- `pnpm run lint:type-aware` -- adds type-aware rules via oxlint-tsgolint; slower, reports more
 - `pnpm run format` -- takes 4 seconds to format all files
 - `pnpm run check-format` -- takes 4 seconds to check formatting
 
@@ -80,7 +81,7 @@ app/
 - `constants/` -- Static data (certifications, projects, work experience, skills)
 - `services/portfolioApi.ts` -- External API service with graceful fallback
 - `contexts/` -- React contexts for language and user role management
-- `middleware.ts` -- Internationalization and role-based routing
+- `proxy.ts` -- Internationalization and role-based routing (renamed from `middleware.ts` in Next.js 16)
 
 ### Data Fetching Strategy
 
@@ -94,8 +95,8 @@ app/
 
 ### Core Technologies
 
-- **Framework**: Next.js 15.0.2 with App Router
-- **Language**: TypeScript 5.6.3
+- **Framework**: Next.js 16.2.12 with App Router
+- **Language**: TypeScript 7.0.2 (native Go compiler)
 - **Runtime**: Node.js 20.19.5
 - **Package Manager**: pnpm (required)
 - **Styling**: Tailwind CSS 3.4.14
@@ -103,9 +104,10 @@ app/
 
 ### Build Tools & Quality
 
-- **Linting**: ESLint with TypeScript and Next.js rules
+- **Linting**: oxlint with TypeScript, React and Next.js rules (`.oxlintrc.json`)
 - **Formatting**: Prettier with Tailwind CSS plugin
-- **Type Checking**: TypeScript strict mode enabled
+- **Type Checking**: TypeScript strict mode enabled; `pnpm type-check` runs TS 7,
+  `pnpm type-check:tsc` cross-checks with classic tsc 5.6.3
 
 ### Feature Libraries
 
@@ -181,8 +183,9 @@ NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL=https://your-api.vercel.app/api
 
 ### GitHub Actions
 
-- OpenAI Code Review runs on PRs to master/devin-develop branches
-- Auto-assignment workflows for reviewers
+- Auto-assignment workflows for reviewers (assigns GitHub Copilot as a reviewer)
+- No workflow calls an external LLM API for review — the OpenAI Code Review
+  workflow (`anc95/ChatGPT-CodeReview`, `secrets.OPENAI_API_KEY`) was removed
 - Linting and formatting checked in CI
 
 ### Deployment
@@ -200,12 +203,12 @@ NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL=https://your-api.vercel.app/api
 2. **TypeScript Errors**: Check `tsconfig.json` path mapping for @/\* imports
 3. **API Errors**: Verify fallback data exists in constants/ directory
 4. **Styling Issues**: Ensure Tailwind classes are valid and PostCSS processes correctly
-5. **Routing Issues**: Check middleware.ts for locale/role-based redirects
+5. **Routing Issues**: Check proxy.ts for locale/role-based redirects
 
 ### Development Server Issues
 
 - Clear `.next/` directory if experiencing caching issues
-- Restart server after middleware changes
+- Restart server after proxy.ts changes
 - Check console for client-side errors
 - Verify Node.js version compatibility (20.19.5 tested)
 

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import type { AccordionProps } from "@/types/accordion";
 
 const Accordion: React.FC<AccordionProps> = ({
   index,

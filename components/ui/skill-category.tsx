@@ -1,4 +1,5 @@
 import React from "react";
+import type { SkillCategoryProps } from "@/types/skill-category";
 
 const SkillCategory: React.FC<SkillCategoryProps> = ({
   category,

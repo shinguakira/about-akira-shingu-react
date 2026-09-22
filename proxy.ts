@@ -15,7 +15,7 @@ const DEFAULT_ROLE_VALUES = {
   CERTIFICATION: "cert_5f3g2h",
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const searchParams = request.nextUrl.searchParams;
 

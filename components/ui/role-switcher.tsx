@@ -3,94 +3,40 @@
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./shadcn/button";
-import { UserRole } from "../../components/user-role-wrapper";
+import {
+  ROLE_KEYS,
+  ROLE_VALUES,
+  type UserRole,
+} from "../../components/user-role-wrapper";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 
-const DEFAULT_ROLE_KEYS = {
-  ADMIN: "usr_type_a7x9z",
-  CERTIFICATION: "usr_type_c3r7f",
-};
-
-const DEFAULT_ROLE_VALUES = {
-  ADMIN: "adm_8d92x7",
-  CERTIFICATION: "cert_5f3g2h",
-};
+// Inlined at build time, so this is a constant, not client-only state.
+const TEST_MODE = process.env.NEXT_PUBLIC_TEST_MODE === "1";
 
 export default function RoleSwitcher() {
   const [currentRole, setCurrentRole] = useState<UserRole>("normalUser");
   const pathname = usePathname();
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
-  const [testMode, setTestMode] = useState(false); // Default to false - hidden unless explicitly enabled
+  const isClient = useHasMounted();
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [roleKeys, setRoleKeys] = useState(DEFAULT_ROLE_KEYS);
-  const [roleValues, setRoleValues] = useState(DEFAULT_ROLE_VALUES);
 
   useEffect(() => {
-    setIsClient(true);
+    const urlParams = new URLSearchParams(window.location.search);
 
-    const testModeEnv = process.env.NEXT_PUBLIC_TEST_MODE;
-    setTestMode(testModeEnv === "1");
-
-    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY) {
-      setRoleKeys((prev) => ({
-        ...prev,
-        ADMIN:
-          process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN,
-      }));
+    let roleFromUrl: UserRole = "normalUser";
+    if (urlParams.get(ROLE_KEYS.ADMIN) === ROLE_VALUES.ADMIN) {
+      roleFromUrl = "adminUser";
+    } else if (
+      urlParams.get(ROLE_KEYS.CERTIFICATION) === ROLE_VALUES.CERTIFICATION
+    ) {
+      roleFromUrl = "certification";
     }
 
-    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY) {
-      setRoleKeys((prev) => ({
-        ...prev,
-        CERTIFICATION:
-          process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY ||
-          DEFAULT_ROLE_KEYS.CERTIFICATION,
-      }));
-    }
-
-    if (process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE) {
-      setRoleValues((prev) => ({
-        ...prev,
-        ADMIN:
-          process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN,
-      }));
-    }
-
-    if (process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE) {
-      setRoleValues((prev) => ({
-        ...prev,
-        CERTIFICATION:
-          process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE ||
-          DEFAULT_ROLE_VALUES.CERTIFICATION,
-      }));
-    }
-
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-
-      const adminKey =
-        process.env.NEXT_PUBLIC_ADMIN_ROLE_KEY || DEFAULT_ROLE_KEYS.ADMIN;
-      const adminValue =
-        process.env.NEXT_PUBLIC_ADMIN_ROLE_VALUE || DEFAULT_ROLE_VALUES.ADMIN;
-      if (urlParams.get(adminKey) === adminValue) {
-        setCurrentRole("adminUser");
-        return;
-      }
-
-      const certKey =
-        process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_KEY ||
-        DEFAULT_ROLE_KEYS.CERTIFICATION;
-      const certValue =
-        process.env.NEXT_PUBLIC_CERTIFICATION_ROLE_VALUE ||
-        DEFAULT_ROLE_VALUES.CERTIFICATION;
-      if (urlParams.get(certKey) === certValue) {
-        setCurrentRole("certification");
-        return;
-      }
-
-      setCurrentRole("normalUser");
-    }
+    // The role comes from the query string, a browser-owned value that is not
+    // readable while rendering on the server.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCurrentRole(roleFromUrl);
   }, []);
 
   const switchRole = (newRole: UserRole) => {
@@ -102,18 +48,18 @@ export default function RoleSwitcher() {
       const url = new URL(window.location.href);
       const locale = pathname?.split("/")[1] || "en";
 
-      url.searchParams.delete(roleKeys.ADMIN);
-      url.searchParams.delete(roleKeys.CERTIFICATION);
+      url.searchParams.delete(ROLE_KEYS.ADMIN);
+      url.searchParams.delete(ROLE_KEYS.CERTIFICATION);
 
       if (newRole === "normalUser") {
         router.push(pathname || `/${locale}`);
       } else if (newRole === "adminUser") {
         router.push(
-          `${pathname || `/${locale}`}?${roleKeys.ADMIN}=${roleValues.ADMIN}`
+          `${pathname || `/${locale}`}?${ROLE_KEYS.ADMIN}=${ROLE_VALUES.ADMIN}`
         );
       } else if (newRole === "certification") {
         router.push(
-          `/${locale}/certifications?${roleKeys.CERTIFICATION}=${roleValues.CERTIFICATION}`
+          `/${locale}/certifications?${ROLE_KEYS.CERTIFICATION}=${ROLE_VALUES.CERTIFICATION}`
         );
       }
     }
@@ -124,8 +70,7 @@ export default function RoleSwitcher() {
   }
 
   // Show on desktop screens regardless of test mode, or on mobile if test mode is enabled
-  console.log(testMode);
-  if (!isDesktop && !testMode) {
+  if (!isDesktop && !TEST_MODE) {
     return null;
   }
 

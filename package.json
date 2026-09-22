@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "lint:fix": "eslint --fix ./**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "oxlint . --fix",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "type-check": "tsgo --noEmit",
-    "type-check:tsc": "tsc --noEmit",
+    "type-check": "node node_modules/typescript/lib/tsc.js --noEmit",
+    "type-check:tsc": "node node_modules/typescript5/bin/tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "oxlint .",
+    "lint:type-aware": "oxlint . --type-aware"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
@@ -28,7 +29,7 @@
     "dotenv": "^16.4.7",
     "i18next": "^24.2.3",
     "lucide-react": "^0.460.0",
-    "next": "15.0.7",
+    "next": "16.2.12",
     "next-i18next": "^15.4.2",
     "next-themes": "^0.4.6",
     "nextjs-toploader": "^3.8.16",
@@ -36,8 +37,8 @@
     "nookies": "^2.5.2",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-i18next": "^15.4.1",
     "react-markdown": "^9.0.3",
     "shadcn": "^2.1.8",
@@ -48,22 +49,20 @@
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/nookies": "^2.0.3",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
-    "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "15.0.2",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.1",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-unused-imports": "^4.3.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "oxlint": "1.85.0",
+    "oxlint-tsgolint": "^7.0.2002",
     "postcss": "^8",
     "tailwindcss": "^3.4.14",
-    "typescript": "^5"
+    "typescript": "7.0.2",
+    "typescript5": "npm:typescript@5.6.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "i18next>typescript": "7"
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/shadcn/button";
 import { Bell } from "lucide-react";
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -12,7 +12,9 @@ import type { ChangelogItem } from "@shinguakira/portfolio-api-types";
 const ChangelogNotification = () => {
   const { locale } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasNewChanges, setHasNewChanges] = useState(false);
+  // TODO: check a cookie / localStorage for the last visit date instead of
+  // always announcing new changes.
+  const [hasNewChanges, setHasNewChanges] = useState(true);
 
   // The bell sits in the nav bar on every route, so the changelog is only
   // requested once the modal is actually opened.
@@ -25,11 +27,6 @@ const ChangelogNotification = () => {
   // GET /api/changelogs is not localized: every change carries both languages.
   const lang = locale === "ja" ? "ja" : "en";
 
-  useEffect(() => {
-    // should check cookie or localstorage or something to see when a use last visited
-    // should implement storing the date visited on cookie or something
-    setHasNewChanges(true);
-  }, []);
   const handleOpenModal = () => {
     setIsModalOpen(true);
     setHasNewChanges(false);

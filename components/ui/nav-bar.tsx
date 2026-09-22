@@ -6,6 +6,7 @@ import { CredlyIcon, GithubIcon, LinkedInIcon, QiitaIcon } from "./icons";
 import ThemeToggle from "../theme-toggle";
 import ChangelogNotification from "./changelog-notification";
 import LanguageSwitcher from "@/components/ui/language-switcher";
+import type { CustomLinkProps } from "@/types/nav-bar";
 import SearchModal from "./search-modal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
@@ -41,15 +42,20 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 const NavBar = () => {
   const { locale } = useLanguage();
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openedOnPath, setOpenedOnPath] = useState<string | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  // Navigating to a different page closes the menu: it counts as open only
+  // while the route it was opened on is still the current one. Deriving it
+  // this way avoids a render pass that shows the stale open menu first.
+  const isMobileMenuOpen = openedOnPath === pathname;
 
-  // Close mobile menu when navigating to a different page
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
+  const setIsMobileMenuOpen = useCallback(
+    (open: boolean) => setOpenedOnPath(open ? pathname : null),
+    [pathname]
+  );
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   // Close mobile menu when clicking outside (mobile only)
   const handleClickOutside = useCallback(
@@ -74,7 +80,7 @@ const NavBar = () => {
         setIsMobileMenuOpen(false);
       }
     },
-    [isMobileMenuOpen]
+    [isMobileMenuOpen, setIsMobileMenuOpen]
   );
 
   useEffect(() => {

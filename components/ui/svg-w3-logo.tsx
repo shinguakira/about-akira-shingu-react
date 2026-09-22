@@ -1,4 +1,5 @@
 import React from "react";
+import type { svgW3LogoProps } from "@/types/svg-w3-logo";
 
 const svgW3Logo = ({
   name,

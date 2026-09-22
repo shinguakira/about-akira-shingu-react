@@ -3,11 +3,24 @@
 import React, {
   createContext,
   useContext,
-  useState,
   useEffect,
+  useSyncExternalStore,
   ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+/** Nothing to subscribe to — localStorage is only read at hydration. */
+const subscribeToNothing = () => () => {};
+
+const readStoredLocale = (): string | null => {
+  try {
+    const stored = localStorage.getItem("language");
+    return stored === "en" || stored === "ja" ? stored : null;
+  } catch (error) {
+    console.error("Error accessing localStorage:", error);
+    return null;
+  }
+};
 
 type LanguageContextType = {
   locale: string;
@@ -30,32 +43,34 @@ export const LanguageProvider = ({
   children,
   initialLocale = "en",
 }: LanguageProviderProps) => {
-  const [locale, setLocale] = useState(initialLocale);
   const router = useRouter();
+  const pathname = usePathname();
 
+  // The URL is the source of truth and is available while rendering, so the
+  // locale is derived rather than mirrored into state from an effect.
+  const pathSegment = pathname?.split("/")[1];
+  const localeFromPath =
+    pathSegment === "en" || pathSegment === "ja" ? pathSegment : null;
+
+  // localStorage only exists in the browser; null on the server and during
+  // hydration, which is what the old initial render showed too.
+  const storedLocale = useSyncExternalStore(
+    subscribeToNothing,
+    readStoredLocale,
+    () => null
+  );
+
+  const locale = localeFromPath ?? storedLocale ?? initialLocale;
+
+  // Persist the locale the URL is currently on. No state is set here.
   useEffect(() => {
-    const pathname = window.location.pathname;
-    const pathLocale = pathname.split("/")[1];
-
-    if (pathLocale === "en" || pathLocale === "ja") {
-      setLocale(pathLocale);
-      try {
-        localStorage.setItem("language", pathLocale);
-      } catch (error) {
-        console.error("Error storing language preference:", error);
-      }
-      return;
-    }
-
+    if (!localeFromPath) return;
     try {
-      const storedLocale = localStorage.getItem("language");
-      if (storedLocale && (storedLocale === "en" || storedLocale === "ja")) {
-        setLocale(storedLocale);
-      }
+      localStorage.setItem("language", localeFromPath);
     } catch (error) {
-      console.error("Error accessing localStorage:", error);
+      console.error("Error storing language preference:", error);
     }
-  }, []);
+  }, [localeFromPath]);
 
   const changeLanguage = (newLocale: string) => {
     if (newLocale === locale) return;
@@ -66,12 +81,10 @@ export const LanguageProvider = ({
       console.error("Error storing language preference:", error);
     }
 
-    setLocale(newLocale);
-
     document.documentElement.lang = newLocale;
 
-    const pathname = window.location.pathname;
-    const currentPath = pathname.split("/").slice(2).join("/");
+    // The route change is what updates `locale` — it is derived from the path.
+    const currentPath = window.location.pathname.split("/").slice(2).join("/");
 
     if (currentPath) {
       router.push(`/${newLocale}/${currentPath}`);

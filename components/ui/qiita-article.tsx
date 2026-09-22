@@ -1,6 +1,7 @@
 import React from "react";
 import { Article } from "@/components/ui/article";
 import { NextPage } from "next";
+import type { ArticleProps } from "@/types/article";
 export const getStaticProps = async () => {
   try {
     const userId = process.env.QIITA_USER_ID || "ShinguAkira"; // Default to ShinguAkira if not set
@@ -18,7 +19,7 @@ export const getStaticProps = async () => {
       };
     }
 
-    const data: QiitaArticle[] = await res.json();
+    const data: ArticleProps[] = await res.json();
     console.log(data);
 
     return {

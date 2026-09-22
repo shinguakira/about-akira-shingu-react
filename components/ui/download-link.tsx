@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowDownToLine } from "lucide-react";
 import Link from "next/link";
+import type { DownLoadLinkProps } from "@/types/download-link";
 
 const DownLoadLink: React.FC<DownLoadLinkProps> = ({
   href = "/",

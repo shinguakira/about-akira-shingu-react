@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
@@ -13,23 +14,13 @@ import {
 
 export default function LanguageSwitcher() {
   const { locale, changeLanguage } = useLanguage();
-  const [currentLocale, setCurrentLocale] = React.useState(locale);
+  const pathname = usePathname();
 
-  React.useEffect(() => {
-    setCurrentLocale(locale);
-  }, [locale]);
-
-  React.useEffect(() => {
-    const pathname = window.location.pathname;
-    const pathLocale = pathname.split("/")[1];
-
-    if (
-      (pathLocale === "en" || pathLocale === "ja") &&
-      pathLocale !== currentLocale
-    ) {
-      setCurrentLocale(pathLocale);
-    }
-  }, [currentLocale]);
+  // The locale in the URL wins over the context value; both are available
+  // during render, so there is nothing to mirror into state.
+  const pathLocale = pathname.split("/")[1];
+  const currentLocale =
+    pathLocale === "en" || pathLocale === "ja" ? pathLocale : locale;
 
   return (
     <DropdownMenu>

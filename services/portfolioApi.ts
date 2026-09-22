@@ -37,7 +37,7 @@ type FetchOptions = {
  * @param options - Fetch options including cache settings
  * @returns Promise with the fetched data
  */
-export async function fetchFromPortfolioApi<T = any>(
+export async function fetchFromPortfolioApi<T = unknown>(
   path: string,
   options: FetchOptions = {}
 ): Promise<T> {

@@ -1,4 +1,4 @@
-type AccordionProps = {
+export type AccordionProps = {
   index: number;
   question: string;
   answer: string;

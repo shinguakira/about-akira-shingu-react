@@ -125,7 +125,7 @@ about-akira-shingu-react/
 │       ├── en/common.json      # 英語翻訳
 │       └── ja/common.json      # 日本語翻訳
 │
-├── middleware.ts                # Next.jsミドルウェア（i18n + ロール）
+├── proxy.ts                     # Next.js proxy（旧middleware / i18n + ロール）
 ├── next.config.ts               # Next.js設定
 ├── tailwind.config.ts           # Tailwind CSS設定
 ├── tsconfig.json                # TypeScript設定
@@ -140,9 +140,10 @@ about-akira-shingu-react/
 
 ### 設定ファイル
 
-#### `middleware.ts`
+#### `proxy.ts`
 
 **役割**: ロケール検出・リダイレクト、ロールベースアクセス制御
+（Next.js 16 で `middleware.ts` から改名。関数名も `proxy`）
 
 ```typescript
 // 機能:

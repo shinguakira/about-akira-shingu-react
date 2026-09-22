@@ -80,7 +80,7 @@ app/
 - `constants/` -- Static data (certifications, projects, work experience, skills)
 - `services/portfolioApi.ts` -- External API service with graceful fallback
 - `contexts/` -- React contexts for language and user role management
-- `middleware.ts` -- Internationalization and role-based routing
+- `proxy.ts` -- Internationalization and role-based routing (renamed from `middleware.ts` in Next.js 16)
 
 ### Data Fetching Strategy
 
@@ -200,12 +200,12 @@ NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL=https://your-api.vercel.app/api
 2. **TypeScript Errors**: Check `tsconfig.json` path mapping for @/\* imports
 3. **API Errors**: Verify fallback data exists in constants/ directory
 4. **Styling Issues**: Ensure Tailwind classes are valid and PostCSS processes correctly
-5. **Routing Issues**: Check middleware.ts for locale/role-based redirects
+5. **Routing Issues**: Check proxy.ts for locale/role-based redirects
 
 ### Development Server Issues
 
 - Clear `.next/` directory if experiencing caching issues
-- Restart server after middleware changes
+- Restart server after proxy.ts changes
 - Check console for client-side errors
 - Verify Node.js version compatibility (20.19.5 tested)
 

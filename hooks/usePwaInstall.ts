@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-interface BeforeInstallPromptEvent extends Event {
+type BeforeInstallPromptEvent = Event & {
   prompt(): Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
-}
+};
 
 export function usePwaInstall() {
   const [deferredPrompt, setDeferredPrompt] =
@@ -21,7 +21,7 @@ export function usePwaInstall() {
     const ua = navigator.userAgent;
     setIsIOS(
       /iPad|iPhone|iPod/.test(ua) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1),
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
     );
 
     const handler = (e: Event) => {

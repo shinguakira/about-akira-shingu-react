@@ -18,9 +18,10 @@ export function PwaInstallButton({
   if (isInstalled) return null;
 
   const handleClick = () => {
-    if (canInstall) {
-      install();
-    }
+    if (!canInstall) return;
+    install().catch((error: unknown) => {
+      console.error("PWA install prompt failed:", error);
+    });
   };
 
   const label = locale === "ja" ? "アプリをインストール" : "Install App";

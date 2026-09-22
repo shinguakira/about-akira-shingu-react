@@ -55,7 +55,8 @@ export default function ArticlesClientPage({ locale }: { locale: string }) {
       }
     };
 
-    fetchData();
+    // fetchData handles its own errors, so the promise never rejects.
+    void fetchData();
   }, []);
 
   if (loading) {

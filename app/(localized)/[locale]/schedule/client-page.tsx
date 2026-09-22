@@ -116,11 +116,9 @@ export default function ScheduleClientPage({ locale }: { locale: string }) {
           ) : (
             <iframe
               src={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=Asia%2FTokyo`}
-              style={{ border: 0 }}
+              style={{ border: 0, overflow: "hidden" }}
               width="100%"
               height="600"
-              frameBorder="0"
-              scrolling="no"
               title={t.title}
               className="h-96 w-full md:h-[600px]"
               onLoad={handleCalendarLoad}

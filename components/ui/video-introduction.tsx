@@ -61,14 +61,24 @@ export default function VideoIntroduction() {
   }, []);
 
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+      return;
     }
+
+    // play() rejects when the browser blocks playback (autoplay policy, no
+    // source); only report playing once it actually started.
+    video.play().then(
+      () => setIsPlaying(true),
+      (error: unknown) => {
+        console.error("Failed to start video playback:", error);
+        setIsPlaying(false);
+      }
+    );
   };
 
   const toggleMute = () => {

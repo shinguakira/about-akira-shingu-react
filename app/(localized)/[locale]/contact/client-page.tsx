@@ -50,7 +50,7 @@ export default function ContactClientPage({ locale }: { locale: string }) {
 
   const t = translations[locale === "ja" ? "ja" : "en"];
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
@@ -105,7 +105,7 @@ export default function ContactClientPage({ locale }: { locale: string }) {
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={(e) => void handleSubmit(e)} className="space-y-6">
             <div>
               <label
                 htmlFor="name"

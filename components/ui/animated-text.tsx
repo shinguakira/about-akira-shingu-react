@@ -1,4 +1,5 @@
 import React from "react";
+import type { AnimatedTextProps } from "@/types/animated-text";
 
 const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
   return (

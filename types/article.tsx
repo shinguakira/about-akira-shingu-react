@@ -1,4 +1,4 @@
-type ArticleProps = {
+export type ArticleProps = {
   id: string;
   title: string;
   url: string;
@@ -11,5 +11,3 @@ type ArticleProps = {
   rendered_body: string;
   tags: Array<{ name: string }>;
 };
-
-type QiitaArticle = ArticleProps;

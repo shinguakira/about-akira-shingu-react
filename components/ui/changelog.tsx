@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Badge } from "./shadcn/badge";
+import type { ChangeType, ChangelogProps } from "@/types/changelog";
 
 function getChangeTypeColor(type: ChangeType): string {
   switch (type) {

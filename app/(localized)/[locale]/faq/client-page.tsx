@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { MessageCircleQuestion, Sparkles } from "lucide-react";
-import { faqs as localFaqsData } from "@/constants/faq";
 import type { Faq } from "@shinguakira/portfolio-api-types";
 
 export default function FaqClientPage({
@@ -28,18 +27,9 @@ export default function FaqClientPage({
   };
 
   const t = translations[locale === "ja" ? "ja" : "en"];
-  const currentLang = locale === "ja" ? "ja" : "en";
 
-  // Use API data if provided and not empty, otherwise fall back to local constants
-  const faqsToUse =
-    apiFaqs && apiFaqs.length > 0
-      ? apiFaqs
-      : localFaqsData.map((faq) => ({
-          size: faq.size,
-          category: faq.category,
-          question: faq[currentLang].question,
-          answer: faq[currentLang].answer,
-        }));
+  // Entries come from GET /api/faqs?lang=…, already localized.
+  const faqsToUse = apiFaqs;
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);

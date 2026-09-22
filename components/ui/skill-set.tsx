@@ -2,27 +2,19 @@
 
 import { useState } from "react";
 import SkillItem from "./skill-item";
-import {
-  skills as localSkills,
-  otherSkills as localOtherSkills,
-} from "@/constants/skill";
 import type { SkillItem as Skill } from "@shinguakira/portfolio-api-types";
 import SkillCategory from "./skill-category";
 
 const SkillSet = ({
   locale = "en",
-  skills: apiSkills,
-  otherSkills: apiOtherSkills,
+  skills,
+  otherSkills,
 }: {
   locale?: string;
-  skills?: Skill[];
-  otherSkills?: Skill[];
+  skills: Skill[];
+  otherSkills: Skill[];
 }) => {
   const currentLang = locale === "ja" ? "ja" : "en";
-
-  // Use API data if provided, otherwise fallback to local constants
-  const skills = apiSkills || localSkills;
-  const otherSkills = apiOtherSkills || localOtherSkills;
 
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     new Set(["All"])

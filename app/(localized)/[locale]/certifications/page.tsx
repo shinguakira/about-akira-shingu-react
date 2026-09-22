@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import CertificationsClientPage from "./client-page";
 import { fetchCertifications } from "@/services/portfolioApi";
-import { certifications as localCertifications } from "@/constants/certification";
+import type { CertificationItem } from "@shinguakira/portfolio-api-types";
 
 export async function generateMetadata({
   params,
@@ -50,14 +50,12 @@ export default async function CertificationsPage({ params }: Props) {
 
   // Fetch certifications data on the server with locale as lang parameter
   // This data fetching will happen at build time for SSG
-  let certifications;
+  let certifications: CertificationItem[] = [];
   try {
     // Pass locale as lang query parameter to the API
     certifications = await fetchCertifications(locale);
   } catch (error) {
     console.error("Failed to fetch certifications:", error);
-    // Fall back to local data
-    certifications = localCertifications;
   }
 
   return (

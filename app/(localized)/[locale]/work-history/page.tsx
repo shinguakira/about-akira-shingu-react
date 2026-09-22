@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import WorkHistoryClientPage from "./client-page";
-import { fetchEducation } from "@/services/portfolioApi";
-import type { EducationHistory } from "@shinguakira/portfolio-api-types";
+import { fetchEducation, fetchExperience } from "@/services/portfolioApi";
+import type {
+  EducationHistory,
+  WorkExperience,
+} from "@shinguakira/portfolio-api-types";
 
 // Ensure page is static with revalidation for optimal performance
 export const dynamic = "force-static";
@@ -58,5 +61,21 @@ export default async function WorkHistoryPage({ params }: Props) {
     educationData = [];
   }
 
-  return <WorkHistoryClientPage locale={locale} education={educationData} />;
+  // Fetch work experience from the API with error handling
+  let experienceData: WorkExperience[] = [];
+
+  try {
+    experienceData = await fetchExperience(locale);
+  } catch (error) {
+    console.error("Error fetching experience data:", error);
+    experienceData = [];
+  }
+
+  return (
+    <WorkHistoryClientPage
+      locale={locale}
+      education={educationData}
+      experience={experienceData}
+    />
+  );
 }

@@ -7,6 +7,7 @@ import type {
   ApiResponse,
   CertificationsResponse,
   EducationResponse,
+  ExperienceResponse,
   FaqResponse,
   ProjectsResponse,
   SkillsResponse,
@@ -127,6 +128,23 @@ export async function fetchOtherSkills(lang?: string): Promise<SkillsResponse> {
   return fetchFromPortfolioApi<SkillsResponse>("other-skills", {
     queryParams: lang ? { lang } : undefined,
     revalidateSeconds: 86400, // 1 day cache
+  });
+}
+
+/**
+ * Fetches work experience with 1 week cache
+ *
+ * Entries come back already localized for `lang`, and each one carries
+ * `startDate`/`endDate` (`YYYY-MM`, or `YYYY` where only the year is known;
+ * `endDate` absent while ongoing) next to the `period` display string.
+ * @param lang - Optional language code for localized content
+ */
+export async function fetchExperience(
+  lang?: string
+): Promise<ExperienceResponse> {
+  return fetchFromPortfolioApi<ExperienceResponse>("experience", {
+    queryParams: lang ? { lang } : undefined,
+    revalidateSeconds: 604800, // 1 week cache
   });
 }
 

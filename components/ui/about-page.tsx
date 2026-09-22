@@ -30,7 +30,12 @@ const AboutPage = ({ translations }: AboutPageProps) => {
           <div className="flex flex-wrap gap-2">
             <SkillSet />
           </div>
-          <WorkHistory />
+          {/*
+            Nothing imports this file, so there is no server component above it
+            to fetch from the API. Both lists render empty until it is either
+            wired up or removed.
+          */}
+          <WorkHistory experiences={[]} />
           <EducationHistory />
           {/* ItemPadding is just to apply css */}
           <h3 className="mb-4 text-center text-xl font-semibold text-gray-700 dark:text-gray-300">

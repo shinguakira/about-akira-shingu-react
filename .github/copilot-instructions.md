@@ -181,8 +181,9 @@ NEXT_PUBLIC_VERCEL_PORTFOLIO_API_URL=https://your-api.vercel.app/api
 
 ### GitHub Actions
 
-- OpenAI Code Review runs on PRs to master/devin-develop branches
-- Auto-assignment workflows for reviewers
+- Auto-assignment workflows for reviewers (assigns GitHub Copilot as a reviewer)
+- No workflow calls an external LLM API for review — the OpenAI Code Review
+  workflow (`anc95/ChatGPT-CodeReview`, `secrets.OPENAI_API_KEY`) was removed
 - Linting and formatting checked in CI
 
 ### Deployment

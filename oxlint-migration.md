@@ -4,6 +4,11 @@ Linting moved from ESLint 9 to [oxlint](https://oxc.rs) 1.85.0 — **~32× faste
 with the same 30 diagnostics on the same 30 source locations. ESLint and all
 eleven of its plugins are gone from the project.
 
+All 52 findings (the 30 carried over plus the 22 the new type-aware rules
+surfaced) have since been fixed; `pnpm lint` and `pnpm lint:type-aware` both
+report **0 warnings, 0 errors**. The counts below describe the state at the
+moment of the migration, which is what the parity comparison was made against.
+
 ## Results
 
 Measured on this repo (117 `.ts/.tsx` files, ~10k LOC), whole-repo run,
@@ -90,10 +95,10 @@ So the plugin's two rules collapse into one native rule carrying the old
 }]
 ```
 
-**The deliberate change**: an unused import now warns instead of erroring. The
-repo currently has zero unused imports and 15 unused type declarations, so the
-reported output is unchanged — only the severity ceiling moved. `oxlint --fix`
-still removes them.
+**The deliberate change**: an unused import now warns instead of erroring. At
+migration time the repo had zero unused imports and 15 unused type
+declarations, so the reported output was unchanged — only the severity ceiling
+moved. `oxlint --fix` still removes them.
 
 ### 3. Two rules were dropped for having no oxlint equivalent
 
@@ -138,8 +143,11 @@ this project is already on. Five rules are declared in `.oxlintrc.json`:
 
 They are **inert by default**. oxlint only executes type-aware rules when
 `--type-aware` is passed (or `options.typeAware` is set in the config, which it
-deliberately is **not**), so `pnpm lint` stays at 570 ms and the same 30
-warnings. `pnpm lint:type-aware` builds the TypeScript program and reports 52:
+deliberately is **not**), so `pnpm lint` stays at 570 ms and skips building a
+TypeScript program. `pnpm lint:type-aware` builds it and runs the five.
+
+On the migration commit these five surfaced 22 pre-existing findings that
+nothing had been checking before:
 
 | Rule                              | Count | Note                                          |
 | --------------------------------- | ----- | --------------------------------------------- |
@@ -147,8 +155,12 @@ warnings. `pnpm lint:type-aware` builds the TypeScript program and reports 52:
 | `typescript/no-floating-promises` | 3     |                                               |
 | `typescript/no-misused-promises`  | 1     |                                               |
 
-These 22 are pre-existing findings that nothing was checking before, left as
-warnings rather than fixed in the migration commit.
+All 22 have since been fixed, along with the 30 carried over from ESLint —
+deprecated APIs replaced, dropped promise rejections handled, and the
+`set-state-in-effect` findings either derived during render or moved to
+`useSyncExternalStore`. Two sites keep an `eslint-disable` comment with the
+reason stated: they read the role out of the query string, which they also
+subscribe to via `popstate`.
 
 ## Departures from the generated config
 

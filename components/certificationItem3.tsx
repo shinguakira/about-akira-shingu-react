@@ -17,6 +17,21 @@ type CertificationItemProps = CertificationItem & {
   className?: string;
 };
 
+// Returns the icon element itself rather than a component picked during
+// render, so no component is ever created inside the render pass.
+const certificationIcon = (index: number) => {
+  switch (index % 4) {
+    case 0:
+      return <Trophy className="size-12" />;
+    case 1:
+      return <Shield className="size-12" />;
+    case 2:
+      return <Star className="size-12" />;
+    default:
+      return <Award className="size-12" />;
+  }
+};
+
 const CertificationItem3 = ({
   id,
   name,
@@ -30,12 +45,6 @@ const CertificationItem3 = ({
     }
   };
 
-  const getIconForIndex = (index: number) => {
-    const icons = [Trophy, Shield, Star, Award];
-    const IconComponent = icons[index % icons.length];
-    return IconComponent;
-  };
-  const IconComponent = getIconForIndex(id);
   const isEven = id % 2 === 0;
 
   return (
@@ -52,7 +61,7 @@ const CertificationItem3 = ({
 
           <div className="relative z-10">
             <div className="mb-6 flex items-center justify-between">
-              <IconComponent className="size-12" />
+              {certificationIcon(id)}
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star

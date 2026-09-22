@@ -1,15 +1,16 @@
 "use client";
 import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "./ui/button";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 
 export default function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const hasMounted = useHasMounted();
 
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
+  // The resolved theme is only known on the client, so render nothing until
+  // hydration rather than risk a mismatch.
+  if (!hasMounted) return null;
 
   return (
     <Button

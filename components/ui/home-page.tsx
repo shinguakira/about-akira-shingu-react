@@ -8,8 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import profilePic from "/public/images/profile/developer-pic-1.png";
 import Modal from "@/components/ui/modal";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/shadcn/button";
+
+/** Nothing to subscribe to — the cookie is only read at hydration. */
+const subscribeToNothing = () => () => {};
 
 type HomePageProps = {
   locale: string;
@@ -38,14 +41,15 @@ type HomePageProps = {
 };
 
 export default function HomePage({ locale, translations }: HomePageProps) {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  useEffect(() => {
-    const cookies = parseCookies();
-    if (!cookies.modalHidden) {
-    } else {
-      setIsModalOpen(false);
-    }
-  }, []);
+  // The cookie is browser-only, so it reads as absent while rendering on the
+  // server and the modal opens once hydrated unless it was dismissed before.
+  const modalHiddenByCookie = useSyncExternalStore(
+    subscribeToNothing,
+    () => Boolean(parseCookies().modalHidden),
+    () => false
+  );
+  const [dismissed, setDismissed] = useState(false);
+  const isModalOpen = !modalHiddenByCookie && !dismissed;
 
   function handleDontShowModal(modalHidden: string) {
     if (modalHidden === "true") {
@@ -53,7 +57,7 @@ export default function HomePage({ locale, translations }: HomePageProps) {
         maxAge: 365 * 24 * 60 * 60,
         path: "/",
       });
-      setIsModalOpen(false);
+      setDismissed(true);
     } else {
       destroyCookie(null, "modalHidden", { path: "/" });
     }
@@ -63,7 +67,7 @@ export default function HomePage({ locale, translations }: HomePageProps) {
     <>
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => setDismissed(true)}
         modalTitle=""
         modalDescription=""
       >

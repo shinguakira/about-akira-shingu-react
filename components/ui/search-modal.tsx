@@ -34,7 +34,11 @@ const SearchModal = ({
 }) => {
   const { locale } = useLanguage();
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  // Controlled when the parent supplies onOpenChange, self-managed otherwise.
+  // Reading the prop directly beats mirroring it into state from an effect.
+  const isControlled = onOpenChange !== undefined;
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isOpen = isControlled ? openModal : uncontrolledOpen;
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
@@ -77,19 +81,13 @@ const SearchModal = ({
     strongPoint = [],
   ] = data ?? [];
 
-  // Sync internal state with external control
-  useEffect(() => {
-    if (openModal !== undefined) {
-      setIsOpen(openModal);
-    }
-  }, [openModal]);
-
   // Notify parent component when modal state changes
   const handleOpenChange = useCallback(
     (open: boolean) => {
-      setIsOpen(open);
       if (onOpenChange) {
         onOpenChange(open);
+      } else {
+        setUncontrolledOpen(open);
       }
     },
     [onOpenChange]

@@ -1,35 +1,48 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 type BeforeInstallPromptEvent = Event & {
   prompt(): Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 };
 
+/** Nothing to subscribe to — the user agent does not change. */
+const subscribeToNothing = () => () => {};
+
+const detectIOS = () => {
+  const ua = navigator.userAgent;
+  return (
+    /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+};
+
 export function usePwaInstall() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
+  const [installedDuringSession, setInstalledDuringSession] = useState(false);
+
+  // Running as an installed app and the user agent are both browser-only
+  // values, read directly instead of copied into state by an effect.
+  const isStandalone = useMediaQuery("(display-mode: standalone)");
+  const isIOS = useSyncExternalStore(
+    subscribeToNothing,
+    detectIOS,
+    () => false
+  );
+  const isInstalled = isStandalone || installedDuringSession;
 
   useEffect(() => {
-    if (window.matchMedia("(display-mode: standalone)").matches) {
-      setIsInstalled(true);
-      return;
-    }
-    const ua = navigator.userAgent;
-    setIsIOS(
-      /iPad|iPhone|iPod/.test(ua) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-    );
+    if (isStandalone) return;
 
     const handler = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
     const appInstalledHandler = () => {
-      setIsInstalled(true);
+      setInstalledDuringSession(true);
       setDeferredPrompt(null);
     };
 
@@ -39,14 +52,14 @@ export function usePwaInstall() {
       window.removeEventListener("beforeinstallprompt", handler);
       window.removeEventListener("appinstalled", appInstalledHandler);
     };
-  }, []);
+  }, [isStandalone]);
 
   const install = useCallback(async () => {
     if (!deferredPrompt) return false;
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     setDeferredPrompt(null);
-    if (outcome === "accepted") setIsInstalled(true);
+    if (outcome === "accepted") setInstalledDuringSession(true);
     return outcome === "accepted";
   }, [deferredPrompt]);
 

@@ -10,8 +10,9 @@ the project's plain `typescript` dependency, so **`next build` type-checks with
 TS 7 as well** (via `experimental.useTypeScriptCli` — see
 [next16-upgrade.md](./next16-upgrade.md)).
 
-The classic JavaScript compiler is still installed, but only where something
-imports the compiler API: see
+The classic JavaScript compiler is still installed, but only as the
+`type-check:tsc` cross-check — nothing in the toolchain imports the compiler
+API any more: see
 [Why the classic compiler is still installed](#why-the-classic-compiler-is-still-installed).
 
 ## Results
@@ -52,16 +53,13 @@ one of them, so a bare `tsc` would be ambiguous:
 ## What changed
 
 1. **Dependencies**: `typescript` is `7.0.2`; `typescript5` is an alias for
-   `npm:typescript@5.6.3` (cross-check script + the version pinned for
-   typescript-eslint).
+   `npm:typescript@5.6.3` (used only by the cross-check script).
 2. **`package.json`**: `type-check` → TS 7; `type-check:tsc` → classic 5.6.3.
-3. **`.pnpmfile.cjs`**: pins the classic compiler inside the typescript-eslint
-   packages (see below).
-4. **`next.config.ts`**: `experimental.useTypeScriptCli: true`.
-5. **`tsconfig.json`**: removed `baseUrl` and added
+3. **`next.config.ts`**: `experimental.useTypeScriptCli: true`.
+4. **`tsconfig.json`**: removed `baseUrl` and added
    `"noUncheckedSideEffectImports": false` for the CSS imports (both explained
    in the notices below).
-6. **Two imports rewritten** to the `@/` alias (they previously relied on
+5. **Two imports rewritten** to the `@/` alias (they previously relied on
    `baseUrl` — see notice 1).
 
 ## ⚠️ Specific notices
@@ -195,35 +193,30 @@ _imports_ the compiler therefore breaks on TS 7.
   runs TS 7 without the API. The flag is **absent in 15.5.x, 16.0.0, 16.1.0 and
   16.2.0–16.2.11, and present from 16.2.12** (checked per tag in
   `config-shared.ts`) — which is why the project is on 16.2.12.
-- **typescript-eslint** — not solved upstream. Its supported range is
+- **typescript-eslint** — was not solved upstream. Its supported range is
   `>=4.8.4 <6.1.0` and TS 7 support was
   [closed as not planned](https://github.com/typescript-eslint/typescript-eslint/issues/12518);
   with TS 7 it crashes at lint time.
 
-So typescript-eslint — and only typescript-eslint — gets the classic compiler,
-via the `readPackage` hook in [`.pnpmfile.cjs`](./.pnpmfile.cjs).
+  While ESLint was still in the project, typescript-eslint — and only
+  typescript-eslint — was pinned to the classic compiler through a
+  `readPackage` hook in a `.pnpmfile.cjs`. That was necessary because
+  `typescript` is a **peer** dependency of the typescript-eslint packages, so
+  `pnpm.overrides` does not apply to it: verified empirically in a scratch
+  project, with `pnpm.overrides` set to
+  `"@typescript-eslint/typescript-estree>typescript": "5.6.3"` and root
+  `typescript@7.0.2`, typescript-estree still resolved **7.0.2**.
 
-### Why the pin needs `.pnpmfile.cjs` and not `pnpm.overrides`
-
-`typescript` is a **peer** dependency of the typescript-eslint packages, so it
-is satisfied by the root dependency. Verified empirically in a scratch project:
-with `pnpm.overrides` set to `"@typescript-eslint/typescript-estree>typescript":
-"5.6.3"` and root `typescript@7.0.2`, typescript-estree still resolved
-**7.0.2** — overrides do not rewrite a peer link.
-
-Deleting the peer entry and adding a real dependency does work: each
-typescript-eslint package then gets its own `node_modules/typescript` at 5.6.3
-while the root stays on 7.0.2. Confirmed with `pnpm lint` running type-aware
-rules successfully in exactly that layout.
-
-The consequence to keep in mind: **ESLint's type-aware rules parse with TS
-5.6.3, while `pnpm type-check` and `next build` check with TS 7.** Type errors
-are the compiler's job, so this only matters if a lint rule ever depends on TS 7
-semantics.
+  **This no longer applies.** The linter is now oxlint, which needs no
+  JavaScript compiler API, so both the hook and `.pnpmfile.cjs` were deleted —
+  see [oxlint-migration.md](./oxlint-migration.md). Nothing in the toolchain
+  loads the compiler API any more, and `typescript5` survives only as the
+  `type-check:tsc` cross-check.
 
 ### Other notes
 
 - Keep `type-check:tsc` as a cross-check while the two compilers coexist; after
   bumping either one, run both and confirm they still agree.
-- Bump `TYPESCRIPT_FOR_ESLINT` in `.pnpmfile.cjs` and the `typescript5` alias in
-  `package.json` together — they are meant to be the same version.
+- oxlint's type-aware rules (`pnpm lint:type-aware`) run on TS 7 itself through
+  `oxlint-tsgolint`, so they need no classic-compiler pin — that was the
+  capability typescript-eslint could not offer here at all.

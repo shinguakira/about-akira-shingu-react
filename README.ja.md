@@ -21,7 +21,7 @@
 [![Radix UI Badge](https://img.shields.io/badge/-Radix_UI-FF4785?style=for-the-badge&labelColor=black&logo=radixui&logoColor=FF4785)](#)
 [![Lucide React Badge](https://img.shields.io/badge/-Lucide_React-5E5CE6?style=for-the-badge&labelColor=black&logo=lucide&logoColor=5E5CE6)](#)
 [![React Markdown Badge](https://img.shields.io/badge/-React_Markdown-61DAFB?style=for-the-badge&labelColor=black&logo=markdown&logoColor=61DAFB)](#)
-[![ESLint Badge](https://img.shields.io/badge/-ESLint-4B32C3?style=for-the-badge&labelColor=black&logo=eslint&logoColor=4B32C3)](#)
+[![oxlint Badge](https://img.shields.io/badge/-oxlint-CE412B?style=for-the-badge&labelColor=black&logo=rust&logoColor=CE412B)](#)
 [![Prettier Badge](https://img.shields.io/badge/-Prettier-F7B93E?style=for-the-badge&labelColor=black&logo=prettier&logoColor=F7B93E)](#)
 [![Nodemailer Badge](https://img.shields.io/badge/-Nodemailer-22B573?style=for-the-badge&labelColor=black&logo=nodemailer&logoColor=22B573)](#)
 [![Class Variance Authority Badge](https://img.shields.io/badge/-CVA-4F46E5?style=for-the-badge&labelColor=black&logo=tailwindcss&logoColor=4F46E5)](#)

@@ -8,7 +8,7 @@ specifically: it is the first release that can type-check a build with
 ```bash
 pnpm dev          # next dev   — Turbopack, output in .next/dev
 pnpm build        # next build — Turbopack + TS 7 type check
-pnpm lint         # eslint .   — `next lint` no longer exists
+pnpm lint         # oxlint .   — `next lint` no longer exists
 pnpm type-check   # TS 7 standalone check
 ```
 
@@ -40,17 +40,23 @@ matters, because `proxy` only runs on the Node.js runtime.
 ### 2. `next lint` was removed
 
 `next build` no longer lints, and the `next lint` command is gone.
-`package.json` now calls the ESLint CLI directly:
+`package.json` calls the linter CLI directly:
 
 ```json
-"lint": "eslint .",
-"lint:fix": "eslint . --fix"
+"lint": "oxlint .",
+"lint:fix": "oxlint . --fix"
 ```
 
 ### 3. ESLint 9 + flat config
 
+> **Superseded.** The linter has since moved from ESLint to oxlint and
+> `eslint.config.mjs` is gone — see
+> [oxlint-migration.md](./oxlint-migration.md). This section records what the
+> Next 16 upgrade did; the rules it describes were carried into
+> `.oxlintrc.json` one for one.
+
 `eslint-config-next@16` requires **ESLint >= 9** and ships flat configs, so
-`.eslintrc.json` was replaced by [`eslint.config.mjs`](./eslint.config.mjs)
+`.eslintrc.json` was replaced by an `eslint.config.mjs`
 (`eslint-config-next/core-web-vitals` + `eslint-config-next/typescript` +
 `eslint-plugin-prettier/recommended`, then the repo's own rules). All rules from
 the old config were carried over verbatim.
@@ -65,8 +71,10 @@ Two behaviour changes worth knowing:
 - **`eslint-plugin-react-hooks` v5 → v7** adds compiler-powered rules.
   `react-hooks/set-state-in-effect` (13 hits) and
   `react-hooks/static-components` (1 hit) fire on **existing** components. They
-  are set to `warn` in the flat config so the upgrade does not convert working
-  code into a red build — they are a real backlog to work through, not noise.
+  are set to `warn` so the upgrade does not convert working code into a red
+  build — they are a real backlog to work through, not noise. oxlint
+  implements both natively as `react/set-state-in-effect` and
+  `react/static-components`, still at `warn`, still the same 14 hits.
 
 Type-aware linting is kept (`parserOptions.projectService`), scoped to
 `**/*.{ts,tsx}` so the `.mjs` config files — which are not in `tsconfig`'s

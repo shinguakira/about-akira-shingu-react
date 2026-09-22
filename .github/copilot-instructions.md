@@ -37,8 +37,9 @@ pnpm run build
 
 Command timings:
 
-- `pnpm run lint` -- takes 3 seconds, shows warnings but passes
-- `pnpm run lint:fix` -- BROKEN: ESLint config issue with JS files. Use `pnpm run lint` instead
+- `pnpm run lint` -- oxlint, takes under 1 second, shows warnings but passes
+- `pnpm run lint:fix` -- oxlint with `--fix`
+- `pnpm run lint:type-aware` -- adds type-aware rules via oxlint-tsgolint; slower, reports more
 - `pnpm run format` -- takes 4 seconds to format all files
 - `pnpm run check-format` -- takes 4 seconds to check formatting
 
@@ -94,8 +95,8 @@ app/
 
 ### Core Technologies
 
-- **Framework**: Next.js 15.0.2 with App Router
-- **Language**: TypeScript 5.6.3
+- **Framework**: Next.js 16.2.12 with App Router
+- **Language**: TypeScript 7.0.2 (native Go compiler)
 - **Runtime**: Node.js 20.19.5
 - **Package Manager**: pnpm (required)
 - **Styling**: Tailwind CSS 3.4.14
@@ -103,9 +104,10 @@ app/
 
 ### Build Tools & Quality
 
-- **Linting**: ESLint with TypeScript and Next.js rules
+- **Linting**: oxlint with TypeScript, React and Next.js rules (`.oxlintrc.json`)
 - **Formatting**: Prettier with Tailwind CSS plugin
-- **Type Checking**: TypeScript strict mode enabled
+- **Type Checking**: TypeScript strict mode enabled; `pnpm type-check` runs TS 7,
+  `pnpm type-check:tsc` cross-checks with classic tsc 5.6.3
 
 ### Feature Libraries
 

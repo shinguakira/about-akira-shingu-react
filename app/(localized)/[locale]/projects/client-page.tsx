@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ProjectItem from "@/components/ui/project-item";
-import { ProjectContent } from "@/constants/project";
+import type { Project as ProjectContent } from "@shinguakira/portfolio-api-types";
 
 export default function ProjectsClientPage({
   locale,

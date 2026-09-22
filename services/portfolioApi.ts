@@ -6,6 +6,7 @@
 import type {
   ApiResponse,
   CertificationsResponse,
+  ChangelogResponse,
   EducationResponse,
   ExperienceResponse,
   FaqResponse,
@@ -163,58 +164,35 @@ export async function fetchEducation(
 
 /**
  * Fetches strong points data with 1 week cache
- * Falls back to local constants if API endpoint doesn't exist
  * @param lang - Optional language code for localized content
  */
 export async function fetchStrongPoints(
   lang?: string
 ): Promise<StrongPointsResponse> {
-  try {
-    // Try to fetch from API first
-    return await fetchFromPortfolioApi<StrongPointsResponse>("strong-points", {
-      queryParams: lang ? { lang } : undefined,
-    });
-  } catch (error) {
-    console.error("Falling back to local strong points data", error);
-    // Fallback to local data if API fails
-    const { strongPoint } = await import("../constants/strong-point");
-
-    // Convert the local data format to match the expected API format
-    // Local data has separate ja/en objects, but the API would return
-    // data already localized for the requested language
-    const languageKey = lang === "ja" ? "ja" : "en";
-    return strongPoint.map((item) => ({
-      size: item.size,
-      question: item[languageKey].question,
-      answer: item[languageKey].answer,
-    }));
-  }
+  return fetchFromPortfolioApi<StrongPointsResponse>("strong-points", {
+    queryParams: lang ? { lang } : undefined,
+  });
 }
 
 /**
  * Fetches FAQ data with 1 week cache
- * Falls back to local constants if API endpoint doesn't exist
  * @param lang - Optional language code for localized content
  */
 export async function fetchFaqs(lang?: string): Promise<FaqResponse> {
-  try {
-    // Try to fetch from API first
-    return await fetchFromPortfolioApi<FaqResponse>("faqs", {
-      queryParams: lang ? { lang } : undefined,
-      revalidateSeconds: 604800, // 1 week cache
-    });
-  } catch (error) {
-    console.error("Falling back to local FAQ data", error);
-    // Fallback to local data if API fails
-    const { faqs } = await import("../constants/faq");
+  return fetchFromPortfolioApi<FaqResponse>("faqs", {
+    queryParams: lang ? { lang } : undefined,
+    revalidateSeconds: 604800, // 1 week cache
+  });
+}
 
-    // Convert the local data format to match the expected API format
-    const languageKey = lang === "ja" ? "ja" : "en";
-    return faqs.map((item) => ({
-      size: item.size,
-      category: item.category,
-      question: item[languageKey].question,
-      answer: item[languageKey].answer,
-    }));
-  }
+/**
+ * Fetches the changelog with 1 week cache
+ *
+ * Unlike the other endpoints this one is not localized: each change carries
+ * both `ja` and `en` descriptions, so the caller picks.
+ */
+export async function fetchChangelogs(): Promise<ChangelogResponse> {
+  return fetchFromPortfolioApi<ChangelogResponse>("changelogs", {
+    revalidateSeconds: 604800, // 1 week cache
+  });
 }

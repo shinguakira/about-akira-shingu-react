@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import ProjectsClientPage from "./client-page";
 import { fetchProjects } from "@/services/portfolioApi";
-import { projects as localProjects } from "@/constants/project";
+import type { Project } from "@shinguakira/portfolio-api-types";
 
 export async function generateMetadata({
   params,
@@ -48,22 +48,13 @@ export default async function ProjectsPage({ params }: Props) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
 
-  let projectData;
+  let projectData: Project[] = [];
 
   try {
     // Fetch projects data from API with locale as lang parameter
     projectData = await fetchProjects(locale);
   } catch (error) {
     console.error("Failed to fetch projects from API:", error);
-    // Fallback to local data if API fails
-    // Transform MultilingualProjectProps to ProjectContent based on locale
-    projectData = localProjects.map((project) => {
-      const localizedProject = locale === "en" ? project.en : project.ja;
-      return {
-        ...localizedProject,
-        technologies: project.technologies,
-      };
-    });
   }
 
   return <ProjectsClientPage locale={locale} projects={projectData} />;

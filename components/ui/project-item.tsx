@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
-import { ProjectContent } from "@/constants/project";
+import type { Project as ProjectContent } from "@shinguakira/portfolio-api-types";
 // // Import useParams only if needed for localization
 
 const tmpPic = "/public/images/profile/developer-pic-1.png";

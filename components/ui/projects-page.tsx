@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectItem from "../ui/project-item";
-import { ProjectContent } from "@/constants/project";
+import type { Project as ProjectContent } from "@shinguakira/portfolio-api-types";
 
 const ProjectsPage = () => {
   // Provide empty projects array to avoid TypeScript errors

@@ -1,13 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Search, X, ArrowRight } from "lucide-react";
-import { faqs } from "../../constants/faq";
-import { projects } from "../../constants/project";
-import { skills, otherSkills } from "../../constants/skill";
-import { workExperiences } from "../../constants/work-experience";
-import { certifications } from "../../constants/certification";
-import { strongPoint } from "../../constants/strong-point";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { usePortfolioApi } from "@/hooks/use-portfolio-api";
+import type {
+  CertificationItem,
+  Faq,
+  Project,
+  SkillItem,
+  StrongPoint,
+  WorkExperience,
+} from "@shinguakira/portfolio-api-types";
 import { useRouter } from "next/navigation";
 import Modal from "@/components/ui/modal";
 
@@ -36,7 +39,43 @@ const SearchModal = ({
   const [selectedIndex, setSelectedIndex] = useState(0);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Only picks UI labels; the results themselves arrive already localized.
   const currentLang = locale === "ja" ? "ja" : "en";
+
+  // The search box lives in the nav bar on every route, so nothing is
+  // requested until the modal opens. Every endpoint returns entries already
+  // localized for `locale`.
+  const { data } = usePortfolioApi<
+    [
+      Faq[],
+      Project[],
+      SkillItem[],
+      SkillItem[],
+      WorkExperience[],
+      CertificationItem[],
+      StrongPoint[],
+    ]
+  >(
+    [
+      { path: "faqs", lang: locale },
+      { path: "projects", lang: locale },
+      { path: "skills", lang: locale },
+      { path: "other-skills", lang: locale },
+      { path: "experience", lang: locale },
+      { path: "certifications", lang: locale },
+      { path: "strong-points", lang: locale },
+    ],
+    isOpen
+  );
+  const [
+    faqs = [],
+    projects = [],
+    skills = [],
+    otherSkills = [],
+    workExperiences = [],
+    certifications = [],
+    strongPoint = [],
+  ] = data ?? [];
 
   // Sync internal state with external control
   useEffect(() => {
@@ -65,14 +104,14 @@ const SearchModal = ({
 
     faqs.forEach((faq, index) => {
       if (
-        faq[currentLang].question.toLowerCase().includes(query) ||
-        faq[currentLang].answer.toLowerCase().includes(query) ||
+        faq.question.toLowerCase().includes(query) ||
+        faq.answer.toLowerCase().includes(query) ||
         faq.category.toLowerCase().includes(query)
       ) {
         results.push({
           type: "faq",
-          title: faq[currentLang].question,
-          description: faq[currentLang].answer,
+          title: faq.question,
+          description: faq.answer,
           category: faq.category,
           url: `/${locale}/faq`,
           anchor: `faq-${index}`,
@@ -82,14 +121,14 @@ const SearchModal = ({
 
     projects.forEach((project, index) => {
       if (
-        project[currentLang].title.toLowerCase().includes(query) ||
-        project[currentLang].description.toLowerCase().includes(query) ||
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
         project.technologies.some((tech) => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "project",
-          title: project[currentLang].title,
-          description: project[currentLang].description,
+          title: project.title,
+          description: project.description,
           url: `/${locale}/projects`,
           anchor: `project-${index}`,
         });
@@ -114,21 +153,17 @@ const SearchModal = ({
 
     workExperiences.forEach((exp, index) => {
       if (
-        exp[currentLang].projectOverview.toLowerCase().includes(query) ||
-        exp[currentLang].role.toLowerCase().includes(query) ||
+        exp.projectOverview.toLowerCase().includes(query) ||
+        exp.role.toLowerCase().includes(query) ||
         exp.company.toLowerCase().includes(query) ||
-        exp[currentLang].description.some((desc) =>
-          desc.toLowerCase().includes(query)
-        ) ||
-        exp[currentLang].archivement.some((arch) =>
-          arch.toLowerCase().includes(query)
-        ) ||
+        exp.description.some((desc) => desc.toLowerCase().includes(query)) ||
+        exp.archivement.some((arch) => arch.toLowerCase().includes(query)) ||
         exp.technologies.some((tech) => tech.toLowerCase().includes(query))
       ) {
         results.push({
           type: "experience",
-          title: exp[currentLang].projectOverview,
-          description: exp[currentLang].role,
+          title: exp.projectOverview,
+          description: exp.role,
           category: exp.company,
           url: `/${locale}/work-history`,
           anchor: `work-${index}`,
@@ -154,13 +189,13 @@ const SearchModal = ({
 
     strongPoint.forEach((point, index) => {
       if (
-        point[currentLang].question.toLowerCase().includes(query) ||
-        point[currentLang].answer.toLowerCase().includes(query)
+        point.question.toLowerCase().includes(query) ||
+        point.answer.toLowerCase().includes(query)
       ) {
         results.push({
           type: "strongPoint",
-          title: point[currentLang].question,
-          description: point[currentLang].answer,
+          title: point.question,
+          description: point.answer,
           url: `/${locale}/strong-points`,
           anchor: `strong-point-${index}`,
         });

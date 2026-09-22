@@ -5,10 +5,25 @@ import { Bell } from "lucide-react";
 import { Badge } from "@/components/ui/shadcn/badge";
 import Modal from "@/components/ui/modal";
 import Changelog from "@/components/ui/changelog";
-import { changelogs } from "@/constants/changelog";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { usePortfolioApi } from "@/hooks/use-portfolio-api";
+import type { ChangelogItem } from "@shinguakira/portfolio-api-types";
+
 const ChangelogNotification = () => {
+  const { locale } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasNewChanges, setHasNewChanges] = useState(false);
+
+  // The bell sits in the nav bar on every route, so the changelog is only
+  // requested once the modal is actually opened.
+  const { data } = usePortfolioApi<[ChangelogItem[]]>(
+    [{ path: "changelogs" }],
+    isModalOpen
+  );
+  const changelogs = data?.[0] ?? [];
+
+  // GET /api/changelogs is not localized: every change carries both languages.
+  const lang = locale === "ja" ? "ja" : "en";
 
   useEffect(() => {
     // should check cookie or localstorage or something to see when a use last visited
@@ -38,13 +53,16 @@ const ChangelogNotification = () => {
         )}
       </Button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        {changelogs.map((changelog: ChangelogProps, index: number) => {
+        {changelogs.map((changelog: ChangelogItem, index: number) => {
           return (
             <Changelog
               key={index}
               version={changelog.version}
               date={changelog.date}
-              changes={changelog.changes}
+              changes={changelog.changes.map((change) => ({
+                type: change.type,
+                description: change[lang].description,
+              }))}
             />
           );
         })}
